@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SureStart — AI Education</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -98,28 +99,50 @@
     <h2 class="section-title">Student Outcomes, Proven Impact</h2>
     <p class="subtitle-center">Our alumni have joined top universities, landed exciting internships, and started their journey toward shaping the AI‑driven future.</p>
 
-    <h3>Colleges Attended</h3>
-    <div class="swatch-grid">
-      <div class="swatch"><span class="chip" style="background:#8C2626"></span><p>HARVARD<br>UNIVERSITY</p></div>
-      <div class="swatch"><span class="chip" style="background:#0F4A7B"></span><p>Berkeley</p></div>
-      <div class="swatch"><span class="chip" style="background:#F39C12"></span><p>PRINCETON<br>UNIVERSITY</p></div>
-      <div class="swatch"><span class="chip" style="background:#7B1F1A"></span><p>Stanford<br>University</p></div>
-      <div class="swatch"><span class="chip" style="background:#0A6B49"></span><p>DARTMOUTH</p></div>
-      <div class="swatch"><span class="chip" style="background:#5F2FB1"></span><p>THE CITY<br>UNIVERSITY OF<br>NEW YORK</p></div>
-      <div class="swatch"><span class="chip" style="background:#B79A63"></span><p>Georgia<br>Tech</p></div>
-    </div>
+  <h3>Colleges Attended</h3>
+  <div class="logo-marquee">
+    <ul class="logo-track">
+      <!-- one full sequence -->
+      <li class="logo-item"><img src="static/images/Harvard_University_logo.png" alt="Harvard University"></li>
+      <li class="logo-item"><img src="static/images/UC-Berkeley-Symbol.png" alt="UC Berkeley"></li>
+      <li class="logo-item"><img src="static/images/University-of-Princeton-Logo.png" alt="Princeton University"></li>
+      <li class="logo-item"><img src="static/images/Stanford-Symbol.png" alt="Stanford University"></li>
+      <li class="logo-item"><img src="static/images/Dartmouth-university-logo.png" alt="Dartmouth"></li>
+      <li class="logo-item"><img src="static/images/city-university-of-new-york-logo-png_seeklogo-488622.png" alt="City University of New York"></li>
+      <li class="logo-item"><img src="static/images/GTVertical_RGB.png" alt="Georgia Tech"></li>
 
-    <!-- <div class="rule"></div> -->
+      <!-- duplicate the sequence once (required for seamless loop) -->
+      <li class="logo-item"><img src="static/images/Harvard_University_logo.png" alt="Harvard University" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/UC-Berkeley-Symbol.png" alt="UC Berkeley" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/University-of-Princeton-Logo.png" alt="Princeton University" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/Stanford-Symbol.png" alt="Stanford University" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/Dartmouth-university-logo.png" alt="Dartmouth" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/city-university-of-new-york-logo-png_seeklogo-488622.png" alt="City University of New York" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/GTVertical_RGB.png" alt="Georgia Tech" aria-hidden="true"></li>
+    </ul>
+  </div>
 
-    <h3 style="margin-top:24px">AI/ML Internships Won</h3>
-    <div class="swatch-grid">
-      <div class="swatch"><span class="chip" style="background:#0D3763"></span><p>LOCKHEED MARTIN</p></div>
-      <div class="swatch"><span class="chip" style="background:#D82323"></span><p>Red Hat</p></div>
-      <div class="swatch"><span class="chip" style="background:#11A9E6"></span><p>Microsoft</p></div>
-      <div class="swatch"><span class="chip" style="background:#153C80"></span><p>NASA</p></div>
-      <div class="swatch"><span class="chip" style="background:#C23A3A"></span><p>Consumer Reports</p></div>
-      <div class="swatch"><span class="chip" style="background:#2A6DF2"></span><p>Meta</p></div>
-    </div>
+  <h3 style="margin-top:24px">AI/ML Internships Won</h3>
+  <div class="logo-marquee">
+    <ul class="logo-track">
+      <!-- one full sequence -->
+      <li class="logo-item"><img src="static/images/Lockheed_Martin_logo.svg.png" alt="Lockheed Martin"></li>
+      <li class="logo-item"><img src="static/images/2560px-Red_Hat_2019_logo.svg.png" alt="Red Hat"></li>
+      <li class="logo-item"><img src="static/images/Microsoft_logo_(2012).svg.png" alt="Microsoft"></li>
+      <li class="logo-item"><img src="static/images/NASA-Logo-Large.png" alt="NASA"></li>
+      <li class="logo-item"><img src="static/images/Consumer_Reports_logo_2016.svg.png" alt="Consumer Reports"></li>
+      <li class="logo-item"><img src="static/images/Meta-Logo.png" alt="Meta"></li>
+
+      <!-- duplicate the sequence once -->
+      <li class="logo-item"><img src="static/images/Lockheed_Martin_logo.svg.png" alt="Lockheed Martin" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/2560px-Red_Hat_2019_logo.svg.png" alt="Red Hat" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/Microsoft_logo_(2012).svg.png" alt="Microsoft" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/NASA-Logo-Large.png" alt="NASA" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/Consumer_Reports_logo_2016.svg.png" alt="Consumer Reports" aria-hidden="true"></li>
+      <li class="logo-item"><img src="static/images/Meta-Logo.png" alt="Meta" aria-hidden="true"></li>
+    </ul>
+  </div>
+
 
     <small>.</small>
   </div>
@@ -166,5 +189,6 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

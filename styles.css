@@ -127,12 +127,98 @@ body{
 /* ---------- OUTCOMES (swatches) ---------- */
 .outcomes{background:var(--sand); padding:70px 0}
 .outcomes h3{text-align:center; margin:18px 0 8px; font-weight:800; color:var(--charcoal)}
-.swatch-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:22px; padding:10px 0 26px}
+.swatch-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:22px; padding:10px 0 26px}
 .swatch{display:flex; flex-direction:column; align-items:center; gap:10px}
 .chip{width:60px; height:60px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,.12)}
 .swatch p{margin:0; text-align:center; font-size:.8rem; color:var(--slate); font-weight:700; line-height:1.1}
 .rule{height:26px; margin:6px 0; background:var(--mist); border-radius:999px}
 .outcomes small{display:block; text-align:center; color:var(--slate)}
+
+/* ---------- Infinite logo marquee (seamless, equal spacing) ---------- */
+.logo-marquee{
+  --duration: 40s;                 /* override per instance via style attr */
+  --gap: clamp(34px, 5vw, 80px);   /* equal spacing between logos */
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* fade edges so logos don't “pop in” */
+.logo-marquee::before,
+.logo-marquee::after{
+  content:"";
+  position:absolute; top:0; bottom:0; width:70px; pointer-events:none; z-index:1;
+  background: linear-gradient(to right, var(--sand), rgba(239,239,240,0));
+}
+.logo-marquee::after{
+  right:0;
+  transform: scaleX(-1);
+}
+
+/* the moving track contains TWO back-to-back copies of the logos */
+.logo-track{
+  display:flex;
+  align-items:center;
+  gap: var(--gap);
+  width: max-content;              /* shrink-wrap to content so 50% is exact */
+  animation: marquee var(--duration) linear infinite;
+}
+
+/* optional: pause on hover */
+.logo-marquee:hover .logo-track{ animation-play-state: paused; }
+
+.logo-item{ flex: 0 0 auto; }
+.logo-item img{
+  height: clamp(40px, 6vw, 70px);  /* consistent visual height */
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: saturate(1);
+}
+
+/* the magic: translate exactly half the track width (because content is doubled) */
+@keyframes marquee{
+  to{ transform: translateX(-50%); }
+}
+
+
+/* Logo sizes (reuse your classes) */
+.college-logo, .company-logo{
+  width:150px; height:150px;
+  object-fit:contain; flex-shrink:0;
+  opacity:.95;
+}
+
+/* smooth scroll from first set to second set */
+@keyframes logo-scroll{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .carousel-track{ animation: none; }
+}
+
+
+/* Logo styles for colleges and companies */
+.college-logo, .company-logo {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
 /* ---------- FINAL CTA ---------- */
 .cta-banner{
@@ -158,6 +244,49 @@ body{
 .footer .col{display:flex; flex-direction:column; gap:18px}
 .footer .tagline{color:#b8c0c7; max-width:32ch; font-size:1.1rem}
 
+/* Remove any bullets/markers in the logo sliders, no matter the markup */
+#collegeCarousel ul,
+#collegeCarousel li,
+#companyCarousel ul,
+#companyCarousel li,
+.outcomes ul,
+.outcomes li,
+.carousel ul,
+.carousel li,
+.carousel-track,
+.carousel-track li,
+.logo-set,
+.logo-set li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Kill default and custom markers inside the sliders */
+#collegeCarousel li::marker,
+#companyCarousel li::marker,
+.outcomes li::marker,
+.carousel li::marker {
+  content: "" !important;
+}
+
+#collegeCarousel li::before,
+#companyCarousel li::before,
+.outcomes li::before,
+.carousel li::before {
+  content: none !important;
+}
+
+/* Keep spacing clean */
+.carousel-track,
+.logo-set { display: flex; gap: 80px; align-items: center; }
+.carousel-track li,
+.logo-set li { flex: 0 0 auto; }
+.college-logo,
+.company-logo { display: block; margin: 0; }
+
+
+
 /* ---------- Responsive ---------- */
 @media (max-width:1024px){
   .course-head-grid, .course-body-grid{grid-template-columns:repeat(2,1fr)}
@@ -168,4 +297,14 @@ body{
   .course-head-grid, .course-body-grid{grid-template-columns:1fr}
   .swatch-grid{grid-template-columns:repeat(3,1fr)}
   .cta-row{flex-direction:column; align-items:flex-start}
+}
+
+/* Responsiveness */
+@media (max-width: 992px){
+  .logo-set{ gap:60px; padding:0 60px; }
+  .college-logo, .company-logo{ width:130px; height:130px; }
+}
+@media (max-width: 600px){
+  .logo-set{ gap:40px; padding:0 40px; }
+  .college-logo, .company-logo{ width:100px; height:100px; }
 }
