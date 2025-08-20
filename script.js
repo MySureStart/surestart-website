@@ -353,6 +353,223 @@
   }
 
   // ==========================================
+  // CTA SECTION ENHANCEMENTS
+  // ==========================================
+  
+  function initCTAEffects() {
+    const ctaSection = document.querySelector('.cta-section');
+    const ctaContent = document.querySelector('.cta-content');
+    const ctaFeatures = document.querySelectorAll('.cta-feature');
+    const ctaButtons = document.querySelectorAll('.cta-actions .btn');
+    
+    if (!ctaSection) return;
+    
+    // Enhanced mouse parallax effect for CTA decorative elements
+    function initCTAParallax() {
+      const decorativeElements = document.querySelectorAll('.cta-decorative');
+      
+      ctaSection.addEventListener('mousemove', (e) => {
+        const rect = ctaSection.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        
+        decorativeElements.forEach((element, index) => {
+          const intensity = (index + 1) * 0.5;
+          const moveX = (x - 0.5) * intensity * 20;
+          const moveY = (y - 0.5) * intensity * 20;
+          
+          element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+      });
+      
+      ctaSection.addEventListener('mouseleave', () => {
+        decorativeElements.forEach(element => {
+          element.style.transform = '';
+        });
+      });
+    }
+    
+    // Animate CTA features on scroll
+    function animateCTAFeatures() {
+      const featuresObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const features = entry.target.querySelectorAll('.cta-feature');
+            features.forEach((feature, index) => {
+              setTimeout(() => {
+                feature.style.transform = 'translateY(0) scale(1)';
+                feature.style.opacity = '1';
+              }, index * 100);
+            });
+            featuresObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      const featuresContainer = document.querySelector('.cta-features');
+      if (featuresContainer) {
+        // Set initial state
+        ctaFeatures.forEach(feature => {
+          feature.style.transform = 'translateY(20px) scale(0.9)';
+          feature.style.opacity = '0';
+          feature.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+        
+        featuresObserver.observe(featuresContainer);
+      }
+    }
+    
+    // Enhanced button interactions for CTA
+    function enhanceCTAButtons() {
+      ctaButtons.forEach((button, index) => {
+        // Add dynamic loading state effect
+        button.addEventListener('click', function(e) {
+          if (this.getAttribute('href').startsWith('mailto:')) {
+            return; // Let email links work normally
+          }
+          
+          e.preventDefault();
+          
+          const originalText = this.innerHTML;
+          const buttonText = this.querySelector('span');
+          
+          if (buttonText) {
+            buttonText.textContent = 'Loading...';
+            this.style.opacity = '0.7';
+            this.style.pointerEvents = 'none';
+            
+            setTimeout(() => {
+              buttonText.textContent = index === 0 ? 'Get Started Today' : 'Download Brochure';
+              this.style.opacity = '1';
+              this.style.pointerEvents = 'auto';
+              
+              // Simulate action completion
+              if (index === 1) {
+                // For brochure download, show success message
+                showCTAMessage('Brochure download started!', 'success');
+              }
+            }, 1500);
+          }
+        });
+        
+        // Add sophisticated hover effects
+        button.addEventListener('mouseenter', function() {
+          this.style.setProperty('--button-glow', '0 0 20px rgba(193, 122, 91, 0.3)');
+        });
+        
+        button.addEventListener('mouseleave', function() {
+          this.style.removeProperty('--button-glow');
+        });
+      });
+    }
+    
+    // CTA success/info message system
+    function showCTAMessage(message, type = 'info') {
+      const messageEl = document.createElement('div');
+      messageEl.className = `cta-message cta-message-${type}`;
+      messageEl.innerHTML = `
+        <div class="cta-message-content">
+          <span class="cta-message-icon">${type === 'success' ? '✓' : 'ℹ'}</span>
+          <span class="cta-message-text">${message}</span>
+        </div>
+      `;
+      
+      // Add styles for the message
+      const messageStyles = `
+        .cta-message {
+          position: fixed;
+          top: 100px;
+          right: 20px;
+          background: white;
+          border-radius: 12px;
+          padding: 16px 20px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+          border-left: 4px solid var(--primary-terracotta);
+          z-index: 10000;
+          transform: translateX(400px);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .cta-message.show {
+          transform: translateX(0);
+        }
+        
+        .cta-message-content {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        
+        .cta-message-icon {
+          width: 24px;
+          height: 24px;
+          background: var(--primary-terracotta);
+          color: white;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        
+        .cta-message-text {
+          color: var(--text-primary);
+          font-weight: 500;
+          font-size: 14px;
+        }
+        
+        .cta-message-success .cta-message-icon {
+          background: #22c55e;
+        }
+      `;
+      
+      if (!document.querySelector('#cta-message-styles')) {
+        const styleEl = document.createElement('style');
+        styleEl.id = 'cta-message-styles';
+        styleEl.textContent = messageStyles;
+        document.head.appendChild(styleEl);
+      }
+      
+      document.body.appendChild(messageEl);
+      
+      setTimeout(() => messageEl.classList.add('show'), 100);
+      
+      setTimeout(() => {
+        messageEl.classList.remove('show');
+        setTimeout(() => messageEl.remove(), 400);
+      }, 3000);
+    }
+    
+    // Enhanced feature icon animations
+    function initFeatureIconEffects() {
+      ctaFeatures.forEach(feature => {
+        const icon = feature.querySelector('.cta-feature-icon');
+        
+        feature.addEventListener('mouseenter', () => {
+          if (icon) {
+            icon.style.transform = 'scale(1.2) rotate(5deg)';
+            icon.style.background = 'var(--gradient-primary)';
+          }
+        });
+        
+        feature.addEventListener('mouseleave', () => {
+          if (icon) {
+            icon.style.transform = 'scale(1) rotate(0deg)';
+            icon.style.background = 'var(--gradient-secondary)';
+          }
+        });
+      });
+    }
+    
+    // Initialize all CTA effects
+    initCTAParallax();
+    animateCTAFeatures();
+    enhanceCTAButtons();
+    initFeatureIconEffects();
+  }
+
+  // ==========================================
   // PERFORMANCE OPTIMIZATIONS
   // ==========================================
   
@@ -491,6 +708,7 @@
       initStatsCounter();
       initLogoMarquee();
       initCardEffects();
+      initCTAEffects();
       
       // Optional: Add preloader for luxury feel
       // initPreloader();
