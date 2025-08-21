@@ -688,6 +688,137 @@
   }
 
   // ==========================================
+  // PROGRAM FLIP CARDS
+  // ==========================================
+  
+  function initFlipCards() {
+    const flipCards = document.querySelectorAll('.program-flip-card');
+    
+    if (flipCards.length === 0) return;
+    
+    flipCards.forEach((card, index) => {
+      let isFlipped = false;
+      
+      // Add tabindex for keyboard accessibility
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', `Learn more about ${card.querySelector('h3').textContent}`);
+      
+      // Click/Touch handler
+      function handleFlip(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Toggle flip state
+        isFlipped = !isFlipped;
+        
+        if (isFlipped) {
+          card.classList.add('flipped');
+          card.setAttribute('aria-expanded', 'true');
+        } else {
+          card.classList.remove('flipped');
+          card.setAttribute('aria-expanded', 'false');
+        }
+        
+        // Add subtle haptic feedback on mobile (if supported)
+        if ('vibrate' in navigator) {
+          navigator.vibrate(50);
+        }
+      }
+      
+      // Keyboard handler
+      function handleKeyboard(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleFlip(e);
+        }
+        
+        // Escape key to flip back
+        if (e.key === 'Escape' && isFlipped) {
+          isFlipped = false;
+          card.classList.remove('flipped');
+          card.setAttribute('aria-expanded', 'false');
+        }
+      }
+      
+      // Mouse leave handler (for desktop)
+      function handleMouseLeave() {
+        // Only auto-flip back on desktop hover
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          setTimeout(() => {
+            if (!card.matches(':hover') && isFlipped) {
+              isFlipped = false;
+              card.classList.remove('flipped');
+              card.setAttribute('aria-expanded', 'false');
+            }
+          }, 300);
+        }
+      }
+      
+      // Touch and mouse event listeners
+      card.addEventListener('click', handleFlip);
+      card.addEventListener('keydown', handleKeyboard);
+      card.addEventListener('mouseleave', handleMouseLeave);
+      
+      // Enhanced focus management
+      card.addEventListener('focus', () => {
+        card.style.outline = '2px solid var(--ss-accent-1)';
+        card.style.outlineOffset = '2px';
+      });
+      
+      card.addEventListener('blur', () => {
+        card.style.outline = '';
+        card.style.outlineOffset = '';
+      });
+      
+      // Intersection observer for entrance animations
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }, index * 150); // Stagger animation
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Set initial state for animation
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      
+      cardObserver.observe(card);
+    });
+    
+    // Handle clicks outside flip cards to close them (optional UX enhancement)
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.program-flip-card')) {
+        flipCards.forEach(card => {
+          if (card.classList.contains('flipped')) {
+            card.classList.remove('flipped');
+            card.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    });
+    
+    // Handle orientation change on mobile
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        // Reset any flipped cards on orientation change for better UX
+        flipCards.forEach(card => {
+          if (card.classList.contains('flipped')) {
+            card.classList.remove('flipped');
+            card.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }, 100);
+    });
+  }
+
+  // ==========================================
   // INITIALIZATION
   // ==========================================
   
@@ -709,6 +840,7 @@
       initLogoMarquee();
       initCardEffects();
       initCTAEffects();
+      initFlipCards(); // Add flip cards initialization
       
       // Optional: Add preloader for luxury feel
       // initPreloader();
