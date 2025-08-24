@@ -1630,6 +1630,7 @@ p {
 
 .programs {
   background: var(--surface-secondary);
+  background-color: white;
   position: relative;
   margin-top: -60px;
   padding-top: calc(var(--space-5xl) + 60px);
@@ -2232,17 +2233,34 @@ p {
 
 
 /* ==========================================
-   PARTNERS SECTION
+   SURESTART DIFFERENCE SECTION
    ========================================== */
 
-.partners {
+.surestart-difference {
   background: var(--surface-secondary);
   position: relative;
-  margin-top: -50px;
-  padding-top: calc(var(--space-5xl) + 50px);
+  margin-top: -40px;
+  padding-top: calc(var(--space-5xl) + 40px);
+  padding-bottom: var(--space-5xl);
 }
 
-.partners::after {
+.surestart-difference::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    white 0%, 
+    rgba(255, 255, 255, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.surestart-difference::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -2251,36 +2269,156 @@ p {
   height: 80px;
   background: linear-gradient(180deg,
     transparent 0%,
-    rgba(250, 249, 246, 0.1) 50%,
-    rgba(250, 249, 246, 0.2) 100%
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
   );
+  pointer-events: none;
 }
 
-.partners-container {
+.surestart-difference-container {
+  position: relative;
+  z-index: 2;
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--space-lg);
 }
 
-.partners-grid {
-  margin-top: var(--space-3xl);
+.surestart-difference-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-4xl);
+  align-items: start;
+  margin-top: var(--space-2xl);
+  align-items: stretch;
 }
 
-.partners-subtitle {
-  text-align: center;
+/* Left Column - Credibility Stats */
+.credibility-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  padding: var(--space-xl);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--border-radius-xl);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(84, 134, 135, 0.1);
+  box-shadow: var(--shadow-md);
+  align-self: stretch;
+  height: 100%;
+  justify-content: center;
+}
+
+.stat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(84, 134, 135, 0.08);
+  transition: all var(--transition-normal);
+  height: max-content;
+}
+
+.stat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.stat-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-secondary);
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(84, 134, 135, 0.25);
+}
+
+.stat-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.stat-text {
+  font-size: var(--text-lg);
+  font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: var(--space-xl);
-  font-size: var(--text-xl);
+  line-height: 1.4;
+  margin-top: var(--space-xs);
 }
 
+/* Right Column - Content */
+.surestart-difference-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  min-width: 0;
+} 
+
+.surestart-difference-content .btn {
+  align-self: flex-start;   /* prevents flex stretching */
+  width: max-content;       /* shrink-to-fit width */
+}
+
+/* Phone: center the button to match the centered text on mobile */
+@media (max-width: 768px) {
+  .surestart-difference-content .btn {
+    align-self: center;
+    width: max-content;
+  }
+}
+
+.difference-description {
+  font-size: var(--text-lg);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 400;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.logo-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.logo-section-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  text-align: left;
+}
+
+/* Logo Marquee Styles - Reused from Partners section */
 .logo-marquee {
   --duration: 30s;
   --gap: var(--space-4xl);
   position: relative;
   overflow: hidden;
   width: 100%;
-  margin: var(--space-2xl) 0 var(--space-4xl);
+  margin: 0;
   padding: var(--space-lg) 0;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(84, 134, 135, 0.1);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .logo-marquee::before,
@@ -2289,10 +2427,10 @@ p {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 80px;
+  width: 60px;
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(to right, var(--surface-secondary), rgba(245, 243, 240, 0));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4), transparent);
 }
 
 .logo-marquee::after {
@@ -2313,8 +2451,8 @@ p {
 }
 
 .logo-item {
-  flex: 0 0 auto;
-  opacity: 0.7;
+  flex: 0 1 auto;
+  opacity: 0.8;
   transition: opacity var(--transition-normal);
 }
 
@@ -2323,11 +2461,11 @@ p {
 }
 
 .logo-item img {
-  height: clamp(40px, 4vw, 60px);
+  height: clamp(36px, 3.5vw, 50px);
   width: auto;
   display: block;
   object-fit: contain;
-  filter: grayscale(0.3) opacity(0.8);
+  filter: grayscale(0.2) opacity(0.9);
   transition: all var(--transition-normal);
 }
 
@@ -2341,15 +2479,152 @@ p {
   }
 }
 
+/* Responsive Design for SureStart Difference Section */
+@media (max-width: 1024px) {
+  .surestart-difference-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3xl);
+    text-align: center;
+  }
+  
+  .credibility-stats {
+    order: 2;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: var(--space-lg);
+  }
+  
+  .stat-item {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    flex: 1;
+  }
+  
+  .stat-text {
+    font-size: var(--text-base);
+  }
+  
+  .surestart-difference-content {
+    order: 1;
+  }
+  
+  .difference-description {
+    text-align: center;
+  }
+  
+  .logo-section-title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .surestart-difference {
+    padding-top: calc(var(--space-4xl) + 40px);
+    padding-bottom: var(--space-4xl);
+  }
+  
+  .surestart-difference-grid {
+    gap: var(--space-2xl);
+  }
+  
+  .credibility-stats {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .stat-item {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-lg);
+  }
+  
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .stat-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .stat-text {
+    font-size: var(--text-base);
+  }
+  
+  .difference-description {
+    font-size: var(--text-base);
+    text-align: left;
+  }
+  
+  .logo-section-title {
+    font-size: var(--text-lg);
+    text-align: left;
+  }
+  
+  .logo-marquee {
+    padding: var(--space-md) 0;
+  }
+  
+  .logo-item img {
+    height: clamp(30px, 4vw, 40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .surestart-difference {
+    padding-top: calc(var(--space-3xl) + 40px);
+    padding-bottom: var(--space-3xl);
+  }
+  
+  .credibility-stats {
+    padding: var(--space-md);
+  }
+  
+  .stat-item {
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+  
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .stat-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .stat-text {
+    font-size: var(--text-sm);
+  }
+  
+  .difference-description {
+    font-size: var(--text-sm);
+  }
+  
+  .logo-section-title {
+    font-size: var(--text-base);
+  }
+  
+  .logo-marquee {
+    padding: var(--space-sm) 0;
+  }
+  
+  .logo-item img {
+    height: 28px;
+  }
+}
+
 /* ==========================================
    CTA SECTION
    ========================================== */
 
 .cta-section {
-  background: linear-gradient(135deg, 
-    var(--neutral-cream) 0%, 
-    var(--neutral-pearl) 50%,
-    rgba(139, 154, 142, 0.05) 100%);
+  background: white;
   position: relative;
   overflow: hidden;
   margin-top: -30px;
