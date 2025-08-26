@@ -32,81 +32,41 @@
 
 <!-- HERO SECTION -->
 <section class="hero">
-  <div class="hero-background">
-    <div class="hero-pattern"></div>
-    <div class="geometric-shapes">
-      <!-- Circles -->
-      <div class="shape circle-1"></div>
-      <div class="shape circle-2"></div>
-      <div class="shape circle-3"></div>
-      <div class="shape circle-4"></div>
-      <div class="shape circle-5"></div>
-      
-      <!-- Triangles -->
-      <div class="shape triangle-1"></div>
-      <div class="shape triangle-2"></div>
-      <div class="shape triangle-3"></div>
-      <div class="shape triangle-4"></div>
-      <div class="shape triangle-5"></div>
-      
-      <!-- Squares/Rectangles -->
-      <div class="shape square-1"></div>
-      <div class="shape square-2"></div>
-      <div class="shape rectangle-1"></div>
-      <div class="shape rectangle-2"></div>
-      <div class="shape rectangle-3"></div>
-      
-      <!-- Hexagons -->
-      <div class="shape hexagon-1"></div>
-      <div class="shape hexagon-2"></div>
-      <div class="shape hexagon-3"></div>
-      
-      <!-- Diamonds -->
-      <div class="shape diamond-1"></div>
-      <div class="shape diamond-2"></div>
-      <div class="shape diamond-3"></div>
-      
-      <!-- Stars -->
-      <div class="shape star-1"></div>
-      <div class="shape star-2"></div>
-      
-      <!-- Pentagon -->
-      <div class="shape pentagon-1"></div>
-      <div class="shape pentagon-2"></div>
-      
-      <!-- Ovals -->
-      <div class="shape oval-1"></div>
-      <div class="shape oval-2"></div>
-    </div>
+  <div class="hero-video-background">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="static/videos/students.mov" type="video/mp4">
+      <!-- Fallback for browsers that don't support video -->
+      <div class="hero-video-fallback"></div>
+    </video>
+    <div class="hero-video-overlay"></div>
   </div>
   <div class="hero-container">
     <div class="hero-content">
       <div class="hero-text-grid fade-up">
-        <div class="hero-text-left">
-          <h1 class="hero-title">
-            Turning today's learners into <span class="gradient-text">tomorrow's AI leaders</span>
-          </h1>
-        </div>
-        <div class="hero-text-right">
-          <p class="hero-subtitle">
-            Small-group AI programs for middle and high school students. Guided by mentors from top tech universities, explore AI tools and concepts, learn to design with ethics, and collaborate with peers to tackle real-world problems. Emerge prepared to lead and build with confidence and knowledge.
-          </p>
-          <div class="hero-actions">
-            <a href="#programs" class="btn btn-primary">
-              <span>Explore Programs</span>
-              <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </a>
-            <a href="#schools" class="btn btn-secondary">
-              <span>For Schools</span>
-            </a>
-          </div>
+        <h1 class="hero-title">
+          <span class="hero-title-subtext">Turning today's learners into</span> <span class="hero-title-underlined">tomorrow's AI leaders</span>
+        </h1>
+        <p class="hero-subtitle">
+          Small-group AI programs for middle and high school students.
+        </p>
+        <p class="hero-subtitle" style="margin-top: -30px;">
+          Learn from top tech university mentors, solve real-world problems,  
+        </p>
+        <p class="hero-subtitle" style="margin-top: -30px;">
+          and emerge ready to lead with confidence.
+        </p>
+        <div class="hero-actions">
+          <a href="#programs" class="btn btn-primary">
+            <span>Explore Programs</span>
+            <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a href="#schools" class="btn btn-secondary">
+            <span>For Schools</span>
+          </a>
         </div>
       </div>
-    </div>
-    <div class="hero-image-container fade-up">
-      <img src="static/images/students-thinner.png" alt="Three students pointing upward" class="hero-image">
     </div>
   </div>
 </section>
@@ -158,7 +118,7 @@
           </div>
           <div class="stat-text">50,000+ hours of hands-on AI training</div>
         </div>
-        <div class="stat-item fade-up">
+        <!-- <div class="stat-item fade-up">
           <div class="stat-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9 12l2 2 4-4"/>
@@ -169,7 +129,7 @@
             </svg>
           </div>
           <div class="stat-text">Awarded DEI Northstar in 2023</div>
-        </div>
+        </div> -->
       </div>
       
       <!-- Right Column: Content -->
@@ -181,7 +141,7 @@
         <div class="logo-sections">
           <div class="logo-section">
             <h3 class="logo-section-title">Colleges Attended</h3>
-            <div class="logo-marquee">
+            <div class="logo-marquee" style="--duration: 35s;">
               <div class="logo-track">
                 <div class="logo-item"><img src="static/images/Harvard_University_logo.png" alt="Harvard University"></div>
                 <div class="logo-item"><img src="static/images/UC-Berkeley-Symbol.png" alt="UC Berkeley"></div>
@@ -217,6 +177,8 @@
                 <div class="logo-item"><img src="static/images/Meta-Logo.png" alt="Meta"></div>
                 <div class="logo-item"><img src="static/images/Consumer_Reports_logo_2016.svg.png" alt="Consumer Reports"></div>
                 <div class="logo-item"><img src="static/images/2560px-Red_Hat_2019_logo.svg.png" alt="Red Hat"></div>
+                <div class="logo-item"><img src="static/images/Salesforce.com_logo.png" alt="Salesforce"></div>
+                <div class="logo-item"><img src="static/images/Linkedin-Logo.png" alt="Linkedin"></div>
               </div>
             </div>
           </div>
@@ -265,12 +227,7 @@
           </div>
           <div class="flip-card-back">
             <div class="back-content">
-              <h4>AI Explorations</h4>
-              <p class="course-subtitle">Explore AI tools in creative, beginner-friendly projects</p>
-              <div class="program-badge explorations-badge">
-                <span class="badge-icon">🌱</span>
-                <span class="badge-text">Explorations</span>
-              </div>
+              <h4><span class="badge-icon">🌱</span> AI Explorations</h4>
               <ul class="program-highlights">
                 <li>Creative AI projects </li>
                 <li>5+ generative AI tools</li>
@@ -310,12 +267,7 @@
           </div>
           <div class="flip-card-back">
             <div class="back-content">
-              <h4>AI Foundations</h4>
-              <p class="course-subtitle">Learn AI concepts and get introduced to AI ethics</p>
-              <div class="program-badge foundations-badge">
-                <span class="badge-icon">🌳</span>
-                <span class="badge-text">Foundations</span>
-              </div>
+              <h4><span class="badge-icon">🌳</span> AI Foundations</h4>
               <ul class="program-highlights">
                 <li>Master AI/ML concepts</li>
                 <li>12+ AI tools and platforms</li>
@@ -355,12 +307,7 @@
           </div>
           <div class="flip-card-back">
             <div class="back-content">
-              <h4>AI Applications</h4>
-              <p class="course-subtitle">Code in Python, use AI libraries to design solutions</p>
-              <div class="program-badge applications-badge">
-                <span class="badge-icon">🌺</span>
-                <span class="badge-text">Applications</span>
-              </div>
+              <h4><span class="badge-icon">🌺</span> AI Applications</h4>
               <ul class="program-highlights">
                 <li>Python programming for AI</li>
                 <li>AI libraries and APIs</li>
@@ -400,12 +347,7 @@
           </div>
           <div class="flip-card-back">
             <div class="back-content">
-              <h4>AI Innovations</h4>
-              <p class="course-subtitle">Create innovations for social impact, aligned to UN SDGs</p>
-              <div class="program-badge innovations-badge">
-                <span class="badge-icon">🏔️</span>
-                <span class="badge-text">Innovations</span>
-              </div>
+              <h4><span class="badge-icon">🏔️</span> AI Innovations</h4>
               <ul class="program-highlights">
                 <li>Deep learning & LLMs</li>
                 <li>Custom model development</li>
@@ -552,7 +494,10 @@
     <div class="cta-content fade-up">
       <h2 class="cta-title">Ready to Shape the Future?</h2>
       <p class="cta-description">
-        Join thousands of students building tomorrow's AI solutions. We have the perfect program for you.
+        Join thousands of students building tomorrow's AI solutions.
+      </p>
+      <p class="cta-description" style="margin-top: -50px;">
+        We have the perfect program for you.
       </p>
       <div class="cta-actions">
         <a href="mailto:hello@surestart.com" class="btn btn-primary">
@@ -561,7 +506,7 @@
             <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </a>
-        <a href="#programs" class="btn btn-outline">
+        <a href="#programs" class="btn btn-secondary">
           <span>Download Brochure</span>
         </a>
       </div>
@@ -618,6 +563,13 @@
       
       <div class="footer-links">
         <div class="footer-column">
+          <h4>Company</h4>
+          <a href="#mission">About Us</a>
+          <a href="#partners">Partners</a>
+          <a href="#">Careers</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-column">
           <h4>Programs</h4>
           <a href="#programs">Explorations</a>
           <a href="#programs">Foundations</a>
@@ -631,13 +583,7 @@
           <a href="#">Success Stories</a>
           <a href="#">Blog</a>
         </div>
-        <div class="footer-column">
-          <h4>Company</h4>
-          <a href="#mission">About Us</a>
-          <a href="#partners">Partners</a>
-          <a href="#">Careers</a>
-          <a href="#contact">Contact</a>
-        </div>
+
       </div>
     </div>
     

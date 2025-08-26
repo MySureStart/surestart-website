@@ -548,8 +548,7 @@
         
         feature.addEventListener('mouseenter', () => {
           if (icon) {
-            icon.style.transform = 'scale(1.2) rotate(5deg)';
-            icon.style.background = 'var(--gradient-primary)';
+            icon.style.transform = 'scale(1) rotate(0deg)';
           }
         });
         
