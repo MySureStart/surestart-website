@@ -231,33 +231,67 @@ p {
 }
 
 .nav-link {
+  position: relative;            /* make ::after anchor to this */
+  display: inline-block;
+  /* if you have padding-inline, keep it; we'll reuse it below */
   text-decoration: none;
   color: var(--text-primary);
   font-weight: 500;
   font-size: var(--text-sm);
   letter-spacing: 0.025em;
-  transition: color var(--transition-fast);
-  position: relative;
+  transition: color var(--transition-slow);
 }
 
 .nav-link:hover {
   color: var(--primary-terracotta);
 }
 
+/* underline */
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gradient-primary);
-  transition: width var(--transition-normal);
+  left: 0; 
+  right: 0;
+  bottom: -6px;
+  height: 8px;
+  
+  /* Create inline SVG with organic pen stroke shape */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='penGradient' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFB65F'/%3E%3Cstop offset='25%25' style='stop-color:%23ED7C4B'/%3E%3Cstop offset='50%25' style='stop-color:%23E73052'/%3E%3Cstop offset='75%25' style='stop-color:%23EE2D6E'/%3E%3Cstop offset='100%25' style='stop-color:%23E73052'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 45 Q50 35 100 50 Q200 40 300 55 Q400 45 500 50 Q600 40 700 45 Q800 50 900 45 L900 65 Q800 70 700 65 Q600 60 500 70 Q400 65 300 75 Q200 60 100 70 Q50 55 0 65 Z' fill='url(%23penGradient)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: left center;
+  
+  /* Start hidden and animate from left to right */
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-link:hover::after {
-  width: 100%;
+  opacity: 1;
+  transform: scaleX(1);
+  
+  /* Add loading animation */
+  animation: penDraw 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
+
+/* Pen drawing animation */
+@keyframes penDraw {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+
 
 .nav-cta {
   background: var(--gradient-primary);
@@ -1166,13 +1200,31 @@ p {
 
 .btn-outline {
   background: transparent;
-  color: var(--primary-terracotta);
-  border: 2px solid var(--primary-terracotta);
+  color: var(--text-primary);
+  border: 2px solid var(--border-medium);
+  position: relative;
+  overflow: visible;
+}
+
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-full);
+  transition: width var(--transition-normal);
 }
 
 .btn-outline:hover {
-  background: var(--primary-terracotta);
-  color: white;
+  border-color: var(--ss-accent-1);
+  color: var(--ss-accent-1);
+}
+
+.btn-outline:hover::after {
+  width: 100%;
 }
 
 .btn-arrow {
@@ -1257,7 +1309,7 @@ p {
   background: var(--surface-secondary);
   position: relative;
   margin-top: -40px;
-  padding-top: calc(var(--space-4xl) + 40px);
+  padding-top: calc(var(--space-5xl) + 100px);
   padding-bottom: var(--space-5xl);
 }
 
@@ -1285,6 +1337,18 @@ p {
   padding: 0 var(--space-lg);
 }
 
+.asu-gsv-container .section-header {
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+}
+
+.asu-gsv-container .section-label,
+.asu-gsv-container .section-title {
+  text-align: left;
+}
+
 .asu-gsv-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1296,7 +1360,8 @@ p {
 .asu-gsv-text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 0;
 }
 
 .asu-gsv-description {
@@ -1305,6 +1370,7 @@ p {
   color: var(--text-secondary);
   margin: 0;
   font-weight: 400;
+  text-align: left;
 }
 
 .asu-gsv-video {
@@ -1337,12 +1403,14 @@ p {
 }
 
 .video-caption {
-  font-size: var(--text-base);
-  line-height: 1.6;
-  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--text-muted);
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
   text-align: left;
+  font-style: italic;
+  opacity: 0.8;
 }
 
 /* Responsive Design for ASU-GSV Section */
@@ -1616,7 +1684,13 @@ p {
   padding: var(--space-md) var(--space-xl);
   font-size: var(--text-sm);
   border-radius: var(--border-radius-full);
-  align-self: flex-start;
+  align-self: center;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .watch-demo-btn:hover {
@@ -1903,62 +1977,123 @@ p {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.back-content h4 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-sm);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.course-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: 1.4;
+  text-align: left;
 }
 
 .program-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--border-radius-full);
   font-size: var(--text-xs);
   font-weight: 600;
   margin-bottom: var(--space-md);
-  border: 2px solid;
   align-self: flex-start;
+  position: relative;
+}
+
+.program-badge::after {
+  display: none;
 }
 
 .explorations-badge {
-  background: rgba(139, 154, 142, 0.1);
   color: var(--ss-accent-1);
-  border-color: rgba(139, 154, 142, 0.3);
 }
 
 .foundations-badge {
-  background: rgba(237, 124, 75, 0.1);
   color: var(--ss-orange);
-  border-color: rgba(237, 124, 75, 0.3);
 }
 
 .applications-badge {
-  background: rgba(255, 182, 95, 0.1);
   color: var(--ss-yellow);
-  border-color: rgba(255, 182, 95, 0.3);
 }
 
 .innovations-badge {
-  background: rgba(231, 48, 82, 0.1);
   color: var(--ss-red);
-  border-color: rgba(231, 48, 82, 0.3);
+}
+
+/* Badge text with pen stroke hover effect */
+.badge-text {
+  position: relative;
+  display: inline-block;
+  transition: color var(--transition-slow);
+}
+
+.badge-text:hover {
+  cursor: pointer;
+}
+
+/* Pen stroke underline effect for badge text */
+.badge-text::after {
+  content: "";
+  position: absolute;
+  left: 0; 
+  right: 0;
+  bottom: -6px;
+  height: 8px;
+  
+  /* Create inline SVG with organic pen stroke shape */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='penGradient' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFB65F'/%3E%3Cstop offset='25%25' style='stop-color:%23ED7C4B'/%3E%3Cstop offset='50%25' style='stop-color:%23E73052'/%3E%3Cstop offset='75%25' style='stop-color:%23EE2D6E'/%3E%3Cstop offset='100%25' style='stop-color:%23E73052'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0 45 Q50 35 100 50 Q200 40 300 55 Q400 45 500 50 Q600 40 700 45 Q800 50 900 45 L900 65 Q800 70 700 65 Q600 60 500 70 Q400 65 300 75 Q200 60 100 70 Q50 55 0 65 Z' fill='url(%23penGradient)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: left center;
+  
+  /* Start hidden and animate from left to right */
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.badge-text:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+  
+  /* Add loading animation */
+  animation: penDraw 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Pen drawing animation for badge text */
+@keyframes penDraw {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 .badge-icon {
   font-size: var(--text-sm);
 }
 
-.back-content h4 {
-  font-size: var(--text-lg);
-  margin-bottom: var(--space-md);
-  color: var(--text-primary);
-  font-weight: 700;
-  line-height: 1.2;
-}
-
 .program-highlights {
   list-style: none;
   padding: 0;
   margin: 0 0 var(--space-lg) 0;
+  text-align: left;
 }
 
 .program-highlights li {
@@ -1968,6 +2103,7 @@ p {
   line-height: 1.4;
   position: relative;
   padding-left: var(--space-md);
+  text-align: left;
 }
 
 .program-highlights li::before {
@@ -2010,14 +2146,17 @@ p {
 .btn-sm {
   padding: var(--space-sm) var(--space-lg);
   font-size: var(--text-sm);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-full);
   font-weight: 600;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all var(--transition-normal);
-  align-self: flex-start;
+  align-self: center;
+  width: max-content;
+  margin: auto auto 0 auto;
+  margin-top: auto;
 }
 
 .btn-sm.btn-primary {
@@ -2413,9 +2552,9 @@ p {
   width: 100%;
   margin: 0;
   padding: var(--space-lg) 0;
-  background: rgba(255, 255, 255, 0.4);
+  background: transparent;
   border-radius: var(--border-radius-lg);
-  border: 1px solid rgba(84, 134, 135, 0.1);
+  border: none;
   min-height: 80px;
   display: flex;
   align-items: center;
@@ -2423,19 +2562,7 @@ p {
 
 .logo-marquee::before,
 .logo-marquee::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 60px;
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.4), transparent);
-}
-
-.logo-marquee::after {
-  right: 0;
-  transform: scaleX(-1);
+  display: none;
 }
 
 .logo-track {
@@ -2447,7 +2574,7 @@ p {
 }
 
 .logo-marquee:hover .logo-track {
-  animation-play-state: paused;
+  animation-play-state: running !important;
 }
 
 .logo-item {
@@ -2467,6 +2594,39 @@ p {
   object-fit: contain;
   filter: grayscale(0.2) opacity(0.9);
   transition: all var(--transition-normal);
+}
+
+/* Specific logo sizing adjustments */
+.logo-item img[alt="Harvard University"] {
+  height: clamp(32px, 3.0vw, 42px);
+}
+
+.logo-item img[alt="The City University of New York"] {
+  height: clamp(52px, 4.8vw, 62px);
+}
+
+.logo-item img[alt="Princeton University"] {
+  height: clamp(48px, 4.2vw, 58px);
+}
+
+.logo-item img[alt="UC Berkeley"] {
+  height: clamp(48px, 4.2vw, 58px);
+}
+
+.logo-item img[alt="Georgia Tech"] {
+  height: clamp(48px, 4.2vw, 58px);
+}
+
+.logo-item img[alt="Microsoft"] {
+  height: clamp(28px, 2.6vw, 36px);
+}
+
+.logo-item img[alt="Red Hat"] {
+  height: clamp(28px, 2.6vw, 36px);
+}
+
+.logo-item img[alt="Consumer Reports"] {
+  height: clamp(28px, 2.6vw, 36px);
 }
 
 .logo-item:hover img {
@@ -2764,10 +2924,25 @@ p {
   font-weight: 500;
 }
 
+.cta-feature:nth-child(1) .cta-feature-icon {
+  background: linear-gradient(135deg, var(--ss-yellow), var(--ss-orange));
+}
+
+.cta-feature:nth-child(2) .cta-feature-icon {
+  background: linear-gradient(135deg, var(--ss-orange), var(--ss-red));
+}
+
+.cta-feature:nth-child(3) .cta-feature-icon {
+  background: linear-gradient(135deg, var(--ss-red), var(--ss-pink));
+}
+
+.cta-feature:nth-child(4) .cta-feature-icon  {
+  background: linear-gradient(135deg, var(--ss-pink), var(--ss-yellow));
+}
+
 .cta-feature-icon {
   width: 20px;
   height: 20px;
-  background: var(--gradient-secondary);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2777,38 +2952,9 @@ p {
   flex-shrink: 0;
 }
 
+/* Remove floating graphics */
 .cta-decorative {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.cta-decorative-1 {
-  top: 20%;
-  left: 10%;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, rgba(193, 122, 91, 0.1), rgba(212, 165, 116, 0.1));
-  border-radius: 50%;
-}
-
-.cta-decorative-2 {
-  top: 60%;
-  right: 15%;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, rgba(139, 154, 142, 0.1), rgba(92, 107, 93, 0.1));
-  border-radius: var(--border-radius-md);
-  transform: rotate(45deg);
-}
-
-.cta-decorative-3 {
-  bottom: 30%;
-  left: 15%;
-  width: 100px;
-  height: 40px;
-  background: linear-gradient(135deg, rgba(212, 165, 116, 0.08), rgba(193, 122, 91, 0.08));
-  border-radius: var(--border-radius-full);
+  display: none;
 }
 
 /* ==========================================

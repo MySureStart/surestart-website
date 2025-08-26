@@ -556,7 +556,8 @@
         feature.addEventListener('mouseleave', () => {
           if (icon) {
             icon.style.transform = 'scale(1) rotate(0deg)';
-            icon.style.background = 'var(--gradient-secondary)';
+            // Remove the color change - keep original colors
+            icon.style.background = '';
           }
         });
       });
