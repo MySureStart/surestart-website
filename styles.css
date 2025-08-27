@@ -46,8 +46,8 @@
   --ss-dark: #2E2E2E;
   --ss-neutral: #F4EFEA;
   --ss-neutral-2: #F9F6EE;
-  --ss-accent-1: #548687;
-  --ss-accent-2: #9BC1BC;
+  --ss-accent-1: #664840;
+  --ss-accent-2: #94746b;
   
   /* Semantic Colors */
   --surface-primary: var(--ss-neutral-2);
@@ -1380,7 +1380,7 @@ p {
 .section-label {
   display: inline-block;
   /* background: var(--gradient-secondary); */
-  background-color: #548687;
+  background-color: var(--ss-accent-2);
   color: white;
   padding: var(--space-sm) var(--space-lg);
   border-radius: var(--border-radius-full);
@@ -1392,8 +1392,13 @@ p {
 }
 
 .section-title {
+ /* background: -webkit-linear-gradient(var(--ss-accent-1),var(--ss-accent-2));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; */
+  color:var(--ss-accent-1);  
   margin-bottom: var(--space-lg);
 }
+
 
 .section-subtitle {
   font-size: var(--text-lg);
@@ -1411,8 +1416,8 @@ p {
   background: var(--surface-secondary);
   position: relative;
   margin-top: -40px;
-  padding-top: calc(var(--space-5xl) + 100px);
-  padding-bottom: var(--space-5xl);
+  padding-top: calc(var(--space-3xl) + 40px);
+  padding-bottom: var(--space-3xl);
 }
 
 .asu-gsv-section::before {
@@ -1809,8 +1814,8 @@ p {
   background-color: white;
   position: relative;
   margin-top: -60px;
-  padding-top: calc(var(--space-5xl) + 60px);
-  padding-bottom: calc(var(--space-5xl) * 2);
+  padding-top: calc(var(--space-3xl) + 40px);
+  padding-bottom: calc(var(--space-5xl));
 }
 
 .programs::before {
@@ -2503,7 +2508,7 @@ p {
   background: var(--surface-secondary);
   position: relative;
   margin-top: -40px;
-  padding-top: calc(var(--space-5xl) + 40px);
+  padding-top: calc(var(--space-3xl) + 40px);
   padding-bottom: var(--space-5xl);
 }
 
@@ -2539,6 +2544,11 @@ p {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--space-lg);
+  text-align: center;
+}
+
+.surestart-difference-container .btn {
+  margin-top: 34px;
 }
 
 .surestart-difference-grid {
@@ -2614,13 +2624,15 @@ p {
 .surestart-difference-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xl);
+  gap: var(--space-lg);
   min-width: 0;
+  text-align: left;
 } 
 
 .surestart-difference-content .btn {
   align-self: flex-start;   /* prevents flex stretching */
   width: max-content;       /* shrink-to-fit width */
+  margin-top: 29px;
 }
 
 /* Phone: center the button to match the centered text on mobile */
@@ -2636,10 +2648,8 @@ p {
   line-height: 1.7;
   color: var(--text-secondary);
   margin: 0;
-  font-weight: 400;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+  font-weight: 400;  
+  margin-bottom: 24px;
 }
 
 .logo-sections {
@@ -2657,7 +2667,7 @@ p {
 .logo-section-title {
   font-size: var(--text-xl);
   font-weight: 700;
-  color: var(--text-primary);
+  color:#664840;
   margin: 0;
   text-align: left;
 }
@@ -2986,7 +2996,7 @@ p {
 .cta-title {
   font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
   margin-bottom: var(--space-xl);
-  color: var(--text-primary);
+  color: var(--ss-accent-1);
   position: relative;
 }
 
