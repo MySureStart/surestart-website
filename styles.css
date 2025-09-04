@@ -335,7 +335,7 @@ p {
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 80px 0 0;
+  padding: 120px 0 60px;
 }
 
 .hero-video-background {
@@ -940,24 +940,24 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:flex-start;
+  justify-content: center;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 clamp(16px, 4vw, 24px);
+  min-height: 60vh;
 }
 
 /* Hero Content - Contains the text grid */
 .hero-content {
   width: 100%;
   display: flex;
-  flex:1;
+  flex: 1;
   flex-grow: 1;
-  min-width:0;
+  min-width: 0;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 0px;
-  /* margin-bottom: clamp(12px, 6vh, 56px); */
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
 /* Hero Text Grid - 1-column vertical layout */
@@ -971,9 +971,10 @@ p {
   opacity: 0;
   transform: translateY(12px);
   animation: heroFadeUp 450ms ease-out 200ms forwards;
-  gap: clamp(24px, 4vh, 48px);
+  gap: clamp(32px, 5vh, 56px);
   z-index: 3;
   position: relative;
+  padding-top: 40px;
 }
 
 /* Hero Image Container - Centered below text grid */
@@ -1012,7 +1013,7 @@ p {
 /* Hero Typography - Fluid sizing */
 .hero-title {
   font-size: clamp(40px, 7vw, 80px);
-  line-height: 0.95;
+  line-height: 1.1;
   margin: 0;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -3312,10 +3313,15 @@ p {
 
 @media (max-width: 900px) {
   /* Hero responsive breakpoint - Stack to single column */
+  .hero {
+    padding: 100px 0 40px;
+  }
+  
   .hero-text-grid {
     grid-template-columns: 1fr;
     gap: clamp(24px, 4vh, 32px);
     text-align: center;
+    padding-top: 20px;
   }
   
   .hero-title {
@@ -3340,17 +3346,29 @@ p {
     display: flex;
   }
   
-  .hero-actions {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+  .hero {
+    padding: 90px 0 30px;
   }
   
-  .btn {
-    width: 100%;
-    max-width: 280px;
-    justify-content: center;
+  .hero-container {
+    min-height: 50vh;
   }
+  
+.hero-text-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  max-width: 2000px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 450ms ease-out 200ms forwards;
+  gap: clamp(32px, 5vh, 56px);
+  z-index: 3;
+  position: relative;
+  padding-top: 10px;
+}
   
   .students-image {
     min-width: 400px;
@@ -3494,10 +3512,16 @@ p {
   
   .hero {
     min-height: 80vh;
+    padding: 80px 0 20px;
   }
   
   .hero-container {
     padding: 0 var(--space-md);
+    min-height: 45vh;
+  }
+  
+  .hero-text-grid {
+    padding-top: 0;
   }
   
   .hero-title {
