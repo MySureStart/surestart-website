@@ -99,284 +99,61 @@
       </div>
     </div>
 
-    <!-- STUDENT TESTIMONIALS CAROUSEL -->
-    <div class="testimonials-carousel fade-up">
-      <div class="carousel-container">
-        <div class="carousel-wrapper">
-          <div class="carousel-track" id="testimonialTrack">
+    <!-- STUDENT NETWORK WEB -->
+    <div class="student-network-web fade-up">
+      <div class="network-container">
+        <div class="network-header">
+          <h3 class="network-title">Our Connected Community</h3>
+          <p class="network-subtitle">Click on any student to explore their journey and see how SureStart transformed their future</p>
+        </div>
+        
+        <div class="network-visualization">
+          <canvas id="networkCanvas" class="network-canvas"></canvas>
+          
+          <!-- Floating Testimonial Card -->
+          <div id="testimonialCard" class="floating-testimonial-card">
+            <div class="testimonial-close" id="testimonialClose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </div>
             
-            <!-- Student Card 1 - Netra Ramesh -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Life-changing experience!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
+            <div class="testimonial-content">
+              <div class="testimonial-header">
+                <div class="testimonial-avatar">
+                  <img id="testimonialAvatar" src="" alt="">
+                </div>
+                <div class="testimonial-info">
+                  <h4 id="testimonialName" class="testimonial-name"></h4>
+                  <span id="testimonialProgram" class="testimonial-program"></span>
                 </div>
               </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"My life changed because of the MIT FutureMaker program! I've never been so passionate about my future."</p>
+              
+              <div class="testimonial-quote">
+                <div class="quote-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" fill="currentColor"/>
+                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" fill="currentColor"/>
+                  </svg>
                 </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Netra-Ramesh.jpg" alt="Netra Ramesh">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Netra Ramesh</div>
-                    <div class="student-program">MIT FutureMakers 2021</div>
-                  </div>
-                </div>
+                <p id="testimonialText" class="quote-text"></p>
               </div>
-            </div>
-
-            <!-- Student Card 2 - Vitaliy Stephanov -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Career-defining program!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"SureStart helped prepare me with the skills I needed to become a Software Development Engineer at Amazon Web Services."</p>
-                </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Vitaliy-S.jpg" alt="Vitaliy Stephanov">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Vitaliy Stephanov</div>
-                    <div class="student-program">Now at Amazon Web Services</div>
-                  </div>
-                </div>
+              
+              <div class="testimonial-actions">
+                <a href="#" id="testimonialLinkedIn" class="testimonial-btn primary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  Connect
+                </a>
+                <a href="#" id="testimonialStory" class="testimonial-btn secondary">
+                  View Full Story
+                </a>
               </div>
             </div>
-
-            <!-- Student Card 3 - Alexa Urrea -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Direct impact on my life!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"SureStart dramatically and directly impacted my life. It helped me land my first ever internship with a great company."</p>
-                </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Alexa-Urrea.jpg" alt="Alexa Urrea">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Alexa Urrea</div>
-                    <div class="student-program">SureStart 2021</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Student Card 4 - Sahana Sreeram -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Most impactful experience!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"The most impactful technology experience I have had so far. Each team product had the potential to change the world."</p>
-                </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Sahana-Sreeram.jpg" alt="Sahana Sreeram">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Sahana Sreeram</div>
-                    <div class="student-program">SureStart 2021</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Student Card 5 - Jason Jerome -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Unique learning experience!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"A learning experience unlike anything I've participated in before. Thanks to their support I was recently offered a summer internship!"</p>
-                </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Jason-Jerome.jpg" alt="Jason Jerome">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Jason Jerome</div>
-                    <div class="student-program">SureStart 2021</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Student Card 6 - Ashmita Kumar -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Incredible mentorship!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"The mentorship and guidance I received through SureStart was invaluable in shaping my career path in AI and technology."</p>
-                </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Ashmita-Kumar.jfif" alt="Ashmita Kumar">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Ashmita Kumar</div>
-                    <div class="student-program">SureStart 2021</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Student Card 7 - Sarah Tran -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Inspiring!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"SureStart opened my eyes to the possibilities in AI and gave me the confidence to pursue my dreams."</p>
-                </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Sarah-Tran.jfif" alt="Sarah Tran">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Sarah Tran</div>
-                    <div class="student-program">SureStart 2021</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Student Card 8 - Walee Attia -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Game-changer!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"The program completely changed my perspective on what's possible in technology and AI."</p>
-                </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Walee-Attia.jfif" alt="Walee Attia">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Walee Attia</div>
-                    <div class="student-program">SureStart 2021</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Student Card 9 - Ashna Khetan -->
-            <div class="testimonial-card">
-              <div class="card-header">
-                <h4 class="card-title">Transformative!</h4>
-                <div class="star-rating">
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star filled">★</span>
-                  <span class="star">★</span>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="testimonial-text">
-                  <p>"SureStart provided me with the foundation I needed to excel in my AI studies and career."</p>
-                </div>
-                <div class="student-info">
-                  <div class="student-avatar">
-                    <img src="https://mysurestart.com/s/Ashna-Khetan.jfif" alt="Ashna Khetan">
-                  </div>
-                  <div class="student-details">
-                    <div class="student-name">Ashna Khetan</div>
-                    <div class="student-program">SureStart 2021</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
-        </div>
-        
-        <!-- Carousel Navigation -->
-        <div class="carousel-navigation">
-          <button class="carousel-btn carousel-prev" id="prevBtn" aria-label="Previous testimonials">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-          <button class="carousel-btn carousel-next" id="nextBtn" aria-label="Next testimonials">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </button>
-        </div>
-        
-        <!-- Carousel Indicators -->
-        <div class="carousel-indicators" id="carouselIndicators">
-          <!-- Dots will be generated by JavaScript -->
+          
         </div>
       </div>
     </div>
