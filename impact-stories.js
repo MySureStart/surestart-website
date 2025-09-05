@@ -778,7 +778,11 @@ class StudentNetworkWeb {
     
     this.activeNode = node;
     node.isCentered = true;
-    node.targetScale = 1.3;
+    
+    // Calculate scale to make node reach extra-large size (58px)
+    const extraLargeRadius = this.getNodeRadius('extra-large');
+    const currentRadius = node.radius;
+    node.targetScale = extraLargeRadius / currentRadius;
     
     // Set target positions for the new active node
     node.targetX = this.centerX;
