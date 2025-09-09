@@ -51,113 +51,76 @@
   
 </section>
 
-<!-- STUDENT VOICES SECTION -->
-<section class="student-voices">
-  <div class="voices-container">
-    <div class="section-header fade-up">
-      <h2 class="section-title">Student Voices</h2>
-      <p class="section-subtitle">
-        Transforming lives and launching careers through world-class AI education
-      </p>
-    </div>
-    
-    
-    <!-- FEATURED TESTIMONIAL SECTION -->
-    <div class="featured-testimonial fade-up">
-      <div class="featured-testimonial-card" id="featuredTestimonial">
-        <div class="featured-quote-mark">
-          <svg width="80" height="60" viewBox="0 0 24 24" fill="none">
-            <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" fill="currentColor"/>
-            <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" fill="currentColor"/>
-          </svg>
+<!-- MEET SURESTART STUDENTS SECTION -->
+<section class="case-studies-testimonials">
+  <div class="case-studies-header">
+    <div class="meet-students-label">MEET SURESTART STUDENTS</div>
+    <h2 class="case-studies-title">Transforming lives and launching careers through world-class AI education</h2>
+    <a href="#programs" class="case-studies-link">Explore our programs <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  
+  <div class="testimonials-carousel">
+    <div class="testimonials-track" id="testimonialsTrack">
+      <!-- Stanford/Princeton Student Card -->
+      <div class="testimonial-case-card">
+        <div class="testimonial-photo">
+          <img src="static/images/JW.jpg" alt="SureStart Student">
         </div>
-        
-        <div class="featured-content">
-          <blockquote class="featured-quote" id="featuredQuote">
-            SureStart has everything sales and marketing teams need to succeed
-          </blockquote>
+        <div class="testimonial-content">
+            "Participating in SureStart was the single best decision I have made in my academic career. As a student from a background underrepresented in Machine Learning, the program provided a supportive and comfortable springboard into all things AI. The mentorship was fantastic and I have continued to keep in contact with my SureStart mentors for years! My interest in ML was cemented after completing SureStart, so I decided to pursue a bachelors degree in Mathematics at Stanford. I graduated this past June, and I am now starting my Computer Science PhD at Princeton. I would highly recommend SureStart to any young student, it truly changed my life!"
         </div>
-        
-        <div class="featured-author">
-          <div class="author-name" id="featuredAuthor">MOCKA</div>
-          <div class="author-avatar">
-            <img src="https://mysurestart.com/s/Netra-Ramesh.jpg" alt="Featured Student" id="featuredAvatar">
-            <div class="author-details">
-              <div class="detail-line"></div>
-              <div class="detail-line short"></div>
-            </div>
-          </div>
+      </div>
+      
+      <!-- MIT FutureMakers Student Card -->
+      <div class="testimonial-case-card">
+        <div class="testimonial-photo">
+          <img src="https://mysurestart.com/s/Lili-Piesanen.jpg" alt="MIT FutureMakers Student">
         </div>
-        
-        <!-- Featured Testimonial Indicators -->
-        <div class="featured-indicators" id="featuredIndicators">
-          <div class="indicator active"></div>
-          <div class="indicator"></div>
-          <div class="indicator"></div>
-          <div class="indicator"></div>
+        <div class="testimonial-content">
+            "Being a part of the MIT FutureMakers Create-a-thon* has genuinely been a once in a lifetime experience. Not only have I learned fantastic technical and power skills, but I've strengthened my network, met inspiring mentors and peers, and broadened my concept of what it means to be a woman in STEM.
+
+Oftentimes, I feel as though I take up too much space in a room or I must apologize for every mistake. I can't seem to shake off this idea that I'm too young, inexperienced, and feminine to belong in a space dedicated to CS or any other male dominated field. Yet, I never felt that way in the MIT FutureMakers program. From our very first day, SureStart created a welcoming and nourishing environment, where women like me are not the exception but the majority. We were encouraged to learn things we had never dreamed of, ask questions when we didn't understand, and most importantly, request help when we needed it. Our conversations about ethical AI made sure not to ignore the burdens we carry, and discussed how to prevent gender-based inequities. Our guest speakers taught us how to voice our unique stories, goals, and skills. SureStart made this possible and I am so grateful not only for the opportunity to participate in this program, but to be part of this group of empowering women."
         </div>
       </div>
     </div>
+    
+    <!-- Navigation Dots -->
+    <div class="testimonials-indicators">
+      <button class="testimonial-dot active" data-slide="0" aria-label="View first testimonial"></button>
+      <button class="testimonial-dot" data-slide="1" aria-label="View second testimonial"></button>
+    </div>
+  </div>
+</section>
 
-    <!-- STUDENT NETWORK WEB -->
-    <div class="student-network-web fade-up">
-      <div class="network-container">
-        <div class="network-header">
-          <h3 class="network-title">Our Connected Community</h3>
-          <p class="network-subtitle">Click on any student to explore their journey and see how SureStart transformed their future</p>
-        </div>
+<!-- STUDENT NETWORK WEB SECTION -->
+<section class="student-network-section">
+  <div class="student-network-web fade-up">
+    <div class="network-container">
+      <div class="network-header">
+        <h3 class="network-title">Our Connected Community</h3>
+        <p class="network-subtitle">Click on any student to explore their journey and see how SureStart transformed their future</p>
+      </div>
+      
+      <div class="network-visualization">
+        <canvas id="networkCanvas" class="network-canvas"></canvas>
         
-        <div class="network-visualization">
-          <canvas id="networkCanvas" class="network-canvas"></canvas>
-          
-          <!-- Floating Testimonial Card -->
-          <div id="testimonialCard" class="floating-testimonial-card">
-            <div class="testimonial-close" id="testimonialClose">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </div>
-            
-            <div class="testimonial-content">
-              <div class="testimonial-header">
-                <div class="testimonial-avatar">
-                  <img id="testimonialAvatar" src="" alt="">
-                </div>
-                <div class="testimonial-info">
-                  <h4 id="testimonialName" class="testimonial-name"></h4>
-                  <span id="testimonialProgram" class="testimonial-program"></span>
-                </div>
-              </div>
-              
-              <div class="testimonial-quote">
-                <div class="quote-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" fill="currentColor"/>
-                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" fill="currentColor"/>
-                  </svg>
-                </div>
-                <p id="testimonialText" class="quote-text"></p>
-              </div>
-              
-              <div class="testimonial-actions">
-                <a href="#" id="testimonialLinkedIn" class="testimonial-btn primary">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                  </svg>
-                  Connect
-                </a>
-                <a href="#" id="testimonialStory" class="testimonial-btn secondary">
-                  View Full Story
-                </a>
-              </div>
-            </div>
+        <!-- Floating Testimonial Card -->
+        <div id="testimonialCard" class="floating-testimonial-card">
+          <div class="testimonial-close" id="testimonialClose">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
           </div>
           
+          <div class="testimonial-content-wrapper">
+            <h4 id="testimonialName" class="testimonial-name"></h4>
+            <p id="testimonialText" class="testimonial-text"></p>
+          </div>
         </div>
+        
       </div>
     </div>
-
   </div>
 </section>
 
@@ -258,18 +221,19 @@
 <!-- MAKEATHON SPOTLIGHT -->
 <section class="makeathon-spotlight">
   <div class="spotlight-container">
-    <div class="section-header fade-up">
-      <h2 class="section-title">Innovation in Action</h2>
-      <p class="section-subtitle">
-        Student teams building AI solutions for real-world challenges
+    <div class="spotlight-content fade-up">
+      <h2 class="spotlight-title">Makeathon Spotlight</h2>
+      
+      <p class="spotlight-description">
+        For our Spring 2021 Makeathon, students built and presented their ethically designed working AI solutions. The 1st place winner, InnovAlte, 
+        recognized the diverse needs of teen drivers and the ethical implications of building automotive tech using computer vision and designed 
+        DriveAID accordingly.
       </p>
-    </div>
-    
-    <div class="makeathon-showcase fade-up">
-      <div class="showcase-visual">
+      
+      <div class="spotlight-video">
         <div class="video-container">
           <div class="video-thumbnail">
-            <img src="https://images.squarespace-cdn.com/content/v1/5f45536caa356e6ab51588f4/1633536139918-YH1O7ELR8FK4VWL19WT6/Picture+2.png" alt="InnovAlte DriveAID">
+            <img src="https://images.squarespace-cdn.com/content/v1/5f45536caa356e6ab51588f4/1633536139918-YH1O7ELR8FK4VWL19WT6/Picture+2.png" alt="Makeathon Spotlight Video">
             <div class="play-button">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
                 <path d="M8 5v14l11-7z"/>
@@ -279,40 +243,9 @@
         </div>
       </div>
       
-      <div class="showcase-content">
-        <div class="project-badge">
-          <span class="badge-icon">🏆</span>
-          <span>1st Place Winner</span>
-        </div>
-        
-        <h3>InnovAlte: DriveAID</h3>
-        
-        <p class="project-description">
-          For our Spring 2021 Makeathon, students built and presented their ethically designed working AI solutions. 
-          The 1st place winner, InnovAlte, recognized the diverse needs of teen drivers and the ethical implications 
-          of building automotive tech using computer vision and designed DriveAID accordingly.
-        </p>
-        
-        <div class="project-features">
-          <div class="feature-item">
-            <span class="feature-icon">🚗</span>
-            <span>Automotive AI Safety</span>
-          </div>
-          <div class="feature-item">
-            <span class="feature-icon">👁️</span>
-            <span>Computer Vision</span>
-          </div>
-          <div class="feature-item">
-            <span class="feature-icon">⚖️</span>
-            <span>Ethical AI Design</span>
-          </div>
-        </div>
-        
-        <a href="https://www.youtube.com/watch?v=3IefKPfjVZg" class="btn btn-primary" target="_blank">
-          <span>Watch Demo</span>
-          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+      <div class="spotlight-action">
+        <a href="https://www.youtube.com/watch?v=3IefKPfjVZg" class="watch-video-btn" target="_blank">
+          Watch Video
         </a>
       </div>
     </div>
@@ -357,40 +290,15 @@
 <section class="impact-cta">
   <div class="cta-container">
     <div class="cta-content fade-up">
-      <h2 class="cta-title">Ready to Write Your Success Story?</h2>
-      <p class="cta-description">
-        Join thousands of students who have transformed their futures through SureStart programs.
-      </p>
+      <h2 class="spotlight-title">
+        Interested in learning more <br>about the SureStart program?
+      </h2>
+      
       
       <div class="cta-actions">
-        <a href="#contact" class="btn btn-primary">
-          <span>Start Your Journey</span>
-          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </a>
-        <a href="mailto:hello@surestart.com" class="btn btn-secondary">
+        <a href="mailto:hello@surestart.com" class="btn btn-primary">
           <span>Contact Us</span>
         </a>
-      </div>
-      
-      <div class="cta-features">
-        <div class="cta-feature">
-          <div class="cta-feature-icon">✓</div>
-          <span>Free to Start</span>
-        </div>
-        <div class="cta-feature">
-          <div class="cta-feature-icon">🎓</div>
-          <span>Expert Mentorship</span>
-        </div>
-        <div class="cta-feature">
-          <div class="cta-feature-icon">🌍</div>
-          <span>Global Community</span>
-        </div>
-        <div class="cta-feature">
-          <div class="cta-feature-icon">🚀</div>
-          <span>Career Ready</span>
-        </div>
       </div>
     </div>
   </div>

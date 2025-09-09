@@ -156,6 +156,8 @@ class StudentNetworkWeb {
   constructor() {
     this.canvas = document.getElementById('networkCanvas');
     this.ctx = null;
+    this.activeNodeCanvas = null;
+    this.activeNodeCtx = null;
     this.testimonialCard = document.getElementById('testimonialCard');
     this.testimonialClose = document.getElementById('testimonialClose');
     
@@ -177,187 +179,186 @@ class StudentNetworkWeb {
     this.time = 0;
     this.targetPositions = new Map();
     
-    // Student data with enhanced information and varied node sizes
+    // Student data with exact information from HTML - 20 students total
     this.studentData = [
       {
         id: 'netra',
         name: 'Netra Ramesh',
-        program: 'MIT FutureMakers 2021',
-        quote: 'My life changed because of the MIT FutureMaker program! I\'ve never been so passionate about my future.',
+        program: '2021 trainee',
+        quote: 'My life changed because of the MIT FutureMaker program! I\'ve never been so passionate about my future — the program gave me a chance to learn, communicate with people I wanted to be like, and experience a formal and organized community like SureStart. I\'ve searched far and wide and I\'ve only found Surestart to provide a FREE program that provides a mentor and multiple benefits. I would most definitely recommend this program — it changed my vision and focus for the future!',
         image: 'https://mysurestart.com/s/Netra-Ramesh.jpg',
-        size: 'extra-large',
-        color: '#E7304E' // ss-red
-      },
-      {
-        id: 'vitaliy',
-        name: 'Vitaliy Stephanov',
-        program: 'Now at Amazon Web Services',
-        quote: 'SureStart helped prepare me with the skills I needed to become a Software Development Engineer at Amazon Web Services.',
-        image: 'https://mysurestart.com/s/Vitaliy-S.jpg',
         size: 'large',
-        color: '#ED7C4B' // ss-orange
-      },
-      {
-        id: 'alexa',
-        name: 'Alexa Urrea',
-        program: 'SureStart 2021',
-        quote: 'SureStart dramatically and directly impacted my life. It helped me land my first ever internship with a great company.',
-        image: 'https://mysurestart.com/s/Alexa-Urrea.jpg',
-        size: 'medium',
-        color: '#FFB65F' // ss-yellow
-      },
-      {
-        id: 'sahana',
-        name: 'Sahana Sreeram',
-        program: 'SureStart 2021',
-        quote: 'The most impactful technology experience I have had so far. Each team product had the potential to change the world.',
-        image: 'https://mysurestart.com/s/Sahana-Sreeram.jpg',
-        size: 'medium',
-        color: '#EE2D6E' // ss-pink
-      },
-      {
-        id: 'jason',
-        name: 'Jason Jerome',
-        program: 'SureStart 2021',
-        quote: 'A learning experience unlike anything I\'ve participated in before. Thanks to their support I was recently offered a summer internship!',
-        image: 'https://mysurestart.com/s/Jason-Jerome.jpg',
-        size: 'small',
         color: '#E7304E' // ss-red
+      },
+      {
+        id: 'ammran',
+        name: 'Ammran H Mohamed',
+        program: '2021-2022 trainee',
+        quote: 'Thank you so much SureStart! From the mentorship provided to the coding gym, you all have helped me enhance my skills and showed me ways to continue to strengthen them well after the programs. I never hesitated to reach out to you whether it was resume help or for guidance on what interviewers want to see. Because of your endless support, I\'ve been able to surprise myself with my work and achievements and you all have helped me reach goals I\'ve set for myself! Because I only have just over 1.5 years of coding experience, I\'ve struggled so much with my internship search. However, with your help I\'ve received offers for roles at the top of my list!',
+        image: 'https://mysurestart.com/s/Amman.jpeg',
+        size: 'extra-large',
+        color: '#ED7C4B' // ss-orange
       },
       {
         id: 'ashmita',
         name: 'Ashmita Kumar',
-        program: 'SureStart 2021',
-        quote: 'The mentorship and guidance I received through SureStart was invaluable in shaping my career path in AI and technology.',
+        program: '2021 trainee',
+        quote: 'This program has been truly amazing. StartStart\'s passion really does show through and the experience you created is unforgettable. My team could not have made the app without your support and guidance. You gave me the tools to design a solution to a problem close to my heart, and I really can\'t thank you enough.',
         image: 'https://mysurestart.com/s/Ashmita-Kumar.jfif',
+        size: 'medium',
+        color: '#FFB65F' // ss-yellow
+      },
+      {
+        id: 'milan',
+        name: 'Milan Ferus-Comelo',
+        program: '2021 trainee',
+        quote: 'Thank you VERY, VERY much for organizing such an amazing program! I\'m incredibly honored to be part of such a tightly-knit community and marvel at how far we\'ve come and how much we have learned. I hope we stay in touch!',
+        image: 'https://mysurestart.com/s/Milan-Ferus-Comelo.jfif',
         size: 'small',
+        color: '#EE2D6E' // ss-pink
+      },
+      {
+        id: 'nouran',
+        name: 'Nouran Ali',
+        program: '2021 trainee',
+        quote: 'Being a student in the SureStart program boosted my skills and resume and helped me to get job offers and interviews at reputable companies. During the program, the live sessions introduced new topics like CV writing and interview skills, career coaching, other advanced DL topics and more. I\'m glad that I was a part of this program and I encourage all students to apply, it\'s a great opportunity!',
+        image: 'https://mysurestart.com/s/Nouran-Ali.jpg',
+        size: 'medium',
+        color: '#E7304E' // ss-red
+      },
+      {
+        id: 'jed',
+        name: 'Jed Rendo Margarcia',
+        program: '2021 & 2022 trainee',
+        quote: 'I love the fact that the SureStart program is heavily project-based learning. I am able to apply it to future projects instead of just learning the theory behind certain algorithms. I\'m excited to compete in the Create-a-thon so that I can apply what I have learned to projects that could potentially help others and put those learnings into practice.',
+        image: 'https://mysurestart.com/s/Jed-Rendo-Margarcia.jfif',
+        size: 'large',
         color: '#ED7C4B' // ss-orange
       },
       {
         id: 'sarah',
         name: 'Sarah Tran',
-        program: 'SureStart 2021',
-        quote: 'SureStart opened my eyes to the possibilities in AI and gave me the confidence to pursue my dreams.',
+        program: '2020 trainee',
+        quote: 'In between the daily curriculum which helps to keep me on track, the fun webinars/chats intertwined that have helped to inspire me to persevere throughout these courses, and my amazing mentor, I have really been enjoying my EMPath experience so far! Thank you for everything you have done to help build such an exciting program. Looking forward to the makeathon phase!',
         image: 'https://mysurestart.com/s/Sarah-Tran.jfif',
-        size: 'extra-small',
+        size: 'small',
         color: '#FFB65F' // ss-yellow
+      },
+      {
+        id: 'vitaliy',
+        name: 'Vitaliy Stephanov',
+        program: '2021 trainee',
+        quote: 'SureStart helped prepare me with the skills I needed to become a Software Development Engineer at Amazon Web Services. Amazon takes leadership principles very seriously. I learned how to be a leader from 14 tech talks and the unique entrepreneurial makeathon. Designing and implementing an IoT device provided valuable resume experience and behavioral interview stories. I am now on a IoT team at AWS that impacts billions of devices.',
+        image: 'https://mysurestart.com/s/Vitaliy-S.jpg',
+        size: 'extra-large',
+        color: '#EE2D6E' // ss-pink
+      },
+      {
+        id: 'ashna',
+        name: 'Ashna Khetan',
+        program: '2020 trainee',
+        quote: 'Thank you so much for the amazing opportunity to join this 5 week program. I\'ve learned so much — not just limited to machine learning and coding, but also about how to market myself in the tech world, the necessity for inclusivity in tech workplaces, and how to lead a happy, successful life in general. This program was certainly the highlight of my summer.',
+        image: 'https://mysurestart.com/s/Ashna-Khetan.jfif',
+        size: 'medium',
+        color: '#E7304E' // ss-red
       },
       {
         id: 'walee',
         name: 'Walee Attia',
-        program: 'SureStart 2021',
-        quote: 'The program completely changed my perspective on what\'s possible in technology and AI.',
+        program: '2020 trainee',
+        quote: 'I really enjoyed learning about computer vision, and working with Affectiva\'s SDK to build the eye closure detector — beyond cool. I\'m grateful to have been inspired by your mentorship and advice throughout the 5 week program. My team\'s presentation really benefited a lot from the tips you gave us and were able to polish up our prototype. Lastly, my mentor was amazing! He often went out of his way to help us or reached out to share other resources that he thought could help us navigate some issues. He also worked around our team\'s time differences even when it was clearly inconvenient to his schedule.',
         image: 'https://mysurestart.com/s/Walee-Attia.jfif',
-        size: 'extra-small',
-        color: '#EE2D6E' // ss-pink
-      },
-      // Additional 12 students with varied sizes
-      {
-        id: 'maya',
-        name: 'Maya Chen',
-        program: 'SureStart 2022',
-        quote: 'Through SureStart, I discovered my passion for machine learning and landed my dream internship at Google.',
-        image: 'https://via.placeholder.com/150',
-        size: 'large',
-        color: '#E7304E' // ss-red
-      },
-      {
-        id: 'david',
-        name: 'David Rodriguez',
-        program: 'Now at Microsoft',
-        quote: 'The hands-on projects and mentorship at SureStart gave me the confidence to pursue a career in AI research.',
-        image: 'https://via.placeholder.com/150',
-        size: 'medium',
-        color: '#ED7C4B' // ss-orange
-      },
-      {
-        id: 'priya',
-        name: 'Priya Patel',
-        program: 'Stanford AI Program 2022',
-        quote: 'SureStart was the stepping stone that led me to Stanford\'s AI program. The community support was incredible.',
-        image: 'https://via.placeholder.com/150',
-        size: 'extra-large',
-        color: '#FFB65F' // ss-yellow
-      },
-      {
-        id: 'marcus',
-        name: 'Marcus Johnson',
-        program: 'SureStart 2022',
-        quote: 'I went from knowing nothing about AI to building my own neural networks. SureStart made the impossible possible.',
-        image: 'https://via.placeholder.com/150',
-        size: 'medium',
-        color: '#EE2D6E' // ss-pink
-      },
-      {
-        id: 'elena',
-        name: 'Elena Vasquez',
-        program: 'Now at Tesla',
-        quote: 'The ethical AI discussions at SureStart shaped how I approach technology development in my career at Tesla.',
-        image: 'https://via.placeholder.com/150',
         size: 'small',
-        color: '#E7304E' // ss-red
-      },
-      {
-        id: 'kevin',
-        name: 'Kevin Liu',
-        program: 'MIT 2023',
-        quote: 'SureStart\'s rigorous curriculum prepared me perfectly for MIT\'s computer science program. Forever grateful!',
-        image: 'https://via.placeholder.com/150',
-        size: 'large',
         color: '#ED7C4B' // ss-orange
       },
       {
-        id: 'zara',
-        name: 'Zara Ahmed',
-        program: 'SureStart 2022',
-        quote: 'As a first-generation college student, SureStart gave me the technical skills and confidence to succeed in tech.',
-        image: 'https://via.placeholder.com/150',
-        size: 'extra-small',
+        id: 'hadeel',
+        name: 'Hadeel Mabrouk',
+        program: '2020 trainee',
+        quote: 'It has been an honor and a pleasure being part of the EMPath program this year. It\'s actually one of the most important highlights of this year for me. Thank you so much for your tremendous support and encouragement since day 1! I so much hope our paths will cross again one day. :)',
+        image: 'https://mysurestart.com/s/Hadeel-Mabrouk.jfif',
+        size: 'medium',
         color: '#FFB65F' // ss-yellow
       },
       {
-        id: 'tyler',
-        name: 'Tyler Washington',
-        program: 'Now at Apple',
-        quote: 'The collaborative projects at SureStart taught me how to work in diverse teams, a skill I use daily at Apple.',
-        image: 'https://via.placeholder.com/150',
-        size: 'small',
+        id: 'wilder',
+        name: 'Wilder Crosier',
+        program: '2020 trainee',
+        quote: 'Thank you so much for organizing such an incredible program. I had no idea what I would do this July, I thought I would just be stuck at home. EMPath was a really incredible opportunity to offer all of us students a chance to learn technical skills, meet interesting people, and experience a little bit of what it\'s like to be in a start-up and design a product. The SureStart team was so kind and welcoming to everyone, and for our group specifically, your support in our meetings gave us a clear understanding of what we were doing.',
+        image: 'https://mysurestart.com/s/Wilder-Crosier.jfif',
+        size: 'extra-small',
         color: '#EE2D6E' // ss-pink
       },
       {
-        id: 'aisha',
-        name: 'Aisha Okafor',
-        program: 'Carnegie Mellon 2023',
-        quote: 'SureStart didn\'t just teach me coding - it taught me how to think critically about technology\'s impact on society.',
-        image: 'https://via.placeholder.com/150',
-        size: 'medium',
+        id: 'roberto',
+        name: 'Roberto Martinez',
+        program: '2020 trainee',
+        quote: 'Taking part in the EMPath program was an incredible and very insightful experience. I will make sure to put everything I learned to good use. I would just once again like to thank SureStart for everything you did during these past 5-6 weeks and I hope we can remain in contact.',
+        image: 'https://mysurestart.com/s/Roberto-Martinez.jpg',
+        size: 'large',
         color: '#E7304E' // ss-red
       },
       {
-        id: 'ryan',
-        name: 'Ryan O\'Connor',
-        program: 'SureStart 2023',
-        quote: 'The mentorship program connected me with industry professionals who guided my career path in data science.',
-        image: 'https://via.placeholder.com/150',
+        id: 'catherine',
+        name: 'Catherine Lu',
+        program: '2020 trainee',
+        quote: 'The SureStart program was such a great experience, and I\'m so thankful to have been able to attend. Our team is extremely grateful for the positive responses we received towards Introspect. We were very passionate about this project from the beginning of the Makeathon, and we would love to pursue this idea further into a full-fledged product!',
+        image: 'https://mysurestart.com/s/Catherine-Lu.jfif',
+        size: 'small',
+        color: '#ED7C4B' // ss-orange
+      },
+      {
+        id: 'eli',
+        name: 'Eli Gnesin',
+        program: '2021 trainee',
+        quote: 'I\'ve learned a lot of the ins and outs of neural networks in Phase 1, which I enjoyed and which will help me in a wide variety of applications. I\'m excited for the Makeathon to put what we\'ve learned into practice and solve a new and exciting problem.',
+        image: 'https://mysurestart.com/s/Eli-Gnesin.jfif',
+        size: 'medium',
+        color: '#FFB65F' // ss-yellow
+      },
+      {
+        id: 'alexa',
+        name: 'Alexa Urrea',
+        program: '2021 trainee',
+        quote: 'SureStart dramatically and directly impacted my life. Before this program, I had no idea I wanted to be involved in the tech community like I do now. Thanks to SureStart, I found a real passion in computer science and in Artificial Intelligence specifically. It helped me land my first ever internship with a great company as a machine learning intern. I would not have found this passion and I definitely would not have these career doors open without SureStart. Thank you so much for your support and believing in all of us!',
+        image: 'https://mysurestart.com/s/Alexa-Urrea.jpg',
+        size: 'extra-large',
+        color: '#EE2D6E' // ss-pink
+      },
+      {
+        id: 'jonathan',
+        name: 'Jonathan Williams',
+        program: '2021 trainee',
+        quote: 'The SureStart program was truly transformative. The course curriculum and mentor guidance allowed me to gain a deep understanding of ML. Moreover, the program connected me with a fulfilling ML internship opportunity. I simply cannot recommend this program enough!',
+        image: 'https://mysurestart.com/s/Jonathan-Williams.jpg',
+        size: 'large',
+        color: '#E7304E' // ss-red
+      },
+      {
+        id: 'sahana',
+        name: 'Sahana Sreeram',
+        program: '2021 trainee',
+        quote: 'The SureStart summer program was the most impactful technology experience that I have had so far. It combined hands-on applied machine learning concepts with a unique focus on AI ethics, and culminated with an incredible showcase of the team-created projects. The caliber of members of the program and the quality of ideas in the final presentations blew me away, and I felt that each and every one of the final team products had the potential to change the world. The program taught me some important life skills as well - the art of storytelling, how to work collaboratively in a virtual setting, and how to create lasting relationships with mentors. I\'m so thankful to SureStart for providing me with this wonderful opportunity.',
+        image: 'https://mysurestart.com/s/Sahana-Sreeram.jpg',
         size: 'extra-small',
         color: '#ED7C4B' // ss-orange
       },
       {
-        id: 'sophia',
-        name: 'Sophia Kim',
-        program: 'Now at Meta',
-        quote: 'SureStart\'s focus on real-world applications helped me understand how AI can solve meaningful problems.',
-        image: 'https://via.placeholder.com/150',
-        size: 'extra-large',
+        id: 'mohamed',
+        name: 'Mohamed Abead',
+        program: '2020 trainee',
+        quote: 'I feel like I have grown a lot through EMPath; I have managed to learn a lot about emotional AI and gained hands-on experience working on an app, while growing my interpersonal skills and getting to meet amazing people from all over the U.S and the world. I feel like I have learnt a lot about team collaboration through our daily meetings and by working on our app with the team.',
+        image: 'https://mysurestart.com/s/Mohamed-Abead.jpg',
+        size: 'medium',
         color: '#FFB65F' // ss-yellow
       },
       {
-        id: 'jamal',
-        name: 'Jamal Thompson',
-        program: 'Berkeley AI Research',
-        quote: 'The research opportunities at SureStart ignited my passion for AI research and led me to Berkeley\'s PhD program.',
-        image: 'https://via.placeholder.com/150',
-        size: 'large',
+        id: 'jason',
+        name: 'Jason Jerome',
+        program: '2021 trainee',
+        quote: 'The SureStart program was a learning experience unlike anything I\'ve participated in before. The daily mentorship, team-based learning process, the well-paced curriculum, and the ample resources provided made it possible to learn difficult concepts with no prior experience! Thanks to the dedicated mentors and SureStart staff, I was able to excel in applying the concepts learned from the curriculum in the Makeathon. SureStart has also greatly been involved in helping me find internships after completing the program, and thanks to their support I was recently offered a summer internship!',
+        image: 'https://mysurestart.com/s/Jason-Jerome.jpg',
+        size: 'small',
         color: '#EE2D6E' // ss-pink
       }
     ];
@@ -374,6 +375,7 @@ class StudentNetworkWeb {
     console.log('Initializing StudentNetworkWeb...');
     this.ctx = this.canvas.getContext('2d');
     this.setupCanvas();
+    this.createActiveNodeCanvas();
     await this.loadImages();
     this.createNodes();
     this.createConnections();
@@ -410,18 +412,54 @@ class StudentNetworkWeb {
     this.canvas.style.height = this.canvasHeight + 'px';
   }
 
+  createActiveNodeCanvas() {
+    // Create a separate canvas for the active node that will appear above the testimonial card
+    this.activeNodeCanvas = document.createElement('canvas');
+    this.activeNodeCanvas.style.position = 'absolute';
+    this.activeNodeCanvas.style.top = '0';
+    this.activeNodeCanvas.style.left = '0';
+    this.activeNodeCanvas.style.pointerEvents = 'none';
+    this.activeNodeCanvas.style.zIndex = '900'; // Higher than testimonial card (800)
+    
+    // Insert after the main canvas
+    this.canvas.parentNode.insertBefore(this.activeNodeCanvas, this.canvas.nextSibling);
+    this.activeNodeCtx = this.activeNodeCanvas.getContext('2d');
+    
+    // Set up the active node canvas with same dimensions
+    const dpr = window.devicePixelRatio || 1;
+    this.activeNodeCanvas.width = this.canvasWidth * dpr;
+    this.activeNodeCanvas.height = this.canvasHeight * dpr;
+    this.activeNodeCtx.scale(dpr, dpr);
+    
+    this.activeNodeCanvas.style.width = this.canvasWidth + 'px';
+    this.activeNodeCanvas.style.height = this.canvasHeight + 'px';
+  }
+
   async loadImages() {
     const imagePromises = this.studentData.map(student => {
       return new Promise((resolve, reject) => {
         const img = new Image();
-        img.crossOrigin = 'anonymous';
+        // Remove crossOrigin to avoid CORS issues when loading from local files
+        // img.crossOrigin = 'anonymous';
         img.onload = () => {
           student.imageElement = img;
+          console.log(`Successfully loaded image for ${student.name}`);
           resolve();
         };
         img.onerror = () => {
-          console.warn(`Failed to load image for ${student.name}`);
-          resolve(); // Continue even if image fails
+          console.warn(`Failed to load image for ${student.name}, will use fallback`);
+          // Try loading without CORS restrictions
+          const fallbackImg = new Image();
+          fallbackImg.onload = () => {
+            student.imageElement = fallbackImg;
+            console.log(`Fallback image loaded for ${student.name}`);
+            resolve();
+          };
+          fallbackImg.onerror = () => {
+            console.warn(`Fallback also failed for ${student.name}`);
+            resolve(); // Continue even if image fails
+          };
+          fallbackImg.src = student.image;
         };
         img.src = student.image;
       });
@@ -831,21 +869,13 @@ class StudentNetworkWeb {
     if (!this.testimonialCard) return;
     
     // Update testimonial content
-    const avatar = document.getElementById('testimonialAvatar');
+    const avatarImg = document.getElementById('testimonialAvatarImg');
     const name = document.getElementById('testimonialName');
-    const program = document.getElementById('testimonialProgram');
     const text = document.getElementById('testimonialText');
-    const linkedIn = document.getElementById('testimonialLinkedIn');
-    const story = document.getElementById('testimonialStory');
     
-    if (avatar) avatar.src = student.image;
+    if (avatarImg) avatarImg.src = student.image;
     if (name) name.textContent = student.name;
-    if (program) program.textContent = student.program;
     if (text) text.textContent = student.quote;
-    
-    // Update links (placeholder for now)
-    if (linkedIn) linkedIn.href = '#';
-    if (story) story.href = '#';
     
     // Position testimonial card dynamically to avoid overlapping centered node
     this.positionTestimonialCard();
@@ -855,84 +885,18 @@ class StudentNetworkWeb {
   }
 
   positionTestimonialCard() {
-    if (!this.testimonialCard || !this.activeNode) return;
+    if (!this.testimonialCard) return;
     
-    // Get canvas position relative to viewport
-    const canvasRect = this.canvas.getBoundingClientRect();
-    const cardRect = this.testimonialCard.getBoundingClientRect();
-    
-    // Calculate centered node position in viewport coordinates
-    const centeredNodeX = canvasRect.left + this.centerX;
-    const centeredNodeY = canvasRect.top + this.centerY;
-    
-    // Define safe zones and preferred positions
-    const cardWidth = 400; // Approximate testimonial card width
-    const cardHeight = 300; // Approximate testimonial card height
-    const margin = 40; // Minimum margin from edges and node
-    const nodeRadius = this.activeNode.radius * 1.3; // Account for scaled node
-    
-    // Calculate available space in each direction
-    const spaceLeft = centeredNodeX - margin;
-    const spaceRight = window.innerWidth - centeredNodeX - margin;
-    const spaceTop = centeredNodeY - margin;
-    const spaceBottom = window.innerHeight - centeredNodeY - margin;
-    
-    let positionX, positionY;
-    let placement = 'right'; // Default placement
-    
-    // Determine best horizontal position
-    if (spaceRight >= cardWidth + nodeRadius + margin) {
-      // Place to the right
-      positionX = centeredNodeX + nodeRadius + margin;
-      placement = 'right';
-    } else if (spaceLeft >= cardWidth + nodeRadius + margin) {
-      // Place to the left
-      positionX = centeredNodeX - nodeRadius - margin - cardWidth;
-      placement = 'left';
-    } else if (spaceRight > spaceLeft) {
-      // Place to the right with available space
-      positionX = centeredNodeX + nodeRadius + margin;
-      placement = 'right';
-    } else {
-      // Place to the left with available space
-      positionX = Math.max(margin, centeredNodeX - nodeRadius - margin - cardWidth);
-      placement = 'left';
-    }
-    
-    // Determine vertical position
-    if (spaceTop >= cardHeight / 2 && spaceBottom >= cardHeight / 2) {
-      // Center vertically relative to node
-      positionY = centeredNodeY - cardHeight / 2;
-    } else if (spaceBottom >= cardHeight) {
-      // Place below if there's space
-      positionY = centeredNodeY + nodeRadius + margin;
-      placement += '-bottom';
-    } else if (spaceTop >= cardHeight) {
-      // Place above if there's space
-      positionY = centeredNodeY - nodeRadius - margin - cardHeight;
-      placement += '-top';
-    } else {
-      // Use available space, prioritizing visibility
-      positionY = Math.max(margin, Math.min(
-        window.innerHeight - cardHeight - margin,
-        centeredNodeY - cardHeight / 2
-      ));
-    }
-    
-    // Ensure card stays within viewport bounds
-    positionX = Math.max(margin, Math.min(window.innerWidth - cardWidth - margin, positionX));
-    positionY = Math.max(margin, Math.min(window.innerHeight - cardHeight - margin, positionY));
-    
-    // Apply positioning with smooth transition
+    // Simple center positioning - always center the card on screen
     this.testimonialCard.style.position = 'fixed';
-    this.testimonialCard.style.left = `${positionX}px`;
-    this.testimonialCard.style.top = `${positionY}px`;
-    this.testimonialCard.style.zIndex = '1000';
+    this.testimonialCard.style.left = '50%';
+    this.testimonialCard.style.top = '45%';
+    this.testimonialCard.style.transform = 'translate(-50%, -50%)';
+    this.testimonialCard.style.zIndex = '800';  // High z-index for testimonial card
     this.testimonialCard.style.transition = 'all 0.3s ease-out';
     
-    // Add placement class for styling variations
+    // Remove any placement classes since we're always centering
     this.testimonialCard.className = this.testimonialCard.className.replace(/placement-\w+/g, '');
-    this.testimonialCard.classList.add(`placement-${placement}`);
   }
 
   hideTestimonial() {
@@ -1048,8 +1012,13 @@ class StudentNetworkWeb {
   }
 
   render() {
-    // Clear canvas
+    // Clear main canvas
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    
+    // Clear active node canvas
+    if (this.activeNodeCtx) {
+      this.activeNodeCtx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    }
     
     // Draw connections
     this.drawConnections();
@@ -1112,76 +1081,88 @@ class StudentNetworkWeb {
   }
 
   drawNodes() {
+    // Draw all non-active nodes on main canvas
     this.nodes.forEach(node => {
-      this.ctx.save();
+      if (node.isCentered) return; // Skip active node, draw it on separate canvas
       
-      // Apply node transformations
-      this.ctx.globalAlpha = node.opacity;
-      this.ctx.translate(node.x, node.y);
-      this.ctx.scale(node.scale, node.scale);
-      
-      // Draw glow effect for centered nodes
-      if (node.glowIntensity > 0) {
-        const gradient = this.ctx.createRadialGradient(0, 0, node.radius, 0, 0, node.radius * 2);
-        gradient.addColorStop(0, this.hexToRgba(node.student.color, node.glowIntensity * 0.3));
-        gradient.addColorStop(1, this.hexToRgba(node.student.color, 0));
-        
-        this.ctx.beginPath();
-        this.ctx.arc(0, 0, node.radius * 2, 0, Math.PI * 2);
-        this.ctx.fillStyle = gradient;
-        this.ctx.fill();
-      }
-      
-      // Draw node border
-      this.ctx.beginPath();
-      this.ctx.arc(0, 0, node.radius, 0, Math.PI * 2);
-      this.ctx.strokeStyle = this.hexToRgba('#ffffff', 0.8);
-      this.ctx.lineWidth = 3;
-      this.ctx.stroke();
-      
-      // Create circular clipping path for image
-      this.ctx.beginPath();
-      this.ctx.arc(0, 0, node.radius - 2, 0, Math.PI * 2);
-      this.ctx.clip();
-      
-      // Draw student image if loaded, otherwise use fallback
-      if (node.student.imageElement && node.student.imageElement.complete) {
-        const size = (node.radius - 2) * 2;
-        this.ctx.drawImage(
-          node.student.imageElement,
-          -node.radius + 2,
-          -node.radius + 2,
-          size,
-          size
-        );
-      } else {
-        // Fallback: draw colored circle with initials
-        this.ctx.beginPath();
-        this.ctx.arc(0, 0, node.radius - 2, 0, Math.PI * 2);
-        this.ctx.fillStyle = node.student.color;
-        this.ctx.fill();
-        
-        // Add initials
-        this.ctx.fillStyle = '#ffffff';
-        this.ctx.font = `bold ${node.radius * 0.6}px Arial`;
-        this.ctx.textAlign = 'center';
-        this.ctx.textBaseline = 'middle';
-        const initials = node.student.name.split(' ').map(n => n[0]).join('').substring(0, 2);
-        this.ctx.fillText(initials, 0, 0);
-      }
-      
-      // Draw pulse effect for hovered nodes
-      if (node.isHovered) {
-        const pulseRadius = node.radius + Math.sin(node.pulsePhase) * 5;
-        this.ctx.beginPath();
-        this.ctx.arc(0, 0, pulseRadius, 0, Math.PI * 2);
-        this.ctx.strokeStyle = this.hexToRgba(node.student.color, 0.5);
-        this.ctx.lineWidth = 2;
-        this.ctx.stroke();
-      }
-      
-      this.ctx.restore();
+      this.drawSingleNode(node, this.ctx);
     });
+    
+    // Draw the active/centered node on the separate high z-index canvas
+    if (this.activeNode && this.activeNodeCtx) {
+      this.drawSingleNode(this.activeNode, this.activeNodeCtx);
+    }
+  }
+  
+  drawSingleNode(node, ctx) {
+    ctx.save();
+    
+    // Apply node transformations
+    ctx.globalAlpha = node.opacity;
+    ctx.translate(node.x, node.y);
+    ctx.scale(node.scale, node.scale);
+    
+    // Draw glow effect for centered nodes
+    if (node.glowIntensity > 0) {
+      const gradient = ctx.createRadialGradient(0, 0, node.radius, 0, 0, node.radius * 2);
+      gradient.addColorStop(0, this.hexToRgba(node.student.color, node.glowIntensity * 0.3));
+      gradient.addColorStop(1, this.hexToRgba(node.student.color, 0));
+      
+      ctx.beginPath();
+      ctx.arc(0, 0, node.radius * 2, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    }
+    
+    // Draw node border
+    ctx.beginPath();
+    ctx.arc(0, 0, node.radius, 0, Math.PI * 2);
+    ctx.strokeStyle = this.hexToRgba('#ffffff', 0.8);
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    
+    // Create circular clipping path for image
+    ctx.beginPath();
+    ctx.arc(0, 0, node.radius - 2, 0, Math.PI * 2);
+    ctx.clip();
+    
+    // Draw student image if loaded, otherwise use fallback
+    if (node.student.imageElement && node.student.imageElement.complete) {
+      const size = (node.radius - 2) * 2;
+      ctx.drawImage(
+        node.student.imageElement,
+        -node.radius + 2,
+        -node.radius + 2,
+        size,
+        size
+      );
+    } else {
+      // Fallback: draw colored circle with initials
+      ctx.beginPath();
+      ctx.arc(0, 0, node.radius - 2, 0, Math.PI * 2);
+      ctx.fillStyle = node.student.color;
+      ctx.fill();
+      
+      // Add initials
+      ctx.fillStyle = '#ffffff';
+      ctx.font = `bold ${node.radius * 0.6}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const initials = node.student.name.split(' ').map(n => n[0]).join('').substring(0, 2);
+      ctx.fillText(initials, 0, 0);
+    }
+    
+    // Draw pulse effect for hovered nodes
+    if (node.isHovered) {
+      const pulseRadius = node.radius + Math.sin(node.pulsePhase) * 5;
+      ctx.beginPath();
+      ctx.arc(0, 0, pulseRadius, 0, Math.PI * 2);
+      ctx.strokeStyle = this.hexToRgba(node.student.color, 0.5);
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+    
+    ctx.restore();
   }
 
   // Utility methods
@@ -1544,169 +1525,131 @@ class AccessibilityEnhancements {
 }
 
 // ==========================================
-// FEATURED TESTIMONIAL ROTATOR
+// CASE STUDIES TESTIMONIALS CAROUSEL
 // ==========================================
 
-class FeaturedTestimonial {
+class CaseStudiesCarousel {
   constructor() {
-    this.featuredCard = document.getElementById('featuredTestimonial');
-    this.featuredQuote = document.getElementById('featuredQuote');
-    this.featuredAuthor = document.getElementById('featuredAuthor');
-    this.featuredAvatar = document.getElementById('featuredAvatar');
-    this.featuredIndicators = document.getElementById('featuredIndicators');
-    
+    this.track = document.getElementById('testimonialsTrack');
+    this.dots = document.querySelectorAll('.testimonial-dot');
     this.currentIndex = 0;
-    this.autoRotateInterval = null;
-    this.autoRotateDelay = 5000; // 5 seconds
-    
-    // Featured testimonials data - Jonathan and Lili
-    this.testimonials = [
-      {
-        quote: "Participating in SureStart was the single best decision I have made in my academic career. The mentorship was fantastic and I have continued to keep in contact with my SureStart mentors for years! It truly changed my life!",
-        author: "JONATHAN WILLIAMS",
-        avatar: "static/images/JW.jpg"
-      },
-      {
-        quote: "SureStart created a welcoming environment where women like me are not the exception but the majority. The program provided the support and community I needed to thrive in AI.",
-        author: "LILI PIESANEN",
-        avatar: "https://mysurestart.com/s/Lili-Piesanen.jpg"
-      }
-    ];
+    this.totalSlides = 2; // Jonathan and Lili
     
     this.init();
   }
 
   init() {
-    if (!this.featuredCard) return;
+    if (!this.track) return;
     
-    this.createIndicators();
     this.addEventListeners();
-    this.startAutoRotate();
-    this.updateFeaturedTestimonial();
-  }
-
-  createIndicators() {
-    if (!this.featuredIndicators) return;
-    
-    this.featuredIndicators.innerHTML = '';
-    
-    this.testimonials.forEach((_, index) => {
-      const indicator = document.createElement('div');
-      indicator.className = 'indicator';
-      indicator.setAttribute('aria-label', `Featured testimonial ${index + 1}`);
-      indicator.addEventListener('click', () => this.goToTestimonial(index));
-      
-      if (index === this.currentIndex) {
-        indicator.classList.add('active');
-      }
-      
-      this.featuredIndicators.appendChild(indicator);
-    });
+    this.updateCarousel();
   }
 
   addEventListeners() {
-    // Pause auto-rotation on hover
-    if (this.featuredCard) {
-      this.featuredCard.addEventListener('mouseenter', () => {
-        this.stopAutoRotate();
+    // Dot navigation
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        this.goToSlide(index);
       });
-      
-      this.featuredCard.addEventListener('mouseleave', () => {
-        this.startAutoRotate();
-      });
-    }
+    });
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.target.closest('.featured-testimonial')) {
+      if (e.target.closest('.case-studies-section')) {
         if (e.key === 'ArrowLeft') {
           e.preventDefault();
-          this.previousTestimonial();
+          this.previousSlide();
         }
         if (e.key === 'ArrowRight') {
           e.preventDefault();
-          this.nextTestimonial();
+          this.nextSlide();
         }
       }
     });
+
+    // Touch/swipe support
+    this.addTouchSupport();
   }
 
-  goToTestimonial(index) {
-    this.currentIndex = index;
-    this.updateFeaturedTestimonial();
-    this.updateIndicators();
-    this.restartAutoRotate();
-  }
-
-  nextTestimonial() {
-    this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
-    this.updateFeaturedTestimonial();
-    this.updateIndicators();
-    this.restartAutoRotate();
-  }
-
-  previousTestimonial() {
-    this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
-    this.updateFeaturedTestimonial();
-    this.updateIndicators();
-    this.restartAutoRotate();
-  }
-
-  updateFeaturedTestimonial() {
-    const testimonial = this.testimonials[this.currentIndex];
-    if (!testimonial) return;
-
-    // Add fade out effect
-    this.featuredCard.style.opacity = '0.7';
+  addTouchSupport() {
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
     
-    setTimeout(() => {
-      // Update content
-      if (this.featuredQuote) {
-        this.featuredQuote.textContent = testimonial.quote;
-      }
+    this.track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      this.track.style.transition = 'none';
+    });
+    
+    this.track.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
       
-      if (this.featuredAuthor) {
-        this.featuredAuthor.textContent = testimonial.author;
-      }
+      currentX = e.touches[0].clientX;
+      const diffX = currentX - startX;
+      const currentTransform = -(this.currentIndex * 100);
+      const newTransform = currentTransform + (diffX / this.track.offsetWidth) * 100;
       
-      if (this.featuredAvatar) {
-        this.featuredAvatar.src = testimonial.avatar;
-        this.featuredAvatar.alt = testimonial.author;
-      }
+      this.track.style.transform = `translateX(${newTransform}%)`;
+    });
+    
+    this.track.addEventListener('touchend', () => {
+      if (!isDragging) return;
       
-      // Fade back in
-      this.featuredCard.style.opacity = '1';
-    }, 200);
-  }
-
-  updateIndicators() {
-    const indicators = this.featuredIndicators?.querySelectorAll('.indicator');
-    indicators?.forEach((indicator, index) => {
-      indicator.classList.toggle('active', index === this.currentIndex);
+      isDragging = false;
+      this.track.style.transition = '';
+      
+      const diffX = currentX - startX;
+      const threshold = 50;
+      
+      if (Math.abs(diffX) > threshold) {
+        if (diffX > 0) {
+          this.previousSlide();
+        } else {
+          this.nextSlide();
+        }
+      } else {
+        this.updateCarousel();
+      }
     });
   }
 
-  startAutoRotate() {
-    this.stopAutoRotate();
-    this.autoRotateInterval = setInterval(() => {
-      this.nextTestimonial();
-    }, this.autoRotateDelay);
+  goToSlide(index) {
+    this.currentIndex = Math.max(0, Math.min(index, this.totalSlides - 1));
+    this.updateCarousel();
   }
 
-  stopAutoRotate() {
-    if (this.autoRotateInterval) {
-      clearInterval(this.autoRotateInterval);
-      this.autoRotateInterval = null;
+  nextSlide() {
+    if (this.currentIndex < this.totalSlides - 1) {
+      this.currentIndex++;
+      this.updateCarousel();
     }
   }
 
-  restartAutoRotate() {
-    this.stopAutoRotate();
-    this.startAutoRotate();
+  previousSlide() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.updateCarousel();
+    }
+  }
+
+  updateCarousel() {
+    if (!this.track) return;
+    
+    // Calculate transform based on current index
+    // Each card takes 85% width, but we only need to move enough to show the next card completely
+    // Move by approximately 50 to show the card properly without too much blank space
+    const translateX = -(this.currentIndex * 50);
+    this.track.style.transform = `translateX(${translateX}%)`;
+    
+    // Update dots
+    this.dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === this.currentIndex);
+    });
   }
 
   destroy() {
-    this.stopAutoRotate();
+    // Clean up event listeners if needed
   }
 }
 
@@ -1904,7 +1847,7 @@ class ImpactStoriesApp {
       this.components.parallaxEffects = new ParallaxEffects();
       this.components.smoothNavigation = new SmoothNavigation();
       this.components.accessibilityEnhancements = new AccessibilityEnhancements();
-      this.components.featuredTestimonial = new FeaturedTestimonial();
+      this.components.caseStudiesCarousel = new CaseStudiesCarousel();
       this.components.testimonialsCarousel = new TestimonialsCarousel();
 
       // Initialize particle system (only on desktop for performance)

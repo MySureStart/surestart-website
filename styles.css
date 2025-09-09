@@ -2542,8 +2542,7 @@ p {
 .surestart-difference-container {
   position: relative;
   z-index: 2;
-  max-width: var(--container-max);
-  margin: 0 auto;
+  width: 100%;
   padding: 0 var(--space-lg);
   text-align: center;
 }
@@ -2559,6 +2558,9 @@ p {
   align-items: start;
   margin-top: var(--space-2xl);
   align-items: stretch;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Left Column - Credibility Stats */
