@@ -391,11 +391,11 @@ class StudentNetworkWeb {
     // Use full viewport width with minimal padding
     this.canvasWidth = window.innerWidth - 40; // 20px padding on each side
     
-    // Calculate dynamic height based on optimal node distribution
+    // Calculate dynamic height based on optimal node distribution - increased spacing
     const nodeCount = this.studentData.length;
-    const optimalArea = nodeCount * 15000; // Optimal area per node for good spacing
+    const optimalArea = nodeCount * 25000; // Increased from 15000 to 25000 for more spacing
     const aspectRatio = this.canvasWidth / Math.sqrt(optimalArea);
-    this.canvasHeight = Math.max(1000, Math.min(1800, Math.sqrt(optimalArea) / aspectRatio));
+    this.canvasHeight = Math.max(1200, Math.min(2000, Math.sqrt(optimalArea) / aspectRatio)); // Increased min/max heights
     
     this.centerX = this.canvasWidth / 2;
     this.centerY = this.canvasHeight / 2;
@@ -503,22 +503,60 @@ class StudentNetworkWeb {
   }
 
   generateOrganicPositions(count) {
-    const margin = 80;
+    const margin = 80; // Reduced margin to use more canvas space
     const width = this.canvasWidth - (margin * 2);
     const height = this.canvasHeight - (margin * 2);
     
-    // Use Poisson disk sampling for balanced distribution
-    const minDistance = Math.sqrt((width * height) / count) * 0.8; // Minimum distance between nodes
-    const positions = this.poissonDiskSampling(width, height, minDistance, count);
+    // Create a biological network layout that uses the full canvas space
+    const positions = [];
+    const avgRadius = 65;
+    const minSpacing = avgRadius * 2.8; // Optimal spacing for biological networks
     
-    // Apply Lloyd's relaxation for better spacing
-    this.relaxPositions(positions, width, height, 3);
+    // Use Poisson disk sampling for natural, even distribution across full canvas
+    const poissonPositions = this.poissonDiskSampling(width, height, minSpacing, count);
     
-    // Offset by margin and add some organic variation
-    return positions.map(pos => ({
-      x: pos.x + margin + (Math.random() - 0.5) * 20,
-      y: pos.y + margin + (Math.random() - 0.5) * 20
-    }));
+    // If Poisson sampling doesn't generate enough points, fill with biological clustering
+    while (poissonPositions.length < count) {
+      // Add points using biological growth patterns
+      const existingPoint = poissonPositions[Math.floor(Math.random() * poissonPositions.length)];
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = minSpacing + Math.random() * minSpacing * 0.5;
+      
+      let newX = existingPoint.x + Math.cos(angle) * distance;
+      let newY = existingPoint.y + Math.sin(angle) * distance;
+      
+      // Keep within bounds
+      newX = Math.max(avgRadius, Math.min(width - avgRadius, newX));
+      newY = Math.max(avgRadius, Math.min(height - avgRadius, newY));
+      
+      // Check if this position is valid (not too close to existing points)
+      let valid = true;
+      for (const pos of poissonPositions) {
+        const dist = Math.sqrt((newX - pos.x) ** 2 + (newY - pos.y) ** 2);
+        if (dist < minSpacing) {
+          valid = false;
+          break;
+        }
+      }
+      
+      if (valid) {
+        poissonPositions.push({ x: newX, y: newY });
+      }
+    }
+    
+    // Convert to final positions with margin offset
+    for (let i = 0; i < count; i++) {
+      const pos = poissonPositions[i] || { x: width / 2, y: height / 2 };
+      positions.push({
+        x: pos.x + margin,
+        y: pos.y + margin
+      });
+    }
+    
+    // Apply biological force-based relaxation for natural clustering
+    this.biologicalRelaxation(positions, width, height, margin, minSpacing, 6);
+    
+    return positions;
   }
 
   poissonDiskSampling(width, height, minDistance, targetCount) {
@@ -529,16 +567,26 @@ class StudentNetworkWeb {
     const points = [];
     const activeList = [];
     
-    // Add initial point
-    const initialX = Math.random() * width;
-    const initialY = Math.random() * height;
-    const initialPoint = { x: initialX, y: initialY };
-    points.push(initialPoint);
-    activeList.push(0);
-    
-    const gridX = Math.floor(initialX / cellSize);
-    const gridY = Math.floor(initialY / cellSize);
-    grid[gridY * gridWidth + gridX] = 0;
+    // Start with multiple seed points across the canvas for better distribution
+    const seedCount = Math.min(4, Math.ceil(targetCount / 5));
+    for (let s = 0; s < seedCount; s++) {
+      const seedX = (width / (seedCount + 1)) * (s + 1) + (Math.random() - 0.5) * width * 0.2;
+      const seedY = (height / (seedCount + 1)) * (s + 1) + (Math.random() - 0.5) * height * 0.2;
+      
+      // Ensure seed is within bounds
+      const clampedX = Math.max(0, Math.min(width - 1, seedX));
+      const clampedY = Math.max(0, Math.min(height - 1, seedY));
+      
+      const seedPoint = { x: clampedX, y: clampedY };
+      points.push(seedPoint);
+      activeList.push(points.length - 1);
+      
+      const gridX = Math.floor(clampedX / cellSize);
+      const gridY = Math.floor(clampedY / cellSize);
+      if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
+        grid[gridY * gridWidth + gridX] = points.length - 1;
+      }
+    }
     
     while (activeList.length > 0 && points.length < targetCount) {
       const randomIndex = Math.floor(Math.random() * activeList.length);
@@ -548,7 +596,7 @@ class StudentNetworkWeb {
       let found = false;
       for (let i = 0; i < 30; i++) { // Try 30 times to find a valid point
         const angle = Math.random() * 2 * Math.PI;
-        const distance = minDistance + Math.random() * minDistance;
+        const distance = minDistance + Math.random() * minDistance * 0.8; // Slightly varied distance
         const newX = point.x + Math.cos(angle) * distance;
         const newY = point.y + Math.sin(angle) * distance;
         
@@ -581,7 +629,9 @@ class StudentNetworkWeb {
             const newPoint = { x: newX, y: newY };
             points.push(newPoint);
             activeList.push(points.length - 1);
-            grid[newGridY * gridWidth + newGridX] = points.length - 1;
+            if (newGridX >= 0 && newGridX < gridWidth && newGridY >= 0 && newGridY < gridHeight) {
+              grid[newGridY * gridWidth + newGridX] = points.length - 1;
+            }
             found = true;
             break;
           }
@@ -596,39 +646,57 @@ class StudentNetworkWeb {
     return points.slice(0, targetCount);
   }
 
-  relaxPositions(positions, width, height, iterations) {
-    // Lloyd's relaxation algorithm
+  biologicalRelaxation(positions, width, height, margin, minSpacing, iterations) {
+    // Biological force-based relaxation that encourages natural clustering while maintaining spacing
     for (let iter = 0; iter < iterations; iter++) {
       const newPositions = positions.map((pos, i) => {
-        let sumX = 0, sumY = 0, count = 0;
+        let forceX = 0, forceY = 0;
         
-        // Find nearby points and calculate centroid
+        // Calculate forces from all other points
         positions.forEach((otherPos, j) => {
           if (i !== j) {
-            const dist = Math.sqrt((pos.x - otherPos.x) ** 2 + (pos.y - otherPos.y) ** 2);
-            if (dist < width / 4) { // Consider points within reasonable distance
-              sumX += otherPos.x;
-              sumY += otherPos.y;
-              count++;
+            const dx = pos.x - otherPos.x;
+            const dy = pos.y - otherPos.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            if (dist > 0) {
+              if (dist < minSpacing) {
+                // Repulsion force when too close
+                const force = (minSpacing - dist) / dist;
+                forceX += (dx / dist) * force * 0.15;
+                forceY += (dy / dist) * force * 0.15;
+              } else if (dist < minSpacing * 2.5) {
+                // Weak attraction for biological clustering
+                const force = (dist - minSpacing) / dist;
+                forceX -= (dx / dist) * force * 0.02;
+                forceY -= (dy / dist) * force * 0.02;
+              }
             }
           }
         });
         
-        if (count > 0) {
-          // Move towards the inverse of the centroid (away from crowded areas)
-          const centroidX = sumX / count;
-          const centroidY = sumY / count;
-          const moveX = pos.x - (centroidX - pos.x) * 0.1;
-          const moveY = pos.y - (centroidY - pos.y) * 0.1;
-          
-          // Keep within bounds
-          return {
-            x: Math.max(0, Math.min(width, moveX)),
-            y: Math.max(0, Math.min(height, moveY))
-          };
+        // Add slight drift toward canvas edges to encourage full space usage
+        const centerX = (width / 2) + margin;
+        const centerY = (height / 2) + margin;
+        const distFromCenter = Math.sqrt((pos.x - centerX) ** 2 + (pos.y - centerY) ** 2);
+        const maxDistFromCenter = Math.min(width, height) * 0.4;
+        
+        if (distFromCenter < maxDistFromCenter) {
+          const edgeDriftX = (pos.x - centerX) / distFromCenter;
+          const edgeDriftY = (pos.y - centerY) / distFromCenter;
+          forceX += edgeDriftX * 0.05;
+          forceY += edgeDriftY * 0.05;
         }
         
-        return pos;
+        // Apply forces and keep within bounds
+        let newX = pos.x + forceX;
+        let newY = pos.y + forceY;
+        
+        // Keep within bounds (accounting for margin)
+        newX = Math.max(margin + 50, Math.min(width + margin - 50, newX));
+        newY = Math.max(margin + 50, Math.min(height + margin - 50, newY));
+        
+        return { x: newX, y: newY };
       });
       
       positions.splice(0, positions.length, ...newPositions);
@@ -637,12 +705,12 @@ class StudentNetworkWeb {
 
   getNodeRadius(size) {
     switch (size) {
-      case 'extra-large': return 58;
-      case 'large': return 48;
-      case 'medium': return 38;
-      case 'small': return 30;
-      case 'extra-small': return 24;
-      default: return 38;
+      case 'extra-large': return 85;
+      case 'large': return 75;
+      case 'medium': return 65;
+      case 'small': return 58;
+      case 'extra-small': return 52;
+      default: return 65;
     }
   }
 
@@ -651,8 +719,9 @@ class StudentNetworkWeb {
     
     // Create a connected network ensuring no isolated nodes
     const nodeCount = this.nodes.length;
-    const connectionsPerNode = Math.min(4, Math.ceil(nodeCount / 5)); // Scale with node count
-    const maxDistance = Math.min(this.canvasWidth, this.canvasHeight) * 0.4; // Limit connection distance
+    const minConnectionsPerNode = 2; // Ensure at least 2 connections per node
+    const maxConnectionsPerNode = Math.min(5, Math.ceil(nodeCount / 4)); // Scale with node count
+    const maxDistance = Math.min(this.canvasWidth, this.canvasHeight) * 0.45; // Slightly increased for better connectivity
     
     // First, create a minimum spanning tree to ensure connectivity
     const connected = new Set([0]);
@@ -695,13 +764,50 @@ class StudentNetworkWeb {
       }
     }
     
-    // Add additional connections for richer network, but avoid overcrowding
+    // Ensure every node has at least minConnectionsPerNode connections
     for (let i = 0; i < nodeCount; i++) {
       const currentConnections = this.connections.filter(
         conn => conn.from === i || conn.to === i
       ).length;
       
-      if (currentConnections < connectionsPerNode) {
+      if (currentConnections < minConnectionsPerNode) {
+        const distances = [];
+        for (let j = 0; j < nodeCount; j++) {
+          if (i !== j) {
+            const distance = this.getDistance(this.nodes[i], this.nodes[j]);
+            if (distance <= maxDistance) { // Only consider nearby nodes
+              distances.push({ index: j, distance });
+            }
+          }
+        }
+        
+        distances.sort((a, b) => a.distance - b.distance);
+        
+        const neededConnections = minConnectionsPerNode - currentConnections;
+        
+        for (let k = 0; k < Math.min(neededConnections, distances.length); k++) {
+          const { index } = distances[k];
+          
+          // Check if connection already exists
+          const exists = this.connections.some(
+            conn => (conn.from === i && conn.to === index) || 
+                    (conn.from === index && conn.to === i)
+          );
+          
+          if (!exists) {
+            this.connections.push({ from: i, to: index });
+          }
+        }
+      }
+    }
+    
+    // Add additional connections for richer network, but respect max limit
+    for (let i = 0; i < nodeCount; i++) {
+      const currentConnections = this.connections.filter(
+        conn => conn.from === i || conn.to === i
+      ).length;
+      
+      if (currentConnections < maxConnectionsPerNode) {
         const distances = [];
         for (let j = 0; j < nodeCount; j++) {
           if (i !== j) {
@@ -715,7 +821,7 @@ class StudentNetworkWeb {
         distances.sort((a, b) => a.distance - b.distance);
         
         const additionalConnections = Math.min(
-          connectionsPerNode - currentConnections,
+          maxConnectionsPerNode - currentConnections,
           distances.length
         );
         
@@ -765,11 +871,18 @@ class StudentNetworkWeb {
       const y = e.clientY - rect.top;
       
       const hoveredNode = this.getNodeAt(x, y);
-      this.canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+      const hoveredConnection = this.getConnectionAt(x, y);
+      
+      this.canvas.style.cursor = (hoveredNode || hoveredConnection) ? 'pointer' : 'default';
       
       // Update hover effects
       this.nodes.forEach(node => {
         node.isHovered = node === hoveredNode;
+      });
+      
+      // Update connection hover effects
+      this.connections.forEach(conn => {
+        conn.isHovered = conn === hoveredConnection;
       });
     });
     
@@ -797,6 +910,51 @@ class StudentNetworkWeb {
       
       if (distance <= node.radius * node.scale) {
         return node;
+      }
+    }
+    return null;
+  }
+
+  getConnectionAt(x, y) {
+    const tolerance = 4; // Reduced tolerance for more precise detection
+    
+    for (const conn of this.connections) {
+      const fromNode = this.nodes[conn.from];
+      const toNode = this.nodes[conn.to];
+      
+      // Calculate the curved path (quadratic curve) for precise detection
+      const midX = (fromNode.x + toNode.x) / 2;
+      const midY = (fromNode.y + toNode.y) / 2;
+      const dx = toNode.x - fromNode.x;
+      const dy = toNode.y - fromNode.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      // Calculate control point for curve (same as in drawConnections)
+      const curvature = 0.2;
+      const controlX = midX + (-dy / distance) * distance * curvature;
+      const controlY = midY + (dx / distance) * distance * curvature;
+      
+      // Check multiple points along the quadratic curve
+      let minDistance = Infinity;
+      const steps = 20; // Number of points to check along the curve
+      
+      for (let i = 0; i <= steps; i++) {
+        const t = i / steps;
+        
+        // Quadratic Bézier curve formula: B(t) = (1-t)²P₀ + 2(1-t)tP₁ + t²P₂
+        const curveX = Math.pow(1 - t, 2) * fromNode.x + 
+                      2 * (1 - t) * t * controlX + 
+                      Math.pow(t, 2) * toNode.x;
+        const curveY = Math.pow(1 - t, 2) * fromNode.y + 
+                      2 * (1 - t) * t * controlY + 
+                      Math.pow(t, 2) * toNode.y;
+        
+        const distToPoint = Math.sqrt(Math.pow(x - curveX, 2) + Math.pow(y - curveY, 2));
+        minDistance = Math.min(minDistance, distToPoint);
+      }
+      
+      if (minDistance <= tolerance) {
+        return conn;
       }
     }
     return null;
@@ -871,11 +1029,27 @@ class StudentNetworkWeb {
     // Update testimonial content
     const avatarImg = document.getElementById('testimonialAvatarImg');
     const name = document.getElementById('testimonialName');
+    const subtitle = document.getElementById('testimonialSubtitle');
     const text = document.getElementById('testimonialText');
     
-    if (avatarImg) avatarImg.src = student.image;
-    if (name) name.textContent = student.name;
-    if (text) text.textContent = student.quote;
+    if (avatarImg) {
+      avatarImg.src = student.image;
+      avatarImg.alt = student.name;
+    }
+    
+    if (name) {
+      name.textContent = student.name;
+      // Match student name color to dot's shadow color (using the student's brand color)
+      name.style.color = student.color;
+    }
+    
+    if (subtitle) {
+      subtitle.textContent = student.program;
+    }
+    
+    if (text) {
+      text.textContent = student.quote;
+    }
     
     // Position testimonial card dynamically to avoid overlapping centered node
     this.positionTestimonialCard();
@@ -887,12 +1061,12 @@ class StudentNetworkWeb {
   positionTestimonialCard() {
     if (!this.testimonialCard) return;
     
-    // Simple center positioning - always center the card on screen
+    // Position testimonial card lower so centered dot appears over the student picture
     this.testimonialCard.style.position = 'fixed';
     this.testimonialCard.style.left = '50%';
-    this.testimonialCard.style.top = '45%';
+    this.testimonialCard.style.top = '72%';  // Moved from 45% to 60% to position lower
     this.testimonialCard.style.transform = 'translate(-50%, -50%)';
-    this.testimonialCard.style.zIndex = '800';  // High z-index for testimonial card
+    this.testimonialCard.style.zIndex = '800';  // Below active node canvas (900) so dot appears on top
     this.testimonialCard.style.transition = 'all 0.3s ease-out';
     
     // Remove any placement classes since we're always centering
@@ -1035,22 +1209,24 @@ class StudentNetworkWeb {
       const fromNode = this.nodes[conn.from];
       const toNode = this.nodes[conn.to];
       
-      // Determine connection opacity and style
+      // Determine connection opacity and style - made lines thicker overall
       let opacity = 0.3;
-      let strokeWidth = 2;
-      let color = '#E7304E';
+      let strokeWidth = 4; // Increased from 2 to 4
+      let useGradient = false;
       
+      // Check for active node connections
       if (this.activeNode && (fromNode === this.activeNode || toNode === this.activeNode)) {
         opacity = 0.8;
-        strokeWidth = 3;
-        color = this.activeNode.student.color;
+        strokeWidth = 6; // Increased from 3 to 6
+        useGradient = true;
       }
       
-      // Draw curved connection line
-      this.ctx.beginPath();
-      this.ctx.strokeStyle = this.hexToRgba(color, opacity);
-      this.ctx.lineWidth = strokeWidth;
-      this.ctx.lineCap = 'round';
+      // Check for hovered connections
+      if (conn.isHovered) {
+        opacity = 0.7;
+        strokeWidth = 8; // Increased from 4 to 8
+        useGradient = true;
+      }
       
       // Create a subtle curve
       const midX = (fromNode.x + toNode.x) / 2;
@@ -1063,6 +1239,23 @@ class StudentNetworkWeb {
       const curvature = 0.2;
       const controlX = midX + (-dy / distance) * distance * curvature;
       const controlY = midY + (dx / distance) * distance * curvature;
+      
+      // Draw curved connection line
+      this.ctx.beginPath();
+      this.ctx.lineWidth = strokeWidth;
+      this.ctx.lineCap = 'round';
+      
+      if (useGradient) {
+        // Create SureStart gradient (yellow-orange-red-pink)
+        const gradient = this.ctx.createLinearGradient(fromNode.x, fromNode.y, toNode.x, toNode.y);
+        gradient.addColorStop(0, this.hexToRgba('#FFB65F', opacity)); // ss-yellow
+        gradient.addColorStop(0.33, this.hexToRgba('#ED7C4B', opacity)); // ss-orange
+        gradient.addColorStop(0.66, this.hexToRgba('#E7304E', opacity)); // ss-red
+        gradient.addColorStop(1, this.hexToRgba('#EE2D6E', opacity)); // ss-pink
+        this.ctx.strokeStyle = gradient;
+      } else {
+        this.ctx.strokeStyle = this.hexToRgba('#E7304E', opacity);
+      }
       
       // Draw quadratic curve
       this.ctx.moveTo(fromNode.x, fromNode.y);
@@ -1256,110 +1449,6 @@ class ParallaxEffects {
   }
 }
 
-// ==========================================
-// PARTICLE SYSTEM ENHANCEMENT
-// ==========================================
-
-class ParticleSystem {
-  constructor() {
-    this.canvas = null;
-    this.ctx = null;
-    this.particles = [];
-    this.animationId = null;
-    
-    this.init();
-  }
-
-  init() {
-    const heroSection = document.querySelector('.impact-hero');
-    if (!heroSection) return;
-
-    // Create canvas
-    this.canvas = document.createElement('canvas');
-    this.canvas.style.position = 'absolute';
-    this.canvas.style.top = '0';
-    this.canvas.style.left = '0';
-    this.canvas.style.width = '100%';
-    this.canvas.style.height = '100%';
-    this.canvas.style.pointerEvents = 'none';
-    this.canvas.style.zIndex = '2';
-    
-    heroSection.appendChild(this.canvas);
-    this.ctx = this.canvas.getContext('2d');
-    
-    this.resize();
-    this.createParticles();
-    this.animate();
-    
-    window.addEventListener('resize', debounce(() => this.resize(), 250));
-  }
-
-  resize() {
-    const rect = this.canvas.parentElement.getBoundingClientRect();
-    this.canvas.width = rect.width;
-    this.canvas.height = rect.height;
-  }
-
-  createParticles() {
-    const particleCount = Math.min(50, Math.floor(this.canvas.width / 20));
-    
-    for (let i = 0; i < particleCount; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        size: Math.random() * 3 + 1,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.5 + 0.2,
-        color: this.getRandomColor()
-      });
-    }
-  }
-
-  getRandomColor() {
-    const colors = [
-      'rgba(255, 182, 95, 0.6)',
-      'rgba(237, 124, 75, 0.5)',
-      'rgba(231, 48, 82, 0.7)',
-      'rgba(238, 45, 110, 0.6)'
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-  }
-
-  animate() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    this.particles.forEach(particle => {
-      // Update position
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
-      
-      // Wrap around edges
-      if (particle.x < 0) particle.x = this.canvas.width;
-      if (particle.x > this.canvas.width) particle.x = 0;
-      if (particle.y < 0) particle.y = this.canvas.height;
-      if (particle.y > this.canvas.height) particle.y = 0;
-      
-      // Draw particle
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      this.ctx.fillStyle = particle.color;
-      this.ctx.globalAlpha = particle.opacity;
-      this.ctx.fill();
-    });
-    
-    this.animationId = requestAnimationFrame(() => this.animate());
-  }
-
-  destroy() {
-    if (this.animationId) {
-      cancelAnimationFrame(this.animationId);
-    }
-    if (this.canvas && this.canvas.parentElement) {
-      this.canvas.parentElement.removeChild(this.canvas);
-    }
-  }
-}
 
 // ==========================================
 // SMOOTH SCROLLING NAVIGATION
@@ -1636,10 +1725,27 @@ class CaseStudiesCarousel {
   updateCarousel() {
     if (!this.track) return;
     
-    // Calculate transform based on current index
-    // Each card takes 85% width, but we only need to move enough to show the next card completely
-    // Move by approximately 50 to show the card properly without too much blank space
-    const translateX = -(this.currentIndex * 50);
+    // Calculate responsive scroll distance based on screen size
+    const containerWidth = this.track.parentElement.offsetWidth;
+    const cardWidth = 85; // Card takes 85% of container width
+    const gap = 2; // Approximate gap between cards as percentage
+    
+    // On larger screens where both cards might be visible, scroll by exactly one card width
+    // On smaller screens, scroll by the full distance to show the next card completely
+    let scrollDistance;
+    
+    if (containerWidth >= 1400) {
+      // Large screens: scroll by exactly the card width to center the next card
+      scrollDistance = cardWidth;
+    } else if (containerWidth >= 1024) {
+      // Medium-large screens: scroll by card width plus small gap
+      scrollDistance = cardWidth + (gap / 2);
+    } else {
+      // Smaller screens: scroll by full card width plus gap for complete visibility
+      scrollDistance = cardWidth + gap;
+    }
+    
+    const translateX = -(this.currentIndex * scrollDistance);
     this.track.style.transform = `translateX(${translateX}%)`;
     
     // Update dots
@@ -1850,10 +1956,6 @@ class ImpactStoriesApp {
       this.components.caseStudiesCarousel = new CaseStudiesCarousel();
       this.components.testimonialsCarousel = new TestimonialsCarousel();
 
-      // Initialize particle system (only on desktop for performance)
-      if (window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        this.components.particleSystem = new ParticleSystem();
-      }
 
       // Initialize animated counters
       this.initCounters();
@@ -1915,21 +2017,14 @@ class ImpactStoriesApp {
 
   handleResize() {
     // Reinitialize components that need resize handling
-    if (this.components.particleSystem) {
-      this.components.particleSystem.resize();
-    }
   }
 
   pauseAnimations() {
-    if (this.components.particleSystem) {
-      cancelAnimationFrame(this.components.particleSystem.animationId);
-    }
+    // Pause animations when tab is not visible
   }
 
   resumeAnimations() {
-    if (this.components.particleSystem) {
-      this.components.particleSystem.animate();
-    }
+    // Resume animations when tab becomes visible
   }
 
   initSectionTransitions() {
