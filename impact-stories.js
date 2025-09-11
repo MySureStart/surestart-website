@@ -367,21 +367,35 @@ class StudentNetworkWeb {
   }
 
   async init() {
-    if (!this.canvas) {
-      console.warn('Network canvas not found');
-      return;
+    try {
+      if (!this.canvas) {
+        console.warn('Network canvas not found');
+        return;
+      }
+      
+      console.log('Initializing StudentNetworkWeb...');
+      this.ctx = this.canvas.getContext('2d');
+      
+      if (!this.ctx) {
+        console.error('Failed to get canvas context');
+        return;
+      }
+      
+      this.setupCanvas();
+      this.createActiveNodeCanvas();
+      await this.loadImages();
+      this.createNodes();
+      this.createConnections();
+      this.addEventListeners();
+      this.startAnimation();
+      console.log('StudentNetworkWeb initialized successfully');
+    } catch (error) {
+      console.error('Error initializing StudentNetworkWeb:', error);
+      // Gracefully fail without crashing the page
+      if (this.canvas) {
+        this.canvas.style.display = 'none';
+      }
     }
-    
-    console.log('Initializing StudentNetworkWeb...');
-    this.ctx = this.canvas.getContext('2d');
-    this.setupCanvas();
-    this.createActiveNodeCanvas();
-    await this.loadImages();
-    this.createNodes();
-    this.createConnections();
-    this.addEventListeners();
-    this.startAnimation();
-    console.log('StudentNetworkWeb initialized successfully');
   }
 
   setupCanvas() {
@@ -391,11 +405,11 @@ class StudentNetworkWeb {
     // Use full viewport width with minimal padding
     this.canvasWidth = window.innerWidth - 40; // 20px padding on each side
     
-    // Calculate dynamic height based on optimal node distribution - increased spacing
+    // Calculate dynamic height based on optimal node distribution - reduced spacing
     const nodeCount = this.studentData.length;
-    const optimalArea = nodeCount * 25000; // Increased from 15000 to 25000 for more spacing
+    const optimalArea = nodeCount * 20000; // Reduced from 25000 to 20000 for less spacing
     const aspectRatio = this.canvasWidth / Math.sqrt(optimalArea);
-    this.canvasHeight = Math.max(1200, Math.min(2000, Math.sqrt(optimalArea) / aspectRatio)); // Increased min/max heights
+    this.canvasHeight = Math.max(800, Math.min(1400, Math.sqrt(optimalArea) / aspectRatio)); // Reduced min/max heights
     
     this.centerX = this.canvasWidth / 2;
     this.centerY = this.canvasHeight / 2;
@@ -495,7 +509,14 @@ class StudentNetworkWeb {
         opacity: 1,
         targetOpacity: 1,
         glowIntensity: 0,
-        pulsePhase: Math.random() * Math.PI * 2
+        pulsePhase: Math.random() * Math.PI * 2,
+        // Floating animation properties
+        floatPhase: Math.random() * Math.PI * 2, // Random starting phase for natural movement
+        floatSpeed: 0.008 + Math.random() * 0.004, // Slightly different speeds (0.008-0.012)
+        floatAmplitudeX: 1.5 + Math.random() * 1, // Horizontal float range (1.5-2.5px)
+        floatAmplitudeY: 2 + Math.random() * 1.5, // Vertical float range (2-3.5px)
+        baseX: pos.x, // Store the base position for floating calculations
+        baseY: pos.y
       };
       
       this.nodes.push(node);
@@ -503,205 +524,106 @@ class StudentNetworkWeb {
   }
 
   generateOrganicPositions(count) {
-    const margin = 80; // Reduced margin to use more canvas space
+    const margin = 60;
     const width = this.canvasWidth - (margin * 2);
     const height = this.canvasHeight - (margin * 2);
     
-    // Create a biological network layout that uses the full canvas space
     const positions = [];
-    const avgRadius = 65;
-    const minSpacing = avgRadius * 2.8; // Optimal spacing for biological networks
+    const minDistance = 120; // Minimum distance between node centers to prevent overlap
     
-    // Use Poisson disk sampling for natural, even distribution across full canvas
-    const poissonPositions = this.poissonDiskSampling(width, height, minSpacing, count);
+    // Create a deterministic seeded random function for consistent positioning
+    const seededRandom = (seed) => {
+      const x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    };
     
-    // If Poisson sampling doesn't generate enough points, fill with biological clustering
-    while (poissonPositions.length < count) {
-      // Add points using biological growth patterns
-      const existingPoint = poissonPositions[Math.floor(Math.random() * poissonPositions.length)];
-      const angle = Math.random() * 2 * Math.PI;
-      const distance = minSpacing + Math.random() * minSpacing * 0.5;
-      
-      let newX = existingPoint.x + Math.cos(angle) * distance;
-      let newY = existingPoint.y + Math.sin(angle) * distance;
-      
-      // Keep within bounds
-      newX = Math.max(avgRadius, Math.min(width - avgRadius, newX));
-      newY = Math.max(avgRadius, Math.min(height - avgRadius, newY));
-      
-      // Check if this position is valid (not too close to existing points)
-      let valid = true;
-      for (const pos of poissonPositions) {
-        const dist = Math.sqrt((newX - pos.x) ** 2 + (newY - pos.y) ** 2);
-        if (dist < minSpacing) {
-          valid = false;
-          break;
+    // Create a more distributed grid-based approach with deterministic organic variation
+    const cols = Math.ceil(Math.sqrt(count * (width / height)));
+    const rows = Math.ceil(count / cols);
+    const cellWidth = width / cols;
+    const cellHeight = height / rows;
+    
+    let nodeIndex = 0;
+    
+    // Distribute nodes across the entire canvas area
+    for (let row = 0; row < rows && nodeIndex < count; row++) {
+      for (let col = 0; col < cols && nodeIndex < count; col++) {
+        // Base position in grid cell
+        const baseCellX = col * cellWidth + cellWidth / 2;
+        const baseCellY = row * cellHeight + cellHeight / 2;
+        
+        // Add deterministic organic variation using node index as seed
+        const seedX = nodeIndex * 7.3 + row * 2.1 + col * 3.7; // Different seeds for X and Y
+        const seedY = nodeIndex * 5.7 + row * 4.2 + col * 1.9;
+        
+        const variationX = (seededRandom(seedX) - 0.5) * cellWidth * 0.6; // Reduced variation for better control
+        const variationY = (seededRandom(seedY) - 0.5) * cellHeight * 0.6;
+        
+        let x = baseCellX + variationX + margin;
+        let y = baseCellY + variationY + margin;
+        
+        // Ensure position is within canvas bounds
+        x = Math.max(margin + 50, Math.min(this.canvasWidth - margin - 50, x));
+        y = Math.max(margin + 50, Math.min(this.canvasHeight - margin - 50, y));
+        
+        // Check for overlaps with existing positions and adjust if needed
+        let attempts = 0;
+        const maxAttempts = 50; // Increased attempts for better overlap resolution
+        
+        while (attempts < maxAttempts) {
+          let hasOverlap = false;
+          let closestDistance = Infinity;
+          let closestNode = null;
+          
+          // Find the closest overlapping node
+          for (const existingPos of positions) {
+            const distance = Math.sqrt(
+              Math.pow(x - existingPos.x, 2) + Math.pow(y - existingPos.y, 2)
+            );
+            
+            if (distance < minDistance && distance < closestDistance) {
+              hasOverlap = true;
+              closestDistance = distance;
+              closestNode = existingPos;
+            }
+          }
+          
+          if (!hasOverlap) break;
+          
+          // Move away from the closest overlapping node deterministically
+          const dx = x - closestNode.x;
+          const dy = y - closestNode.y;
+          const currentDistance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (currentDistance > 0) {
+            // Normalize direction and move to minimum distance
+            const normalizedDx = dx / currentDistance;
+            const normalizedDy = dy / currentDistance;
+            
+            x = closestNode.x + normalizedDx * minDistance;
+            y = closestNode.y + normalizedDy * minDistance;
+          } else {
+            // If nodes are at exact same position, use deterministic angle
+            const angle = seededRandom(nodeIndex * 11.3 + attempts * 2.7) * Math.PI * 2;
+            x = closestNode.x + Math.cos(angle) * minDistance;
+            y = closestNode.y + Math.sin(angle) * minDistance;
+          }
+          
+          // Keep within bounds
+          x = Math.max(margin + 50, Math.min(this.canvasWidth - margin - 50, x));
+          y = Math.max(margin + 50, Math.min(this.canvasHeight - margin - 50, y));
+          
+          attempts++;
         }
-      }
-      
-      if (valid) {
-        poissonPositions.push({ x: newX, y: newY });
+        
+        positions.push({ x, y });
+        nodeIndex++;
       }
     }
-    
-    // Convert to final positions with margin offset
-    for (let i = 0; i < count; i++) {
-      const pos = poissonPositions[i] || { x: width / 2, y: height / 2 };
-      positions.push({
-        x: pos.x + margin,
-        y: pos.y + margin
-      });
-    }
-    
-    // Apply biological force-based relaxation for natural clustering
-    this.biologicalRelaxation(positions, width, height, margin, minSpacing, 6);
     
     return positions;
   }
 
-  poissonDiskSampling(width, height, minDistance, targetCount) {
-    const cellSize = minDistance / Math.sqrt(2);
-    const gridWidth = Math.ceil(width / cellSize);
-    const gridHeight = Math.ceil(height / cellSize);
-    const grid = new Array(gridWidth * gridHeight).fill(-1);
-    const points = [];
-    const activeList = [];
-    
-    // Start with multiple seed points across the canvas for better distribution
-    const seedCount = Math.min(4, Math.ceil(targetCount / 5));
-    for (let s = 0; s < seedCount; s++) {
-      const seedX = (width / (seedCount + 1)) * (s + 1) + (Math.random() - 0.5) * width * 0.2;
-      const seedY = (height / (seedCount + 1)) * (s + 1) + (Math.random() - 0.5) * height * 0.2;
-      
-      // Ensure seed is within bounds
-      const clampedX = Math.max(0, Math.min(width - 1, seedX));
-      const clampedY = Math.max(0, Math.min(height - 1, seedY));
-      
-      const seedPoint = { x: clampedX, y: clampedY };
-      points.push(seedPoint);
-      activeList.push(points.length - 1);
-      
-      const gridX = Math.floor(clampedX / cellSize);
-      const gridY = Math.floor(clampedY / cellSize);
-      if (gridX >= 0 && gridX < gridWidth && gridY >= 0 && gridY < gridHeight) {
-        grid[gridY * gridWidth + gridX] = points.length - 1;
-      }
-    }
-    
-    while (activeList.length > 0 && points.length < targetCount) {
-      const randomIndex = Math.floor(Math.random() * activeList.length);
-      const pointIndex = activeList[randomIndex];
-      const point = points[pointIndex];
-      
-      let found = false;
-      for (let i = 0; i < 30; i++) { // Try 30 times to find a valid point
-        const angle = Math.random() * 2 * Math.PI;
-        const distance = minDistance + Math.random() * minDistance * 0.8; // Slightly varied distance
-        const newX = point.x + Math.cos(angle) * distance;
-        const newY = point.y + Math.sin(angle) * distance;
-        
-        if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
-          const newGridX = Math.floor(newX / cellSize);
-          const newGridY = Math.floor(newY / cellSize);
-          
-          let valid = true;
-          // Check surrounding cells
-          for (let dy = -2; dy <= 2; dy++) {
-            for (let dx = -2; dx <= 2; dx++) {
-              const checkX = newGridX + dx;
-              const checkY = newGridY + dy;
-              if (checkX >= 0 && checkX < gridWidth && checkY >= 0 && checkY < gridHeight) {
-                const neighborIndex = grid[checkY * gridWidth + checkX];
-                if (neighborIndex !== -1) {
-                  const neighbor = points[neighborIndex];
-                  const dist = Math.sqrt((newX - neighbor.x) ** 2 + (newY - neighbor.y) ** 2);
-                  if (dist < minDistance) {
-                    valid = false;
-                    break;
-                  }
-                }
-              }
-            }
-            if (!valid) break;
-          }
-          
-          if (valid) {
-            const newPoint = { x: newX, y: newY };
-            points.push(newPoint);
-            activeList.push(points.length - 1);
-            if (newGridX >= 0 && newGridX < gridWidth && newGridY >= 0 && newGridY < gridHeight) {
-              grid[newGridY * gridWidth + newGridX] = points.length - 1;
-            }
-            found = true;
-            break;
-          }
-        }
-      }
-      
-      if (!found) {
-        activeList.splice(randomIndex, 1);
-      }
-    }
-    
-    return points.slice(0, targetCount);
-  }
-
-  biologicalRelaxation(positions, width, height, margin, minSpacing, iterations) {
-    // Biological force-based relaxation that encourages natural clustering while maintaining spacing
-    for (let iter = 0; iter < iterations; iter++) {
-      const newPositions = positions.map((pos, i) => {
-        let forceX = 0, forceY = 0;
-        
-        // Calculate forces from all other points
-        positions.forEach((otherPos, j) => {
-          if (i !== j) {
-            const dx = pos.x - otherPos.x;
-            const dy = pos.y - otherPos.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            
-            if (dist > 0) {
-              if (dist < minSpacing) {
-                // Repulsion force when too close
-                const force = (minSpacing - dist) / dist;
-                forceX += (dx / dist) * force * 0.15;
-                forceY += (dy / dist) * force * 0.15;
-              } else if (dist < minSpacing * 2.5) {
-                // Weak attraction for biological clustering
-                const force = (dist - minSpacing) / dist;
-                forceX -= (dx / dist) * force * 0.02;
-                forceY -= (dy / dist) * force * 0.02;
-              }
-            }
-          }
-        });
-        
-        // Add slight drift toward canvas edges to encourage full space usage
-        const centerX = (width / 2) + margin;
-        const centerY = (height / 2) + margin;
-        const distFromCenter = Math.sqrt((pos.x - centerX) ** 2 + (pos.y - centerY) ** 2);
-        const maxDistFromCenter = Math.min(width, height) * 0.4;
-        
-        if (distFromCenter < maxDistFromCenter) {
-          const edgeDriftX = (pos.x - centerX) / distFromCenter;
-          const edgeDriftY = (pos.y - centerY) / distFromCenter;
-          forceX += edgeDriftX * 0.05;
-          forceY += edgeDriftY * 0.05;
-        }
-        
-        // Apply forces and keep within bounds
-        let newX = pos.x + forceX;
-        let newY = pos.y + forceY;
-        
-        // Keep within bounds (accounting for margin)
-        newX = Math.max(margin + 50, Math.min(width + margin - 50, newX));
-        newY = Math.max(margin + 50, Math.min(height + margin - 50, newY));
-        
-        return { x: newX, y: newY };
-      });
-      
-      positions.splice(0, positions.length, ...newPositions);
-    }
-  }
 
   getNodeRadius(size) {
     switch (size) {
@@ -903,12 +825,17 @@ class StudentNetworkWeb {
   }
 
   getNodeAt(x, y) {
-    for (const node of this.nodes) {
+    // Check nodes in reverse order so nodes drawn on top (active nodes) are detected first
+    for (let i = this.nodes.length - 1; i >= 0; i--) {
+      const node = this.nodes[i];
       const dx = x - node.x;
       const dy = y - node.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       
-      if (distance <= node.radius * node.scale) {
+      // Use actual visual radius including scale for accurate detection
+      const effectiveRadius = node.radius * node.scale;
+      
+      if (distance <= effectiveRadius) {
         return node;
       }
     }
@@ -916,11 +843,31 @@ class StudentNetworkWeb {
   }
 
   getConnectionAt(x, y) {
-    const tolerance = 4; // Reduced tolerance for more precise detection
+    // First check if the mouse position is inside any node
+    // If it is, don't detect any connections
+    for (const node of this.nodes) {
+      const dx = x - node.x;
+      const dy = y - node.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const effectiveRadius = node.radius * node.scale;
+      
+      if (distance <= effectiveRadius) {
+        return null; // Mouse is inside a node, don't detect connections
+      }
+    }
+    
+    let tolerance = 6; // Increased base tolerance for easier detection
+    let closestConnection = null;
+    let closestDistance = Infinity;
     
     for (const conn of this.connections) {
       const fromNode = this.nodes[conn.from];
       const toNode = this.nodes[conn.to];
+      
+      // Skip connections involving nodes that are currently scaled (active/centered)
+      // as they might be harder to detect accurately
+      const fromNodeScaled = fromNode.scale !== 1;
+      const toNodeScaled = toNode.scale !== 1;
       
       // Calculate the curved path (quadratic curve) for precise detection
       const midX = (fromNode.x + toNode.x) / 2;
@@ -929,14 +876,17 @@ class StudentNetworkWeb {
       const dy = toNode.y - fromNode.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       
+      // Skip very short connections to avoid detection issues
+      if (distance < 50) continue;
+      
       // Calculate control point for curve (same as in drawConnections)
       const curvature = 0.2;
       const controlX = midX + (-dy / distance) * distance * curvature;
       const controlY = midY + (dx / distance) * distance * curvature;
       
-      // Check multiple points along the quadratic curve
+      // Check multiple points along the quadratic curve with higher resolution
       let minDistance = Infinity;
-      const steps = 20; // Number of points to check along the curve
+      const steps = 30; // Increased steps for better accuracy
       
       for (let i = 0; i <= steps; i++) {
         const t = i / steps;
@@ -949,15 +899,44 @@ class StudentNetworkWeb {
                       2 * (1 - t) * t * controlY + 
                       Math.pow(t, 2) * toNode.y;
         
-        const distToPoint = Math.sqrt(Math.pow(x - curveX, 2) + Math.pow(y - curveY, 2));
-        minDistance = Math.min(minDistance, distToPoint);
+        // Check if this point on the curve is inside any node
+        let pointInsideNode = false;
+        for (const node of this.nodes) {
+          const nodeDx = curveX - node.x;
+          const nodeDy = curveY - node.y;
+          const nodeDistance = Math.sqrt(nodeDx * nodeDx + nodeDy * nodeDy);
+          const nodeEffectiveRadius = node.radius * node.scale;
+          
+          if (nodeDistance <= nodeEffectiveRadius) {
+            pointInsideNode = true;
+            break;
+          }
+        }
+        
+        // Only consider points on the curve that are outside of nodes
+        if (!pointInsideNode) {
+          const distToPoint = Math.sqrt(Math.pow(x - curveX, 2) + Math.pow(y - curveY, 2));
+          minDistance = Math.min(minDistance, distToPoint);
+        }
       }
       
-      if (minDistance <= tolerance) {
-        return conn;
+      // Adjust tolerance based on connection state
+      let currentTolerance = tolerance;
+      if (conn.isHovered) {
+        currentTolerance += 2; // Slightly larger tolerance for already hovered connections
+      }
+      if (fromNodeScaled || toNodeScaled) {
+        currentTolerance += 3; // Larger tolerance for connections with scaled nodes
+      }
+      
+      // Track the closest connection within tolerance
+      if (minDistance <= currentTolerance && minDistance < closestDistance) {
+        closestDistance = minDistance;
+        closestConnection = conn;
       }
     }
-    return null;
+    
+    return closestConnection;
   }
 
   centerNode(node) {
@@ -975,14 +954,15 @@ class StudentNetworkWeb {
     this.activeNode = node;
     node.isCentered = true;
     
-    // Calculate scale to make node reach extra-large size (58px)
+    // Calculate scale to make node reach extra-large size (85px)
     const extraLargeRadius = this.getNodeRadius('extra-large');
     const currentRadius = node.radius;
     node.targetScale = extraLargeRadius / currentRadius;
     
-    // Set target positions for the new active node
-    node.targetX = this.centerX;
-    node.targetY = this.centerY;
+    // Keep the node in its original position - no JavaScript positioning needed
+    // The CSS will handle the testimonial card layout with the avatar positioned correctly
+    node.targetX = node.originalX;
+    node.targetY = node.originalY;
     
     // Update all nodes based on new active state
     this.nodes.forEach(otherNode => {
@@ -1061,12 +1041,13 @@ class StudentNetworkWeb {
   positionTestimonialCard() {
     if (!this.testimonialCard) return;
     
-    // Position testimonial card lower so centered dot appears over the student picture
+    // Position testimonial card so the centered node appears at its top edge
+    // This ensures only the bottom half of the node is visible within the testimonial
     this.testimonialCard.style.position = 'fixed';
     this.testimonialCard.style.left = '50%';
-    this.testimonialCard.style.top = '72%';  // Moved from 45% to 60% to position lower
+    this.testimonialCard.style.top = '65%';  // Match the node positioning at 65% from top
     this.testimonialCard.style.transform = 'translate(-50%, -50%)';
-    this.testimonialCard.style.zIndex = '800';  // Below active node canvas (900) so dot appears on top
+    this.testimonialCard.style.zIndex = '1000';  // Below active node canvas (900) so dot appears on top
     this.testimonialCard.style.transition = 'all 0.3s ease-out';
     
     // Remove any placement classes since we're always centering
@@ -1101,6 +1082,24 @@ class StudentNetworkWeb {
     let hasMovement = false;
     
     this.nodes.forEach(node => {
+      // Update floating animation phase
+      node.floatPhase += node.floatSpeed;
+      
+      // Calculate floating offset from base position
+      const floatOffsetX = Math.sin(node.floatPhase) * node.floatAmplitudeX;
+      const floatOffsetY = Math.sin(node.floatPhase * 0.7) * node.floatAmplitudeY; // Different frequency for Y
+      
+      // Apply floating animation to base positions (but not when centered)
+      if (!node.isCentered) {
+        // Update base positions with floating effect
+        node.baseX = node.originalX + floatOffsetX;
+        node.baseY = node.originalY + floatOffsetY;
+        
+        // Set target positions to floating positions
+        node.targetX = node.baseX;
+        node.targetY = node.baseY;
+      }
+      
       // Smooth position transitions
       const dx = node.targetX - node.x;
       const dy = node.targetY - node.y;
@@ -1132,11 +1131,13 @@ class StudentNetworkWeb {
       } else {
         node.glowIntensity = Math.max(0, node.glowIntensity - 0.05);
       }
+      
+      // Always keep animating for floating effect
+      hasMovement = true;
     });
     
-    if (!hasMovement) {
-      this.isAnimating = false;
-    }
+    // Keep animation running for floating effect
+    this.isAnimating = true;
   }
 
   updateParticles() {
@@ -1622,7 +1623,7 @@ class CaseStudiesCarousel {
     this.track = document.getElementById('testimonialsTrack');
     this.dots = document.querySelectorAll('.testimonial-dot');
     this.currentIndex = 0;
-    this.totalSlides = 2; // Jonathan and Lili
+    this.totalSlides = 3; // Jonathan, Lili, and third testimonial
     
     this.init();
   }
@@ -1730,22 +1731,32 @@ class CaseStudiesCarousel {
     const cardWidth = 85; // Card takes 85% of container width
     const gap = 2; // Approximate gap between cards as percentage
     
-    // On larger screens where both cards might be visible, scroll by exactly one card width
-    // On smaller screens, scroll by the full distance to show the next card completely
-    let scrollDistance;
+    let translateX;
     
-    if (containerWidth >= 1400) {
-      // Large screens: scroll by exactly the card width to center the next card
-      scrollDistance = cardWidth;
-    } else if (containerWidth >= 1024) {
-      // Medium-large screens: scroll by card width plus small gap
-      scrollDistance = cardWidth + (gap / 2);
+    if (this.currentIndex === 2) {
+      // For the third slide (index 2), scroll until its right edge aligns with screen right edge
+      // This means we need to scroll by the total width minus one card width
+      const totalCardsWidth = this.totalSlides * (cardWidth + gap) - gap; // Total width of all cards
+      const scrollToShowLastCard = totalCardsWidth - 100; // Scroll to show the last card's right edge at screen edge
+      translateX = -scrollToShowLastCard;
     } else {
-      // Smaller screens: scroll by full card width plus gap for complete visibility
-      scrollDistance = cardWidth + gap;
+      // For first two slides, use the original logic
+      let scrollDistance;
+      
+      if (containerWidth >= 1400) {
+        // Large screens: scroll by exactly the card width to center the next card
+        scrollDistance = cardWidth;
+      } else if (containerWidth >= 1024) {
+        // Medium-large screens: scroll by card width plus small gap
+        scrollDistance = cardWidth + (gap / 2);
+      } else {
+        // Smaller screens: scroll by full card width plus gap for complete visibility
+        scrollDistance = cardWidth + gap;
+      }
+      
+      translateX = -(this.currentIndex * scrollDistance);
     }
     
-    const translateX = -(this.currentIndex * scrollDistance);
     this.track.style.transform = `translateX(${translateX}%)`;
     
     // Update dots

@@ -96,7 +96,7 @@ a {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('static/images/impact-stories-hero-mirrored.jpg') center/cover no-repeat;
+  background: url('static/images/impact-stories-hero-mirrored.jpg') center 25%/cover no-repeat;
   padding-top: 0;
 }
 
@@ -536,7 +536,7 @@ a {
 
 .student-network-section {
   background: var(--surface-white);
-  padding: var(--space-5xl) 0;
+  padding: var(--space-2xl) 0;
   position: relative;
   margin-top: 0;
 }
@@ -992,7 +992,7 @@ a {
 .testimonial-case-card {
   flex: 0 0 calc(85% - var(--space-lg));
   max-width: 1200px;
-  max-height: 700px;
+  max-height: 500px;
   background: white;
   border-radius: 16px;
   padding: 0;
@@ -1032,7 +1032,7 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--space-3xl) var(--space-2xl);
+  padding: var(--space-2xl) var(--space-2xl);
 }
 
 .testimonial-quote {
@@ -1103,6 +1103,25 @@ a {
 .testimonial-content .quote-attribution .company-logo span {
   font-size: var(--text-base);
   font-weight: 600;
+}
+
+.testimonial-content .quote-attribution .company-logo .university-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(20%) opacity(0.9);
+  transition: all 0.3s ease;
+}
+
+/* Specific sizing for McGill logo to match Princeton logo size */
+.testimonial-content .quote-attribution .company-logo .university-logo[src*="Mcgill_univ_ca_logo.png"] {
+  height: 45px;
+  max-width: 120px;
+}
+
+.testimonial-content .quote-attribution .company-logo .university-logo:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
 }
 
 /* Details Section */
@@ -1306,6 +1325,7 @@ a {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  max-height: 1000px;
 }
 
 .network-header {
@@ -1332,7 +1352,6 @@ a {
 
 .network-visualization {
   position: relative;
-  background: transparent;
   border-radius: 0;
   border: none;
   overflow: visible;
@@ -1341,10 +1360,23 @@ a {
   box-shadow: none;
 }
 
+.network-visualization::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('static/images/Blank_map_of_world_no_country_borders.png') 20% 0%/120% no-repeat;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .network-canvas {
   width: 100%;
   height: auto; /* Will be set dynamically */
-  min-height: 800px;
+  min-height: 600px;
   display: block;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1362,6 +1394,10 @@ a {
 
 /* Floating Testimonial Card */
 .floating-testimonial-card {
+  /* CSS Variables for responsive avatar sizing */
+  --avatar-size: 120px;          /* desktop default */
+  --avatar-gap: 12px;            /* space from avatar bottom to name */
+  
   position: fixed;
   top: 50%;
   left: 50%;
@@ -1374,16 +1410,18 @@ a {
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-  padding: var(--space-xl);
   opacity: 0;
   visibility: hidden;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   z-index: 800;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--space-xl);
+  
+  /* Pure CSS layout - no JavaScript positioning needed */
+  position: relative;
+  padding-top: calc(var(--avatar-size) / 2 + var(--avatar-gap) + 1rem);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
 }
 
 .floating-testimonial-card.active {
@@ -1407,6 +1445,7 @@ a {
   justify-content: center;
   transition: all 0.3s ease;
   color: var(--text-secondary);
+  z-index: 3;
 }
 
 .testimonial-close:hover {
@@ -1415,13 +1454,44 @@ a {
   transform: scale(1.1);
 }
 
-.testimonial-name {
+/* Avatar overlaps the top edge so only bottom half is inside the card */
+.testimonial-avatar {
+  position: absolute;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%); /* half outside, half inside */
+  border: 6px solid #fff;           /* match card bg */
+  box-shadow: 0 12px 24px rgba(0,0,0,.15);
+  z-index: 2;
+  object-fit: cover;
+}
+
+/* Typography/spacing */
+.testimonial-name,
+.testimonial-subtitle,
+.testimonial-text { 
+  text-align: center; 
+}
+
+.testimonial-name { 
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin: 0;
-  margin-top: 3rem;
-  text-align: center;
+  margin-top: 0; 
+  margin-bottom: .25rem; 
+}
+
+.testimonial-subtitle { 
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0 0 .75rem; 
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: .75; 
 }
 
 .testimonial-text {
@@ -1431,48 +1501,38 @@ a {
   margin: 0;
   font-style: italic;
   text-align: center;
-  
 }
 
 .testimonial-content-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-bottom: 2rem;
   gap: var(--space-md);
 }
 
-.testimonial-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-  flex-shrink: 0;
-  position: relative;
-  margin-bottom: var(--space-md);
+/* Responsive avatar sizes */
+@media (max-width: 640px) {
+  .floating-testimonial-card { 
+    --avatar-size: 90px; 
+    width: 350px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .testimonial-name {
+    font-size: 1.25rem;
+  }
+  
+  .testimonial-text {
+    font-size: 0.9rem;
+  }
 }
 
-.testimonial-avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.testimonial-subtitle {
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.9rem;
+@media (min-width: 1024px) {
+  .floating-testimonial-card { 
+    --avatar-size: 140px; 
+  }
 }
 
 
@@ -1567,11 +1627,11 @@ a {
 /* Responsive Design */
 @media (max-width: 1024px) {
   .network-visualization {
-    min-height: 500px;
+    min-height: 400px;
   }
   
   .network-canvas {
-    height: 500px;
+    min-height: 400px;
   }
   
   .floating-testimonial-card {
