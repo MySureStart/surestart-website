@@ -36,7 +36,6 @@
 <!-- HERO SECTION -->
 <section class="about-hero">
   <div class="about-hero-background">
-    <img src="static/images/students.png" alt="Students working together" class="hero-banner-image">
     <div class="hero-gradient-overlay"></div>
   </div>
   
@@ -44,7 +43,7 @@
     <div class="hero-content-grid">
       <div class="hero-text-section">
         <h1 class="about-hero-title fade-up">
-          <span class="title-line">Get to know us</span>
+          <span class="title-line title-highlight">Get to know us</span>
         </h1>
         <p class="about-hero-subtitle fade-up">
           Empowering the next generation of AI leaders through hands-on learning and mentorship.
@@ -75,7 +74,7 @@
       </div>
       <div class="story-image">
         <div class="image-container">
-          <img src="static/images/students.png" alt="SureStart students working together" />
+          <img src="static/images/our-story.jpg" alt="SureStart students working together" />
         </div>
       </div>
     </div>
@@ -89,36 +88,199 @@
       <h2 class="section-title">Our Accolades</h2>
     </div>
     
+    <!-- ACCOLADES FLIP CARDS GRID -->
     <div class="accolades-grid fade-up">
-      <div class="accolade-card">
-        <div class="accolade-year">2021</div>
-        <h3 class="accolade-title">WomenTech Network Global AI Inclusion Award</h3>
-        <div class="accolade-icon">🏆</div>
-      </div>
       
-      <div class="accolade-card">
-        <div class="accolade-year">2022</div>
-        <h3 class="accolade-title">VentureBeat Woman in AI</h3>
-        <div class="accolade-icon">⭐</div>
+      <!-- WOMENTECH NETWORK AWARD CARD -->
+      <div class="accolade-flip-card" data-accolade="womentech">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background-image: url('static/images/womentech.png'); background-size: cover; background-position: center;">
+            <div class="card-content">
+              <div class="accolade-year">2021</div>
+              <h3>WomenTech Network Global Awards</h3>
+              <div class="flip-indicator">
+                <span>Tap to explore</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="back-content">
+              <h4><span class="badge-icon">🏆</span> WomenTech Network Global AI Inclusion Award</h4>
+              <div class="accolade-year-back">2021</div>
+              <p class="accolade-description">
+                Recognized for outstanding contributions to advancing diversity and inclusion in artificial intelligence, 
+                promoting equitable access to AI education and fostering inclusive innovation in the tech industry.
+              </p>
+              <div class="accolade-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Category</span>
+                  <span class="meta-value">AI Inclusion</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Impact</span>
+                  <span class="meta-value">Global</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div class="accolade-card">
-        <div class="accolade-year">2023</div>
-        <h3 class="accolade-title">Women in AI North America Award</h3>
-        <div class="accolade-icon">🌟</div>
+
+      <!-- WOMEN IN AI AWARDS CARD -->
+      <div class="accolade-flip-card" data-accolade="venturebeat">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background-image: url('static/images/women-in-ai.png'); background-size: cover; background-position: center;">
+            <div class="card-content">
+              <div class="accolade-year">2021</div>
+              <h3>Women in AI Awards</h3>
+              <div class="flip-indicator">
+                <span>Tap to explore</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="back-content">
+              <h4><span class="badge-icon">⭐</span> Women in AI Awards</h4>
+              <div class="accolade-year-back">2021</div>
+              <p class="accolade-description">
+                Recognized at the VB Transform 2021 Women in AI Awards for outstanding contributions to AI education, 
+                innovative program development, and commitment to empowering the next generation of AI leaders.
+              </p>
+              <div class="accolade-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Category</span>
+                  <span class="meta-value">Leadership</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Focus</span>
+                  <span class="meta-value">Education</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div class="accolade-card">
-        <div class="accolade-year">2023</div>
-        <h3 class="accolade-title">NASDAQ 25 Leading Women in AI</h3>
-        <div class="accolade-icon">💎</div>
+
+      <!-- WOMEN IN AI NORTH AMERICA AWARD CARD -->
+      <div class="accolade-flip-card" data-accolade="womeninai">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="card-content">
+              <div class="accolade-year">2023</div>
+              <h3>Women in AI North America Award</h3>
+              <div class="flip-indicator">
+                <span>Tap to explore</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="back-content">
+              <h4><span class="badge-icon">🌟</span> Women in AI North America Award</h4>
+              <div class="accolade-year-back">2023</div>
+              <p class="accolade-description">
+                Celebrated for exceptional achievements in advancing women's participation in AI across North America, 
+                creating pathways for underrepresented groups and building inclusive AI communities.
+              </p>
+              <div class="accolade-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Region</span>
+                  <span class="meta-value">North America</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Impact</span>
+                  <span class="meta-value">Community</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div class="accolade-card">
-        <div class="accolade-year">2025</div>
-        <h3 class="accolade-title">ASU+GSV Innovator of Color</h3>
-        <div class="accolade-icon">🚀</div>
+
+      <!-- NASDAQ 25 LEADING WOMEN IN AI CARD -->
+      <div class="accolade-flip-card" data-accolade="nasdaq">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background-image: url('static/images/Taniya NASDAQ.jpg'); background-size: cover; background-position: center;">
+            <div class="card-content">
+              <div class="accolade-year">2023</div>
+              <h3>NASDAQ 25 Leading Women in AI</h3>
+              <div class="flip-indicator">
+                <span>Tap to explore</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="back-content">
+              <h4><span class="badge-icon">💎</span> NASDAQ 25 Leading Women in AI</h4>
+              <div class="accolade-year-back">2023</div>
+              <p class="accolade-description">
+                Selected among the top 25 leading women in artificial intelligence by NASDAQ, recognizing 
+                entrepreneurial excellence, innovation in AI education, and significant contributions to the tech ecosystem.
+              </p>
+              <div class="accolade-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Ranking</span>
+                  <span class="meta-value">Top 25</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Focus</span>
+                  <span class="meta-value">Innovation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- ASU+GSV INNOVATOR OF COLOR CARD -->
+      <div class="accolade-flip-card" data-accolade="asugsv">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background-image: url('static/images/Taniya_mishra_asu+gsv.jpg'); background-size: cover; background-position: center;">
+            <div class="card-content">
+              <div class="accolade-year">2025</div>
+              <h3>ASU+GSV Innovator of Color</h3>
+              <div class="flip-indicator">
+                <span>Tap to explore</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="back-content">
+              <h4><span class="badge-icon">🚀</span> ASU+GSV Innovator of Color</h4>
+              <div class="accolade-year-back">2025</div>
+              <p class="accolade-description">
+                Recognized as an innovator of color at the prestigious ASU+GSV Summit, highlighting groundbreaking work 
+                in educational technology, commitment to diversity in STEM, and transformative impact on AI education.
+              </p>
+              <div class="accolade-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Summit</span>
+                  <span class="meta-value">ASU+GSV</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Focus</span>
+                  <span class="meta-value">EdTech</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -178,9 +340,9 @@
 <section class="meet-founder">
   <div class="founder-container">
     <div class="founder-grid fade-up">
-      <div class="founder-image">
+        <div class="founder-image">
         <div class="image-container">
-          <img src="static/images/students-thinner.png" alt="Dr. Taniya Mishra" />
+          <img src="static/images/taniya-mishra.jpg" alt="Dr. Taniya Mishra" />
         </div>
       </div>
       <div class="founder-content">
@@ -334,20 +496,16 @@
     <div class="footer-content">
       <div class="footer-brand">
         <img src="static/images/SureStart_Standard Logo (1).png" alt="SureStart" class="footer-logo">
+        <p class="footer-tagline">Empowering the next generation of AI leaders through accessible, world-class education.</p>
         <div class="footer-social">
           <a href="#" aria-label="LinkedIn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
           </a>
-          <a href="#" aria-label="Twitter/X">
+          <a href="#" aria-label="Twitter">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-            </svg>
-          </a>
-          <a href="#" aria-label="YouTube">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
           </a>
           <a href="#" aria-label="Instagram">
@@ -361,10 +519,36 @@
       </div>
       
       <div class="footer-links">
-        <a href="index.html#contact">Contact Us</a>
-        <a href="#">Careers</a>
-        <a href="index.html#programs">Programs</a>
-        <a href="#">Blog</a>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <a href="about-us.html">About Us</a>
+          <a href="#partners">Partners</a>
+          <a href="#">Careers</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h4>Programs</h4>
+          <a href="index.html#programs">Explorations</a>
+          <a href="index.html#programs">Foundations</a>
+          <a href="index.html#programs">Applications</a>
+          <a href="index.html#programs">Innovations</a>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <a href="#">Student Portal</a>
+          <a href="#">Curriculum</a>
+          <a href="impact-stories.html">Success Stories</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 SureStart. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <span>•</span>
+        <a href="#">Terms of Service</a>
       </div>
     </div>
   </div>
@@ -372,6 +556,29 @@
 
 <script src="script.js"></script>
 <script>
+// Accolade flip card functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const accoladeCards = document.querySelectorAll('.accolade-flip-card');
+  
+  accoladeCards.forEach(card => {
+    card.addEventListener('click', function() {
+      // Toggle flipped class
+      this.classList.toggle('flipped');
+    });
+    
+    // Add keyboard support
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.classList.toggle('flipped');
+      }
+    });
+    
+    // Make cards focusable
+    card.setAttribute('tabindex', '0');
+  });
+});
+
 // Team member modal functionality
 document.addEventListener('DOMContentLoaded', function() {
   const teamMembers = document.querySelectorAll('.team-member');
@@ -423,12 +630,12 @@ document.addEventListener('DOMContentLoaded', function() {
 /* Hero Section */
 .about-hero {
   position: relative;
-  min-height: 60vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   overflow: hidden;
+  background: url('static/images/about-us-hero.jpg') center 25%/cover no-repeat;
   padding: 120px 0 60px;
-  background: linear-gradient(135deg, var(--ss-neutral-2) 0%, var(--ss-neutral) 100%);
 }
 
 .about-hero-background {
@@ -440,23 +647,18 @@ document.addEventListener('DOMContentLoaded', function() {
   z-index: 1;
 }
 
-.hero-banner-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
 .hero-gradient-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(102, 72, 64, 0.6), rgba(148, 116, 107, 0.4));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
   z-index: 2;
 }
 
@@ -466,25 +668,71 @@ document.addEventListener('DOMContentLoaded', function() {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--space-lg);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30vh;
+}
+
+.hero-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.hero-text-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  text-align: center;
+  width: 100%;
 }
 
 .about-hero-title {
-  font-size: clamp(48px, 8vw, 80px);
+  font-size: clamp(40px, 7vw, 80px);
   line-height: 1.1;
-  margin: 0 0 var(--space-xl) 0;
+  margin: 0;
   font-weight: 800;
-  color: var(--ss-accent-1);
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
+.title-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.title-highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -15px;
+  height: 20px;
+  background-image: url('static/images/pen-underline.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: translateY(50%) scaleX(50) scaleY(40) rotate(5deg);
+  background-position: center bottom;
+  opacity: 0.9;
+  z-index: 1;
+}
+
 .about-hero-subtitle {
-  font-size: clamp(18px, 2.5vw, 24px);
+  font-size: clamp(18px, 2.2vw, 24px);
   line-height: 1.6;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   margin: 0;
+  font-weight: 400;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
   text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 /* Our Story Section */
@@ -543,9 +791,77 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .accolades-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xl);
   margin-top: var(--space-2xl);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* First row: 2 cards centered */
+.accolades-grid .accolade-flip-card:nth-child(1) {
+  grid-column: 1 / 2;
+  margin-left: auto;
+}
+
+.accolades-grid .accolade-flip-card:nth-child(2) {
+  grid-column: 2 / 3;
+  margin-right: auto;
+}
+
+/* Second row: 3 cards */
+.accolades-grid .accolade-flip-card:nth-child(3) {
+  grid-column: 1 / 2;
+}
+
+.accolades-grid .accolade-flip-card:nth-child(4) {
+  grid-column: 2 / 3;
+}
+
+.accolades-grid .accolade-flip-card:nth-child(5) {
+  grid-column: 3 / 4;
+}
+
+/* Alternative approach: Use CSS Grid with grid-template-areas for better control */
+@supports (grid-template-areas: "a b c") {
+  .accolades-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: 
+      ". card1 card1 card2 card2 ."
+      "card3 card3 card4 card4 card5 card5";
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .accolades-grid .accolade-flip-card:nth-child(1) {
+    grid-area: card1;
+    margin: 0;
+  }
+
+  .accolades-grid .accolade-flip-card:nth-child(2) {
+    grid-area: card2;
+    margin: 0;
+  }
+
+  .accolades-grid .accolade-flip-card:nth-child(3) {
+    grid-area: card3;
+    margin: 0;
+  }
+
+  .accolades-grid .accolade-flip-card:nth-child(4) {
+    grid-area: card4;
+    margin: 0;
+  }
+
+  .accolades-grid .accolade-flip-card:nth-child(5) {
+    grid-area: card5;
+    margin: 0;
+  }
 }
 
 .accolade-card {
@@ -594,6 +910,163 @@ document.addEventListener('DOMContentLoaded', function() {
 .accolade-icon {
   font-size: 2rem;
   opacity: 0.8;
+}
+
+/* Accolade flip card styles */
+.accolade-flip-card {
+  perspective: 1000px;
+  height: 300px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.accolade-flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.flip-card-front {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.flip-card-front::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.flip-card-front .card-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.flip-card-front .accolade-year {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: var(--space-md);
+}
+
+.flip-card-front h3 {
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--space-lg);
+}
+
+.flip-card-front .flip-indicator {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.flip-card-back {
+  background: white;
+  transform: rotateY(180deg);
+  padding: var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-content {
+  text-align: center;
+}
+
+.back-content h4 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-md);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.accolade-year-back {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ss-accent-1);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.accolade-description {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.accolade-meta {
+  display: flex;
+  justify-content: space-around;
+  gap: var(--space-md);
+}
+
+.meta-item {
+  text-align: center;
+}
+
+.meta-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.meta-value {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ss-accent-1);
+}
+
+.accolade-flip-card:hover .flip-card-front,
+.accolade-flip-card:hover .flip-card-back {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 /* In the News Section */
@@ -663,8 +1136,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .founder-grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: var(--space-4xl);
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-3xl);
   align-items: center;
 }
 
@@ -672,29 +1145,34 @@ document.addEventListener('DOMContentLoaded', function() {
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .founder-image img {
   width: 100%;
   height: auto;
   display: block;
+  min-height: 400px;
+  object-fit: cover;
 }
 
 .founder-content .section-title {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
   text-align: left;
+  font-size: var(--text-3xl);
 }
 
 .founder-bio p {
-  font-size: var(--text-lg);
-  line-height: 1.7;
-  margin-bottom: var(--space-lg);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
 }
 
 .founder-social {
   display: flex;
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
 }
 
 .social-btn {

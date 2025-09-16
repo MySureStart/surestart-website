@@ -962,7 +962,7 @@ class StudentNetworkWeb {
     // Calculate dynamic positioning to prevent text overlap
     const scaledNodeRadius = extraLargeRadius; // Final scaled radius
     const cardMinHeight = 300; // Minimum card height from CSS
-    const nodeGap = 90; // Gap between node bottom and content start (increased from 35 to 50)
+    const nodeGap = 100; // Gap between node bottom and content start (increased from 35 to 50)
     const headerHeight = 80; // Approximate height for name + subtitle
     const viewportPadding = 40; // Padding from viewport edges
     
