@@ -1394,9 +1394,9 @@ a {
 
 /* Floating Testimonial Card */
 .floating-testimonial-card {
-  /* CSS Variables for responsive avatar sizing */
-  --avatar-size: 120px;          /* desktop default */
-  --avatar-gap: 12px;            /* space from avatar bottom to name */
+  /* CSS Variables for responsive node sizing - matching the scaled node size */
+  --node-size: 170px;             /* extra-large node size (85px radius * 2) */
+  --node-gap: 20px;               /* space from node bottom to content */
   
   position: fixed;
   top: 50%;
@@ -1413,15 +1413,15 @@ a {
   opacity: 0;
   visibility: hidden;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: 800;
+  z-index: 800; /* Below active node canvas (900) so node appears on top */
   border: 1px solid rgba(255, 255, 255, 0.3);
   
-  /* Pure CSS layout - no JavaScript positioning needed */
-  position: relative;
-  padding-top: calc(var(--avatar-size) / 2 + var(--avatar-gap) + 1rem);
+  /* Layout to accommodate overlapping node at top */
+  padding-top: calc(var(--node-size) / 2 + var(--node-gap));
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 2rem;
+  min-height: 300px; /* Ensure adequate space for content */
 }
 
 .floating-testimonial-card.active {
@@ -1454,22 +1454,12 @@ a {
   transform: scale(1.1);
 }
 
-/* Avatar overlaps the top edge so only bottom half is inside the card */
+/* Hide the original avatar since the node will serve as the avatar */
 .testimonial-avatar {
-  position: absolute;
-  width: var(--avatar-size);
-  height: var(--avatar-size);
-  border-radius: 50%;
-  left: 50%;
-  top: 0;
-  transform: translate(-50%, -50%); /* half outside, half inside */
-  border: 6px solid #fff;           /* match card bg */
-  box-shadow: 0 12px 24px rgba(0,0,0,.15);
-  z-index: 2;
-  object-fit: cover;
+  display: none;
 }
 
-/* Typography/spacing */
+/* Typography/spacing - adjusted for node overlap */
 .testimonial-name,
 .testimonial-subtitle,
 .testimonial-text { 
@@ -1509,15 +1499,19 @@ a {
   align-items: center;
   text-align: center;
   gap: var(--space-md);
+  /* Ensure content starts below the overlapping node */
+  margin-top: 0;
 }
 
-/* Responsive avatar sizes */
+/* Responsive node sizes */
 @media (max-width: 640px) {
   .floating-testimonial-card { 
-    --avatar-size: 90px; 
+    --node-size: 130px; /* Smaller node size for mobile */
+    --node-gap: 15px;
     width: 350px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    min-height: 250px;
   }
   
   .testimonial-name {
@@ -1531,7 +1525,9 @@ a {
 
 @media (min-width: 1024px) {
   .floating-testimonial-card { 
-    --avatar-size: 140px; 
+    --node-size: 200px; /* Larger node size for desktop */
+    --node-gap: 25px;
+    min-height: 350px;
   }
 }
 

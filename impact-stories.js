@@ -429,24 +429,24 @@ class StudentNetworkWeb {
   createActiveNodeCanvas() {
     // Create a separate canvas for the active node that will appear above the testimonial card
     this.activeNodeCanvas = document.createElement('canvas');
-    this.activeNodeCanvas.style.position = 'absolute';
+    this.activeNodeCanvas.style.position = 'fixed';
     this.activeNodeCanvas.style.top = '0';
     this.activeNodeCanvas.style.left = '0';
     this.activeNodeCanvas.style.pointerEvents = 'none';
     this.activeNodeCanvas.style.zIndex = '900'; // Higher than testimonial card (800)
     
-    // Insert after the main canvas
-    this.canvas.parentNode.insertBefore(this.activeNodeCanvas, this.canvas.nextSibling);
+    // Insert into document body for fixed positioning
+    document.body.appendChild(this.activeNodeCanvas);
     this.activeNodeCtx = this.activeNodeCanvas.getContext('2d');
     
-    // Set up the active node canvas with same dimensions
+    // Set up the active node canvas to cover full viewport
     const dpr = window.devicePixelRatio || 1;
-    this.activeNodeCanvas.width = this.canvasWidth * dpr;
-    this.activeNodeCanvas.height = this.canvasHeight * dpr;
+    this.activeNodeCanvas.width = window.innerWidth * dpr;
+    this.activeNodeCanvas.height = window.innerHeight * dpr;
     this.activeNodeCtx.scale(dpr, dpr);
     
-    this.activeNodeCanvas.style.width = this.canvasWidth + 'px';
-    this.activeNodeCanvas.style.height = this.canvasHeight + 'px';
+    this.activeNodeCanvas.style.width = window.innerWidth + 'px';
+    this.activeNodeCanvas.style.height = window.innerHeight + 'px';
   }
 
   async loadImages() {
@@ -959,10 +959,40 @@ class StudentNetworkWeb {
     const currentRadius = node.radius;
     node.targetScale = extraLargeRadius / currentRadius;
     
-    // Keep the node in its original position - no JavaScript positioning needed
-    // The CSS will handle the testimonial card layout with the avatar positioned correctly
-    node.targetX = node.originalX;
-    node.targetY = node.originalY;
+    // Calculate dynamic positioning to prevent text overlap
+    const scaledNodeRadius = extraLargeRadius; // Final scaled radius
+    const cardMinHeight = 300; // Minimum card height from CSS
+    const nodeGap = 90; // Gap between node bottom and content start (increased from 35 to 50)
+    const headerHeight = 80; // Approximate height for name + subtitle
+    const viewportPadding = 40; // Padding from viewport edges
+    
+    // Calculate required space for card content below the node
+    const requiredContentHeight = cardMinHeight - (scaledNodeRadius / 2) - nodeGap;
+    const totalRequiredHeight = scaledNodeRadius + requiredContentHeight;
+    
+    // Calculate optimal vertical position
+    const availableHeight = window.innerHeight - (viewportPadding * 2);
+    let nodeY;
+    
+    if (totalRequiredHeight <= availableHeight) {
+      // Center the entire layout (node + card) in viewport
+      const layoutCenterY = window.innerHeight / 2;
+      nodeY = layoutCenterY - (requiredContentHeight / 2);
+    } else {
+      // Position node to ensure card fits in viewport
+      const maxNodeY = window.innerHeight - viewportPadding - requiredContentHeight;
+      nodeY = Math.max(scaledNodeRadius + viewportPadding, maxNodeY);
+    }
+    
+    // Ensure node doesn't go above viewport
+    nodeY = Math.max(scaledNodeRadius + viewportPadding, nodeY);
+    
+    // Position the node dynamically
+    node.targetX = window.innerWidth / 2; // Center horizontally
+    node.targetY = nodeY;
+    
+    // Store positioning info for card positioning
+    node.dynamicCardY = nodeY + (scaledNodeRadius / 2) + nodeGap;
     
     // Update all nodes based on new active state
     this.nodes.forEach(otherNode => {
@@ -1039,18 +1069,20 @@ class StudentNetworkWeb {
   }
 
   positionTestimonialCard() {
-    if (!this.testimonialCard) return;
+    if (!this.testimonialCard || !this.activeNode) return;
     
-    // Position testimonial card so the centered node appears at its top edge
-    // This ensures only the bottom half of the node is visible within the testimonial
+    // Use dynamic positioning based on node position
+    const cardY = this.activeNode.dynamicCardY || (window.innerHeight / 2);
+    
+    // Position testimonial card dynamically
     this.testimonialCard.style.position = 'fixed';
     this.testimonialCard.style.left = '50%';
-    this.testimonialCard.style.top = '65%';  // Match the node positioning at 65% from top
-    this.testimonialCard.style.transform = 'translate(-50%, -50%)';
-    this.testimonialCard.style.zIndex = '1000';  // Below active node canvas (900) so dot appears on top
+    this.testimonialCard.style.top = cardY + 'px';
+    this.testimonialCard.style.transform = 'translate(-50%, 0)'; // Only center horizontally
+    this.testimonialCard.style.zIndex = '800';  // Below active node canvas (900) so node appears on top
     this.testimonialCard.style.transition = 'all 0.3s ease-out';
     
-    // Remove any placement classes since we're always centering
+    // Remove any placement classes since we're using dynamic positioning
     this.testimonialCard.className = this.testimonialCard.className.replace(/placement-\w+/g, '');
   }
 
