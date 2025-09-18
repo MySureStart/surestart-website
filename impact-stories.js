@@ -821,6 +821,10 @@ class StudentNetworkWeb {
       this.setupCanvas();
       this.createNodes();
       this.createConnections();
+      // Reposition testimonial card if active (for window resize only)
+      if (this.activeNode) {
+        this.positionTestimonialCard();
+      }
     }, 250));
   }
 
@@ -959,40 +963,9 @@ class StudentNetworkWeb {
     const currentRadius = node.radius;
     node.targetScale = extraLargeRadius / currentRadius;
     
-    // Calculate dynamic positioning to prevent text overlap
-    const scaledNodeRadius = extraLargeRadius; // Final scaled radius
-    const cardMinHeight = 300; // Minimum card height from CSS
-    const nodeGap = 100; // Gap between node bottom and content start (increased from 35 to 50)
-    const headerHeight = 80; // Approximate height for name + subtitle
-    const viewportPadding = 40; // Padding from viewport edges
-    
-    // Calculate required space for card content below the node
-    const requiredContentHeight = cardMinHeight - (scaledNodeRadius / 2) - nodeGap;
-    const totalRequiredHeight = scaledNodeRadius + requiredContentHeight;
-    
-    // Calculate optimal vertical position
-    const availableHeight = window.innerHeight - (viewportPadding * 2);
-    let nodeY;
-    
-    if (totalRequiredHeight <= availableHeight) {
-      // Center the entire layout (node + card) in viewport
-      const layoutCenterY = window.innerHeight / 2;
-      nodeY = layoutCenterY - (requiredContentHeight / 2);
-    } else {
-      // Position node to ensure card fits in viewport
-      const maxNodeY = window.innerHeight - viewportPadding - requiredContentHeight;
-      nodeY = Math.max(scaledNodeRadius + viewportPadding, maxNodeY);
-    }
-    
-    // Ensure node doesn't go above viewport
-    nodeY = Math.max(scaledNodeRadius + viewportPadding, nodeY);
-    
-    // Position the node dynamically
-    node.targetX = window.innerWidth / 2; // Center horizontally
-    node.targetY = nodeY;
-    
-    // Store positioning info for card positioning
-    node.dynamicCardY = nodeY + (scaledNodeRadius / 2) + nodeGap;
+    // Position the node at the center of the network canvas (relative to the network web)
+    node.targetX = this.centerX; // Center horizontally within the canvas
+    node.targetY = this.centerY - 140; // Move upwards by 60px from center
     
     // Update all nodes based on new active state
     this.nodes.forEach(otherNode => {
@@ -1071,18 +1044,25 @@ class StudentNetworkWeb {
   positionTestimonialCard() {
     if (!this.testimonialCard || !this.activeNode) return;
     
-    // Use dynamic positioning based on node position
-    const cardY = this.activeNode.dynamicCardY || (window.innerHeight / 2);
+    // Position the testimonial card at a fixed location on screen, independent of scroll position
+    // This ensures it always appears at the same place regardless of where the user clicked or scrolled
     
-    // Position testimonial card dynamically
+    const scaledNodeRadius = this.getNodeRadius('extra-large'); // Final scaled radius
+    const nodeGap = 20; // Gap between node bottom and content start
+    
+    // Use fixed screen coordinates - center horizontally, position vertically to accommodate the overlapping node
+    const cardX = window.innerWidth / 2; // Always center horizontally on screen
+    const cardY = (window.innerHeight / 2) + (scaledNodeRadius / 2) + nodeGap; // Below screen center, accounting for node overlap
+    
+    // Position testimonial card at fixed screen location
     this.testimonialCard.style.position = 'fixed';
-    this.testimonialCard.style.left = '50%';
+    this.testimonialCard.style.left = cardX + 'px';
     this.testimonialCard.style.top = cardY + 'px';
-    this.testimonialCard.style.transform = 'translate(-50%, 0)'; // Only center horizontally
-    this.testimonialCard.style.zIndex = '800';  // Below active node canvas (900) so node appears on top
+    this.testimonialCard.style.transform = 'translate(-50%, 0)'; // Center horizontally
+    this.testimonialCard.style.zIndex = '800'; // Below the centered node (900) so node appears on top
     this.testimonialCard.style.transition = 'all 0.3s ease-out';
     
-    // Remove any placement classes since we're using dynamic positioning
+    // Remove any placement classes since we're using fixed positioning
     this.testimonialCard.className = this.testimonialCard.className.replace(/placement-\w+/g, '');
   }
 
@@ -1222,9 +1202,9 @@ class StudentNetworkWeb {
     // Clear main canvas
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     
-    // Clear active node canvas
+    // Clear active node canvas (full viewport size)
     if (this.activeNodeCtx) {
-      this.activeNodeCtx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+      this.activeNodeCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     }
     
     // Draw connections
@@ -1307,16 +1287,77 @@ class StudentNetworkWeb {
   }
 
   drawNodes() {
-    // Draw all non-active nodes on main canvas
+    // Draw non-active nodes on main canvas
     this.nodes.forEach(node => {
-      if (node.isCentered) return; // Skip active node, draw it on separate canvas
-      
-      this.drawSingleNode(node, this.ctx);
+      if (!node.isCentered) {
+        this.drawSingleNode(node, this.ctx);
+      }
     });
     
     // Draw the active/centered node on the separate high z-index canvas
     if (this.activeNode && this.activeNodeCtx) {
-      this.drawSingleNode(this.activeNode, this.activeNodeCtx);
+      // Calculate the screen position of the centered node
+      const canvasRect = this.canvas.getBoundingClientRect();
+      const screenX = canvasRect.left + this.activeNode.x;
+      const screenY = canvasRect.top + this.activeNode.y;
+      
+      // Draw the active node at its screen position on the overlay canvas
+      this.activeNodeCtx.save();
+      this.activeNodeCtx.globalAlpha = this.activeNode.opacity;
+      this.activeNodeCtx.translate(screenX, screenY);
+      this.activeNodeCtx.scale(this.activeNode.scale, this.activeNode.scale);
+      
+      // Draw glow effect for centered nodes
+      if (this.activeNode.glowIntensity > 0) {
+        const gradient = this.activeNodeCtx.createRadialGradient(0, 0, this.activeNode.radius, 0, 0, this.activeNode.radius * 2);
+        gradient.addColorStop(0, this.hexToRgba(this.activeNode.student.color, this.activeNode.glowIntensity * 0.3));
+        gradient.addColorStop(1, this.hexToRgba(this.activeNode.student.color, 0));
+        
+        this.activeNodeCtx.beginPath();
+        this.activeNodeCtx.arc(0, 0, this.activeNode.radius * 2, 0, Math.PI * 2);
+        this.activeNodeCtx.fillStyle = gradient;
+        this.activeNodeCtx.fill();
+      }
+      
+      // Draw node border
+      this.activeNodeCtx.beginPath();
+      this.activeNodeCtx.arc(0, 0, this.activeNode.radius, 0, Math.PI * 2);
+      this.activeNodeCtx.strokeStyle = this.hexToRgba('#ffffff', 0.8);
+      this.activeNodeCtx.lineWidth = 3;
+      this.activeNodeCtx.stroke();
+      
+      // Create circular clipping path for image
+      this.activeNodeCtx.beginPath();
+      this.activeNodeCtx.arc(0, 0, this.activeNode.radius - 2, 0, Math.PI * 2);
+      this.activeNodeCtx.clip();
+      
+      // Draw student image if loaded, otherwise use fallback
+      if (this.activeNode.student.imageElement && this.activeNode.student.imageElement.complete) {
+        const size = (this.activeNode.radius - 2) * 2;
+        this.activeNodeCtx.drawImage(
+          this.activeNode.student.imageElement,
+          -this.activeNode.radius + 2,
+          -this.activeNode.radius + 2,
+          size,
+          size
+        );
+      } else {
+        // Fallback: draw colored circle with initials
+        this.activeNodeCtx.beginPath();
+        this.activeNodeCtx.arc(0, 0, this.activeNode.radius - 2, 0, Math.PI * 2);
+        this.activeNodeCtx.fillStyle = this.activeNode.student.color;
+        this.activeNodeCtx.fill();
+        
+        // Add initials
+        this.activeNodeCtx.fillStyle = '#ffffff';
+        this.activeNodeCtx.font = `bold ${this.activeNode.radius * 0.6}px Arial`;
+        this.activeNodeCtx.textAlign = 'center';
+        this.activeNodeCtx.textBaseline = 'middle';
+        const initials = this.activeNode.student.name.split(' ').map(n => n[0]).join('').substring(0, 2);
+        this.activeNodeCtx.fillText(initials, 0, 0);
+      }
+      
+      this.activeNodeCtx.restore();
     }
   }
   
