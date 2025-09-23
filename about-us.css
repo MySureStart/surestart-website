@@ -67,7 +67,7 @@
 }
 
 .about-hero-title {
-  font-size: clamp(40px, 7vw, 80px);
+  font-size: clamp(28px, 4.8vw, 56px);
   line-height: 1.1;
   margin: 0;
   font-weight: 800;
@@ -91,14 +91,14 @@
   background-image: url('static/images/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  transform: translateY(50%) scaleX(50) scaleY(40) rotate(5deg);
+  transform: translateY(50%) scaleX(25) scaleY(25) rotate(5deg);
   background-position: center bottom;
   opacity: 0.9;
   z-index: 1;
 }
 
 .about-hero-subtitle {
-  font-size: clamp(18px, 2.2vw, 24px);
+  font-size: clamp(14px, 1.6vw, 16px);
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
@@ -150,295 +150,95 @@
   display: block;
 }
 
-/* Our Accolades Section */
-.our-accolades {
+/* News & Recognition Section */
+.news-recognition {
   background: var(--surface-secondary);
   padding: var(--space-5xl) 0;
 }
 
-.accolades-container {
+.news-recognition-container {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--space-lg);
 }
 
-.accolades-grid {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: var(--space-md);
-  margin-top: var(--space-2xl);
-  flex-wrap: nowrap;
-  overflow: visible;
+/* Logo Sections */
+.logo-sections {
+  margin-top: var(--space-3xl);
 }
 
-.accolade-item {
+.logo-section {
+  margin-bottom: var(--space-3xl);
+}
+
+.logo-section:last-child {
+  margin-bottom: 0;
+}
+
+.logo-section-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
   text-align: center;
-  flex: 1 1 0;
-  min-width: 140px;
-  max-width: 160px;
-  transition: all var(--transition-normal);
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.accolade-item:hover {
-  transform: translateY(-4px);
+.logo-marquee {
+  --duration: 40s;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: var(--space-xl) 0;
+  background: white;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
-.accolade-logo {
-  height: 120px;
+.logo-marquee::before,
+.logo-marquee::after {
+  display: none;
+}
+
+.logo-track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4xl);
+  width: max-content;
+  animation: marquee var(--duration) linear infinite;
+}
+
+.logo-marquee:hover .logo-track {
+  animation-play-state: running !important;
+}
+
+.logo-item {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 60px;
 }
 
-.accolade-logo img {
+.logo-item img {
   max-height: 100%;
-  max-width: 100%;
+  max-width: 150px;
+  width: auto;
   object-fit: contain;
-  filter: grayscale(20%) opacity(0.9);
+  filter: grayscale(30%) opacity(0.8);
   transition: all var(--transition-normal);
 }
 
-.accolade-item:hover .accolade-logo img {
+.logo-item:hover img {
   filter: grayscale(0%) opacity(1);
   transform: scale(1.05);
 }
 
-.accolade-name {
-  font-size: var(--text-sm);
-  font-weight: 400;
-  color: var(--text-secondary);
-  line-height: 1.2;
-  margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  letter-spacing: 0.02em;
-}
-
-/* Specific styling for ISTE logo to make it larger but maintain consistent hover behavior */
-.accolade-item:last-child .accolade-logo img {
-  transform: scale(1.8);
-}
-
-.accolade-item:last-child:hover .accolade-logo img {
-  filter: grayscale(0%) opacity(1);
-  transform: scale(1.89);
-}
-
-.accolade-card {
-  background: white;
-  padding: var(--space-2xl);
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-  border: 1px solid var(--border-subtle);
-  position: relative;
-  text-align: center;
-}
-
-.accolade-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--gradient-primary);
-  border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
-}
-
-.accolade-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-}
-
-.accolade-year {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--ss-accent-1);
-  margin-bottom: var(--space-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.accolade-title {
-  font-size: var(--text-lg);
-  margin-bottom: var(--space-lg);
-  color: var(--text-primary);
-  line-height: 1.3;
-}
-
-.accolade-icon {
-  font-size: 2rem;
-  opacity: 0.8;
-}
-
-/* Accolade flip card styles */
-.accolade-flip-card {
-  perspective: 1000px;
-  height: 300px;
-  cursor: pointer;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.accolade-flip-card.flipped .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-normal);
-}
-
-.flip-card-front {
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.flip-card-front::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
-  z-index: 1;
-}
-
-.flip-card-front .card-content {
-  position: relative;
-  z-index: 2;
-  color: white;
-  text-align: center;
-  padding: var(--space-xl);
-}
-
-.flip-card-front .accolade-year {
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  margin-bottom: var(--space-md);
-}
-
-.flip-card-front h3 {
-  color: white;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  font-size: var(--text-xl);
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: var(--space-lg);
-}
-
-.flip-card-front .flip-indicator {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: var(--text-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-xs);
-}
-
-.flip-card-back {
-  background: white;
-  transform: rotateY(180deg);
-  padding: var(--space-xl);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.back-content {
-  text-align: center;
-}
-
-.back-content h4 {
-  font-size: var(--text-lg);
-  margin-bottom: var(--space-md);
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-xs);
-}
-
-.accolade-year-back {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--ss-accent-1);
-  margin-bottom: var(--space-md);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.accolade-description {
-  font-size: var(--text-sm);
-  line-height: 1.5;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-lg);
-}
-
-.accolade-meta {
-  display: flex;
-  justify-content: space-around;
-  gap: var(--space-md);
-}
-
-.meta-item {
-  text-align: center;
-}
-
-.meta-label {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: block;
-  margin-bottom: var(--space-xs);
-}
-
-.meta-value {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--ss-accent-1);
-}
-
-.accolade-flip-card:hover .flip-card-front,
-.accolade-flip-card:hover .flip-card-back {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* In the News Section */
-.in-the-news {
-  background: white;
-  padding: var(--space-5xl) 0;
-}
-
-.news-container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* Featured Article Styles */
@@ -530,21 +330,37 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  background: var(--ss-accent-1);
+  background: var(--gradient-button);
   color: white;
   padding: var(--space-md) var(--space-lg);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-full);
   text-decoration: none;
   font-weight: 600;
   font-size: var(--text-base);
   transition: all var(--transition-normal);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(231, 48, 82, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.read-more-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.read-more-btn:hover::before {
+  left: 100%;
 }
 
 .read-more-btn:hover {
-  background: var(--ss-red);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 32px rgba(231, 48, 82, 0.35);
 }
 
 .read-more-btn .btn-arrow {
@@ -692,21 +508,37 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  background: #1DB954;
+  background: var(--gradient-button);
   color: white;
   padding: var(--space-md) var(--space-lg);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-full);
   text-decoration: none;
   font-weight: 600;
   font-size: var(--text-base);
   transition: all var(--transition-normal);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(231, 48, 82, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.listen-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.listen-btn:hover::before {
+  left: 100%;
 }
 
 .listen-btn:hover {
-  background: #1ed760;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 32px rgba(231, 48, 82, 0.35);
 }
 
 .listen-btn .btn-arrow {
@@ -1026,12 +858,27 @@
   }
   
   .our-story,
-  .our-accolades,
-  .in-the-news,
+  .news-recognition,
   .podcasts-section,
   .meet-founder,
   .our-team {
     padding: var(--space-4xl) 0;
+  }
+  
+  .logo-marquee {
+    padding: var(--space-md) 0;
+  }
+  
+  .logo-track {
+    gap: var(--space-2xl);
+  }
+  
+  .logo-item {
+    height: 50px;
+  }
+  
+  .logo-item img {
+    max-width: 120px;
   }
   
   .featured-article-content,

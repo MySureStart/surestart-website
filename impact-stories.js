@@ -1697,6 +1697,7 @@ class CaseStudiesCarousel {
     this.dots = document.querySelectorAll('.testimonial-dot');
     this.currentIndex = 0;
     this.totalSlides = 3; // Jonathan, Lili, and third testimonial
+    this.isTransitioning = false;
     
     this.init();
   }
@@ -1704,34 +1705,86 @@ class CaseStudiesCarousel {
   init() {
     if (!this.track) return;
     
+    this.setupInfiniteLoop();
     this.addEventListeners();
     this.updateCarousel();
+  }
+
+  setupInfiniteLoop() {
+    // Clone the first and last slides for seamless infinite scrolling
+    const cards = this.track.querySelectorAll('.testimonial-case-card');
+    if (cards.length === 0) return;
+    
+    // Clone first card and append to end
+    const firstCardClone = cards[0].cloneNode(true);
+    firstCardClone.classList.add('clone');
+    this.track.appendChild(firstCardClone);
+    
+    // Clone last card and prepend to beginning
+    const lastCardClone = cards[cards.length - 1].cloneNode(true);
+    lastCardClone.classList.add('clone');
+    this.track.insertBefore(lastCardClone, cards[0]);
+    
+    // Adjust starting position to account for the prepended clone
+    this.currentIndex = 1; // Start at the first real slide (after the cloned last slide)
+    this.track.style.transform = `translateX(-${this.currentIndex * this.getScrollDistance()}%)`;
   }
 
   addEventListeners() {
     // Dot navigation
     this.dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
-        this.goToSlide(index);
+        this.goToSlide(index + 1); // +1 to account for the prepended clone
       });
     });
 
-    // Keyboard navigation
+    // Keyboard navigation - listen globally when carousel section is visible
     document.addEventListener('keydown', (e) => {
-      if (e.target.closest('.case-studies-section')) {
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          this.previousSlide();
-        }
-        if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          this.nextSlide();
-        }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        this.previousSlide();
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        this.nextSlide();
       }
     });
 
     // Touch/swipe support
     this.addTouchSupport();
+    
+    // Auto-advance every 8 seconds (optional - can be removed if not desired)
+    this.startAutoAdvance();
+    
+    // Listen for transition end to handle infinite loop jumps
+    this.track.addEventListener('transitionend', () => {
+      this.handleTransitionEnd();
+    });
+  }
+
+  startAutoAdvance() {
+    // Clear any existing interval
+    if (this.autoAdvanceInterval) {
+      clearInterval(this.autoAdvanceInterval);
+    }
+    
+    // Auto-advance every 8 seconds
+    this.autoAdvanceInterval = setInterval(() => {
+      this.nextSlide();
+    }, 8000);
+    
+    // Pause auto-advance on hover
+    if (this.track) {
+      this.track.addEventListener('mouseenter', () => {
+        if (this.autoAdvanceInterval) {
+          clearInterval(this.autoAdvanceInterval);
+        }
+      });
+      
+      this.track.addEventListener('mouseleave', () => {
+        this.startAutoAdvance();
+      });
+    }
   }
 
   addTouchSupport() {
@@ -1750,7 +1803,7 @@ class CaseStudiesCarousel {
       
       currentX = e.touches[0].clientX;
       const diffX = currentX - startX;
-      const currentTransform = -(this.currentIndex * 100);
+      const currentTransform = -(this.currentIndex * this.getScrollDistance());
       const newTransform = currentTransform + (diffX / this.track.offsetWidth) * 100;
       
       this.track.style.transform = `translateX(${newTransform}%)`;
@@ -1777,69 +1830,108 @@ class CaseStudiesCarousel {
     });
   }
 
+  getScrollDistance() {
+    const containerWidth = this.track.parentElement.offsetWidth;
+    const cardWidth = 85; // Card takes 85% of container width
+    const gap = 2; // Approximate gap between cards as percentage
+    
+    let scrollDistance;
+    
+    if (containerWidth >= 1400) {
+      // Large screens: scroll by exactly the card width to center the next card
+      scrollDistance = cardWidth;
+    } else if (containerWidth >= 1024) {
+      // Medium-large screens: scroll by card width plus small gap
+      scrollDistance = cardWidth + (gap / 2);
+    } else {
+      // Smaller screens: scroll by full card width plus gap for complete visibility
+      scrollDistance = cardWidth + gap;
+    }
+    
+    return scrollDistance;
+  }
+
   goToSlide(index) {
-    this.currentIndex = Math.max(0, Math.min(index, this.totalSlides - 1));
+    if (this.isTransitioning) return;
+    
+    this.currentIndex = index;
     this.updateCarousel();
   }
 
   nextSlide() {
-    if (this.currentIndex < this.totalSlides - 1) {
-      this.currentIndex++;
-      this.updateCarousel();
-    }
+    if (this.isTransitioning) return;
+    
+    this.isTransitioning = true;
+    this.currentIndex++;
+    this.updateCarousel();
   }
 
   previousSlide() {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-      this.updateCarousel();
+    if (this.isTransitioning) return;
+    
+    this.isTransitioning = true;
+    this.currentIndex--;
+    this.updateCarousel();
+  }
+
+  handleTransitionEnd() {
+    this.isTransitioning = false;
+    
+    // Handle infinite loop jumps
+    const totalCards = this.track.querySelectorAll('.testimonial-case-card').length;
+    
+    if (this.currentIndex === 0) {
+      // We're at the cloned last slide, jump to the real last slide
+      this.track.style.transition = 'none';
+      this.currentIndex = this.totalSlides;
+      this.track.style.transform = `translateX(-${this.currentIndex * this.getScrollDistance()}%)`;
+      // Force reflow
+      this.track.offsetHeight;
+      this.track.style.transition = '';
+    } else if (this.currentIndex === totalCards - 1) {
+      // We're at the cloned first slide, jump to the real first slide
+      this.track.style.transition = 'none';
+      this.currentIndex = 1;
+      this.track.style.transform = `translateX(-${this.currentIndex * this.getScrollDistance()}%)`;
+      // Force reflow
+      this.track.offsetHeight;
+      this.track.style.transition = '';
     }
+    
+    this.updateDots();
   }
 
   updateCarousel() {
     if (!this.track) return;
     
-    // Calculate responsive scroll distance based on screen size
-    const containerWidth = this.track.parentElement.offsetWidth;
-    const cardWidth = 85; // Card takes 85% of container width
-    const gap = 2; // Approximate gap between cards as percentage
-    
-    let translateX;
-    
-    if (this.currentIndex === 2) {
-      // For the third slide (index 2), scroll until its right edge aligns with screen right edge
-      // This means we need to scroll by the total width minus one card width
-      const totalCardsWidth = this.totalSlides * (cardWidth + gap) - gap; // Total width of all cards
-      const scrollToShowLastCard = totalCardsWidth - 100; // Scroll to show the last card's right edge at screen edge
-      translateX = -scrollToShowLastCard;
-    } else {
-      // For first two slides, use the original logic
-      let scrollDistance;
-      
-      if (containerWidth >= 1400) {
-        // Large screens: scroll by exactly the card width to center the next card
-        scrollDistance = cardWidth;
-      } else if (containerWidth >= 1024) {
-        // Medium-large screens: scroll by card width plus small gap
-        scrollDistance = cardWidth + (gap / 2);
-      } else {
-        // Smaller screens: scroll by full card width plus gap for complete visibility
-        scrollDistance = cardWidth + gap;
-      }
-      
-      translateX = -(this.currentIndex * scrollDistance);
-    }
+    const scrollDistance = this.getScrollDistance();
+    const translateX = -(this.currentIndex * scrollDistance);
     
     this.track.style.transform = `translateX(${translateX}%)`;
+    this.updateDots();
+  }
+
+  updateDots() {
+    // Update dots based on the real slide index (accounting for clones)
+    let realIndex = this.currentIndex - 1; // -1 to account for the prepended clone
     
-    // Update dots
+    // Handle edge cases for cloned slides
+    if (this.currentIndex === 0) {
+      realIndex = this.totalSlides - 1; // Last real slide
+    } else if (this.currentIndex === this.totalSlides + 1) {
+      realIndex = 0; // First real slide
+    }
+    
     this.dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === this.currentIndex);
+      dot.classList.toggle('active', index === realIndex);
     });
   }
 
   destroy() {
-    // Clean up event listeners if needed
+    // Clean up event listeners and intervals
+    if (this.autoAdvanceInterval) {
+      clearInterval(this.autoAdvanceInterval);
+    }
   }
 }
 

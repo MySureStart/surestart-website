@@ -216,7 +216,7 @@ a {
 
 /* Advanced Typography with Staggered Animation */
 .impact-hero-title {
-  font-size: clamp(40px, 7vw, 80px);
+  font-size: clamp(28px, 4.8vw, 56px);
   font-weight: 800;
   line-height: 1.1;
   color: white;
@@ -250,12 +250,12 @@ a {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -15px;
-  height: 20px;
+  bottom: -20px;
+  height: 14px;
   background-image: url('static/images/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  transform: translateY(50%) scaleX(50) scaleY(40) rotate(5deg);
+  transform: translateY(50%) translateX(-10%) scaleX(42) scaleY(26) rotate(5deg);
   background-position: center bottom;
   opacity: 0.9;
   z-index: 1;
@@ -275,13 +275,13 @@ a {
 }
 
 .impact-hero-subtitle {
-  font-size: clamp(18px, 2.2vw, 24px);
-  line-height: 1.6;
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
   font-weight: 400;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  max-width: 800px;
+  max-width: 550px;
 }
 
 /* Stats Section - Fixed Layout */
@@ -1015,7 +1015,7 @@ a {
   height: 100%;
   border-radius: 16px 0 0 16px;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
   box-shadow: none;
 }
 
@@ -1024,9 +1024,9 @@ a {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   padding: var(--space-2xl) var(--space-2xl);
 }
 
@@ -1042,7 +1042,7 @@ a {
   background: none;
   border: none;
   padding: 0 var(--space-3xl) 0 0;
-  text-align: center;
+  text-align: left;
 }
 
 /* Quote Attribution Styling - Matching Rana's format */
@@ -1053,8 +1053,6 @@ a {
   background: #E2E8F0;
   border: none;
   margin: var(--space-xl) 0 var(--space-lg) 0;
-  margin-left: 0;
-  margin-right: auto;
 }
 
 .testimonial-content .quote-attribution {
@@ -1188,20 +1186,12 @@ a {
 }
 
 .testimonial-dot::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(237, 124, 75, 0.4), transparent);
-  transition: left 0.6s ease;
-  pointer-events: none;
+  display: none;
 }
 
 .testimonial-dot:not(.active):hover::before {
-  left: 100%;
-}
+  display: none;
+} 
 
 .testimonial-dot.active {
   background: var(--ss-red);
@@ -1362,7 +1352,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('static/images/Blank_map_of_world_no_country_borders.png') 20% 0%/120% no-repeat;
+  background: url('static/images/Blank_map_of_world_no_country_borders.png') center center/contain no-repeat;
   opacity: 0.3;
   z-index: -1;
   pointer-events: none;
@@ -1391,7 +1381,7 @@ a {
 .floating-testimonial-card {
   /* CSS Variables for responsive node sizing - matching the scaled node size */
   --node-size: 170px;             /* extra-large node size (85px radius * 2) */
-  --node-gap: 20px;               /* space from node bottom to content */
+  --node-gap: 15px;               /* reduced space from node bottom to content */
   
   position: fixed;
   top: 50%;
@@ -1411,7 +1401,7 @@ a {
   z-index: 800; /* Lower than the centered node (900) so node appears on top */
   border: 1px solid rgba(255, 255, 255, 0.3);
   
-  /* Layout to accommodate overlapping node at top */
+  /* Layout to accommodate overlapping node at top - reduced padding */
   padding-top: calc(var(--node-size) / 2 + var(--node-gap));
   padding-left: 2rem;
   padding-right: 2rem;
@@ -1502,7 +1492,7 @@ a {
 @media (max-width: 640px) {
   .floating-testimonial-card { 
     --node-size: 130px; /* Smaller node size for mobile */
-    --node-gap: 15px;
+    --node-gap: 10px;   /* reduced gap for mobile */
     width: 350px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -1521,11 +1511,10 @@ a {
 @media (min-width: 1024px) {
   .floating-testimonial-card { 
     --node-size: 200px; /* Larger node size for desktop */
-    --node-gap: 25px;
+    --node-gap: 12px;   /* slightly reduced gap for desktop */
     min-height: 350px;
   }
 }
-
 
 /* Network Node Styles (for canvas rendering reference) */
 .network-node {
@@ -2424,9 +2413,34 @@ a {
 .breakthrough-text h3 {
   font-size: var(--text-2xl);
   margin-bottom: var(--space-lg);
-  color: var(--text-primary);
   font-weight: 700;
   line-height: 1.2;
+}
+
+/* Individual story title colors - red, orange, yellow pattern */
+.breakthrough-story:nth-child(1) .breakthrough-text h3 {
+  color: var(--ss-red);
+}
+
+.breakthrough-story:nth-child(2) .breakthrough-text h3 {
+  color: var(--ss-orange);
+}
+
+.breakthrough-story:nth-child(3) .breakthrough-text h3 {
+  color: var(--ss-yellow);
+}
+
+/* Continue pattern for additional stories */
+.breakthrough-story:nth-child(4) .breakthrough-text h3 {
+  color: var(--ss-red);
+}
+
+.breakthrough-story:nth-child(5) .breakthrough-text h3 {
+  color: var(--ss-orange);
+}
+
+.breakthrough-story:nth-child(6) .breakthrough-text h3 {
+  color: var(--ss-yellow);
 }
 
 .breakthrough-description {
@@ -3262,6 +3276,8 @@ a {
     gap: var(--space-xl);
   }
   
+
+
   .impact-cta .cta-message {
     max-width: 100%;
   }
