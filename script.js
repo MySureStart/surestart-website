@@ -159,14 +159,8 @@
         }, 600);
       });
       
-      // Enhanced hover effects
-      button.addEventListener('mouseenter', function() {
-        this.style.setProperty('--hover-scale', '1.02');
-      });
-      
-      button.addEventListener('mouseleave', function() {
-        this.style.removeProperty('--hover-scale');
-      });
+      // Remove the problematic hover scale effects that were causing enlargement
+      // The CSS already handles proper hover effects for buttons
     });
   }
 
@@ -287,6 +281,121 @@
     }
     
     stats.forEach(stat => statsObserver.observe(stat));
+  }
+
+  // ==========================================
+  // STUDENT IMPACT STATISTICS ANIMATION
+  // ==========================================
+  
+  function initStudentImpactStats() {
+    const statisticNumbers = document.querySelectorAll('.statistic-number[data-target]');
+    const animatedStatistics = new Set();
+    
+    const statisticsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !animatedStatistics.has(entry.target)) {
+          animatedStatistics.add(entry.target);
+          animateStatistic(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    function animateStatistic(element) {
+      const target = parseInt(element.getAttribute('data-target'));
+      const originalText = element.textContent;
+      const isPercentage = originalText.includes('%');
+      const isPlusSign = originalText.includes('+');
+      
+      // Add counting class for CSS animation
+      element.classList.add('counting');
+      
+      let current = 0;
+      const duration = 2500; // 2.5 seconds
+      const steps = 60;
+      const increment = target / steps;
+      const stepDuration = duration / steps;
+      
+      // Add icon animation
+      const card = element.closest('.statistic-card');
+      const icon = card?.querySelector('.statistic-icon');
+      if (icon) {
+        icon.style.animation = 'pulse 0.6s ease-in-out';
+      }
+      
+      function updateStatistic() {
+        current += increment;
+        
+        if (current >= target) {
+          current = target;
+          
+          // Final value
+          if (isPercentage) {
+            element.textContent = Math.round(current) + '%';
+          } else if (isPlusSign) {
+            element.textContent = Math.round(current).toLocaleString() + '+';
+          } else {
+            element.textContent = Math.round(current).toLocaleString();
+          }
+          
+          // Remove counting class
+          element.classList.remove('counting');
+          
+          // Add completion effect
+          element.style.transform = 'scale(1.1)';
+          setTimeout(() => {
+            element.style.transform = 'scale(1)';
+          }, 200);
+          
+        } else {
+          const displayValue = Math.floor(current);
+          
+          if (isPercentage) {
+            element.textContent = displayValue + '%';
+          } else if (isPlusSign) {
+            element.textContent = displayValue.toLocaleString() + '+';
+          } else {
+            element.textContent = displayValue.toLocaleString();
+          }
+          
+          requestAnimationFrame(() => {
+            setTimeout(updateStatistic, stepDuration);
+          });
+        }
+      }
+      
+      // Start animation after a small delay for better visual effect
+      setTimeout(() => {
+        updateStatistic();
+      }, 200);
+    }
+    
+    // Observe all statistic numbers
+    statisticNumbers.forEach(stat => {
+      statisticsObserver.observe(stat);
+    });
+    
+    // Add CSS animation for pulse effect
+    if (!document.querySelector('#statistic-animations')) {
+      const style = document.createElement('style');
+      style.id = 'statistic-animations';
+      style.textContent = `
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+        
+        .statistic-number.counting {
+          color: var(--ss-accent-1);
+          text-shadow: 0 0 10px rgba(102, 72, 64, 0.3);
+        }
+        
+        .statistic-card:hover .statistic-icon {
+          animation: pulse 0.6s ease-in-out;
+        }
+      `;
+      document.head.appendChild(style);
+    }
   }
 
   // ==========================================
@@ -837,6 +946,7 @@
       initFloatingCards();
       initTestimonialEffects();
       initStatsCounter();
+      initStudentImpactStats(); // Add student impact statistics animation
       initLogoMarquee();
       initCardEffects();
       initCTAEffects();

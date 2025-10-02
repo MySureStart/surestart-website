@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact Us — SureStart</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="contact-us.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar" role="navigation">
+  <div class="nav-container">
+    <div class="nav-brand">
+      <img src="static/images/SureStart_Standard Logo (1).png" alt="SureStart" class="nav-logo">
+    </div>
+    <div class="nav-menu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="impact-stories.html" class="nav-link">Impact Stories</a>
+      <a href="about-us.html" class="nav-link">About Us</a>
+      <a href="contact-us.html" class="nav-link">Contact Us</a>
+      <a href="index.html#contact" class="nav-link nav-cta">Get Started</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="contact-hero">
+  <div class="contact-hero-background">
+    <div class="hero-gradient-overlay"></div>
+  </div>
+  
+  <div class="contact-hero-container">
+    <div class="hero-content-grid">
+      <div class="hero-text-section">
+        <h1 class="contact-hero-title fade-up">
+          <span class="title-line title-highlight">Let's Chat</span>
+        </h1>
+        <p class="contact-hero-subtitle fade-up">
+          Interested in learning more about the SureStart program? Get in touch
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM SECTION -->
+<section class="contact-form-section">
+  <div class="contact-form-container">
+    <div class="contact-content-grid fade-up">
+      <!-- Contact Form -->
+      <div class="form-section">
+        <div class="form-header">
+          <h2 class="section-title">Send us a Message</h2>
+        </div>
+        
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName" class="form-label">First Name *</label>
+              <input type="text" id="firstName" name="firstName" class="form-input" required>
+              <span class="form-error" id="firstNameError"></span>
+            </div>
+            <div class="form-group">
+              <label for="lastName" class="form-label">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" class="form-input" required>
+              <span class="form-error" id="lastNameError"></span>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-input" required>
+              <span class="form-error" id="emailError"></span>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-input">
+              <span class="form-error" id="phoneError"></span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="referralSource" class="form-label">How did you hear about us? *</label>
+            <select id="referralSource" name="referralSource" class="form-select" required>
+              <option value="">Select an option</option>
+              <option value="search-engine">Search Engine (Google, Bing, etc.)</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="instagram">Instagram</option>
+              <option value="facebook">Facebook</option>
+              <option value="twitter">Twitter</option>
+              <option value="tiktok">TikTok</option>
+              <option value="friend-family">Friend or Family</option>
+              <option value="school-teacher">School or Teacher</option>
+              <option value="online-article">Online Article or Blog</option>
+              <option value="podcast">Podcast</option>
+              <option value="conference-event">Conference or Event</option>
+              <option value="advertisement">Advertisement</option>
+              <option value="other">Other</option>
+            </select>
+            <span class="form-error" id="referralSourceError"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="inquiryType" class="form-label">Inquiry Type *</label>
+            <select id="inquiryType" name="inquiryType" class="form-select" required>
+              <option value="">Select an option</option>
+              <option value="company">Company</option>
+              <option value="student">Student</option>
+              <option value="education-institution">Education Institution</option>
+              <option value="other">Other</option>
+            </select>
+            <span class="form-error" id="inquiryTypeError"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject" class="form-label">Subject *</label>
+            <input type="text" id="subject" name="subject" class="form-input" required>
+            <span class="form-error" id="subjectError"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" class="form-label">Message *</label>
+            <textarea id="message" name="message" class="form-textarea" rows="6" required placeholder="Tell us more about your inquiry..."></textarea>
+            <span class="form-error" id="messageError"></span>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="newsletter" name="newsletter" class="form-checkbox">
+              <span class="checkbox-custom"></span>
+              <span class="checkbox-text">I'd like to receive updates about SureStart programs and events</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary form-submit">
+            <span>Send Message</span>
+            <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+      
+      <!-- Contact Information -->
+      <div class="contact-info-section">
+        <div class="contact-info-header">
+          <h3 class="info-title">Contact Information</h3>
+          <p class="info-subtitle">
+            Prefer to reach out directly? Here are other ways to connect with us.
+          </p>
+        </div>
+        
+        <div class="contact-info-cards">
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h4 class="info-label">Email Us</h4>
+              <p class="info-value">
+                <a href="mailto:hello@surestart.com">info@mysurestart.com</a>
+              </p>
+              <p class="info-description">General inquiries and support</p>
+            </div>
+          </div>
+          
+          <!-- <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h4 class="info-label">Call Us</h4>
+              <p class="info-value">
+                <a href="tel:+13152671058,800">+1 (315) 267-1058 (ex: 800)</a>
+              </p>
+              <p class="info-description">Monday - Friday, 9 AM - 6 PM EST</p>
+            </div>
+          </div> -->
+          
+          <div class="info-card">
+            <div class="info-content">
+              <h4 class="info-label">Connect With Us</h4>
+              <div class="info-value">
+                <div class="social-links">
+                  <a href="#" class="social-btn" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                  </a>
+                  <a href="#" class="social-btn" aria-label="Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                    </svg>
+                  </a>
+                  <a href="#" class="social-btn" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                      <circle cx="12" cy="12" r="3"/>
+                      <circle cx="17.5" cy="6.5" r="1"/>
+                    </svg>
+                  </a>
+                  <a href="#" class="social-btn" aria-label="YouTube">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <p class="info-description">Follow us on social media for updates</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+  <div class="faq-container">
+    <div class="section-header fade-up">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">
+        Find quick answers to common questions about our programs and enrollment process.
+      </p>
+    </div>
+    
+    <div class="faq-grid fade-up">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>How do I enroll in a SureStart program?</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>Getting started is easy! Simply visit our programs page, choose the course that matches your experience level, and click "Get Started." You'll be guided through our simple enrollment process, which includes a brief application and program selection.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>What age groups do you serve?</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>Our programs are designed for middle and high school students, typically ages 12-18. We offer different tracks based on experience level, from complete beginners to advanced students ready for college-level AI concepts.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Do I need prior coding experience?</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>Not at all! Our AI Explorations program is perfect for complete beginners with no coding experience. As you progress through our curriculum, you'll gradually build technical skills while focusing on creativity and real-world applications.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>What is the time commitment for programs?</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>Our programs range from 8 to 20 weeks depending on the track. Students typically spend 3-5 hours per week on coursework, including live sessions with mentors, project work, and peer collaboration. We design our programs to fit around school schedules.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Are there scholarships available?</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We believe in making AI education accessible to all students. We offer need-based scholarships and have partnerships with schools and organizations to support underrepresented students in STEM. Contact us to learn more about financial assistance options.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>What kind of support do students receive?</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>Every student is paired with mentors from top universities and tech companies. You'll have access to live sessions, office hours, peer collaboration spaces, and our supportive online community. Our team is committed to helping every student succeed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="static/images/SureStart_Standard Logo (1).png" alt="SureStart" class="footer-logo">
+        <p class="footer-tagline">Empowering the next generation of AI leaders through accessible, world-class education.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="3"/>
+              <circle cx="17.5" cy="6.5" r="1"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Company</h4>
+          <a href="about-us.html">About Us</a>
+          <a href="#partners">Partners</a>
+          <a href="#">Careers</a>
+          <a href="contact-us.html">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h4>Programs</h4>
+          <a href="index.html#programs">Explorations</a>
+          <a href="index.html#programs">Foundations</a>
+          <a href="index.html#programs">Applications</a>
+          <a href="index.html#programs">Innovations</a>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <a href="#">Student Portal</a>
+          <a href="#">Curriculum</a>
+          <a href="impact-stories.html">Success Stories</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 SureStart. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <span>•</span>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Contact form functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contactForm');
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  // Handle URL parameters for form pre-population
+  const urlParams = new URLSearchParams(window.location.search);
+  const source = urlParams.get('source');
+  const type = urlParams.get('type');
+  
+  // Pre-populate form fields based on URL parameters
+  if (source === 'k12-cta' && type === 'education-institution') {
+    // Set inquiry type to Education Institution
+    const inquiryTypeSelect = document.getElementById('inquiryType');
+    if (inquiryTypeSelect) {
+      inquiryTypeSelect.value = 'education-institution';
+    }
+    
+    // Set referral source to School or Teacher
+    const referralSourceSelect = document.getElementById('referralSource');
+    if (referralSourceSelect) {
+      referralSourceSelect.value = 'school-teacher';
+    }
+    
+    // Set subject
+    const subjectInput = document.getElementById('subject');
+    if (subjectInput) {
+      subjectInput.value = 'K-12 Program Inquiry - Schedule a Call';
+    }
+    
+    // Set message
+    const messageTextarea = document.getElementById('message');
+    if (messageTextarea) {
+      messageTextarea.value = "I'm interested in learning more about bringing SureStart's AI programs to our school. Please contact me to schedule a call to discuss our needs and how we can customize a program for our students.";
+    }
+  }
+  
+  // Form validation and submission
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Clear previous errors
+    clearErrors();
+    
+    // Validate form
+    let isValid = true;
+    
+    // Required fields validation
+    const requiredFields = ['firstName', 'lastName', 'email', 'referralSource', 'inquiryType', 'subject', 'message'];
+    requiredFields.forEach(field => {
+      const input = document.getElementById(field);
+      if (!input.value.trim()) {
+        showError(field, 'This field is required');
+        isValid = false;
+      }
+    });
+    
+    // Email validation
+    const email = document.getElementById('email');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email.value && !emailRegex.test(email.value)) {
+      showError('email', 'Please enter a valid email address');
+      isValid = false;
+    }
+    
+    // Phone validation (if provided)
+    const phone = document.getElementById('phone');
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    if (phone.value && !phoneRegex.test(phone.value.replace(/[\s\-\(\)]/g, ''))) {
+      showError('phone', 'Please enter a valid phone number');
+      isValid = false;
+    }
+    
+    if (isValid) {
+      // Show success message (in a real app, this would submit to a server)
+      showSuccessMessage();
+      form.reset();
+    }
+  });
+  
+  // FAQ accordion functionality
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+    
+    question.addEventListener('click', function() {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      // Close all other FAQ items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          const otherQuestion = otherItem.querySelector('.faq-question');
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          const otherIcon = otherItem.querySelector('.faq-icon');
+          
+          otherQuestion.setAttribute('aria-expanded', 'false');
+          otherAnswer.style.maxHeight = '0';
+          otherIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+      
+      // Toggle current item
+      if (isExpanded) {
+        this.setAttribute('aria-expanded', 'false');
+        answer.style.maxHeight = '0';
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+  
+  function showError(fieldName, message) {
+    const errorElement = document.getElementById(fieldName + 'Error');
+    const inputElement = document.getElementById(fieldName);
+    
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.style.display = 'block';
+    }
+    
+    if (inputElement) {
+      inputElement.classList.add('error');
+    }
+  }
+  
+  function clearErrors() {
+    const errorElements = document.querySelectorAll('.form-error');
+    const inputElements = document.querySelectorAll('.form-input, .form-select, .form-textarea');
+    
+    errorElements.forEach(error => {
+      error.textContent = '';
+      error.style.display = 'none';
+    });
+    
+    inputElements.forEach(input => {
+      input.classList.remove('error');
+    });
+  }
+  
+  function showSuccessMessage() {
+    // Create and show success message
+    const successDiv = document.createElement('div');
+    successDiv.className = 'success-message';
+    successDiv.innerHTML = `
+      <div class="success-content">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22,4 12,14.01 9,11.01"/>
+        </svg>
+        <h3>Message Sent Successfully!</h3>
+        <p>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+      </div>
+    `;
+    
+    // Insert success message at the top of the form section
+    const formSection = document.querySelector('.form-section');
+    formSection.insertBefore(successDiv, formSection.firstChild);
+    
+    // Remove success message after 5 seconds
+    setTimeout(() => {
+      if (successDiv.parentNode) {
+        successDiv.parentNode.removeChild(successDiv);
+      }
+    }, 5000);
+  }
+});
+</script>
+
+</body>
+</html>
