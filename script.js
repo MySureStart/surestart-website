@@ -139,28 +139,17 @@
     const buttons = document.querySelectorAll('.btn');
     
     buttons.forEach(button => {
-      // Add ripple effect on click
-      button.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-          ripple.remove();
-        }, 600);
-      });
-      
-      // Remove the problematic hover scale effects that were causing enlargement
+      // Removed problematic ripple effect that was causing button expansion
       // The CSS already handles proper hover effects for buttons
+      
+      // Add subtle click feedback without DOM manipulation
+      button.addEventListener('click', function(e) {
+        // Add a brief visual feedback class
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
     });
   }
 
