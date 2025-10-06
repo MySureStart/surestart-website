@@ -394,30 +394,153 @@ document.addEventListener('DOMContentLoaded', function() {
   const source = urlParams.get('source');
   const type = urlParams.get('type');
   
+  // Debug logging
+  console.log('Contact form URL parameters:', { source, type, fullURL: window.location.href });
+  
   // Pre-populate form fields based on URL parameters
   if (source === 'k12-cta' && type === 'education-institution') {
+    console.log('Pre-populating form for K-12 education institution inquiry');
+    
     // Set inquiry type to Education Institution
     const inquiryTypeSelect = document.getElementById('inquiryType');
     if (inquiryTypeSelect) {
       inquiryTypeSelect.value = 'education-institution';
+      console.log('Set inquiry type to:', inquiryTypeSelect.value);
+    } else {
+      console.error('Could not find inquiryType select element');
     }
     
     // Set referral source to School or Teacher
     const referralSourceSelect = document.getElementById('referralSource');
     if (referralSourceSelect) {
       referralSourceSelect.value = 'school-teacher';
+      console.log('Set referral source to:', referralSourceSelect.value);
+    } else {
+      console.error('Could not find referralSource select element');
     }
     
     // Set subject
     const subjectInput = document.getElementById('subject');
     if (subjectInput) {
       subjectInput.value = 'K-12 Program Inquiry - Schedule a Call';
+      console.log('Set subject to:', subjectInput.value);
+    } else {
+      console.error('Could not find subject input element');
     }
     
     // Set message
     const messageTextarea = document.getElementById('message');
     if (messageTextarea) {
       messageTextarea.value = "I'm interested in learning more about bringing SureStart's AI programs to our school. Please contact me to schedule a call to discuss our needs and how we can customize a program for our students.";
+      console.log('Set message to:', messageTextarea.value.substring(0, 50) + '...');
+    } else {
+      console.error('Could not find message textarea element');
+    }
+    
+    // Show visual confirmation that pre-population occurred
+    showPrePopulationConfirmation();
+  } else if (source || type) {
+    console.log('URL parameters detected but not matching K-12 CTA pattern:', { source, type });
+  } else {
+    console.log('No URL parameters for form pre-population detected');
+  }
+  
+  // Function to show visual confirmation of pre-population
+  function showPrePopulationConfirmation() {
+    const notification = document.createElement('div');
+    notification.className = 'pre-population-notification';
+    notification.innerHTML = `
+      <div class="notification-content">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22,4 12,14.01 9,11.01"/>
+        </svg>
+        <span>Form pre-filled for K-12 program inquiry</span>
+        <button type="button" class="close-notification">&times;</button>
+      </div>
+    `;
+    
+    // Add styles for the notification
+    if (!document.querySelector('#pre-population-styles')) {
+      const style = document.createElement('style');
+      style.id = 'pre-population-styles';
+      style.textContent = `
+        .pre-population-notification {
+          position: fixed;
+          top: 80px;
+          right: 20px;
+          background: #e7f5e7;
+          border: 1px solid #4caf50;
+          border-radius: 8px;
+          padding: 12px 16px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          z-index: 1000;
+          animation: slideInFromRight 0.3s ease-out;
+          max-width: 300px;
+        }
+        
+        .notification-content {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+          color: #2e7d32;
+        }
+        
+        .notification-content svg {
+          color: #4caf50;
+          flex-shrink: 0;
+        }
+        
+        .close-notification {
+          background: none;
+          border: none;
+          color: #2e7d32;
+          cursor: pointer;
+          font-size: 18px;
+          padding: 0;
+          margin-left: auto;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .close-notification:hover {
+          color: #1b5e20;
+        }
+        
+        @keyframes slideInFromRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 5 seconds
+    const autoRemove = setTimeout(() => {
+      if (notification.parentNode) {
+        notification.remove();
+      }
+    }, 5000);
+    
+    // Manual close button
+    const closeBtn = notification.querySelector('.close-notification');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        clearTimeout(autoRemove);
+        notification.remove();
+      });
     }
   }
   
