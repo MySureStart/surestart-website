@@ -594,7 +594,9 @@
 
 /* Program Flip Cards */
 .journey-into-ai .program-flip-card {
-  height: 480px;
+  max-width: 500px;
+  width: 100%;
+  height: calc(650px * 2 / 3); /* Ensures 3:2 aspect ratio: width * (2/3) */
   perspective: 1200px;
   cursor: pointer;
   position: relative;
@@ -975,6 +977,7 @@
   margin: var(--space-lg) 0 var(--space-md) 0;
   text-align: center;
   position: relative;
+  margin-bottom: 60px;
 }
 
 .section-subtitle-large::after {
@@ -1193,7 +1196,6 @@
   background: white;
   border-radius: 16px;
   padding: var(--space-2xl) var(--space-2xl);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2212,9 +2214,6 @@
     max-width: 900px;
   }
   
-  .journey-into-ai .program-flip-card {
-    height: 260px;
-  }
   
   .journey-into-ai .flip-card-back {
     padding: var(--space-lg);
@@ -2359,9 +2358,6 @@
     max-width: 600px;
   }
   
-  .journey-into-ai .program-flip-card {
-    height: 220px;
-  }
   
   .journey-into-ai .card-content {
     padding: var(--space-md);
@@ -2512,9 +2508,6 @@
     max-width: 320px;
   }
   
-  .journey-into-ai .program-flip-card {
-    height: 200px;
-  }
   
   .journey-into-ai .card-content {
     padding: var(--space-sm);
