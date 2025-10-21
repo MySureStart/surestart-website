@@ -218,6 +218,9 @@
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .partnership-card::before {
@@ -326,6 +329,9 @@
 
 .partnership-content {
   padding: var(--space-lg) var(--space-2xl) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .partnership-content h3 {
@@ -341,8 +347,9 @@
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: var(--space-xl);
+  margin-bottom: auto;
   text-align: center;
+  flex: 1;
 }
 
 .partnership-highlights {
@@ -353,6 +360,7 @@
   padding-top: var(--space-2xl);
   border-top: 1px solid rgba(139, 154, 142, 0.15);
   flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 
 .highlight-item {
