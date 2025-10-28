@@ -322,7 +322,6 @@
                   <span class="meta-value">Beginner</span>
                 </div>
               </div>
-              <a href="#contact" class="btn btn-sm btn-primary">Learn More</a>
             </div>
           </div>
         </div>
@@ -362,7 +361,6 @@
                   <span class="meta-value">Intermediate</span>
                 </div>
               </div>
-              <a href="#contact" class="btn btn-sm btn-primary">Learn More</a>
             </div>
           </div>
         </div>
@@ -402,7 +400,6 @@
                   <span class="meta-value">Advanced</span>
                 </div>
               </div>
-              <a href="#contact" class="btn btn-sm btn-primary">Learn More</a>
             </div>
           </div>
         </div>
@@ -442,7 +439,6 @@
                   <span class="meta-value">Expert</span>
                 </div>
               </div>
-              <a href="#contact" class="btn btn-sm btn-primary">Learn More</a>
             </div>
           </div>
         </div>
@@ -482,7 +478,6 @@
                   <span class="meta-value">TBD</span>
                 </div>
               </div>
-              <div class="btn btn-sm btn-secondary">Stay Tuned</div>
             </div>
           </div>
         </div>
@@ -522,7 +517,6 @@
                   <span class="meta-value">TBD</span>
                 </div>
               </div>
-              <div class="btn btn-sm btn-secondary">Stay Tuned</div>
             </div>
           </div>
         </div>
@@ -567,7 +561,6 @@
                   <span class="meta-value">TBD</span>
                 </div>
               </div>
-              <div class="btn btn-sm btn-secondary disabled">Stay Tuned</div>
             </div>
           </div>
         </div>
@@ -612,12 +605,21 @@
                   <span class="meta-value">TBD</span>
                 </div>
               </div>
-              <div class="btn btn-sm btn-secondary disabled">Stay Tuned</div>
             </div>
           </div>
         </div>
       </div>
 
+    </div>
+    
+    <!-- Centralized Learn More Button -->
+    <div class="program-grid-cta fade-up">
+      <a href="#contact" class="btn btn-primary">
+        <span>Learn More</span>
+        <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
@@ -642,12 +644,10 @@
             <desc id="desc">A central red circle with white text, surrounded by three swirling black rings and five outward arrows.</desc>
 
             <defs>
-              <!-- Arrow head for outward pointers -->
-              <marker id="arrowHead" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
-              </marker>
-              <!-- A reusable arrow stem that points up; we rotate copies around the center for perfectly even spacing -->
-              <line id="arrowStem" x1="400" y1="110" x2="400" y2="40" stroke="currentColor" stroke-width="10" stroke-linecap="round" marker-end="url(#arrowHead)" />
+              <!-- A reusable chevron arrow that points upward; we rotate copies around the center for perfectly even spacing -->
+              <g id="chevronArrow">
+                <polyline points="375,50 400,10 425,50" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </g>
             </defs>
 
             <!-- Swirling rings created from dashed circles with different radii/rotations -->
@@ -676,13 +676,13 @@
               </text>
             </g>
 
-            <!-- Outward arrows (evenly spaced using rotation) -->
+            <!-- Outward chevron arrows (evenly spaced using rotation) -->
             <g>
-              <use href="#arrowStem" />
-              <use href="#arrowStem" transform="rotate(72 400 400)" />
-              <use href="#arrowStem" transform="rotate(135 400 400)" />
-              <use href="#arrowStem" transform="rotate(225 400 400)" />
-              <use href="#arrowStem" transform="rotate(288 400 400)" />
+              <use href="#chevronArrow" />
+              <use href="#chevronArrow" transform="rotate(72 400 400)" />
+              <use href="#chevronArrow" transform="rotate(135 400 400)" />
+              <use href="#chevronArrow" transform="rotate(225 400 400)" />
+              <use href="#chevronArrow" transform="rotate(288 400 400)" />
             </g>
           </svg>
           
