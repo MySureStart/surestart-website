@@ -1143,6 +1143,329 @@
   }
 
   // ==========================================
+  // SPIRAL CALLOUTS ANIMATION
+  // ==========================================
+  
+  function initSpiralAnimations() {
+    const spiralNodes = document.querySelectorAll('.spiral-animate');
+    
+    if (spiralNodes.length === 0) return;
+    
+    const spiralObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const spiralWrap = entry.target.closest('.spiral-wrap');
+          if (spiralWrap) {
+            animateSpiralNodes(spiralWrap);
+            spiralObserver.unobserve(entry.target);
+          }
+        }
+      });
+    }, { 
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px'
+    });
+    
+    // Observe the spiral wrap container
+    const spiralWrap = document.querySelector('.spiral-wrap');
+    if (spiralWrap) {
+      spiralObserver.observe(spiralWrap);
+    }
+  }
+  
+  function animateSpiralNodes(spiralWrap) {
+    const spiralNodes = spiralWrap.querySelectorAll('.spiral-animate');
+    
+    // Define the animation order based on clockwise position
+    const animationOrder = [
+      'top',           // 0° - first
+      'top-right',     // 72° - second  
+      'bottom-right',  // 144° - third
+      'bottom-left',   // 216° - fourth
+      'top-left'       // 288° - fifth
+    ];
+    
+    spiralNodes.forEach((node, index) => {
+      const direction = node.getAttribute('data-direction');
+      const orderIndex = animationOrder.indexOf(direction);
+      const delay = orderIndex !== -1 ? orderIndex * 200 : index * 200; // 200ms between each
+      
+      setTimeout(() => {
+        node.classList.add('animate-in');
+        
+        // Add subtle bounce effect
+        const callout = node.querySelector('.spiral-callout');
+        if (callout) {
+          callout.style.animation = 'spiralBounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        }
+      }, delay);
+    });
+    
+    // Add CSS animation for bounce effect if not already added
+    if (!document.querySelector('#spiral-animations')) {
+      const style = document.createElement('style');
+      style.id = 'spiral-animations';
+      style.textContent = `
+        @keyframes spiralBounceIn {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+          }
+          60% {
+            opacity: 0.8;
+            transform: translate(-50%, -50%) scale(1.05);
+          }
+          100% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+          }
+        }
+        
+        /* Enhanced focus states for animated elements */
+        .spiral-animate.animate-in .spiral-callout:focus {
+          transform: translate(-50%, -50%) scale(1.02);
+          box-shadow: 0 0 0 3px var(--ss-yellow);
+          border-radius: 8px;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  // ==========================================
+  // ROTATING QUOTES (Rana's Style)
+  // ==========================================
+  
+  function initRotatingQuotes() {
+    const rotatingQuotesContainers = document.querySelectorAll('.partnership-testimonials-rotating');
+    
+    rotatingQuotesContainers.forEach(container => {
+      const quoteItems = container.querySelectorAll('.rotating-quote-item');
+      const indicatorDots = container.querySelectorAll('.quote-indicator-dot');
+      
+      if (!quoteItems.length || !indicatorDots.length) return;
+      
+      let currentQuote = 0;
+      let autoRotateInterval;
+      let isPaused = false;
+      
+      // Function to update active quote
+      function updateActiveQuote(index, animate = true) {
+        if (index < 0) index = quoteItems.length - 1;
+        if (index >= quoteItems.length) index = 0;
+        
+        currentQuote = index;
+        
+        // Update quote items
+        quoteItems.forEach((item, i) => {
+          item.classList.toggle('active', i === currentQuote);
+          item.setAttribute('aria-hidden', i !== currentQuote ? 'true' : 'false');
+        });
+        
+        // Update indicator dots
+        indicatorDots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentQuote);
+          dot.setAttribute('aria-selected', i === currentQuote ? 'true' : 'false');
+        });
+        
+        // Add subtle entrance animation for the active quote
+        const activeItem = quoteItems[currentQuote];
+        if (activeItem && animate) {
+          const quote = activeItem.querySelector('.rotating-quote');
+          const attribution = activeItem.querySelector('.quote-attribution');
+          
+          if (quote) {
+            quote.style.animation = 'quoteSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          }
+          if (attribution) {
+            attribution.style.animation = 'attributionSlideIn 0.8s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both';
+          }
+        }
+      }
+      
+      // Auto-rotation functionality
+      function startAutoRotation() {
+        if (isPaused || quoteItems.length <= 1) return;
+        
+        autoRotateInterval = setInterval(() => {
+          if (!isPaused) {
+            updateActiveQuote(currentQuote + 1);
+          }
+        }, 6000); // 6 seconds per quote
+      }
+      
+      function stopAutoRotation() {
+        if (autoRotateInterval) {
+          clearInterval(autoRotateInterval);
+          autoRotateInterval = null;
+        }
+      }
+      
+      function pauseRotation() {
+        isPaused = true;
+        stopAutoRotation();
+      }
+      
+      function resumeRotation() {
+        isPaused = false;
+        startAutoRotation();
+      }
+      
+      // Manual navigation via dots
+      indicatorDots.forEach((dot, index) => {
+        // Click handler
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          stopAutoRotation();
+          updateActiveQuote(index);
+          
+          // Restart auto-rotation after a delay
+          setTimeout(() => {
+            if (!isPaused) {
+              startAutoRotation();
+            }
+          }, 8000); // 8 second pause after manual interaction
+        });
+        
+        // Keyboard support
+        dot.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            stopAutoRotation();
+            updateActiveQuote(index);
+            setTimeout(() => {
+              if (!isPaused) {
+                startAutoRotation();
+              }
+            }, 8000);
+          }
+        });
+        
+        // Add ARIA attributes
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', `View testimonial ${index + 1}`);
+        dot.setAttribute('tabindex', index === 0 ? '0' : '-1');
+      });
+      
+      // Keyboard navigation between dots
+      container.addEventListener('keydown', (e) => {
+        const focusedDot = document.activeElement;
+        const currentIndex = Array.from(indicatorDots).indexOf(focusedDot);
+        
+        if (currentIndex !== -1) {
+          let newIndex = currentIndex;
+          
+          if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            newIndex = currentIndex > 0 ? currentIndex - 1 : indicatorDots.length - 1;
+          } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            newIndex = currentIndex < indicatorDots.length - 1 ? currentIndex + 1 : 0;
+          }
+          
+          if (newIndex !== currentIndex) {
+            // Update tabindex
+            indicatorDots[currentIndex].setAttribute('tabindex', '-1');
+            indicatorDots[newIndex].setAttribute('tabindex', '0');
+            indicatorDots[newIndex].focus();
+            
+            // Update quote
+            stopAutoRotation();
+            updateActiveQuote(newIndex);
+            setTimeout(() => {
+              if (!isPaused) {
+                startAutoRotation();
+              }
+            }, 8000);
+          }
+        }
+      });
+      
+      // Pause on hover/focus for better UX
+      container.addEventListener('mouseenter', pauseRotation);
+      container.addEventListener('mouseleave', resumeRotation);
+      container.addEventListener('focusin', pauseRotation);
+      container.addEventListener('focusout', (e) => {
+        // Only resume if focus is completely leaving the container
+        if (!container.contains(e.relatedTarget)) {
+          resumeRotation();
+        }
+      });
+      
+      // Handle visibility change (pause when tab is not active)
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          pauseRotation();
+        } else {
+          resumeRotation();
+        }
+      });
+      
+      // Intersection observer to start animation when visible
+      const quotesObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Initialize first quote and start rotation
+            setTimeout(() => {
+              updateActiveQuote(0, false);
+              startAutoRotation();
+            }, 500); // Small delay for better visual experience
+            quotesObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      quotesObserver.observe(container);
+      
+      // Add CSS animations if not already present
+      if (!document.querySelector('#rotating-quotes-animations')) {
+        const style = document.createElement('style');
+        style.id = 'rotating-quotes-animations';
+        style.textContent = `
+          @keyframes quoteSlideIn {
+            0% {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
+          @keyframes attributionSlideIn {
+            0% {
+              opacity: 0;
+              transform: translateY(15px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
+          /* Enhanced focus states for quote indicators */
+          .quote-indicator-dot:focus {
+            outline: 3px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 6px;
+          }
+          
+          /* Smooth transitions for quote items */
+          .rotating-quote-item {
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
+      // Initialize with first quote (without animation initially)
+      updateActiveQuote(0, false);
+    });
+  }
+
+  // ==========================================
   // INITIALIZATION
   // ==========================================
   
@@ -1156,6 +1479,7 @@
     // Initialize all components
     try {
       initScrollAnimations();
+      initSpiralAnimations(); // Add spiral callouts animation
       initNavigation();
       initButtonEffects();
       initFloatingCards();
@@ -1167,6 +1491,7 @@
       initCTAEffects();
       initFlipCards(); // Add flip cards initialization
       initTestimonialsCarousel(); // Add testimonials carousel functionality
+      initRotatingQuotes(); // Add rotating quotes functionality
       
       // Optional: Add preloader for luxury feel
       // initPreloader();
