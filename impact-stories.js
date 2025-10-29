@@ -1654,8 +1654,6 @@ class AccessibilityEnhancements {
     
     focusableElements.forEach(element => {
       element.addEventListener('focus', () => {
-        element.style.outline = '3px solid var(--ss-red)';
-        element.style.outlineOffset = '2px';
       });
       
       element.addEventListener('blur', () => {
@@ -1696,70 +1694,56 @@ class CaseStudiesCarousel {
     this.track = document.getElementById('testimonialsTrack');
     this.dots = document.querySelectorAll('.testimonial-dot');
     this.currentIndex = 0;
-    this.totalSlides = 3; // Jonathan, Lili, and third testimonial
+    this.totalSlides = 2; // Only Jonathan and Lili (the third is a duplicate)
     this.isTransitioning = false;
     
     this.init();
   }
 
   init() {
-    if (!this.track) return;
+    if (!this.track) {
+      console.warn('Testimonials track not found');
+      return;
+    }
     
-    this.setupInfiniteLoop();
+    console.log('Initializing CaseStudiesCarousel...');
     this.addEventListeners();
     this.updateCarousel();
-  }
-
-  setupInfiniteLoop() {
-    // Clone the first and last slides for seamless infinite scrolling
-    const cards = this.track.querySelectorAll('.testimonial-case-card');
-    if (cards.length === 0) return;
-    
-    // Clone first card and append to end
-    const firstCardClone = cards[0].cloneNode(true);
-    firstCardClone.classList.add('clone');
-    this.track.appendChild(firstCardClone);
-    
-    // Clone last card and prepend to beginning
-    const lastCardClone = cards[cards.length - 1].cloneNode(true);
-    lastCardClone.classList.add('clone');
-    this.track.insertBefore(lastCardClone, cards[0]);
-    
-    // Adjust starting position to account for the prepended clone
-    this.currentIndex = 1; // Start at the first real slide (after the cloned last slide)
-    this.track.style.transform = `translateX(-${this.currentIndex * this.getScrollDistance()}%)`;
+    this.startAutoAdvance();
   }
 
   addEventListeners() {
+    // Arrow navigation
+    const prevBtn = document.getElementById('testimonialsPrevBtn');
+    const nextBtn = document.getElementById('testimonialsNextBtn');
+    
+    console.log('Prev button:', prevBtn);
+    console.log('Next button:', nextBtn);
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        console.log('Previous button clicked');
+        this.previousSlide();
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        console.log('Next button clicked');
+        this.nextSlide();
+      });
+    }
+
     // Dot navigation
     this.dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
-        this.goToSlide(index + 1); // +1 to account for the prepended clone
+        console.log('Dot clicked:', index);
+        this.goToSlide(index);
       });
-    });
-
-    // Keyboard navigation - listen globally when carousel section is visible
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        this.previousSlide();
-      }
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        this.nextSlide();
-      }
     });
 
     // Touch/swipe support
     this.addTouchSupport();
-    
-    // Auto-advance every 8 seconds (optional - can be removed if not desired)
-    this.startAutoAdvance();
-    
-    // Listen for transition end to handle infinite loop jumps
-    this.track.addEventListener('transitionend', () => {
-      this.handleTransitionEnd();
-    });
   }
 
   startAutoAdvance() {
@@ -1768,23 +1752,10 @@ class CaseStudiesCarousel {
       clearInterval(this.autoAdvanceInterval);
     }
     
-    // Auto-advance every 8 seconds
+    // Auto-advance every 6.5 seconds
     this.autoAdvanceInterval = setInterval(() => {
       this.nextSlide();
-    }, 8000);
-    
-    // Pause auto-advance on hover
-    if (this.track) {
-      this.track.addEventListener('mouseenter', () => {
-        if (this.autoAdvanceInterval) {
-          clearInterval(this.autoAdvanceInterval);
-        }
-      });
-      
-      this.track.addEventListener('mouseleave', () => {
-        this.startAutoAdvance();
-      });
-    }
+    }, 6500);
   }
 
   addTouchSupport() {
@@ -1795,15 +1766,19 @@ class CaseStudiesCarousel {
     this.track.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
       isDragging = true;
-      this.track.style.transition = 'none';
+      // Temporarily disable auto-advance during touch
+      if (this.autoAdvanceInterval) {
+        clearInterval(this.autoAdvanceInterval);
+      }
     });
     
     this.track.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
+      e.preventDefault();
       
       currentX = e.touches[0].clientX;
       const diffX = currentX - startX;
-      const currentTransform = -(this.currentIndex * this.getScrollDistance());
+      const currentTransform = -(this.currentIndex * 100);
       const newTransform = currentTransform + (diffX / this.track.offsetWidth) * 100;
       
       this.track.style.transform = `translateX(${newTransform}%)`;
@@ -1813,8 +1788,6 @@ class CaseStudiesCarousel {
       if (!isDragging) return;
       
       isDragging = false;
-      this.track.style.transition = '';
-      
       const diffX = currentX - startX;
       const threshold = 50;
       
@@ -1827,33 +1800,16 @@ class CaseStudiesCarousel {
       } else {
         this.updateCarousel();
       }
+      
+      // Restart auto-advance after touch interaction
+      this.startAutoAdvance();
     });
-  }
-
-  getScrollDistance() {
-    const containerWidth = this.track.parentElement.offsetWidth;
-    const cardWidth = 85; // Card takes 85% of container width
-    const gap = 2; // Approximate gap between cards as percentage
-    
-    let scrollDistance;
-    
-    if (containerWidth >= 1400) {
-      // Large screens: scroll by exactly the card width to center the next card
-      scrollDistance = cardWidth;
-    } else if (containerWidth >= 1024) {
-      // Medium-large screens: scroll by card width plus small gap
-      scrollDistance = cardWidth + (gap / 2);
-    } else {
-      // Smaller screens: scroll by full card width plus gap for complete visibility
-      scrollDistance = cardWidth + gap;
-    }
-    
-    return scrollDistance;
   }
 
   goToSlide(index) {
     if (this.isTransitioning) return;
     
+    console.log('Going to slide:', index);
     this.currentIndex = index;
     this.updateCarousel();
   }
@@ -1861,69 +1817,44 @@ class CaseStudiesCarousel {
   nextSlide() {
     if (this.isTransitioning) return;
     
+    console.log('Next slide from:', this.currentIndex);
     this.isTransitioning = true;
-    this.currentIndex++;
+    this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
     this.updateCarousel();
+    
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 600); // Match CSS transition duration
   }
 
   previousSlide() {
     if (this.isTransitioning) return;
     
+    console.log('Previous slide from:', this.currentIndex);
     this.isTransitioning = true;
-    this.currentIndex--;
+    this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
     this.updateCarousel();
-  }
-
-  handleTransitionEnd() {
-    this.isTransitioning = false;
     
-    // Handle infinite loop jumps
-    const totalCards = this.track.querySelectorAll('.testimonial-case-card').length;
-    
-    if (this.currentIndex === 0) {
-      // We're at the cloned last slide, jump to the real last slide
-      this.track.style.transition = 'none';
-      this.currentIndex = this.totalSlides;
-      this.track.style.transform = `translateX(-${this.currentIndex * this.getScrollDistance()}%)`;
-      // Force reflow
-      this.track.offsetHeight;
-      this.track.style.transition = '';
-    } else if (this.currentIndex === totalCards - 1) {
-      // We're at the cloned first slide, jump to the real first slide
-      this.track.style.transition = 'none';
-      this.currentIndex = 1;
-      this.track.style.transform = `translateX(-${this.currentIndex * this.getScrollDistance()}%)`;
-      // Force reflow
-      this.track.offsetHeight;
-      this.track.style.transition = '';
-    }
-    
-    this.updateDots();
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 600); // Match CSS transition duration
   }
 
   updateCarousel() {
     if (!this.track) return;
     
-    const scrollDistance = this.getScrollDistance();
-    const translateX = -(this.currentIndex * scrollDistance);
+    const translateX = -(this.currentIndex * 100);
+    console.log('Updating carousel to translateX:', translateX + '%');
     
+    this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     this.track.style.transform = `translateX(${translateX}%)`;
+    
     this.updateDots();
   }
 
   updateDots() {
-    // Update dots based on the real slide index (accounting for clones)
-    let realIndex = this.currentIndex - 1; // -1 to account for the prepended clone
-    
-    // Handle edge cases for cloned slides
-    if (this.currentIndex === 0) {
-      realIndex = this.totalSlides - 1; // Last real slide
-    } else if (this.currentIndex === this.totalSlides + 1) {
-      realIndex = 0; // First real slide
-    }
-    
     this.dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === realIndex);
+      dot.classList.toggle('active', index === this.currentIndex);
     });
   }
 

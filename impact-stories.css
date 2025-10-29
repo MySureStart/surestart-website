@@ -170,7 +170,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: var(--space-2xl);
-  max-width: 60%;
+  max-width: 85%;
   text-align: left;
 }
 
@@ -224,6 +224,7 @@ a {
   flex-direction: column;
   gap: var(--space-sm);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  max-width: 650px;
 }
 
 .title-line {
@@ -275,13 +276,14 @@ a {
 }
 
 .impact-hero-subtitle {
-  font-size: clamp(14px, 1.6vw, 16px);
+  /* font-size: clamp(14px, 1.6vw, 16px); */
+  font-size:var(--text-xl);
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
   font-weight: 400;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  max-width: 550px;
+  max-width: 900px;
 }
 
 /* Stats Section - Fixed Layout */
@@ -519,7 +521,7 @@ a {
 
 .case-studies-testimonials {
   background: var(--surface-secondary);
-  padding: var(--space-5xl) 0;
+  padding: var(--space-4xl) 0;
   position: relative;
   margin-top: 0;
 }
@@ -982,10 +984,12 @@ a {
   gap: var(--space-lg);
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: 0 var(--space-lg);
+  max-width: var(--container-max);
+  margin: 0 auto;
 }
 
 .testimonial-case-card {
-  flex: 0 0 calc(85% - var(--space-lg));
+  flex: 0 0 calc(100% - var(--space-lg));
   max-width: 1200px;
   max-height: 500px;
   background: white;
@@ -1175,13 +1179,13 @@ a {
   height: 4px;
   border-radius: var(--border-radius-full);
   background: var(--ss-accent-1);
-  border: 1px solid rgba(102, 72, 64, 0.3);
+  border: none;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   padding: 0;
   position: relative;
   overflow: visible;
-  box-shadow: 0 3px 12px rgba(102, 72, 64, 0.3);
+  box-shadow: none;
   z-index: 10;
 }
 
@@ -1194,22 +1198,86 @@ a {
 } 
 
 .testimonial-dot.active {
-  background: var(--ss-red);
+  background: linear-gradient(135deg, var(--ss-yellow) 0%, var(--ss-orange) 33%, var(--ss-red) 66%, var(--ss-pink) 100%);
   transform: scaleX(1.4) scaleY(1.2);
   box-shadow: 0 4px 20px rgba(231, 48, 82, 0.5);
-  border-color: var(--ss-red);
+  border-color: var(--ss-white);
   z-index: 11;
+  outline: 0px solid var(--ss-yellow) !important;
+  outline-offset: 6px;
 }
 
 .testimonial-dot:not(.active):hover {
   background: var(--ss-accent-1);
   transform: scaleX(1.1);
-  box-shadow: 0 4px 16px rgba(102, 72, 64, 0.4);
+  /* box-shadow: 0 4px 16px rgba(102, 72, 64, 0.4); */
 }
 
 .testimonial-dot:focus-visible {
-  outline: 3px solid var(--ss-yellow);
+  outline: 0px solid var(--ss-yellow) !important; 
   outline-offset: 6px;
+}
+
+/* Navigation Arrows */
+.testimonials-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 72, 64, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ss-accent-1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  outline: 0px !important;
+}
+
+.testimonials-arrow:hover {
+  background: white;
+  color: var(--ss-red);
+  border-color: var(--ss-red);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 25px rgba(231, 48, 82, 0.25);
+}
+
+.testimonials-arrow:focus-visible {
+  outline: 3px solid var(--ss-yellow);
+  outline-offset: 3px;
+}
+
+.testimonials-arrow-prev {
+  left: 20px;
+}
+
+.testimonials-arrow-next {
+  right: 20px;
+}
+
+.testimonials-arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5;
+  transition: transform 0.2s ease;
+}
+
+.testimonials-arrow:hover svg {
+  transform: scale(1.1);
+}
+
+/* Hide arrows on smaller screens to avoid overlap */
+@media (max-width: 768px) {
+  .testimonials-arrow {
+    display: none;
+  }
 }
 
 /* Responsive Design */
@@ -2242,8 +2310,8 @@ a {
   background: var(--surface-secondary);
   position: relative;
   margin-top: -40px;
-  padding-top: calc(var(--space-5xl) + 40px);
-  padding-bottom: var(--space-5xl);
+  padding-top: calc(var(--space-4xl) + 40px);
+  padding-bottom: var(--space-4xl);
 }
 
 .success-stories::before {
@@ -2322,18 +2390,18 @@ a {
 .breakthrough-video .video-container {
   position: relative;
   width: 100%;
-  height: 100%;
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border-subtle);
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  aspect-ratio: 16 / 9;
 }
 
-/* Only apply aspect ratio padding for iframe containers */
+/* Apply consistent aspect ratio for all video containers */
 .breakthrough-video .video-container:has(iframe) {
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  aspect-ratio: 16 / 9;
 }
 
 .breakthrough-video .video-container iframe {
@@ -2350,7 +2418,7 @@ a {
   position: relative;
   cursor: pointer;
   width: 100%;
-  height: 300px;
+  height: 100%;
   border-radius: 0;
   overflow: hidden;
   margin-bottom: 0;
@@ -2565,7 +2633,7 @@ a {
 
 .makeathon-spotlight {
   background: var(--surface-white);
-  padding: var(--space-5xl) 0;
+  padding: var(--space-4xl) 0;
   position: relative;
   margin-top: 0;
 }
@@ -2745,7 +2813,7 @@ a {
 .industry-recognition {
   background: var(--gradient-button);
   color: white;
-  padding: var(--space-5xl) 0;
+  padding: var(--space-4xl) 0;
   position: relative;
   overflow: hidden;
   margin-top: 0;
@@ -2866,7 +2934,7 @@ a {
     var(--surface-white) 50%,
     var(--surface) 100%
   );
-  padding: var(--space-5xl) 0;
+  padding: var(--space-4xl) 0;
   position: relative;
   overflow: hidden;
   margin-top: 0;

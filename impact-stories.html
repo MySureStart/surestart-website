@@ -62,7 +62,7 @@
           <span class="title-line title-highlight">A powerful mission with global impact</span>
         </h1>
         <p class="impact-hero-subtitle fade-up">
-          See how SureStart is changing the lives of students all over the world
+          SureStart changing the lives of students all over the world
         </p>
       </div>
     </div>
@@ -78,31 +78,21 @@
   </div>
   
   <div class="testimonials-carousel">
+    <!-- Previous Arrow -->
+    <button class="testimonials-arrow testimonials-arrow-prev" id="testimonialsPrevBtn" aria-label="Previous testimonial">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    
+    <!-- Next Arrow -->
+    <button class="testimonials-arrow testimonials-arrow-next" id="testimonialsNextBtn" aria-label="Next testimonial">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+    
     <div class="testimonials-track" id="testimonialsTrack">
-      <!-- Stanford/Princeton Student Card -->
-      <div class="testimonial-case-card">
-        <div class="testimonial-photo">
-          <img src="static/images/JW.jpg" alt="Jonathan Williams">
-        </div>
-        <div class="testimonial-content">
-          <blockquote class="testimonial-quote">
-            "Participating in SureStart was the single best decision of my academic career. As a student from a background underrepresented in Machine Learning, the program provided a supportive springboard into all things AI. The mentorship was fantastic, and I've stayed in contact with my mentors for years. My interest in ML was cemented after SureStart, leading me to pursue a Mathematics degree at Stanford. I graduated this past June and am now starting my Computer Science PhD at Princeton. I would highly recommend SureStart to any young student — it truly changed my life!"
-          </blockquote>
-          
-          <hr></hr>
-          
-          <div class="quote-attribution">
-            <div class="author-info">
-              <div class="author-name">Jonathan Williams</div>
-              <div class="author-title">VAIL program alum</div>
-            </div>
-            <div class="company-logo">
-              <img src="static/images/University-of-Princeton-Logo.png" alt="Princeton University" class="university-logo">
-            </div>
-          </div>
-        </div>
-      </div>
-      
       <!-- MIT FutureMakers Student Card -->
       <div class="testimonial-case-card">
         <div class="testimonial-photo">
@@ -155,9 +145,8 @@
     
     <!-- Navigation Dots -->
     <div class="testimonials-indicators">
-      <button class="testimonial-dot active" data-slide="0" aria-label="View first testimonial"></button>
+      <button class="testimonial-dot active" style="outline: 0px;" data-slide="0" aria-label="View first testimonial"></button>
       <button class="testimonial-dot" data-slide="1" aria-label="View second testimonial"></button>
-      <button class="testimonial-dot" data-slide="2" aria-label="View third testimonial"></button>
     </div>
   </div>
 </section>
