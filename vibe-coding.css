@@ -1140,7 +1140,7 @@
 }
 
 .final-cta-content h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 3rem;
   margin-bottom: var(--space-lg);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   color: white;
