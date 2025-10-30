@@ -3185,7 +3185,7 @@ p {
 }
 
 .cta-title {
-  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+  font-size: 3rem;
   margin-bottom: var(--space-xl);
   color: var(--ss-accent-1);
   position: relative;

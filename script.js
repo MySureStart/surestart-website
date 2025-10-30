@@ -1233,6 +1233,141 @@
   }
 
   // ==========================================
+  // ACCORDION FUNCTIONALITY
+  // ==========================================
+  
+  function initAccordion() {
+    const accordionItems = document.querySelectorAll('.skill-accordion-item');
+    
+    if (accordionItems.length === 0) return;
+    
+    accordionItems.forEach((item, index) => {
+      const button = item.querySelector('.accordion-question');
+      const content = item.querySelector('.accordion-answer');
+      const icon = item.querySelector('.accordion-icon');
+      
+      if (!button || !content) return;
+      
+      // Set initial ARIA attributes
+      const contentId = `accordion-content-${index}`;
+      content.id = contentId;
+      button.setAttribute('aria-controls', contentId);
+      button.setAttribute('aria-expanded', 'false');
+      
+      // Set initial state - first accordion starts open, others closed
+      const isFirstItem = index === 0;
+      content.style.overflow = 'hidden';
+      content.style.transition = 'max-height 0.3s ease-out';
+      
+      if (isFirstItem) {
+        // Initialize first accordion as open
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+        if (icon) {
+          icon.style.transform = 'rotate(180deg)';
+        }
+      } else {
+        // Initialize other accordions as closed
+        content.style.maxHeight = '0';
+        content.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        if (icon) {
+          icon.style.transform = 'rotate(0deg)';
+        }
+      }
+      
+      function toggleAccordion() {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // If this accordion is already open, do nothing (can't close it)
+        if (isExpanded) {
+          return;
+        }
+        
+        // Close all other accordions and open this one
+        accordionItems.forEach(otherItem => {
+          const otherButton = otherItem.querySelector('.accordion-question');
+          const otherContent = otherItem.querySelector('.accordion-answer');
+          const otherIcon = otherItem.querySelector('.accordion-icon');
+          
+          if (otherButton && otherContent) {
+            if (otherItem === item) {
+              // Open this accordion
+              otherContent.style.maxHeight = otherContent.scrollHeight + 'px';
+              otherContent.classList.add('open');
+              otherButton.setAttribute('aria-expanded', 'true');
+              if (otherIcon) otherIcon.style.transform = 'rotate(180deg)';
+            } else {
+              // Close other accordions
+              otherContent.style.maxHeight = '0';
+              otherContent.classList.remove('open');
+              otherButton.setAttribute('aria-expanded', 'false');
+              if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+        
+        // Add subtle animation to the accordion item
+        item.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          item.style.transform = 'scale(1)';
+        }, 150);
+      }
+      
+      // Event listeners
+      button.addEventListener('click', toggleAccordion);
+      
+      // Keyboard support
+      button.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleAccordion();
+        }
+      });
+      
+      // Enhanced focus management
+      button.addEventListener('focus', () => {
+        item.style.borderColor = 'rgba(231, 48, 82, 0.3)';
+        item.style.boxShadow = '0 0 0 2px rgba(231, 48, 82, 0.1)';
+      });
+      
+      button.addEventListener('blur', () => {
+        item.style.borderColor = '';
+        item.style.boxShadow = '';
+      });
+      
+      // Handle resize events to maintain proper max-height
+      window.addEventListener('resize', () => {
+        if (button.getAttribute('aria-expanded') === 'true') {
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+    
+    // Intersection observer for staggered animation
+    const accordionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, index * 100);
+          accordionObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    // Set initial animation state and observe
+    accordionItems.forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+      item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.3s ease, box-shadow 0.3s ease';
+      accordionObserver.observe(item);
+    });
+  }
+
+  // ==========================================
   // ROTATING QUOTES (Rana's Style)
   // ==========================================
   
@@ -1492,6 +1627,7 @@
       initFlipCards(); // Add flip cards initialization
       initTestimonialsCarousel(); // Add testimonials carousel functionality
       initRotatingQuotes(); // Add rotating quotes functionality
+      initAccordion(); // Add accordion functionality
       
       // Optional: Add preloader for luxury feel
       // initPreloader();
