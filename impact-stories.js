@@ -1686,27 +1686,34 @@ class AccessibilityEnhancements {
 }
 
 // ==========================================
-// CASE STUDIES TESTIMONIALS CAROUSEL
+// DYNAMIC INFINITE TESTIMONIALS CAROUSEL
 // ==========================================
 
 class CaseStudiesCarousel {
   constructor() {
     this.track = document.getElementById('testimonialsTrack');
+    this.slides = document.querySelectorAll('.testimonial-case-card');
     this.dots = document.querySelectorAll('.testimonial-dot');
-    this.currentIndex = 0;
-    this.totalSlides = 2; // Only Jonathan and Lili (the third is a duplicate)
+    
+    // Dynamic carousel properties
+    this.currentIndex = 0; // Current slide index (0, 1, 2)
+    this.totalSlides = this.slides.length; // Always 3 real slides
     this.isTransitioning = false;
+    this.hasDynamicCard = false;
+    
+    // Store original slide content for dynamic creation
+    this.slideData = Array.from(this.slides).map(slide => slide.outerHTML);
     
     this.init();
   }
 
   init() {
-    if (!this.track) {
-      console.warn('Testimonials track not found');
+    if (!this.track || this.slides.length === 0) {
+      console.warn('Testimonials track or slides not found');
       return;
     }
     
-    console.log('Initializing CaseStudiesCarousel...');
+    console.log('Initializing Dynamic Infinite Carousel...');
     this.addEventListeners();
     this.updateCarousel();
     this.startAutoAdvance();
@@ -1716,9 +1723,6 @@ class CaseStudiesCarousel {
     // Arrow navigation
     const prevBtn = document.getElementById('testimonialsPrevBtn');
     const nextBtn = document.getElementById('testimonialsNextBtn');
-    
-    console.log('Prev button:', prevBtn);
-    console.log('Next button:', nextBtn);
     
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
@@ -1779,9 +1783,9 @@ class CaseStudiesCarousel {
       currentX = e.touches[0].clientX;
       const diffX = currentX - startX;
       const currentTransform = -(this.currentIndex * 100);
-      const newTransform = currentTransform + (diffX / this.track.offsetWidth) * 100;
+      const dragOffset = (diffX / this.track.offsetWidth) * 100;
       
-      this.track.style.transform = `translateX(${newTransform}%)`;
+      this.track.style.transform = `translateX(${currentTransform + dragOffset}%)`;
     });
     
     this.track.addEventListener('touchend', () => {
@@ -1806,53 +1810,179 @@ class CaseStudiesCarousel {
     });
   }
 
-  goToSlide(index) {
+  goToSlide(targetIndex) {
     if (this.isTransitioning) return;
     
-    console.log('Going to slide:', index);
-    this.currentIndex = index;
+    console.log('Going to slide:', targetIndex);
+    this.currentIndex = targetIndex;
+    this.cleanupDynamicCard();
     this.updateCarousel();
   }
 
   nextSlide() {
     if (this.isTransitioning) return;
     
-    console.log('Next slide from:', this.currentIndex);
+    console.log('Next button clicked - moving from position:', this.currentIndex);
     this.isTransitioning = true;
-    this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
-    this.updateCarousel();
     
-    setTimeout(() => {
-      this.isTransitioning = false;
-    }, 600); // Match CSS transition duration
+    if (this.currentIndex === this.totalSlides - 1) {
+      // We're at the last slide, need to create infinite forward animation
+      this.createInfiniteForwardAnimation();
+    } else {
+      // Normal forward slide
+      this.currentIndex++;
+      this.updateCarousel();
+      
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 600);
+    }
   }
 
   previousSlide() {
     if (this.isTransitioning) return;
     
-    console.log('Previous slide from:', this.currentIndex);
+    console.log('Previous button clicked - moving from position:', this.currentIndex);
     this.isTransitioning = true;
-    this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
-    this.updateCarousel();
     
+    if (this.currentIndex === 0) {
+      // We're at the first slide, need to create infinite backward animation
+      this.createInfiniteBackwardAnimation();
+    } else {
+      // Normal backward slide
+      this.currentIndex--;
+      this.updateCarousel();
+      
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 600);
+    }
+  }
+
+  createInfiniteForwardAnimation() {
+    // Clean up any existing dynamic card
+    this.cleanupDynamicCard();
+    
+    // Create dynamic next card (first slide's content)
+    const nextCardIndex = 0; // Loop back to first slide
+    this.addDynamicCard(nextCardIndex);
+    
+    // Animate to the dynamic card position
+    const targetPosition = -(this.totalSlides * 100); // -300% for 4th position
+    this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    this.track.style.transform = `translateX(${targetPosition}%)`;
+    
+    // After animation completes, cleanup and reset
     setTimeout(() => {
+      this.cleanupDynamicCard();
+      this.currentIndex = nextCardIndex;
+      this.resetToPosition();
       this.isTransitioning = false;
-    }, 600); // Match CSS transition duration
+    }, 650); // Slightly longer than CSS transition
+  }
+
+  createInfiniteBackwardAnimation() {
+    // Clean up any existing dynamic card
+    this.cleanupDynamicCard();
+    
+    // Create dynamic previous card (last slide's content) at the beginning
+    const prevCardIndex = this.totalSlides - 1; // Last slide
+    this.addDynamicCardAtBeginning(prevCardIndex);
+    
+    // Instantly position track to show current first slide (which is now at position 1)
+    this.track.style.transition = 'none';
+    this.track.style.transform = 'translateX(-100%)';
+    
+    // Small delay to ensure instant positioning takes effect
+    setTimeout(() => {
+      // Now animate to the dynamic card at position 0
+      this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      this.track.style.transform = 'translateX(0%)';
+      
+      // After animation completes, cleanup and reset
+      setTimeout(() => {
+        this.cleanupDynamicCard();
+        this.currentIndex = prevCardIndex;
+        this.resetToPosition();
+        this.isTransitioning = false;
+      }, 650);
+    }, 50);
+  }
+
+  addDynamicCard(slideIndex) {
+    // Create a new card element with the specified slide content
+    const slideHtml = this.slideData[slideIndex];
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = slideHtml;
+    const dynamicCard = tempDiv.firstElementChild;
+    
+    // Mark it as dynamic for easy cleanup
+    dynamicCard.classList.add('dynamic-card');
+    
+    // Append to track
+    this.track.appendChild(dynamicCard);
+    this.hasDynamicCard = true;
+    
+    console.log('Added dynamic card for slide:', slideIndex);
+  }
+
+  addDynamicCardAtBeginning(slideIndex) {
+    // Create a new card element with the specified slide content
+    const slideHtml = this.slideData[slideIndex];
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = slideHtml;
+    const dynamicCard = tempDiv.firstElementChild;
+    
+    // Mark it as dynamic for easy cleanup
+    dynamicCard.classList.add('dynamic-card');
+    
+    // Prepend to track
+    this.track.insertBefore(dynamicCard, this.track.firstElementChild);
+    this.hasDynamicCard = true;
+    
+    console.log('Added dynamic card at beginning for slide:', slideIndex);
+  }
+
+  cleanupDynamicCard() {
+    if (this.hasDynamicCard) {
+      const dynamicCards = this.track.querySelectorAll('.dynamic-card');
+      dynamicCards.forEach(card => card.remove());
+      this.hasDynamicCard = false;
+      console.log('Cleaned up dynamic cards');
+    }
+  }
+
+  resetToPosition() {
+    // Reset to show the current slide at its normal position
+    this.track.style.transition = 'none';
+    this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+    
+    // Re-enable transitions after a brief delay
+    setTimeout(() => {
+      this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }, 50);
+    
+    this.updateDots();
   }
 
   updateCarousel() {
     if (!this.track) return;
     
-    const translateX = -(this.currentIndex * 100);
-    console.log('Updating carousel to translateX:', translateX + '%');
+    // Account for 100px gap between cards
+    const gapOffset = this.currentIndex * 100; // 100px gap per card position
+    const transform = -(this.currentIndex * 100);
+    const finalTransform = transform - (gapOffset / this.track.offsetWidth * 100);
+    
+    console.log('Updating carousel - current index:', this.currentIndex, 'transform:', finalTransform + '%');
     
     this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    this.track.style.transform = `translateX(${translateX}%)`;
+    this.track.style.transform = `translateX(${finalTransform}%)`;
     
     this.updateDots();
   }
 
   updateDots() {
+    // Update dot indicators to match current slide
     this.dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === this.currentIndex);
     });
@@ -1863,6 +1993,7 @@ class CaseStudiesCarousel {
     if (this.autoAdvanceInterval) {
       clearInterval(this.autoAdvanceInterval);
     }
+    this.cleanupDynamicCard();
   }
 }
 
