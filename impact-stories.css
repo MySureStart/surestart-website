@@ -533,7 +533,6 @@ a {
 
 .student-network-section {
   background: var(--surface-white);
-  padding: var(--space-2xl) 0;
   position: relative;
   margin-top: 0;
 }
@@ -2310,7 +2309,7 @@ a {
   background: var(--surface-secondary);
   position: relative;
   margin-top: -40px;
-  padding-top: calc(var(--space-4xl) + 40px);
+  padding-top: calc(var(--space-4xl));
   padding-bottom: var(--space-4xl);
 }
 
