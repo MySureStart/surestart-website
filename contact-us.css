@@ -98,7 +98,7 @@
 }
 
 .contact-hero-subtitle {
-  font-size: clamp(14px, 1.6vw, 18px);
+  font-size: var(--text-lg);
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
@@ -108,10 +108,21 @@
   text-align: center;
 }
 
+/* Hero Actions */
+.hero-actions {
+  display: flex;
+  gap: clamp(12px, 2vw, 16px);
+  margin: 0;
+  margin-top: var(--space-xl);
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 5;
+}
+
 /* Contact Form Section */
 .contact-form-section {
   background: white;
-  padding: var(--space-5xl) 0;
+  padding: var(--space-4xl) 0;
 }
 
 .contact-form-container {
@@ -296,7 +307,7 @@
 }
 
 .contact-info-header {
-  text-align: left;
+  text-align: center;
 }
 
 .info-title {
@@ -315,8 +326,8 @@
 
 /* Contact Info Cards */
 .contact-info-cards {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-lg);
 }
 
@@ -488,7 +499,7 @@
 /* FAQ Section */
 .faq-section {
   background: var(--surface-secondary);
-  padding: var(--space-5xl) 0;
+  padding: var(--space-4xl) 0;
 }
 
 .faq-container {
@@ -583,7 +594,7 @@
 
 @media (max-width: 768px) {
   .contact-hero {
-    padding: 60px 0 40px;
+    padding: 100px 0 40px;
     min-height: 50vh;
   }
   
@@ -597,7 +608,7 @@
   
   .contact-form-section,
   .faq-section {
-    padding: var(--space-4xl) 0;
+    padding: var(--space-3xl) 0;
   }
   
   .form-section {
@@ -610,6 +621,7 @@
   }
   
   .contact-info-cards {
+    grid-template-columns: 1fr;
     gap: var(--space-md);
   }
   
@@ -657,7 +669,7 @@
   
   .contact-form-section,
   .faq-section {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-2xl) 0;
   }
   
   .form-section {

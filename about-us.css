@@ -43,37 +43,39 @@
   padding: 0 var(--space-lg);
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
   min-height: 30vh;
+  left: -15px;
 }
 
 .hero-content-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-xl);
-  align-items: center;
-  justify-items: center;
-  width: 100%;
-  max-width: 800px;
+  align-items: flex-start;
+  min-height: 30vh;
+  padding: 0;
+  justify-items: start;
 }
 
 .hero-text-section {
   display: flex;
   flex-direction: column;
   gap: var(--space-2xl);
-  text-align: center;
-  width: 100%;
+  max-width: 85%;
+  text-align: left;
 }
 
 .about-hero-title {
   font-size: clamp(28px, 4.8vw, 56px);
-  line-height: 1.1;
-  margin: 0;
   font-weight: 800;
+  line-height: 1.1;
   color: white;
+  margin: 0;
+  flex-direction: column;
+  gap: var(--space-sm);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
+  max-width: 650px;
 }
 
 .title-highlight {
@@ -86,32 +88,31 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -15px;
-  height: 20px;
+  bottom: -20px;
+  height: 14px;
   background-image: url('static/images/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  transform: translateY(50%) scaleX(25) scaleY(25) rotate(5deg);
+  transform: translateY(50%) translateX(10%) scaleX(42) scaleY(26) rotate(5deg);
   background-position: center bottom;
   opacity: 0.9;
   z-index: 1;
 }
 
 .about-hero-subtitle {
-  font-size: clamp(14px, 1.6vw, 16px);
-  line-height: 1.6;
+  font-size: var(--text-xl);
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
   font-weight: 400;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  max-width: 800px;
-  text-align: center;
+  max-width: 900px;
 }
 
 /* Our Story Section */
 .our-story {
   background: white;
-  padding: var(--space-5xl) 0;
+  padding: var(--space-4xl) 0;
 }
 
 .our-story-container {
@@ -153,7 +154,7 @@
 /* News & Recognition Section */
 .news-recognition {
   background: var(--surface-secondary);
-  padding: var(--space-5xl) 0;
+  padding: var(--space-3xl) 0;
 }
 
 .news-recognition-container {
@@ -410,7 +411,7 @@
 /* Podcasts Section */
 .podcasts-section {
   background: var(--surface-secondary);
-  padding: var(--space-5xl) 0;
+  padding: var(--space-3xl) 0;
 }
 
 .podcasts-container {
@@ -606,7 +607,7 @@
 /* Meet the Founder Section */
 .meet-founder {
   background: white;
-  padding: var(--space-5xl) 0;
+  padding: var(--space-4xl) 0;
 }
 
 .founder-container {
@@ -678,7 +679,7 @@
 /* Our Team Section */
 .our-team {
   background: var(--surface-secondary);
-  padding: var(--space-5xl) 0;
+  padding: var(--space-3xl) 0;
 }
 
 .team-container {
@@ -858,11 +859,14 @@
   }
   
   .our-story,
+  .meet-founder {
+    padding: var(--space-3xl) 0;
+  }
+  
   .news-recognition,
   .podcasts-section,
-  .meet-founder,
   .our-team {
-    padding: var(--space-4xl) 0;
+    padding: var(--space-2xl) 0;
   }
   
   .logo-marquee {
@@ -961,7 +965,7 @@
   .podcasts-section,
   .meet-founder,
   .our-team {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-2xl) 0;
   }
   
   .accolade-item {
