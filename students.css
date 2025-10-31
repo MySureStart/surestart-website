@@ -9,11 +9,11 @@
 
 .students-hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('static/images/AISTUDENTSHOWCASE-05639.jpg') center/cover no-repeat;
+  background: url('static/images/Hero\ -\ Students.jpeg') center/cover no-repeat;
   padding: 120px 0 60px;
 }
 

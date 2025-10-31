@@ -3,11 +3,11 @@
 /* Hero Section */
 .higher-ed-hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('static/images/AISTUDENTSHOWCASE-05639.jpg') center/cover no-repeat;
+  background: url('static/images/impact-stories-hero-mirrored.jpg') center 25%/cover no-repeat;
   padding: 120px 0 60px;
 }
 
@@ -65,7 +65,7 @@
   gap: var(--space-2xl) var(--space-xl);
   text-align: left;
   width: 100%;
-  margin-top: -40px;
+  margin-top: -75px;
   align-items: end;
 }
 
@@ -110,10 +110,11 @@
   margin: 0;
   font-weight: 400;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  max-width: 520px;
+  max-width: 580px;
   text-align: left;
   grid-column: 1;
   grid-row: 2;
+  padding-top: 25px;
 }
 
 .hero-actions {
@@ -128,6 +129,7 @@
   justify-self: end;
   margin-left: var(--space-xl);
   margin-right: -600px;
+  padding-top: 30px;
 }
 
 /* How We Work Section */

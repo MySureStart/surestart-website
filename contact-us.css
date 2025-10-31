@@ -3,11 +3,12 @@
 /* Hero Section */
 .contact-hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 60vh;
+  max-height: 60vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('static/images/AISTUDENTSHOWCASE-05639.jpg') center 80%/cover no-repeat;
+  background: url('static/images/Hero\ -\ Contact\ Us.jpg') center 40%/cover no-repeat;
   padding: 120px 0 60px;
 }
 
@@ -44,7 +45,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   min-height: 30vh;
 }
 
@@ -59,11 +59,13 @@
 }
 
 .hero-text-section {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2xl);
-  text-align: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--space-xl) var(--space-xl);
+  text-align: left;
   width: 100%;
+  align-items: end;
 }
 
 .contact-hero-title {
@@ -73,7 +75,10 @@
   font-weight: 800;
   color: white;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
+  text-align: left;
+  max-width: 700px;
+  grid-column: 1 / -1;
+  grid-row: 1;
 }
 
 .title-highlight {
@@ -85,38 +90,45 @@
   content: '';
   position: absolute;
   left: 0;
-  right: 0;
   bottom: -15px;
+  width: 100%;
   height: 20px;
   background-image: url('static/images/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  transform: translateY(50%) scaleX(20) scaleY(25) rotate(5deg);
-  background-position: center bottom;
+  transform: translateY(50%) translateX(10%) scaleX(20) scaleY(30) rotate(5deg);
+  background-position: left bottom;
   opacity: 0.9;
   z-index: 1;
 }
 
 .contact-hero-subtitle {
-  font-size: var(--text-lg);
-  line-height: 1.6;
+  font-size: var(--text-xl);
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
   font-weight: 400;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  max-width: 800px;
-  text-align: center;
+  max-width: 520px;
+  text-align: left;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 /* Hero Actions */
 .hero-actions {
   display: flex;
-  gap: clamp(12px, 2vw, 16px);
-  margin: 0;
-  margin-top: var(--space-xl);
+  gap: var(--space-sm);
+  justify-content: flex-start;
   flex-wrap: wrap;
-  justify-content: center;
+  align-self: center;
+  margin-top: 0;
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+  margin-left: var(--space-xl);
   z-index: 5;
+  margin-right: -600px;
 }
 
 /* Contact Form Section */
@@ -598,12 +610,35 @@
     min-height: 50vh;
   }
   
+  .hero-text-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    text-align: center;
+    align-items: center;
+  }
+  
   .contact-hero-title {
     font-size: clamp(36px, 6vw, 60px);
+    text-align: center;
+    grid-column: unset;
+    grid-row: unset;
   }
   
   .contact-hero-subtitle {
     font-size: clamp(16px, 2vw, 20px);
+    text-align: center;
+    max-width: 100%;
+    grid-column: unset;
+    grid-row: unset;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+    justify-self: unset;
+    margin-left: 0;
+    grid-column: unset;
+    grid-row: unset;
   }
   
   .contact-form-section,

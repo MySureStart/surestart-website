@@ -1670,4 +1670,98 @@
   `;
   document.head.appendChild(keyboardStyles);
 
+  // ==========================================
+  // DROPDOWN NAVIGATION
+  // ==========================================
+  
+  function initDropdownNavigation() {
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+    
+    dropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+      const menu = dropdown.querySelector('.nav-dropdown-menu');
+      
+      if (!toggle || !menu) return;
+      
+      // Click handler for dropdown toggle
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Close other dropdowns
+        dropdowns.forEach(otherDropdown => {
+          if (otherDropdown !== dropdown) {
+            otherDropdown.classList.remove('active');
+          }
+        });
+        
+        // Toggle current dropdown
+        dropdown.classList.toggle('active');
+      });
+      
+      // Keyboard navigation
+      toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dropdown.classList.toggle('active');
+        } else if (e.key === 'Escape') {
+          dropdown.classList.remove('active');
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          dropdown.classList.add('active');
+          const firstItem = menu.querySelector('.nav-dropdown-item');
+          if (firstItem) firstItem.focus();
+        }
+      });
+      
+      // Handle dropdown menu item navigation
+      const menuItems = menu.querySelectorAll('.nav-dropdown-item');
+      menuItems.forEach((item, index) => {
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextItem = menuItems[index + 1] || menuItems[0];
+            nextItem.focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevItem = menuItems[index - 1] || menuItems[menuItems.length - 1];
+            prevItem.focus();
+          } else if (e.key === 'Escape') {
+            dropdown.classList.remove('active');
+            toggle.focus();
+          }
+        });
+        
+        item.addEventListener('click', () => {
+          dropdown.classList.remove('active');
+        });
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-dropdown')) {
+        dropdowns.forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+      }
+    });
+    
+    // Close dropdowns on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdowns.forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+      }
+    });
+  }
+
+  // Add dropdown initialization to the main init function
+  const originalInit = init;
+  init = function() {
+    originalInit.call(this);
+    initDropdownNavigation();
+  };
+
 })();

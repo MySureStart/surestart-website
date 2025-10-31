@@ -3,11 +3,12 @@
 /* Hero Section */
 .k12-hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('static/images/AISTUDENTSHOWCASE-05639.jpg') center/cover no-repeat;
+  /* Show Isabella*/
+  background: url('static/images/about-us-hero.jpg')  center 30%/cover no-repeat;
   padding: 120px 0 60px;
 }
 
@@ -46,6 +47,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   max-height: 30vh;
+  margin-top: -70px;
 }
 
 .hero-content-grid {
@@ -1029,11 +1031,6 @@
   text-align: center;
   position: relative;
   margin-bottom: 60px;
-}
-
-.partnership-benefits {
-  /* margin-top: var(--space-6xl);
-  margin-bottom: var(--space-6xl); */
 }
 
 .spiral-wrap {
@@ -3787,9 +3784,6 @@
   .partnership-testimonials-rotating .author-title {
     font-size: var(--text-base);
   }
-}
-
-.partnership-testimonials-rotating {
 }
 
 .rotating-quotes-container {

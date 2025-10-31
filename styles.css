@@ -310,6 +310,150 @@ p {
   display: none;
 }
 
+/* ==========================================
+   DROPDOWN NAVIGATION
+   ========================================== */
+
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  letter-spacing: 0.025em;
+  transition: color var(--transition-slow);
+  cursor: pointer;
+  padding: var(--space-sm) 0;
+}
+
+.nav-dropdown-toggle:hover {
+  color: var(--primary-terracotta);
+}
+
+.nav-dropdown-toggle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -50px;
+  height: 180px;
+  background-image: url('static/images/pen-underline.svg');
+  background-repeat: no-repeat;
+  background-size: 200px 100px;
+  transform: scaleX(1) scaleY(1);
+  background-position: center bottom;
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: left center;
+}
+
+.nav-dropdown-toggle:hover::after {
+  opacity: 0.9;
+  transform: scaleX(4) scaleY(4) rotate(38deg);
+  animation: penDraw 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.dropdown-icon {
+  transition: transform var(--transition-normal);
+  width: 12px;
+  height: 12px;
+}
+
+.nav-dropdown.active .dropdown-icon,
+.nav-dropdown:hover .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(250, 249, 246, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-md) 0;
+  min-width: 180px;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-10px);
+  transition: all var(--transition-normal);
+  margin-top: var(--space-sm);
+}
+
+.nav-dropdown.active .nav-dropdown-menu,
+.nav-dropdown:hover .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: var(--space-sm) var(--space-lg);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: var(--text-sm);
+  transition: all var(--transition-fast);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-dropdown-item:hover {
+  background: rgba(102, 72, 64, 0.08);
+  color: var(--ss-accent-1);
+}
+
+.nav-dropdown-item:first-child {
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+.nav-dropdown-item:last-child {
+  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+}
+
+/* Mobile dropdown styles */
+@media (max-width: 768px) {
+  .nav-dropdown-menu {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    padding: 0;
+    margin-top: 0;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+  }
+  
+  .nav-dropdown.active .nav-dropdown-menu {
+    display: block;
+  }
+  
+  .nav-dropdown-item {
+    padding: var(--space-sm) var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  .nav-dropdown-item:last-child {
+    border-bottom: none;
+  }
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -4143,4 +4287,37 @@ p {
     -webkit-text-fill-color: black !important;
     background: none !important;
   }
+}
+
+.nav-highlight {
+  position: relative;
+  color: var(--ss-red) !important;
+  font-weight: 600;
+
+}
+
+.nav-highlight::before {
+  content: 'NEW';
+  position: absolute;
+  top: -18px;
+  right: -15px;
+  background: var(--gradient-primary);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  animation: pulse 2s infinite;
+  z-index: 10;
+}
+
+.nav-highlight:hover {
+  color: var(--ss-accent-1) !important;
+
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
