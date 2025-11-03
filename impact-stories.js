@@ -1686,7 +1686,7 @@ class AccessibilityEnhancements {
 }
 
 // ==========================================
-// DYNAMIC INFINITE TESTIMONIALS CAROUSEL
+// PROFESSIONAL TESTIMONIALS CAROUSEL WITH SEAMLESS LOOP
 // ==========================================
 
 class CaseStudiesCarousel {
@@ -1695,14 +1695,14 @@ class CaseStudiesCarousel {
     this.slides = document.querySelectorAll('.testimonial-case-card');
     this.dots = document.querySelectorAll('.testimonial-dot');
     
-    // Dynamic carousel properties
-    this.currentIndex = 0; // Current slide index (0, 1, 2)
-    this.totalSlides = this.slides.length; // Always 3 real slides
+    // Enhanced carousel properties
+    this.currentIndex = 0;
+    this.realSlidesCount = this.slides.length; // Original 3 slides
+    this.totalSlides = this.realSlidesCount + 1; // 4 slides including clone
     this.isTransitioning = false;
-    this.hasDynamicCard = false;
-    
-    // Store original slide content for dynamic creation
-    this.slideData = Array.from(this.slides).map(slide => slide.outerHTML);
+    this.isResetting = false;
+    this.autoAdvanceInterval = null;
+    this.direction = 'next'; // Track direction for animation states
     
     this.init();
   }
@@ -1713,10 +1713,43 @@ class CaseStudiesCarousel {
       return;
     }
     
-    console.log('Initializing Dynamic Infinite Carousel...');
+    console.log('Initializing Professional Carousel with Seamless Loop...');
+    this.createClonedSlide();
+    this.setupCarousel();
     this.addEventListeners();
     this.updateCarousel();
     this.startAutoAdvance();
+  }
+
+  createClonedSlide() {
+    // Clone the first slide and append to the end for seamless loop
+    const firstSlide = this.slides[0];
+    const clonedSlide = firstSlide.cloneNode(true);
+    clonedSlide.classList.add('cloned-slide');
+    this.track.appendChild(clonedSlide);
+    
+    // Update slides collection to include the clone
+    this.slides = document.querySelectorAll('.testimonial-case-card');
+    console.log(`Created clone slide. Total slides: ${this.slides.length}`);
+  }
+
+  setupCarousel() {
+    // Professional animation setup
+    this.track.style.display = 'flex';
+    this.track.style.width = '400%'; // 4 slides (3 real + 1 clone)
+    this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    
+    // Each slide takes exactly 1/4 of the track width
+    this.slides.forEach((slide, index) => {
+      slide.style.flex = '0 0 25%';
+      slide.style.width = '25%';
+      slide.style.margin = '0 auto';
+      
+      // Set initial animation state
+      if (index === 0) {
+        slide.classList.add('active');
+      }
+    });
   }
 
   addEventListeners() {
@@ -1726,74 +1759,87 @@ class CaseStudiesCarousel {
     
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
-        console.log('Previous button clicked');
+        this.pauseAutoAdvance();
         this.previousSlide();
+        this.resumeAutoAdvance();
       });
     }
     
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
-        console.log('Next button clicked');
+        this.pauseAutoAdvance();
         this.nextSlide();
+        this.resumeAutoAdvance();
       });
     }
 
     // Dot navigation
     this.dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
-        console.log('Dot clicked:', index);
-        this.goToSlide(index);
+        if (index !== this.currentIndex && !this.isTransitioning) {
+          this.pauseAutoAdvance();
+          this.goToSlide(index);
+          this.resumeAutoAdvance();
+        }
       });
     });
 
-    // Touch/swipe support
+    // Touch/swipe support with enhanced momentum
     this.addTouchSupport();
-  }
 
-  startAutoAdvance() {
-    // Clear any existing interval
-    if (this.autoAdvanceInterval) {
-      clearInterval(this.autoAdvanceInterval);
-    }
-    
-    // Auto-advance every 6.5 seconds
-    this.autoAdvanceInterval = setInterval(() => {
-      this.nextSlide();
-    }, 6500);
+    // Pause auto-advance on hover for better UX
+    this.track.addEventListener('mouseenter', () => {
+      this.pauseAutoAdvance();
+    });
+
+    this.track.addEventListener('mouseleave', () => {
+      this.resumeAutoAdvance();
+    });
   }
 
   addTouchSupport() {
     let startX = 0;
     let currentX = 0;
     let isDragging = false;
+    let startTime = 0;
     
     this.track.addEventListener('touchstart', (e) => {
       startX = e.touches[0].clientX;
+      startTime = Date.now();
       isDragging = true;
-      // Temporarily disable auto-advance during touch
-      if (this.autoAdvanceInterval) {
-        clearInterval(this.autoAdvanceInterval);
-      }
-    });
+      this.pauseAutoAdvance();
+      
+      // Disable CSS transitions during drag
+      this.track.style.transition = 'none';
+    }, { passive: true });
     
     this.track.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
-      e.preventDefault();
-      
       currentX = e.touches[0].clientX;
-      const diffX = currentX - startX;
-      const currentTransform = -(this.currentIndex * 100);
-      const dragOffset = (diffX / this.track.offsetWidth) * 100;
       
-      this.track.style.transform = `translateX(${currentTransform + dragOffset}%)`;
-    });
+      // Provide visual feedback during drag
+      const diffX = currentX - startX;
+      const maxDrag = 100; // Limit drag distance
+      const clampedDiff = Math.max(-maxDrag, Math.min(maxDrag, diffX));
+      const currentTransform = -(this.currentIndex * 25); // 25% per slide
+      const newTransform = currentTransform + (clampedDiff / window.innerWidth * 25);
+      
+      this.track.style.transform = `translateX(${newTransform}%)`;
+    }, { passive: true });
     
     this.track.addEventListener('touchend', () => {
       if (!isDragging) return;
       
       isDragging = false;
+      
+      // Re-enable CSS transitions
+      this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      
       const diffX = currentX - startX;
-      const threshold = 50;
+      const deltaTime = Date.now() - startTime;
+      const velocity = Math.abs(diffX) / deltaTime; // px/ms
+      
+      const threshold = velocity > 0.5 ? 30 : 80; // Lower threshold for fast swipes
       
       if (Math.abs(diffX) > threshold) {
         if (diffX > 0) {
@@ -1802,198 +1848,173 @@ class CaseStudiesCarousel {
           this.nextSlide();
         }
       } else {
+        // Snap back to current position
         this.updateCarousel();
       }
       
-      // Restart auto-advance after touch interaction
-      this.startAutoAdvance();
-    });
+      this.resumeAutoAdvance();
+    }, { passive: true });
   }
 
   goToSlide(targetIndex) {
-    if (this.isTransitioning) return;
+    if (this.isTransitioning || this.isResetting) return;
     
-    console.log('Going to slide:', targetIndex);
+    const prevIndex = this.currentIndex;
     this.currentIndex = targetIndex;
-    this.cleanupDynamicCard();
+    
+    // Determine direction for animation
+    this.direction = targetIndex > prevIndex ? 'next' : 'prev';
+    
     this.updateCarousel();
   }
 
   nextSlide() {
-    if (this.isTransitioning) return;
+    if (this.isTransitioning || this.isResetting) return;
     
-    console.log('Next button clicked - moving from position:', this.currentIndex);
     this.isTransitioning = true;
+    this.direction = 'next';
     
-    if (this.currentIndex === this.totalSlides - 1) {
-      // We're at the last slide, need to create infinite forward animation
-      this.createInfiniteForwardAnimation();
+    // Move to next slide
+    this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+    
+    // Check if we need to do seamless loop reset
+    if (this.currentIndex === this.realSlidesCount) {
+      // We're at the cloned first slide, prepare for seamless reset
+      this.updateCarousel();
+      
+      // After animation completes, seamlessly reset to first slide
+      setTimeout(() => {
+        this.performSeamlessReset();
+      }, 900); // Match CSS transition duration
     } else {
-      // Normal forward slide
-      this.currentIndex++;
+      // Normal transition - just update carousel position
       this.updateCarousel();
       
       setTimeout(() => {
         this.isTransitioning = false;
-      }, 600);
+      }, 900); // Match CSS transition duration
     }
   }
 
   previousSlide() {
-    if (this.isTransitioning) return;
+    if (this.isTransitioning || this.isResetting) return;
     
-    console.log('Previous button clicked - moving from position:', this.currentIndex);
     this.isTransitioning = true;
+    this.direction = 'prev';
     
-    if (this.currentIndex === 0) {
-      // We're at the first slide, need to create infinite backward animation
-      this.createInfiniteBackwardAnimation();
-    } else {
-      // Normal backward slide
-      this.currentIndex--;
-      this.updateCarousel();
-      
-      setTimeout(() => {
-        this.isTransitioning = false;
-      }, 600);
-    }
-  }
-
-  createInfiniteForwardAnimation() {
-    // Clean up any existing dynamic card
-    this.cleanupDynamicCard();
+    // Move to previous slide
+    this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
     
-    // Create dynamic next card (first slide's content)
-    const nextCardIndex = 0; // Loop back to first slide
-    this.addDynamicCard(nextCardIndex);
+    this.updateCarousel();
     
-    // Animate to the dynamic card position
-    const targetPosition = -(this.totalSlides * 100); // -300% for 4th position
-    this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    this.track.style.transform = `translateX(${targetPosition}%)`;
-    
-    // After animation completes, cleanup and reset
     setTimeout(() => {
-      this.cleanupDynamicCard();
-      this.currentIndex = nextCardIndex;
-      this.resetToPosition();
       this.isTransitioning = false;
-    }, 650); // Slightly longer than CSS transition
+    }, 900); // Match CSS transition duration
   }
 
-  createInfiniteBackwardAnimation() {
-    // Clean up any existing dynamic card
-    this.cleanupDynamicCard();
+  performSeamlessReset() {
+    this.isResetting = true;
     
-    // Create dynamic previous card (last slide's content) at the beginning
-    const prevCardIndex = this.totalSlides - 1; // Last slide
-    this.addDynamicCardAtBeginning(prevCardIndex);
-    
-    // Instantly position track to show current first slide (which is now at position 1)
+    // Temporarily disable transitions
     this.track.style.transition = 'none';
-    this.track.style.transform = 'translateX(-100%)';
     
-    // Small delay to ensure instant positioning takes effect
-    setTimeout(() => {
-      // Now animate to the dynamic card at position 0
-      this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      this.track.style.transform = 'translateX(0%)';
-      
-      // After animation completes, cleanup and reset
-      setTimeout(() => {
-        this.cleanupDynamicCard();
-        this.currentIndex = prevCardIndex;
-        this.resetToPosition();
-        this.isTransitioning = false;
-      }, 650);
-    }, 50);
-  }
-
-  addDynamicCard(slideIndex) {
-    // Create a new card element with the specified slide content
-    const slideHtml = this.slideData[slideIndex];
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = slideHtml;
-    const dynamicCard = tempDiv.firstElementChild;
-    
-    // Mark it as dynamic for easy cleanup
-    dynamicCard.classList.add('dynamic-card');
-    
-    // Append to track
-    this.track.appendChild(dynamicCard);
-    this.hasDynamicCard = true;
-    
-    console.log('Added dynamic card for slide:', slideIndex);
-  }
-
-  addDynamicCardAtBeginning(slideIndex) {
-    // Create a new card element with the specified slide content
-    const slideHtml = this.slideData[slideIndex];
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = slideHtml;
-    const dynamicCard = tempDiv.firstElementChild;
-    
-    // Mark it as dynamic for easy cleanup
-    dynamicCard.classList.add('dynamic-card');
-    
-    // Prepend to track
-    this.track.insertBefore(dynamicCard, this.track.firstElementChild);
-    this.hasDynamicCard = true;
-    
-    console.log('Added dynamic card at beginning for slide:', slideIndex);
-  }
-
-  cleanupDynamicCard() {
-    if (this.hasDynamicCard) {
-      const dynamicCards = this.track.querySelectorAll('.dynamic-card');
-      dynamicCards.forEach(card => card.remove());
-      this.hasDynamicCard = false;
-      console.log('Cleaned up dynamic cards');
-    }
-  }
-
-  resetToPosition() {
-    // Reset to show the current slide at its normal position
-    this.track.style.transition = 'none';
-    this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+    // Reset to first slide instantly
+    this.currentIndex = 0;
+    const translateX = -(this.currentIndex * 25);
+    this.track.style.transform = `translateX(${translateX}%)`;
     
     // Re-enable transitions after a brief delay
-    setTimeout(() => {
-      this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    }, 50);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        this.isResetting = false;
+        this.isTransitioning = false;
+        
+        // Update dots to reflect real slide position
+        this.updateDots();
+        
+        console.log('Seamless loop reset completed');
+      });
+    });
+  }
+
+  applySlideAnimations(slideIndex, animationClass) {
+    // Clear all animation classes
+    this.slides.forEach(slide => {
+      slide.classList.remove('active', 'slide-in-next', 'slide-in-prev', 'slide-out-next', 'slide-out-prev');
+    });
     
-    this.updateDots();
+    // Apply new animation class
+    if (this.slides[slideIndex]) {
+      this.slides[slideIndex].classList.add(animationClass);
+    }
   }
 
   updateCarousel() {
     if (!this.track) return;
     
-    // Account for 100px gap between cards
-    const gapOffset = this.currentIndex * 100; // 100px gap per card position
-    const transform = -(this.currentIndex * 100);
-    const finalTransform = transform - (gapOffset / this.track.offsetWidth * 100);
+    // Ensure CSS transitions are enabled for smooth sliding
+    if (this.track.style.transition === 'none') {
+      this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }
     
-    console.log('Updating carousel - current index:', this.currentIndex, 'transform:', finalTransform + '%');
+    // Calculate transform to show current slide
+    const translateX = -(this.currentIndex * 25); // 25% per slide for 4-slide track
     
-    this.track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    this.track.style.transform = `translateX(${finalTransform}%)`;
+    console.log(`Updating carousel - slide ${this.currentIndex + 1}/${this.totalSlides}, transform: ${translateX}%`);
+    
+    // Force reflow to ensure animation occurs
+    this.track.offsetHeight;
+    
+    // Apply the transform to trigger smooth sliding animation
+    this.track.style.transform = `translateX(${translateX}%)`;
     
     this.updateDots();
   }
 
   updateDots() {
-    // Update dot indicators to match current slide
+    // Update dots based on real slide index (accounting for clone)
+    const realIndex = this.currentIndex >= this.realSlidesCount ? 0 : this.currentIndex;
+    
     this.dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === this.currentIndex);
+      dot.classList.toggle('active', index === realIndex);
     });
   }
 
-  destroy() {
-    // Clean up event listeners and intervals
+  startAutoAdvance() {
+    this.pauseAutoAdvance(); // Clear any existing interval
+    
+    // Auto-advance every 5 seconds with professional timing
+    this.autoAdvanceInterval = setInterval(() => {
+      if (!this.isTransitioning && !this.isResetting) {
+        this.nextSlide();
+      }
+    }, 5000);
+  }
+
+  pauseAutoAdvance() {
     if (this.autoAdvanceInterval) {
       clearInterval(this.autoAdvanceInterval);
+      this.autoAdvanceInterval = null;
     }
-    this.cleanupDynamicCard();
+  }
+
+  resumeAutoAdvance() {
+    // Resume after 3 seconds to give user time to interact
+    this.pauseAutoAdvance(); // Clear any pending resume
+    setTimeout(() => {
+      if (!this.isTransitioning && !this.isResetting) {
+        this.startAutoAdvance();
+      }
+    }, 3000);
+  }
+
+  destroy() {
+    this.pauseAutoAdvance();
+    
+    // Clean up event listeners
+    this.track.removeEventListener('mouseenter', this.pauseAutoAdvance);
+    this.track.removeEventListener('mouseleave', this.resumeAutoAdvance);
   }
 }
 
