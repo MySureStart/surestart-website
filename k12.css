@@ -1777,6 +1777,10 @@
   text-align: left;
 }
 
+.success-achievements .achievement-card:nth-child(1) {
+  max-height: 550px;
+}
+
 .success-achievements .achievement-card:nth-child(3) .achievement-icon {
   margin: 0;
   flex-shrink: 0;
@@ -1798,6 +1802,22 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   object-fit: cover;
   transition: all var(--transition-normal);
+}
+
+/* Full-width top positioned images for vertical cards */
+.achievement-image-full-top {
+  top: 6px; /* Position below the gradient line */
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.achievement-image-full-top img {
+  width: 100%;
+  height: 140px;
+  border-radius: var(--border-radius-2xl) var(--border-radius-2xl) 0 0;
+  border: none;
+  object-fit: cover;
 }
 
 /* Top-right positioned images for vertical cards */
@@ -1950,6 +1970,22 @@
 }
 
 /* Achievement Content */
+.achievement-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* Add top padding for cards with full-width top images */
+.achievement-card .achievement-image-full-top ~ .achievement-content,
+.success-achievements .achievement-card:first-child .achievement-content,
+.success-achievements .achievement-card:nth-child(2) .achievement-content {
+  padding-top: 120px; /* Account for 140px image height + spacing */
+}
+
+.success-achievements .achievement-card:nth-child(3) .achievement-content .achievement-description {
+  margin-bottom: 80px; /* Account for 140px image height + spacing */
+}
+
 .achievement-content h3 {
   font-size: var(--text-xl);
   font-weight: 800;
@@ -1976,7 +2012,6 @@
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: 50px;
 }
 
 /* Achievement Divider & Icons */
@@ -1993,7 +2028,7 @@
 }
 
 .achievement-icons {
-  position: absolute;
+  position: fixed;
   bottom: var(--space-lg);
   left: 0;
   right: 0;
@@ -3190,20 +3225,48 @@
   transform: translate(-50%, -50%) translate(0, 0) scale(1);
 }
 
-.spiral-wrap .svg-container {
-  width:  500px;
-  height:  500px;
+.spiral-wrap .image-container {
+  width: 500px;
+  height: 500px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* small helper to make the SVG scale perfectly */
-.spiral-wrap svg { 
+/* Benefits image styling */
+.spiral-wrap .benefits-image { 
   width: 100%; 
-  height: auto; 
+  height: 100%; 
+  object-fit: contain;
   display: block; 
+  transition: transform 0.3s ease;
+}
+
+/* Image overlay text positioned over the center of the image */
+.spiral-wrap .image-overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  pointer-events: none;
+  z-index: 10;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.spiral-wrap .overlay-line {
+  display: block;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+
+.spiral-wrap .overlay-line.main-text {
+  font-size: 38px;
+  font-weight: 800;
 }
 
 /* Define CSS custom properties for the spiral */

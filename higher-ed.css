@@ -295,6 +295,22 @@
   transition: all var(--transition-normal);
 }
 
+/* Full-width top positioned images for vertical cards */
+.achievement-image-full-top {
+  top: 6px; /* Position below the gradient line */
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.achievement-image-full-top img {
+  width: 100%;
+  height: 140px;
+  border-radius: var(--border-radius-2xl) var(--border-radius-2xl) 0 0;
+  border: none;
+  object-fit: cover;
+}
+
 /* Top-right positioned images for vertical cards */
 .achievement-image-top-right {
   top: var(--space-lg);
@@ -397,6 +413,13 @@
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+/* Add top padding for cards with full-width top images */
+.achievement-card .achievement-image-full-top ~ .achievement-content,
+.success-achievements .achievement-card:first-child .achievement-content,
+.success-achievements .achievement-card:nth-child(2) .achievement-content {
+  padding-top: 120px; /* Account for 140px image height + spacing */
 }
 
 /* Achievement Content */
