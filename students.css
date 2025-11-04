@@ -1960,3 +1960,127 @@
     border: 2px solid var(--text-primary);
   }
 }
+
+/* ==========================================
+   IMPACT CTA SECTION - HORIZONTAL LAYOUT
+   ========================================== */
+
+.impact-cta {
+  background: linear-gradient(135deg,
+    var(--surface) 0%,
+    var(--surface-white) 50%,
+    var(--surface) 100%
+  );
+  padding: var(--space-4xl) 0;
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.impact-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 182, 95, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(237, 124, 75, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.impact-cta .cta-container {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.impact-cta .cta-content {
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2xl);
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.impact-cta .cta-content::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 3%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-full);
+}
+
+.impact-cta .spotlight-title {
+  font-size: var(--text-4xl);
+  color: var(--ss-accent-1);
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 700;
+  flex: 1;
+  max-width: 60%;
+}
+
+.impact-cta .cta-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  margin-bottom: 0px;
+}
+
+.impact-cta .cta-actions .btn {
+  padding: var(--space-md) var(--space-2xl);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  border-radius: var(--border-radius-full);
+  transition: all 0.3s ease-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.impact-cta .cta-actions .btn-primary {
+  background: var(--gradient-button);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 16px rgba(231, 48, 82, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-cta .cta-actions .btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.impact-cta .cta-actions .btn-primary:hover::before {
+  left: 100%;
+}
+
+.impact-cta .cta-actions .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(231, 48, 82, 0.35);
+}
+
+.impact-cta .cta-actions .btn-primary:focus-visible {
+  outline: 3px solid var(--brand-yellow);
+  outline-offset: 2px;
+}

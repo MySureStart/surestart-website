@@ -1176,13 +1176,13 @@
   function animateSpiralNodes(spiralWrap) {
     const spiralNodes = spiralWrap.querySelectorAll('.spiral-animate');
     
-    // Define the animation order based on clockwise position
+    // Define the animation order based on desired bounce-in sequence
     const animationOrder = [
-      'top',           // 0° - first
-      'top-right',     // 72° - second  
-      'bottom-right',  // 144° - third
-      'bottom-left',   // 216° - fourth
-      'top-left'       // 288° - fifth
+      'bottom-right',  // Enrichment Value - first
+      'bottom-left',   // Flexible Delivery Models - second  
+      'top-right',     // Curriculum Alignment - third
+      'top-left',      // School-Wide Visibility - fourth
+      'top'            // Professional Development in AI - fifth
     ];
     
     spiralNodes.forEach((node, index) => {

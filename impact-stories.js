@@ -186,7 +186,7 @@ class StudentNetworkWeb {
         name: 'Netra Ramesh',
         program: '2021 trainee',
         quote: 'My life changed because of the MIT FutureMaker program! I\'ve never been so passionate about my future — the program gave me a chance to learn, communicate with people I wanted to be like, and experience a formal and organized community like SureStart. I\'ve searched far and wide and I\'ve only found Surestart to provide a FREE program that provides a mentor and multiple benefits. I would most definitely recommend this program — it changed my vision and focus for the future!',
-        image: 'https://mysurestart.com/s/Netra-Ramesh.jpg',
+        image: 'static/images/students-headshots/Netra Ramesh.png',
         size: 'large',
         color: '#E7304E' // ss-red
       },
@@ -195,7 +195,7 @@ class StudentNetworkWeb {
         name: 'Ammran H Mohamed',
         program: '2021-2022 trainee',
         quote: 'Thank you so much SureStart! From the mentorship provided to the coding gym, you all have helped me enhance my skills and showed me ways to continue to strengthen them well after the programs. I never hesitated to reach out to you whether it was resume help or for guidance on what interviewers want to see. Because of your endless support, I\'ve been able to surprise myself with my work and achievements and you all have helped me reach goals I\'ve set for myself! Because I only have just over 1.5 years of coding experience, I\'ve struggled so much with my internship search. However, with your help I\'ve received offers for roles at the top of my list!',
-        image: 'https://mysurestart.com/s/Amman.jpeg',
+        image: 'static/images/students-headshots/Ammran Mohamed.png',
         size: 'extra-large',
         color: '#ED7C4B' // ss-orange
       },
@@ -204,7 +204,7 @@ class StudentNetworkWeb {
         name: 'Ashmita Kumar',
         program: '2021 trainee',
         quote: 'This program has been truly amazing. StartStart\'s passion really does show through and the experience you created is unforgettable. My team could not have made the app without your support and guidance. You gave me the tools to design a solution to a problem close to my heart, and I really can\'t thank you enough.',
-        image: 'https://mysurestart.com/s/Ashmita-Kumar.jfif',
+        image: 'static/images/students-headshots/Ashmita Kumar.png',
         size: 'medium',
         color: '#FFB65F' // ss-yellow
       },
@@ -213,7 +213,7 @@ class StudentNetworkWeb {
         name: 'Milan Ferus-Comelo',
         program: '2021 trainee',
         quote: 'Thank you VERY, VERY much for organizing such an amazing program! I\'m incredibly honored to be part of such a tightly-knit community and marvel at how far we\'ve come and how much we have learned. I hope we stay in touch!',
-        image: 'https://mysurestart.com/s/Milan-Ferus-Comelo.jfif',
+        image: 'static/images/students-headshots/Milan Ferus-Comelo.png',
         size: 'small',
         color: '#EE2D6E' // ss-pink
       },
@@ -222,7 +222,7 @@ class StudentNetworkWeb {
         name: 'Nouran Ali',
         program: '2021 trainee',
         quote: 'Being a student in the SureStart program boosted my skills and resume and helped me to get job offers and interviews at reputable companies. During the program, the live sessions introduced new topics like CV writing and interview skills, career coaching, other advanced DL topics and more. I\'m glad that I was a part of this program and I encourage all students to apply, it\'s a great opportunity!',
-        image: 'https://mysurestart.com/s/Nouran-Ali.jpg',
+        image: 'static/images/students-headshots/Nouran Ali.png',
         size: 'medium',
         color: '#E7304E' // ss-red
       },
@@ -231,7 +231,7 @@ class StudentNetworkWeb {
         name: 'Jed Rendo Margarcia',
         program: '2021 & 2022 trainee',
         quote: 'I love the fact that the SureStart program is heavily project-based learning. I am able to apply it to future projects instead of just learning the theory behind certain algorithms. I\'m excited to compete in the Create-a-thon so that I can apply what I have learned to projects that could potentially help others and put those learnings into practice.',
-        image: 'https://mysurestart.com/s/Jed-Rendo-Margarcia.jfif',
+        image: 'static/images/students-headshots/Jed Rendo M.png',
         size: 'large',
         color: '#ED7C4B' // ss-orange
       },
@@ -240,7 +240,7 @@ class StudentNetworkWeb {
         name: 'Sarah Tran',
         program: '2020 trainee',
         quote: 'In between the daily curriculum which helps to keep me on track, the fun webinars/chats intertwined that have helped to inspire me to persevere throughout these courses, and my amazing mentor, I have really been enjoying my EMPath experience so far! Thank you for everything you have done to help build such an exciting program. Looking forward to the makeathon phase!',
-        image: 'https://mysurestart.com/s/Sarah-Tran.jfif',
+        image: 'static/images/students-headshots/Sarah Tran.png',
         size: 'small',
         color: '#FFB65F' // ss-yellow
       },
@@ -249,7 +249,7 @@ class StudentNetworkWeb {
         name: 'Vitaliy Stephanov',
         program: '2021 trainee',
         quote: 'SureStart helped prepare me with the skills I needed to become a Software Development Engineer at Amazon Web Services. Amazon takes leadership principles very seriously. I learned how to be a leader from 14 tech talks and the unique entrepreneurial makeathon. Designing and implementing an IoT device provided valuable resume experience and behavioral interview stories. I am now on a IoT team at AWS that impacts billions of devices.',
-        image: 'https://mysurestart.com/s/Vitaliy-S.jpg',
+        image: 'static/images/students-headshots/Vitaliy Stepanov.png',
         size: 'extra-large',
         color: '#EE2D6E' // ss-pink
       },
@@ -258,7 +258,7 @@ class StudentNetworkWeb {
         name: 'Ashna Khetan',
         program: '2020 trainee',
         quote: 'Thank you so much for the amazing opportunity to join this 5 week program. I\'ve learned so much — not just limited to machine learning and coding, but also about how to market myself in the tech world, the necessity for inclusivity in tech workplaces, and how to lead a happy, successful life in general. This program was certainly the highlight of my summer.',
-        image: 'https://mysurestart.com/s/Ashna-Khetan.jfif',
+        image: 'static/images/students-headshots/Ashna Khetan.png',
         size: 'medium',
         color: '#E7304E' // ss-red
       },
@@ -267,7 +267,7 @@ class StudentNetworkWeb {
         name: 'Walee Attia',
         program: '2020 trainee',
         quote: 'I really enjoyed learning about computer vision, and working with Affectiva\'s SDK to build the eye closure detector — beyond cool. I\'m grateful to have been inspired by your mentorship and advice throughout the 5 week program. My team\'s presentation really benefited a lot from the tips you gave us and were able to polish up our prototype. Lastly, my mentor was amazing! He often went out of his way to help us or reached out to share other resources that he thought could help us navigate some issues. He also worked around our team\'s time differences even when it was clearly inconvenient to his schedule.',
-        image: 'https://mysurestart.com/s/Walee-Attia.jfif',
+        image: 'static/images/students-headshots/Walee Attia.png',
         size: 'small',
         color: '#ED7C4B' // ss-orange
       },
@@ -276,7 +276,7 @@ class StudentNetworkWeb {
         name: 'Hadeel Mabrouk',
         program: '2020 trainee',
         quote: 'It has been an honor and a pleasure being part of the EMPath program this year. It\'s actually one of the most important highlights of this year for me. Thank you so much for your tremendous support and encouragement since day 1! I so much hope our paths will cross again one day. :)',
-        image: 'https://mysurestart.com/s/Hadeel-Mabrouk.jfif',
+        image: 'static/images/students-headshots/Hadeel Mabrouk.png',
         size: 'medium',
         color: '#FFB65F' // ss-yellow
       },
@@ -285,7 +285,7 @@ class StudentNetworkWeb {
         name: 'Wilder Crosier',
         program: '2020 trainee',
         quote: 'Thank you so much for organizing such an incredible program. I had no idea what I would do this July, I thought I would just be stuck at home. EMPath was a really incredible opportunity to offer all of us students a chance to learn technical skills, meet interesting people, and experience a little bit of what it\'s like to be in a start-up and design a product. The SureStart team was so kind and welcoming to everyone, and for our group specifically, your support in our meetings gave us a clear understanding of what we were doing.',
-        image: 'https://mysurestart.com/s/Wilder-Crosier.jfif',
+        image: 'static/images/students-headshots/Alexander Wilder Crosier.png',
         size: 'extra-small',
         color: '#EE2D6E' // ss-pink
       },
@@ -294,7 +294,7 @@ class StudentNetworkWeb {
         name: 'Roberto Martinez',
         program: '2020 trainee',
         quote: 'Taking part in the EMPath program was an incredible and very insightful experience. I will make sure to put everything I learned to good use. I would just once again like to thank SureStart for everything you did during these past 5-6 weeks and I hope we can remain in contact.',
-        image: 'https://mysurestart.com/s/Roberto-Martinez.jpg',
+        image: 'static/images/students-headshots/Roberto Martinez.png',
         size: 'large',
         color: '#E7304E' // ss-red
       },
@@ -303,7 +303,7 @@ class StudentNetworkWeb {
         name: 'Catherine Lu',
         program: '2020 trainee',
         quote: 'The SureStart program was such a great experience, and I\'m so thankful to have been able to attend. Our team is extremely grateful for the positive responses we received towards Introspect. We were very passionate about this project from the beginning of the Makeathon, and we would love to pursue this idea further into a full-fledged product!',
-        image: 'https://mysurestart.com/s/Catherine-Lu.jfif',
+        image: 'static/images/students-headshots/Catherine Lu.png',
         size: 'small',
         color: '#ED7C4B' // ss-orange
       },
@@ -312,7 +312,7 @@ class StudentNetworkWeb {
         name: 'Eli Gnesin',
         program: '2021 trainee',
         quote: 'I\'ve learned a lot of the ins and outs of neural networks in Phase 1, which I enjoyed and which will help me in a wide variety of applications. I\'m excited for the Makeathon to put what we\'ve learned into practice and solve a new and exciting problem.',
-        image: 'https://mysurestart.com/s/Eli-Gnesin.jfif',
+        image: 'static/images/students-headshots/Eli Gnesin.png',
         size: 'medium',
         color: '#FFB65F' // ss-yellow
       },
@@ -321,7 +321,7 @@ class StudentNetworkWeb {
         name: 'Alexa Urrea',
         program: '2021 trainee',
         quote: 'SureStart dramatically and directly impacted my life. Before this program, I had no idea I wanted to be involved in the tech community like I do now. Thanks to SureStart, I found a real passion in computer science and in Artificial Intelligence specifically. It helped me land my first ever internship with a great company as a machine learning intern. I would not have found this passion and I definitely would not have these career doors open without SureStart. Thank you so much for your support and believing in all of us!',
-        image: 'https://mysurestart.com/s/Alexa-Urrea.jpg',
+        image: 'static/images/students-headshots/Alexa Urrea.png',
         size: 'extra-large',
         color: '#EE2D6E' // ss-pink
       },
@@ -330,7 +330,7 @@ class StudentNetworkWeb {
         name: 'Jonathan Williams',
         program: '2021 trainee',
         quote: 'The SureStart program was truly transformative. The course curriculum and mentor guidance allowed me to gain a deep understanding of ML. Moreover, the program connected me with a fulfilling ML internship opportunity. I simply cannot recommend this program enough!',
-        image: 'https://mysurestart.com/s/Jonathan-Williams.jpg',
+        image: 'static/images/students-headshots/Jonathan Williams.png',
         size: 'large',
         color: '#E7304E' // ss-red
       },
@@ -339,7 +339,7 @@ class StudentNetworkWeb {
         name: 'Sahana Sreeram',
         program: '2021 trainee',
         quote: 'The SureStart summer program was the most impactful technology experience that I have had so far. It combined hands-on applied machine learning concepts with a unique focus on AI ethics, and culminated with an incredible showcase of the team-created projects. The caliber of members of the program and the quality of ideas in the final presentations blew me away, and I felt that each and every one of the final team products had the potential to change the world. The program taught me some important life skills as well - the art of storytelling, how to work collaboratively in a virtual setting, and how to create lasting relationships with mentors. I\'m so thankful to SureStart for providing me with this wonderful opportunity.',
-        image: 'https://mysurestart.com/s/Sahana-Sreeram.jpg',
+        image: 'static/images/students-headshots/Sahana Sreeram.png',
         size: 'extra-small',
         color: '#ED7C4B' // ss-orange
       },
@@ -348,7 +348,7 @@ class StudentNetworkWeb {
         name: 'Mohamed Abead',
         program: '2020 trainee',
         quote: 'I feel like I have grown a lot through EMPath; I have managed to learn a lot about emotional AI and gained hands-on experience working on an app, while growing my interpersonal skills and getting to meet amazing people from all over the U.S and the world. I feel like I have learnt a lot about team collaboration through our daily meetings and by working on our app with the team.',
-        image: 'https://mysurestart.com/s/Mohamed-Abead.jpg',
+        image: 'static/images/students-headshots/Mohamed Abead.png',
         size: 'medium',
         color: '#FFB65F' // ss-yellow
       },
@@ -357,7 +357,7 @@ class StudentNetworkWeb {
         name: 'Jason Jerome',
         program: '2021 trainee',
         quote: 'The SureStart program was a learning experience unlike anything I\'ve participated in before. The daily mentorship, team-based learning process, the well-paced curriculum, and the ample resources provided made it possible to learn difficult concepts with no prior experience! Thanks to the dedicated mentors and SureStart staff, I was able to excel in applying the concepts learned from the curriculum in the Makeathon. SureStart has also greatly been involved in helping me find internships after completing the program, and thanks to their support I was recently offered a summer internship!',
-        image: 'https://mysurestart.com/s/Jason-Jerome.jpg',
+        image: 'static/images/students-headshots/Jason Jerome.png',
         size: 'small',
         color: '#EE2D6E' // ss-pink
       }
