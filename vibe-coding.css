@@ -1336,11 +1336,7 @@
    ========================================== */
 
 .impact-cta {
-  background: linear-gradient(135deg,
-    var(--surface) 0%,
-    var(--surface-white) 50%,
-    var(--surface) 100%
-  );
+  background: white;
   padding: var(--space-4xl) 0;
   position: relative;
   overflow: hidden;

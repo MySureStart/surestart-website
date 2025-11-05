@@ -147,133 +147,25 @@
 </section>
 
 <!-- PROVEN PATHWAYS SECTION -->
-<section class="proven-pathways">
-  <div class="proven-pathways-container">
-    <div class="section-header fade-up">
-      <h2 class="section-title">Proven Pathways to College and Careers</h2>
-      <p class="section-subtitle">
-        Our students have gained admission to top universities and secured positions at leading companies, demonstrating the real-world impact of our AI education programs.
-      </p>
-    </div>
-    
-    <!-- Colleges Subsection -->
-    <div class="pathways-subsection fade-up">
-      <h3 class="subsection-title">Colleges Our Students Attend</h3>
-      <div class="logos-grid">
-        <div class="logo-item">
-          <img src="static/images/Harvard_University_logo.png" alt="Harvard University">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/Stanford-Symbol.png" alt="Stanford University">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/University-of-Princeton-Logo.png" alt="Princeton University">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/UC-Berkeley-Symbol.png" alt="UC Berkeley">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/Dartmouth-university-logo.png" alt="Dartmouth College">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/GTVertical_RGB.png" alt="Georgia Institute of Technology">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/city-university-of-new-york-logo-png_seeklogo-488622.png" alt="City University of New York">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/Mcgill_univ_ca_logo.png" alt="McGill University">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/2560px-Colby_College_logo.webp" alt="Colby College">
-        </div>
-        <!-- Placeholder logos for additional colleges -->
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">MIT</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Yale</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Columbia</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Cornell</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">UPenn</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Brown</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Caltech</div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Motivational Phrase -->
-    <div class="motivational-phrase fade-up">
-      <p class="phrase-text">
-        Students today, <span class="phrase-emphasis">CHANGE MAKERS TOMORROW</span>
-      </p>
-    </div>
-    
-    <!-- Companies Subsection -->
-    <div class="pathways-subsection fade-up">
-      <h3 class="subsection-title">Companies Where They Work</h3>
-      <div class="logos-grid">
-        <div class="logo-item">
-          <img src="static/images/Microsoft_logo_(2012).svg.png" alt="Microsoft">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/Meta-Logo.png" alt="Meta">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/NASA-Logo-Large.png" alt="NASA">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/Salesforce.com_logo.png" alt="Salesforce">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/Linkedin-Logo.png" alt="LinkedIn">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/2560px-Red_Hat_2019_logo.svg.png" alt="Red Hat">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/Consumer_Reports_logo_2016.svg.png" alt="Consumer Reports">
-        </div>
-        <div class="logo-item">
-          <img src="static/images/Lockheed_Martin_logo.svg.png" alt="Lockheed Martin">
-        </div>
-        <!-- Placeholder logos for additional companies -->
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Google</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Apple</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Amazon</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Tesla</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Netflix</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Uber</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Airbnb</div>
-        </div>
-        <div class="logo-item placeholder">
-          <div class="placeholder-logo">Spotify</div>
-        </div>
-      </div>
-    </div>
+<section class="proven-pathways" data-scroll-section>
+  <!-- Base background layer -->
+  <div class="pathways-background"></div>
+  
+  <!-- First overlay layer (phase 1: 0-1) -->
+  <div class="pathways-top-overlay">
+    <div class="overlay-white-bg"></div>
+    <div class="overlay-schools-image"></div>
+  </div>
+  
+  <!-- Second overlay layer (phase 2: 1-2) -->
+  <div class="pathways-second-overlay">
+    <div class="second-overlay-white-bg"></div>
+    <div class="second-overlay-companies-image"></div>
+  </div>
+  
+  <!-- Protected center ribbon (stays unchanged) -->
+  <div class="pathways-ribbon">
+    <p class="ribbon-text">Students today, Change makers tomorrow</p>
   </div>
 </section>
 
@@ -455,6 +347,45 @@
         </div>
       </div>
 
+      <!-- VIBE CODING CARD -->
+      <div class="program-flip-card" data-program="vibe-coding">
+        <div class="flip-card-inner">
+          <div class="flip-card-front" style="background-image: url('static/images/ai-vibe-coding.jpg');">
+            <div class="card-content">
+              <h3>Vibe Coding</h3>
+              <p>Creative programming through music and digital art</p>
+              <div class="flip-indicator">
+                <span>Tap to explore</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="back-content">
+              <h4><span class="badge-icon">🎵</span> Vibe Coding</h4>
+              <ul class="program-highlights">
+                <li>Creative coding experiences</li>
+                <li>Music and art integration</li>
+                <li>Interactive digital projects</li>
+                <li>Accessible programming methods</li>
+              </ul>
+              <div class="program-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Duration</span>
+                  <span class="meta-value">8 weeks</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Level</span>
+                  <span class="meta-value">Beginner</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- AI ROBOTICS CARD - COMING SOON -->
       <div class="program-flip-card coming-soon-card" data-program="robotics">
         <div class="flip-card-inner">
@@ -481,47 +412,6 @@
                 <li>AI integration with hardware</li>
                 <li>Engineering design principles</li>
                 <li>Real-world problem solving</li>
-              </ul>
-              <div class="program-meta">
-                <div class="meta-item">
-                  <span class="meta-label">Duration</span>
-                  <span class="meta-value">TBD</span>
-                </div>
-              </div>
-            </div>
-            <div class="coming-soon-overlay">
-              <span>Coming Soon</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- VIBE CODING CARD - COMING SOON -->
-      <div class="program-flip-card coming-soon-card" data-program="vibe-coding">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" style="background-image: url('static/images/ai-vibe-coding.jpg');">
-            <div class="card-content">
-              <h3>Vibe Coding</h3>
-              <p>Creative programming through music and digital art</p>
-              <div class="flip-indicator">
-                <span>Tap to explore</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-              </div>
-            </div>
-            <div class="coming-soon-overlay">
-              <span>Coming Soon</span>
-            </div>
-          </div>
-          <div class="flip-card-back">
-            <div class="back-content">
-              <h4><span class="badge-icon">🎵</span> Vibe Coding</h4>
-              <ul class="program-highlights">
-                <li>Creative coding experiences</li>
-                <li>Music and art integration</li>
-                <li>Interactive digital projects</li>
-                <li>Accessible programming methods</li>
               </ul>
               <div class="program-meta">
                 <div class="meta-item">
@@ -1075,5 +965,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="k12-scroll.js"></script>
 </body>
 </html>

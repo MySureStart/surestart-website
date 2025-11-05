@@ -106,11 +106,12 @@
   margin-bottom: 40px;
 }
 
-/* Hero Text Grid - 1-column vertical layout matching homepage */
+/* Hero Text Grid - matching higher-ed layout with title above, subtitle + button side-by-side */
 .hero-content .fade-up {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--space-2xl) var(--space-xl);
   text-align: left;
   width: 100%;
   max-width: 2000px;
@@ -120,6 +121,7 @@
   z-index: 3;
   position: relative;
   padding-top: 40px;
+  align-items: end;
 }
 
 /* Hero Animation Keyframe to match homepage */
@@ -144,7 +146,8 @@
   color: white;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   font-family: 'Eastman Grotesque', serif;
-  margin-bottom: var(--space-xl);
+  grid-column: 1 / -1;
+  grid-row: 1;
 }
 
 .hero-title .gradient-text {
@@ -181,11 +184,13 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
-  margin-top: var(--space-lg);
   font-weight: 400;
   text-align: left;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  max-width: 800px;
+  max-width: 580px;
+  grid-column: 1;
+  grid-row: 2;
+  padding-top: 25px;
 }
 
 .hero-details {
@@ -193,13 +198,25 @@
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
   margin-top: var(--space-md);
-  margin-bottom: var(--space-lg);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   font-style: italic;
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .hero-cta {
-  margin-top: var(--space-md);
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-self: end;
+  margin-top: 0;
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+  margin-left: var(--space-xl);
+  margin-right: -600px;
+  padding-top: 30px;
 }
 
 .btn-large {
@@ -609,22 +626,43 @@
   }
   
   .hero-content .fade-up {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     padding-top: 20px;
   }
   
   .hero-title {
     text-align: center;
+    grid-column: unset;
+    grid-row: unset;
   }
   
   .hero-subtitle {
     text-align: center;
+    grid-column: unset;
+    grid-row: unset;
+    padding-top: var(--space-lg);
+    margin-top: var(--space-lg);
+    max-width: 100%;
+  }
+  
+  .hero-details {
+    grid-column: unset;
+    grid-row: unset;
+    margin-top: var(--space-md);
   }
   
   .hero-cta {
     display: flex;
     justify-content: center;
+    grid-column: unset;
+    grid-row: unset;
+    justify-self: unset;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: var(--space-md);
   }
 }
 
