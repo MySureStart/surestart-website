@@ -83,45 +83,41 @@
 
 .vibe-lab-hero-container {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-height: 30vh;
+}
+
+.hero-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  justify-items: start;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 24px);
-  min-height: 60vh;
 }
 
-.hero-content {
-  width: 100%;
-  display: flex;
-  flex: 1;
-  flex-grow: 1;
-  min-width: 0;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-/* Hero Text Grid - matching higher-ed layout with title above, subtitle + button side-by-side */
-.hero-content .fade-up {
+.hero-text-section {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   gap: var(--space-2xl) var(--space-xl);
   text-align: left;
   width: 100%;
-  max-width: 2000px;
+  margin-top: -75px;
+  align-items: end;
   opacity: 0;
   transform: translateY(12px);
   animation: heroFadeUp 450ms ease-out 200ms forwards;
   z-index: 3;
   position: relative;
-  padding-top: 40px;
-  align-items: end;
 }
 
 /* Hero Animation Keyframe to match homepage */
@@ -146,6 +142,7 @@
   color: white;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   font-family: 'Eastman Grotesque', serif;
+  max-width: 700px;
   grid-column: 1 / -1;
   grid-row: 1;
 }
@@ -179,43 +176,43 @@
   z-index: 1;
 }
 
-.hero-subtitle {
-  font-size: clamp(18px, 2.2vw, 24px);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-  font-weight: 400;
-  text-align: left;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  max-width: 580px;
+.hero-text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   grid-column: 1;
   grid-row: 2;
   padding-top: 25px;
+}
+
+.hero-subtitle {
+  font-size: var(--text-xl);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 var(--space-md) 0;
+  font-weight: 400;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  max-width: 580px;
+  text-align: left;
 }
 
 .hero-details {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
-  margin-top: var(--space-md);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   font-style: italic;
-  grid-column: 1;
-  grid-row: 2;
 }
 
 .hero-cta {
   display: flex;
   gap: var(--space-sm);
-  justify-content: flex-start;
+  justify-content: flex-end;
   flex-wrap: wrap;
   align-self: end;
-  margin-top: 0;
-  grid-column: 1;
-  grid-row: 2;
-  justify-self: end;
-  margin-left: var(--space-xl);
-  margin-right: -600px;
+  grid-column: 2;
+  grid-row: 1 / -1;
   padding-top: 30px;
 }
 
@@ -243,7 +240,7 @@
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-4xl);
+  gap: var(--space-xl);
   align-items: start;
 }
 
@@ -281,7 +278,7 @@
 .content-actions {
   display: flex;
   gap: var(--space-lg);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .content-video {
@@ -377,6 +374,124 @@
   color: var(--ss-red);
   font-weight: bold;
   font-size: 1.2em;
+}
+
+/* ==========================================
+   COURSE SCHEDULE SECTION
+   ========================================== */
+
+.course-schedule-section {
+  background: white;
+  padding: var(--space-5xl) 0;
+}
+
+.course-schedule-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.schedule-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--ss-red);
+  margin-bottom: var(--space-2xl);
+  font-family: 'Eastman Grotesque', serif;
+  text-align: center;
+}
+
+.schedule-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-lg);
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+
+.schedule-table thead tr {
+  background: linear-gradient(135deg, #2C2C2C 0%, #E73052 33%, #ED7C4B 100%);
+}
+
+.schedule-table th {
+  padding: var(--space-lg);
+  text-align: left;
+  font-weight: 700;
+  color: white;
+  font-family: 'Eastman Grotesque', serif;
+  font-size: var(--text-lg);
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+.date-column {
+  width: 15%;
+  min-width: 120px;
+}
+
+.module-column {
+  width: 35%;
+  min-width: 280px;
+}
+
+.description-column {
+  width: 50%;
+  min-width: 300px;
+}
+
+.schedule-table tbody tr {
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color var(--transition-normal);
+}
+
+.schedule-table tbody tr:nth-child(odd) {
+  background: var(--surface-secondary);
+}
+
+.schedule-table tbody tr:nth-child(even) {
+  background: white;
+}
+
+.schedule-table tbody tr:hover {
+  background: rgba(231, 48, 82, 0.05);
+}
+
+.schedule-table td {
+  padding: var(--space-lg);
+  vertical-align: top;
+  border-right: 1px solid var(--border-subtle);
+}
+
+.schedule-table td:last-child {
+  border-right: none;
+}
+
+.date-cell {
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  text-align: center;
+  font-size: var(--text-base);
+  background: rgba(44, 44, 44, 0.05);
+}
+
+.module-cell {
+  font-weight: 700;
+  color: var(--ss-red);
+  line-height: 1.3;
+  font-size: var(--text-base);
+}
+
+.description-cell {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: var(--text-base);
 }
 
 /* ==========================================
@@ -693,13 +808,14 @@
   }
   
   .content-actions {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   
   .content-actions .btn {
-    width: 100%;
-    max-width: 300px;
+    flex: 0 1 auto;
+    min-width: 200px;
   }
   
   .video-container {
@@ -710,6 +826,33 @@
     flex-direction: column;
     text-align: center;
     gap: var(--space-md);
+  }
+  
+  /* Course Schedule Table - Mobile */
+  .schedule-title {
+    font-size: var(--text-2xl);
+  }
+  
+  .schedule-table th {
+    padding: var(--space-md);
+    font-size: var(--text-base);
+  }
+  
+  .schedule-table td {
+    padding: var(--space-md);
+    font-size: var(--text-sm);
+  }
+  
+  .date-column {
+    min-width: 100px;
+  }
+  
+  .module-column {
+    min-width: 220px;
+  }
+  
+  .description-column {
+    min-width: 250px;
   }
   
   .details-section {
@@ -813,4 +956,365 @@
   color: var(--ss-red);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+}
+
+/* ==========================================
+   REGISTRATION FORM SECTION
+   ========================================== */
+
+.registration-section {
+  background: linear-gradient(135deg, var(--surface-secondary) 0%, white 100%);
+  padding: var(--space-5xl) 0;
+}
+
+.registration-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.registration-grid {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: var(--space-4xl);
+  align-items: start;
+}
+
+.registration-image-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  padding: var(--space-2xl);
+  background: white;
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  position: sticky;
+  top: var(--space-2xl);
+}
+
+.robot-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, rgba(231, 48, 82, 0.05) 0%, rgba(238, 45, 110, 0.05) 100%);
+  border-radius: var(--border-radius-xl);
+  border: 2px solid rgba(231, 48, 82, 0.1);
+}
+
+.robot-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: var(--border-radius-lg);
+}
+
+.registration-info {
+  text-align: center;
+}
+
+.registration-title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  margin-bottom: var(--space-xl);
+  font-family: 'Eastman Grotesque', serif;
+}
+
+.registration-title .gradient-text {
+  background: linear-gradient(135deg, #E73052 0%, #EE2D6E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-family: 'Eastman Grotesque', serif;
+}
+
+.discount-text {
+  font-size: var(--text-lg);
+  color: var(--ss-red);
+  font-weight: 600;
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(231, 48, 82, 0.1);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid rgba(231, 48, 82, 0.2);
+}
+
+.discount-text strong {
+  background: var(--ss-red);
+  color: white;
+  padding: 2px 8px;
+  border-radius: var(--border-radius-sm);
+  font-weight: 700;
+}
+
+.availability-text {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  font-weight: 600;
+}
+
+.scholarship-text {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.scholarship-text a {
+  color: var(--ss-red);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.scholarship-text a:hover {
+  color: var(--ss-accent-1);
+}
+
+.registration-form-container {
+  background: white;
+  border-radius: var(--border-radius-2xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.registration-form {
+  padding: var(--space-2xl);
+}
+
+.form-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.form-section:last-child {
+  margin-bottom: 0;
+}
+
+.form-section-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+.form-section-title .required {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: var(--text-base);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.form-group label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: var(--space-md);
+  font-size: var(--text-base);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--border-radius-md);
+  background: white;
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+  font-family: inherit;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="number"]:focus {
+  outline: none;
+  border-color: var(--ss-red);
+  box-shadow: 0 0 0 3px rgba(231, 48, 82, 0.1);
+  background: rgba(231, 48, 82, 0.01);
+}
+
+.form-group input[type="text"]:invalid:not(:focus),
+.form-group input[type="email"]:invalid:not(:focus),
+.form-group input[type="number"]:invalid:not(:focus) {
+  border-color: #ef4444;
+}
+
+.form-group input[type="text"]:invalid:not(:focus):not(:placeholder-shown),
+.form-group input[type="email"]:invalid:not(:focus):not(:placeholder-shown),
+.form-group input[type="number"]:invalid:not(:focus):not(:placeholder-shown) {
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
+  background: var(--surface-secondary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.form-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--ss-red);
+  cursor: pointer;
+}
+
+.form-checkbox label {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.form-note {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.form-submit {
+  margin-top: var(--space-3xl);
+  text-align: center;
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.form-submit .btn {
+  width: 100%;
+  max-width: 400px;
+  justify-content: center;
+}
+
+/* Form validation styles */
+.form-group input:required:valid {
+  border-color: #10b981;
+}
+
+.form-group input:required:valid:not(:focus) {
+  background: rgba(16, 185, 129, 0.05);
+}
+
+/* ==========================================
+   REGISTRATION FORM RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 1024px) {
+  .registration-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+  
+  .registration-image-content {
+    position: static;
+    order: 1;
+  }
+  
+  .registration-form-container {
+    order: 2;
+  }
+  
+  .robot-image-container {
+    padding: var(--space-md);
+  }
+  
+  .robot-image {
+    max-width: 250px;
+  }
+  
+  .registration-info {
+    text-align: center;
+  }
+  
+  .registration-title {
+    font-size: var(--text-2xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .registration-section {
+    padding: var(--space-4xl) 0;
+  }
+  
+  .registration-container {
+    padding: 0 var(--space-md);
+  }
+  
+  .registration-form {
+    padding: var(--space-xl);
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .form-section {
+    margin-bottom: var(--space-xl);
+  }
+  
+  .registration-image-content {
+    padding: var(--space-xl);
+    gap: var(--space-xl);
+  }
+  
+  .robot-image {
+    max-width: 200px;
+  }
+  
+  .registration-title {
+    font-size: var(--text-xl);
+  }
+  
+  .discount-text {
+    font-size: var(--text-base);
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .registration-form {
+    padding: var(--space-lg);
+  }
+  
+  .registration-image-content {
+    padding: var(--space-lg);
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="number"] {
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .form-submit .btn {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--text-base);
+  }
+  
+  .robot-image {
+    max-width: 150px;
+  }
 }
