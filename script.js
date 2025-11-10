@@ -1601,6 +1601,126 @@
   }
 
   // ==========================================
+  // VIBE LAB FORM SUBMISSION
+  // ==========================================
+  
+  function initVibeLabForm() {
+    const vibeLabForm = document.getElementById('vibe-lab-registration');
+    
+    if (!vibeLabForm) return;
+    
+    vibeLabForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const firstName = formData.get('firstName');
+      const lastName = formData.get('lastName');
+      const studentEmail = formData.get('studentEmail');
+      const country = formData.get('country');
+      const timeZone = formData.get('timeZone');
+      const age = formData.get('age');
+      
+      // Basic validation for required fields
+      const requiredFields = [
+        { value: firstName, name: 'First Name', id: 'firstName' },
+        { value: lastName, name: 'Last Name', id: 'lastName' },
+        { value: studentEmail, name: 'Student Email', id: 'studentEmail' },
+        { value: country, name: 'Country', id: 'country' },
+        { value: timeZone, name: 'Time Zone', id: 'timeZone' },
+        { value: age, name: 'Age', id: 'age' }
+      ];
+      
+      const missingFields = requiredFields.filter(field => !field.value || field.value.trim() === '');
+      
+      if (missingFields.length > 0) {
+        // Focus on first missing field and highlight it
+        const firstMissingField = missingFields[0];
+        const fieldElement = document.getElementById(firstMissingField.id);
+        if (fieldElement) {
+          fieldElement.style.borderColor = '#ff4444';
+          fieldElement.focus();
+        }
+        
+        const fieldNames = missingFields.map(field => field.name).join(', ');
+        alert(`Please fill in the following required fields: ${fieldNames}`);
+        return;
+      }
+      
+      // Reset any error styling
+      requiredFields.forEach(field => {
+        const fieldElement = document.getElementById(field.id);
+        if (fieldElement) {
+          fieldElement.style.borderColor = '';
+        }
+      });
+      
+      // Validate age range
+      const ageValue = parseInt(age);
+      if (isNaN(ageValue) || ageValue < 14 || ageValue > 18) {
+        alert('Age must be between 14 and 18 years old.');
+        return;
+      }
+      
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(studentEmail)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      
+      // Show loading state
+      const submitButton = this.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.innerHTML;
+      
+      submitButton.innerHTML = `
+        <span>Processing...</span>
+        <svg class="btn-arrow animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="31.416" opacity="0.3"/>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      `;
+      submitButton.disabled = true;
+      submitButton.style.opacity = '0.7';
+      
+      // Add spinning animation for loading indicator
+      if (!document.querySelector('#form-loading-styles')) {
+        const style = document.createElement('style');
+        style.id = 'form-loading-styles';
+        style.textContent = `
+          .animate-spin {
+            animation: spin 1s linear infinite;
+          }
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
+      // Store form data in localStorage for potential use later (optional)
+      localStorage.setItem('vibeLabRegistration', JSON.stringify({
+        firstName,
+        lastName,
+        studentEmail,
+        parentName: formData.get('parentName'),
+        parentEmail: formData.get('parentEmail'),
+        country,
+        timeZone,
+        age,
+        newsletter: formData.get('newsletter') === 'on',
+        timestamp: new Date().toISOString()
+      }));
+      
+      // Redirect to Stripe checkout after a short delay
+      setTimeout(() => {
+        window.location.href = 'https://buy.stripe.com/5kQ5kC93t1kRdcr9URgYU00';
+      }, 1500);
+    });
+  }
+
+  // ==========================================
   // INITIALIZATION
   // ==========================================
   
@@ -1628,6 +1748,7 @@
       initTestimonialsCarousel(); // Add testimonials carousel functionality
       initRotatingQuotes(); // Add rotating quotes functionality
       initAccordion(); // Add accordion functionality
+      initVibeLabForm(); // Add Vibe Lab form submission handling
       
       // Optional: Add preloader for luxury feel
       // initPreloader();
