@@ -11,22 +11,6 @@
   color: var(--ss-red) !important;
   font-weight: 600;
 }
-
-.nav-highlight::before {
-  content: 'NEW';
-  position: absolute;
-  top: -8px;
-  right: -20px;
-  background: var(--gradient-primary);
-  color: white;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 10px;
-  animation: pulse 2s infinite;
-  z-index: 10;
-}
-
 .nav-highlight:hover {
   color: var(--ss-accent-1) !important;
 }

@@ -24,7 +24,7 @@
       <a href="k12.html" class="nav-link">K-12</a>
       <a href="higher-ed.html" class="nav-link">Higher Ed</a>
       <a href="students.html" class="nav-link">Students</a>
-      <a href="vibe-coding.html" class="nav-link nav-highlight">Vibe Lab</a>
+      <a href="vibe-lab.html" class="nav-link nav-highlight">Vibe Lab</a>
       <div class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle">
           About Us
@@ -336,6 +336,16 @@
     <div class="team-grid fade-up">
       <div class="team-member" data-member="1">
         <div class="member-photo">
+          <img src="static/images/taniya-headshot.jpg" alt="Taniya Mishra" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block;">
+        </div>
+        <div class="member-info">
+          <h4 class="member-name">Taniya Mishra</h4>
+          <p class="member-role">CEO</p>
+        </div>
+      </div>
+      
+      <div class="team-member" data-member="2">
+        <div class="member-photo">
           <img src="static/images/ashleen.jpg" alt="Ashleen Sullivan" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block;">
         </div>
         <div class="member-info">
@@ -344,7 +354,7 @@
         </div>
       </div>
       
-      <div class="team-member" data-member="2">
+      <div class="team-member" data-member="3">
         <div class="member-photo">
           <img src="static/images/nicholas.jpg" alt="Nicholas Glading" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block;">
         </div>
@@ -354,7 +364,7 @@
         </div>
       </div>
       
-      <div class="team-member" data-member="3">
+      <div class="team-member" data-member="4">
         <div class="member-photo">
           <img src="static/images/kim.jpg" alt="Kim Parnell" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block;">
         </div>
@@ -364,7 +374,7 @@
         </div>
       </div>
       
-      <div class="team-member" data-member="4">
+      <div class="team-member" data-member="5">
         <div class="member-photo">
           <img src="static/images/betty.jpg" alt="Betty Wong" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block;">
         </div>
@@ -374,7 +384,7 @@
         </div>
       </div>
       
-      <div class="team-member" data-member="5">
+      <div class="team-member" data-member="6">
         <div class="member-photo">
           <img src="static/images/Ericka Corral_headshot .png" alt="Ericka Corral" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block;">
         </div>
@@ -384,7 +394,7 @@
         </div>
       </div>
       
-      <div class="team-member" data-member="6">
+      <div class="team-member" data-member="7">
         <div class="member-photo">
           <img src="static/images/Robin.png" alt="Robin Kondrup" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block;">
         </div>
@@ -494,36 +504,42 @@ document.addEventListener('DOMContentLoaded', function() {
   // Team member data with actual biographical information
   const teamData = {
     1: { 
+      name: 'Taniya Mishra', 
+      role: 'CEO', 
+      image: 'static/images/taniya-headshot.jpg',
+      bio: 'Dr. Taniya Mishra, is the founder & CEO of SureStart, a NYC-based AI education startup that provides mentoring-centered AI programs for K-12 students globally. SureStart\'s AI programs, implemented through work with top tech universities like MIT and Carnegie Mellon University, widen participation in the AI ecosystem by equipping students with AI skills, leadership and innovation competencies, and standout portfolios that pave the way to top universities, internships, and careers. With 15+ years in AI, including roles at AT&T Research, Affectiva, and Interactions, Taniya holds 50+ patents, has been featured in Fortune, MIT Tech Review, and The Atlantic, and was named among NASDAQ\'s 25 Leading Women in AI and ASU+GSV Innovators of Color (2025).' 
+    },
+    2: { 
       name: 'Ashleen Sullivan', 
       role: 'Head of Marketing & Programs', 
       image: 'static/images/ashleen.jpg',
       bio: 'Ashleen Sullivan is the Head of Marketing & Programs at SureStart, where she leads strategic marketing initiatives and program development and implementation to expand the reach and impact of transformative AI education for K–12 students and schools. Drawing on her startup experience at Boston-based tech companies such as PatientsLikeMe and Affectiva, Ashleen brings creativity, strategic clarity, and a deep focus on execution to dynamic, fast-paced environments. Since joining SureStart in 2021, she has built and scaled programs, strengthened partnerships, and developed messaging that amplifies SureStart\'s mission to prepare the next generation of students for an AI-driven future.' 
     },
-    2: { 
+    3: { 
       name: 'Nicholas Glading', 
       role: 'Head of Learning Experience Design', 
       image: 'static/images/nicholas.jpg',
       bio: 'Nicholas Glading leads the learning experience design and implementation of SureStart\'s AI curriculum at SureStart with a creative lens focused on making even the most complex and technical concepts engaging and relatable to young learners. With almost 20 years of experience leading teams and creating online academic curricula, Nicholas excels at designing authentic learning experiences focused on real-world applications that connect with students of all ages and backgrounds. He thrives on leveraging an empathetic mindset to innovate dynamic instructional solutions and to nurture genuine and enriching collaborative relationships with a shared human connection.' 
     },
-    3: { 
+    4: { 
       name: 'Kim Parnell', 
       role: 'Senior Program Manager', 
       image: 'static/images/kim.jpg',
       bio: 'Kim Parnell is the Senior Program Manager at SureStart, where she designs impactful learning experiences and fosters mentorship to help students excel in AI and technology. Drawing on her entrepreneurial background and experiences mentoring through organizations like TKS and Founder Institute, Kim empowers young minds to think boldly and act confidently. Previously, she led the tech startup Truebase as CEO, where she developed innovative data architecture solutions, and founded a successful commercial cleaning business. Kim\'s diverse expertise spans entrepreneurship, technology, and youth development, making her a dynamic leader in the education space. She is passionate about equipping the next generation with the skills and mindset to tackle the challenges of tomorrow.' 
     },
-    4: { 
+    5: { 
       name: 'Betty Wong', 
       role: 'Head of Finance', 
       image: 'static/images/betty.jpg',
       bio: 'Betty Wong is the Head of Finance at SureStart, where she oversees business compliance, financial operations, and accounting functions, including invoicing, tax preparation, and cash flow management. A seasoned entrepreneur and former educator, Betty brings a strategic, solutions-oriented approach rooted in deep operational expertise and a passion for mission-driven work. In addition to her role at SureStart, she remains active as a mentor and advisor for organizations that advance equity and innovation.' 
     },
-    5: { 
+    6: { 
       name: 'Ericka Corral', 
       role: 'Educational AI Content Developer & Community Manager', 
       image: 'static/images/Ericka Corral_headshot .png',
       bio: 'Ericka Corral (they/them) is currently pursuing a Ph.D. in Computer Science at the University of Denver. Their research focuses on mitigating bias in large language models and developing ethical guidelines for their design and use. When they\'re not coding or mentoring students as a teaching assistant at DU, Ericka is working on creating a curriculum for tech education as an Educational AI Content Developer and Community Manager with SureStart. Their mission is to make technology accessible, ensure it\'s fair, and inspire us all to approach powerful tools like AI with thoughtful ethics.' 
     },
-    6: { 
+    7: { 
       name: 'Robin Kondrup', 
       role: 'Personal/Executive Assistant to the CEO & Founder', 
       image: 'static/images/Robin.png',
