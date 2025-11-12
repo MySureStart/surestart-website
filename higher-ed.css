@@ -471,7 +471,8 @@
   left: 0;
   right: 0;
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  margin-left: 255px;
   gap: var(--space-2xl);
   padding: var(--space-lg) var(--space-lg) 0 var(--space-lg);
   border-top: 1px solid rgba(139, 154, 142, 0.15);
@@ -689,6 +690,7 @@
   color: var(--text-secondary);
   margin: 0 0 var(--space-xs) 0;
   font-weight: 500;
+  text-align: left;
 }
 
 .author-institution {
@@ -696,6 +698,7 @@
   color: var(--ss-accent-1);
   margin: 0;
   font-weight: 600;
+  text-align: left;
 }
 
 .institution-logo {
@@ -1331,11 +1334,11 @@
   }
 }
 
-/* Partnership Testimonials Rotating Section - K-12 Style */
+/* Partnership Testimonials Rotating Section - Updated K-12 Style */
 .partnership-testimonials-rotating {
   background: var(--gradient-button);
   color: white;
-  padding: var(--space-4xl) 0;
+  padding: var(--space-xl) 0;
   position: relative;
   overflow: hidden;
   margin-top: 0;
@@ -1419,6 +1422,7 @@
   font-weight: 400;
   color: white;
   margin: 0;
+  margin-bottom: var(--space-2xl);
   position: relative;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -1444,7 +1448,6 @@
   text-align: left;
   color: white;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  margin: 0;
 }
 
 .partnership-testimonials-rotating .author-title {
@@ -1453,8 +1456,6 @@
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  margin: 0;
 }
 
 .partnership-testimonials-rotating .author-institution {
@@ -1463,8 +1464,6 @@
   color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  margin: 0;
 }
 
 .partnership-testimonials-rotating .company-logo {
@@ -1476,8 +1475,8 @@
 }
 
 .partnership-testimonials-rotating .company-logo img {
-  height: 40px;
-  width: auto;
+  max-height: 200px;
+  max-width: 200px;
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.9;
