@@ -1148,7 +1148,15 @@
   box-shadow: none;
   align-self: stretch;
   height: auto;
-  justify-content: start;
+  justify-content: center;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--border-radius-xl);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(84, 134, 135, 0.1);
+  box-shadow: var(--shadow-md);
+  align-self: stretch;
+  padding: var(--space-xl);
 }
 
 .outcomes-stats .outcome-item {
@@ -1157,8 +1165,11 @@
   gap: var(--space-md);
   padding: var(--space-xs) var(--space-sm);
   transition: all var(--transition-normal);
+  /* background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(84, 134, 135, 0.08);
+  transition: all var(--transition-normal); */
   height: max-content;
-  backdrop-filter: blur(10px);
 }
 
 .outcomes-stats .outcome-item:hover {

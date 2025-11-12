@@ -92,7 +92,7 @@
   background-image: url('static/images/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  transform: translateY(50%) translateX(10%) scaleX(42) scaleY(26) rotate(5deg);
+  transform: translateY(50%) translateX(-8%) scaleX(30) scaleY(30) rotate(5deg);
   background-position: center bottom;
   opacity: 0.9;
   z-index: 1;
