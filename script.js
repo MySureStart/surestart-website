@@ -1376,9 +1376,11 @@
     
     rotatingQuotesContainers.forEach(container => {
       const quoteItems = container.querySelectorAll('.rotating-quote-item');
-      const indicatorDots = container.querySelectorAll('.quote-indicator-dot');
+      const navArrows = container.querySelectorAll('.quote-nav-arrow');
+      const prevArrow = container.querySelector('.quote-nav-prev');
+      const nextArrow = container.querySelector('.quote-nav-next');
       
-      if (!quoteItems.length || !indicatorDots.length) return;
+      if (!quoteItems.length || !navArrows.length) return;
       
       let currentQuote = 0;
       let autoRotateInterval;
@@ -1397,16 +1399,16 @@
           item.setAttribute('aria-hidden', i !== currentQuote ? 'true' : 'false');
         });
         
-        // Update indicator dots
-        indicatorDots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentQuote);
-          dot.setAttribute('aria-selected', i === currentQuote ? 'true' : 'false');
-        });
+        // Update arrow button states and ARIA attributes
+        if (prevArrow && nextArrow) {
+          prevArrow.setAttribute('aria-label', `Previous testimonial (${currentQuote + 1} of ${quoteItems.length})`);
+          nextArrow.setAttribute('aria-label', `Next testimonial (${currentQuote + 1} of ${quoteItems.length})`);
+        }
         
         // Add subtle entrance animation for the active quote
         const activeItem = quoteItems[currentQuote];
         if (activeItem && animate) {
-          const quote = activeItem.querySelector('.rotating-quote');
+          const quote = activeItem.querySelector('.industry-quote');
           const attribution = activeItem.querySelector('.quote-attribution');
           
           if (quote) {
@@ -1446,13 +1448,25 @@
         startAutoRotation();
       }
       
-      // Manual navigation via dots
-      indicatorDots.forEach((dot, index) => {
+      // Manual navigation via arrow buttons
+      navArrows.forEach(arrow => {
         // Click handler
-        dot.addEventListener('click', (e) => {
+        arrow.addEventListener('click', (e) => {
           e.preventDefault();
           stopAutoRotation();
-          updateActiveQuote(index);
+          
+          const direction = arrow.getAttribute('data-direction');
+          if (direction === 'prev') {
+            updateActiveQuote(currentQuote - 1);
+          } else if (direction === 'next') {
+            updateActiveQuote(currentQuote + 1);
+          }
+          
+          // Add visual feedback
+          arrow.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            arrow.style.transform = '';
+          }, 150);
           
           // Restart auto-rotation after a delay
           setTimeout(() => {
@@ -1463,11 +1477,18 @@
         });
         
         // Keyboard support
-        dot.addEventListener('keydown', (e) => {
+        arrow.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             stopAutoRotation();
-            updateActiveQuote(index);
+            
+            const direction = arrow.getAttribute('data-direction');
+            if (direction === 'prev') {
+              updateActiveQuote(currentQuote - 1);
+            } else if (direction === 'next') {
+              updateActiveQuote(currentQuote + 1);
+            }
+            
             setTimeout(() => {
               if (!isPaused) {
                 startAutoRotation();
@@ -1477,36 +1498,31 @@
         });
         
         // Add ARIA attributes
-        dot.setAttribute('role', 'tab');
-        dot.setAttribute('aria-label', `View testimonial ${index + 1}`);
-        dot.setAttribute('tabindex', index === 0 ? '0' : '-1');
+        arrow.setAttribute('role', 'button');
+        arrow.setAttribute('tabindex', '0');
       });
       
-      // Keyboard navigation between dots
+      // Keyboard navigation for left/right arrows
       container.addEventListener('keydown', (e) => {
-        const focusedDot = document.activeElement;
-        const currentIndex = Array.from(indicatorDots).indexOf(focusedDot);
+        // Only handle if focus is on the container or arrow buttons
+        const focusedElement = document.activeElement;
+        const isArrowFocused = navArrows.includes(focusedElement);
+        const isContainerFocused = focusedElement === container;
         
-        if (currentIndex !== -1) {
-          let newIndex = currentIndex;
-          
-          if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        if (isArrowFocused || isContainerFocused) {
+          if (e.key === 'ArrowLeft') {
             e.preventDefault();
-            newIndex = currentIndex > 0 ? currentIndex - 1 : indicatorDots.length - 1;
-          } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-            e.preventDefault();
-            newIndex = currentIndex < indicatorDots.length - 1 ? currentIndex + 1 : 0;
-          }
-          
-          if (newIndex !== currentIndex) {
-            // Update tabindex
-            indicatorDots[currentIndex].setAttribute('tabindex', '-1');
-            indicatorDots[newIndex].setAttribute('tabindex', '0');
-            indicatorDots[newIndex].focus();
-            
-            // Update quote
             stopAutoRotation();
-            updateActiveQuote(newIndex);
+            updateActiveQuote(currentQuote - 1);
+            setTimeout(() => {
+              if (!isPaused) {
+                startAutoRotation();
+              }
+            }, 8000);
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            stopAutoRotation();
+            updateActiveQuote(currentQuote + 1);
             setTimeout(() => {
               if (!isPaused) {
                 startAutoRotation();
@@ -1579,10 +1595,10 @@
             }
           }
           
-          /* Enhanced focus states for quote indicators */
-          .quote-indicator-dot:focus {
+          /* Enhanced focus states for quote navigation arrows */
+          .quote-nav-arrow:focus {
             outline: 3px solid rgba(255, 255, 255, 0.8);
-            outline-offset: 6px;
+            outline-offset: 4px;
           }
           
           /* Smooth transitions for quote items */

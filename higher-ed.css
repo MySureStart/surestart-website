@@ -381,13 +381,13 @@
   left: 0;
   right: 0;
   height: 6px;
-  background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FF6B35 100%);
+  background: var(--gradient-primary);
   z-index: 10;
 }
 
 .achievement-card.featured::before {
   height: 8px;
-  background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FF6B35 100%);
+  background: var(--gradient-primary);
   animation: shimmer 3s ease-in-out infinite;
 }
 
@@ -1495,47 +1495,91 @@
   color: white;
 }
 
-/* Navigation Indicators for Rotating Quotes */
-.partnership-testimonials-rotating .rotating-quotes-indicators {
+/* Navigation Arrows for Rotating Quotes */
+.partnership-testimonials-rotating .rotating-quotes-navigation {
   display: flex;
-  justify-content: center;
-  gap: var(--space-xl);
-  margin-top: var(--space-3xl);
-  padding: var(--space-lg) 0;
-  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0 var(--space-lg);
+  pointer-events: none;
   z-index: 10;
 }
 
-.partnership-testimonials-rotating .quote-indicator-dot {
-  width: 50px;
-  height: 4px;
-  border-radius: var(--border-radius-full);
-  background: rgba(255, 255, 255, 0.4);
-  border: none;
+.partnership-testimonials-rotating .quote-nav-arrow {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  pointer-events: auto;
   position: relative;
-  overflow: visible;
-  box-shadow: none;
-  z-index: 10;
+  overflow: hidden;
 }
 
-.partnership-testimonials-rotating .quote-indicator-dot.active {
-  background: white;
-  transform: scaleX(1.4) scaleY(1.2);
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
-  z-index: 11;
+.partnership-testimonials-rotating .quote-nav-arrow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.3s ease;
 }
 
-.partnership-testimonials-rotating .quote-indicator-dot:not(.active):hover {
-  background: rgba(255, 255, 255, 0.6);
-  transform: scaleX(1.1);
+.partnership-testimonials-rotating .quote-nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.partnership-testimonials-rotating .quote-indicator-dot:focus-visible {
-  outline: 3px solid var(--ss-yellow);
-  outline-offset: 6px;
+.partnership-testimonials-rotating .quote-nav-arrow:hover::before {
+  transform: scale(1);
+}
+
+.partnership-testimonials-rotating .quote-nav-arrow:active {
+  transform: scale(1.05);
+}
+
+.partnership-testimonials-rotating .quote-nav-arrow:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+}
+
+.partnership-testimonials-rotating .quote-nav-arrow svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2.5;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.partnership-testimonials-rotating .quote-nav-arrow:hover svg {
+  transform: scale(1.1);
+}
+
+.partnership-testimonials-rotating .quote-nav-prev {
+  margin-left: -28px;
+}
+
+.partnership-testimonials-rotating .quote-nav-next {
+  margin-right: -28px;
 }
 
 /* Responsive Design for Rotating Quotes */
@@ -1573,6 +1617,29 @@
   
   .partnership-testimonials-rotating .company-logo img {
     height: 30px;
+  }
+  
+  /* Mobile responsive styles for navigation arrows */
+  .partnership-testimonials-rotating .rotating-quotes-navigation {
+    padding: 0 var(--space-md);
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-arrow {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-prev {
+    margin-left: -24px;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-next {
+    margin-right: -24px;
   }
 }
 
