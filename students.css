@@ -13,8 +13,14 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('static/images/Hero\ -\ Students.jpeg') center/cover no-repeat;
-  padding: 120px 0 60px;
+  /* your line – NOT edited */
+  background: url('static/images/SoME\ Tiles\ -\ Landscape\ \(1\).png') center/cover no-repeat;
+
+  /* ZOOM */
+  background-size: 100%;        /* >100% = zoomed in, 100% = normal */
+
+  /* MOVE (X Y) */
+  background-position: 10% 50%; /* 0% = left, 100% = right; 0% = top, 100% = bottom */
 }
 
 .students-hero-background {
@@ -118,7 +124,6 @@
   gap: var(--space-2xl) var(--space-xl);
   text-align: left;
   width: 100%;
-  margin-top: -40px;
   align-items: end;
 }
 
