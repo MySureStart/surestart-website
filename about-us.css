@@ -62,7 +62,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2xl);
-  max-width: 85%;
   text-align: left;
 }
 
@@ -315,7 +314,7 @@
 }
 
 .article-title a:hover {
-  color: #ff6b6b;
+  color: var(--ss-red);
 }
 
 .article-excerpt {
@@ -460,15 +459,13 @@
 }
 
 .podcast-source {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+
 }
 
 .podcast-icon {
-  width: 32px;
-  height: 32px;
+  width: 200px;
+  height: 200px;
+  padding: 0px;
 }
 
 .podcast-platform {
@@ -493,7 +490,7 @@
 }
 
 .podcast-title a:hover {
-  color: #1DB954;
+  color: var(--ss-red);
 }
 
 .podcast-excerpt {
@@ -671,7 +668,7 @@
 }
 
 .social-btn:hover {
-  background: var(--ss-red);
+  background: var(--gradient-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }

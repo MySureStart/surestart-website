@@ -3968,13 +3968,8 @@ p {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-  margin-bottom: var(--space-lg);
 }
 
-.podcast-icon {
-  width: 32px;
-  height: 32px;
-}
 
 .podcast-platform {
   font-size: var(--text-sm);
