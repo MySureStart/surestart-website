@@ -3778,7 +3778,7 @@
 .partnership-testimonials-rotating {
   background: var(--gradient-button);
   color: white;
-  padding: var(--space-4xl) 0;
+  padding: var(--space-xl) 0;
   position: relative;
   overflow: hidden;
   margin-top: 0;
@@ -3862,6 +3862,7 @@
   font-weight: 400;
   color: white;
   margin: 0;
+  margin-bottom: var(--space-2xl);
   position: relative;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -4283,9 +4284,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: var(--space-lg);
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  margin-top: var(--space-xl);
 }
 
 .rotating-quote-item .author-info {
