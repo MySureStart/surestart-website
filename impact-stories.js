@@ -59,7 +59,7 @@ class AnimatedCounter {
   constructor(element, options = {}) {
     this.element = element;
     this.target = parseInt(element.dataset.value) || parseInt(element.textContent);
-    this.duration = options.duration || 2000;
+    this.duration = options.duration || 500;
     this.suffix = element.dataset.suffix || '';
     this.prefix = element.dataset.prefix || '';
     this.hasAnimated = false;
@@ -1697,8 +1697,8 @@ class CaseStudiesCarousel {
     
     // Enhanced carousel properties
     this.currentIndex = 0;
-    this.realSlidesCount = 4; // Original 4 slides (was 3)
-    this.totalSlides = this.realSlidesCount + 1; // 5 slides including clone
+    this.realSlidesCount = 5; // Now 5 slides (was 4)
+    this.totalSlides = this.realSlidesCount + 1; // 6 slides including clone
     this.isTransitioning = false;
     this.isResetting = false;
     this.autoAdvanceInterval = null;
@@ -1736,13 +1736,13 @@ class CaseStudiesCarousel {
   setupCarousel() {
     // Professional animation setup
     this.track.style.display = 'flex';
-    this.track.style.width = '500%'; // 5 slides (4 real + 1 clone)
+    this.track.style.width = '600%'; // 5 slides (4 real + 1 clone)
     this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     
     // Each slide takes exactly 1/5 of the track width
     this.slides.forEach((slide, index) => {
-      slide.style.flex = '0 0 20%';
-      slide.style.width = '20%';
+      slide.style.flex = '0 0 16.67%';
+      slide.style.width = '16.67%';
       slide.style.margin = '0 auto';
       
       // Set initial animation state
@@ -1821,7 +1821,7 @@ class CaseStudiesCarousel {
       const diffX = currentX - startX;
       const maxDrag = 100; // Limit drag distance
       const clampedDiff = Math.max(-maxDrag, Math.min(maxDrag, diffX));
-      const currentTransform = -(this.currentIndex * 20); // 20% per slide
+      const currentTransform = -(this.currentIndex * 16.67); // 16.67% per slide
       const newTransform = currentTransform + (clampedDiff / window.innerWidth * 20);
       
       this.track.style.transform = `translateX(${newTransform}%)`;
@@ -1959,7 +1959,7 @@ class CaseStudiesCarousel {
     }
     
     // Calculate transform to show current slide
-    const translateX = -(this.currentIndex * 20); // 20% per slide for 5-slide track
+    const translateX = -(this.currentIndex * 16.67); // 16.67% per slide for 5-slide track
     
     console.log(`Updating carousel - slide ${this.currentIndex + 1}/${this.totalSlides}, transform: ${translateX}%`);
     
