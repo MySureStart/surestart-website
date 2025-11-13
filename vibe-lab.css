@@ -607,7 +607,7 @@
 }
 
 .schedule-table thead tr {
-  background: linear-gradient(135deg, #2C2C2C 0%, #E73052 33%, #ED7C4B 100%);
+  background: var(--gradient-primary)
 }
 
 .schedule-table th {
@@ -647,10 +647,6 @@
 
 .schedule-table tbody tr:nth-child(even) {
   background: white;
-}
-
-.schedule-table tbody tr:hover {
-  background: rgba(231, 48, 82, 0.05);
 }
 
 .schedule-table td {
