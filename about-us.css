@@ -676,7 +676,7 @@
 /* Our Team Section */
 .our-team {
   background: var(--surface-secondary);
-  padding: var(--space-3xl) 0;
+  padding: var(--space-3xl) 0 var(--space-5xl);
 }
 
 .team-container {
