@@ -1,6 +1,93 @@
 /* ==========================================
-   VIBE LAB - NEW PAGE STYLES
+   VIBE LAB SPECIFIC STYLES
    ========================================== */
+
+/* Hero Features - Adapted from CTA features for hero context */
+.hero-features {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--space-2xl, 3rem);
+  margin-top: var(--space-lg, 1.5rem);
+  margin-bottom: var(--space-lg, 1.5rem);
+}
+
+.hero-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 0.75rem);
+  font-size: var(--text-sm, 0.875rem);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-feature-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  font-size: 14px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive design for hero features */
+@media (max-width: 768px) {
+  .hero-features-cta-container {
+    flex-direction: column;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+  
+  .hero-features {
+    flex-direction: column;
+    gap: var(--space-md, 1rem);
+    align-items: flex-start;
+    margin: 0;
+  }
+  
+  .hero-feature {
+    font-size: var(--text-xs, 0.75rem);
+  }
+  
+  .hero-feature-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+  
+  .hero-cta {
+    justify-content: flex-start;
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-features-cta-container {
+    gap: var(--space-md);
+  }
+  
+  .hero-features {
+    gap: var(--space-sm, 0.75rem);
+  }
+  
+  .hero-feature {
+    gap: var(--space-xs, 0.5rem);
+  }
+  
+  .hero-cta {
+    width: 100%;
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 /* ==========================================
    NAVIGATION HIGHLIGHT
@@ -91,7 +178,7 @@
 .hero-text-section {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
   gap: var(--space-2xl) var(--space-xl);
   text-align: left;
   width: 100%;
@@ -175,11 +262,13 @@
   font-size: var(--text-xl);
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 var(--space-md) 0;
+  margin: 0;
   font-weight: 400;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   max-width: 580px;
   text-align: left;
+  grid-column: 1 / -1;
+  grid-row: 2;
 }
 
 .hero-details {
@@ -190,15 +279,24 @@
   font-style: italic;
 }
 
+.hero-features-cta-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2xl);
+  grid-column: 1 / -1;
+  grid-row: 3;
+  margin-top: var(--space-lg);
+}
+
 .hero-cta {
   display: flex;
   gap: var(--space-sm);
   justify-content: flex-end;
   flex-wrap: wrap;
-  align-self: end;
-  grid-column: 2;
-  grid-row: 1 / -1;
-  padding-top: 30px;
+  align-self: center;
+  align-content: start;
+  margin-top: -60px;
 }
 
 .btn-large {
