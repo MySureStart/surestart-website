@@ -831,7 +831,7 @@
 .details-image {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
 }
 
 .details-bg-image {
