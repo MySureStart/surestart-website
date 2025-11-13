@@ -1221,7 +1221,7 @@
    ========================================== */
 
 .registration-section {
-  background: linear-gradient(135deg, var(--surface-secondary) 0%, white 100%);
+  background:var(--surface-secondary);
   padding: var(--space-5xl) 0;
 }
 
@@ -1243,33 +1243,29 @@
   flex-direction: column;
   gap: var(--space-2xl);
   padding: var(--space-2xl);
-  background: white;
-  border-radius: var(--border-radius-2xl);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-subtle);
-  position: sticky;
+  padding-top: 0px;
+  background-color:var(--surface-secondary);
   top: var(--space-2xl);
+  text-align: left;
 }
 
 .robot-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--space-lg);
-  background: linear-gradient(135deg, rgba(231, 48, 82, 0.05) 0%, rgba(238, 45, 110, 0.05) 100%);
-  border-radius: var(--border-radius-xl);
-  border: 2px solid rgba(231, 48, 82, 0.1);
+  text-align: left;
+  margin-top: -5rem;
 }
 
 .robot-image {
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   height: auto;
   border-radius: var(--border-radius-lg);
 }
 
 .registration-info {
-  text-align: center;
+  text-align: left;
 }
 
 .registration-title {
@@ -1288,15 +1284,43 @@
   font-family: 'Eastman Grotesque', serif;
 }
 
+.registration-subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: var(--space-xl);
+  line-height: 1.5;
+}
+
+.pricing-section {
+  margin-bottom: var(--space-xl);
+  padding: var(--space-lg) var(--space-xl);
+  background: rgba(231, 48, 82, 0.05);
+  border-radius: var(--border-radius-lg);
+  border: 2px solid rgba(231, 48, 82, 0.15);
+  text-align: left;
+
+}
+
+.pricing-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--ss-red);
+  margin-bottom: var(--space-sm);
+  font-family: 'Eastman Grotesque', serif;
+}
+
+.pricing-details {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
 .discount-text {
   font-size: var(--text-lg);
-  color: var(--ss-red);
   font-weight: 600;
-  margin-bottom: var(--space-lg);
-  padding: var(--space-md) var(--space-lg);
-  background: rgba(231, 48, 82, 0.1);
-  border-radius: var(--border-radius-lg);
-  border: 2px solid rgba(231, 48, 82, 0.2);
 }
 
 .discount-text strong {
