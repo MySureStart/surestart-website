@@ -713,7 +713,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   text-align: left;
 }
 
@@ -904,10 +904,11 @@
   z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  text-align: left;
   height: 100%;
-  text-align: center;
+  margin-top: 20px;
+  padding: var(--space-lg);
 }
 
 .courses-preview .coming-soon-card .mystery-icon {

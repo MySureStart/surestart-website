@@ -3495,9 +3495,10 @@ p {
 }
 
 .footer-social a:hover {
-  background: var(--primary-terracotta);
+  background: var(--gradient-primary);
   color: white;
   transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(231, 48, 82, 0.25);
 }
 
 .footer-column h4 {
