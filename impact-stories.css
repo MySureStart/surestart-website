@@ -2475,6 +2475,19 @@ a {
   transform: translate(-50%, -50%) scale(1);
 }
 
+/* Disable hover effects specifically for Rezwan's video thumbnail (3rd breakthrough story) */
+.breakthrough-story:nth-child(3) .breakthrough-video .video-thumbnail:hover img {
+  transform: none;
+}
+
+.breakthrough-story:nth-child(3) .breakthrough-video .video-thumbnail::after {
+  display: none;
+}
+
+.breakthrough-story:nth-child(3) .breakthrough-video .video-thumbnail::before {
+  display: none;
+}
+
 .breakthrough-text {
   display: flex;
   flex-direction: column;
