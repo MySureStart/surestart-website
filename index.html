@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SureStart — Shaping Tomorrow's AI Leaders</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="impact-stories.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
@@ -480,33 +481,36 @@
   </div>
 </section>
 
-<!-- ASU-GSV VIDEO SECTION -->
-<section class="asu-gsv-section">
-  <div class="asu-gsv-container">
-    <div class="section-header fade-up">
-      
-      
-    </div>
-    <div class="asu-gsv-grid fade-up">
-      <div class="asu-gsv-text">
-        <h2 class="section-title">From Classroom to Main Stage</h2>
-        <p class="asu-gsv-description">
-          Our students’ journeys culminate in a public showcase of their AI-driven creative and impact projects, giving them visibility, confidence and voice to share their ideas with the world. Winning teams from MIT FutureMakers, our long-standing collaboration with MIT RAISE, have gone on to present at the ASU+GSV AI Show since 2023, including  on the main stage before audiences of educators, investors, and EdTech business leaders.
-        </p>
+<!-- STUDENT NETWORK WEB SECTION -->
+<section class="student-network-section">
+  <div class="student-network-web fade-up">
+    <div class="network-container">
+      <div class="network-header">
+        <h3 class="network-title">Our Connected Community</h3>
+        <p class="network-subtitle">Click on any student to explore their journey and see how SureStart transformed their future.</p>
       </div>
-      <div class="asu-gsv-video">
-        <div class="video-container">
-          <iframe 
-            src="https://www.youtube.com/embed/JvufXutu7R8" 
-            title="Team Code Blue AI - ASU+GSV Presentation"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-          </iframe>
+      
+      <div class="network-visualization">
+        <canvas id="networkCanvas" class="network-canvas"></canvas>
+        
+        <!-- Floating Testimonial Card -->
+        <div id="testimonialCard" class="floating-testimonial-card">
+          <div class="testimonial-close" id="testimonialClose">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+          
+          <img id="testimonialAvatarImg" class="testimonial-avatar" src="" alt="">
+          
+          <div class="testimonial-content-wrapper">
+            <h4 id="testimonialName" class="testimonial-name"></h4>
+            <p id="testimonialSubtitle" class="testimonial-subtitle"></p>
+            <p id="testimonialText" class="testimonial-text"></p>
+          </div>
         </div>
-        <p class="video-caption">
-          Meet Team Code Blue AI, creators of an app that detects stroke symptoms faster than a patient can reach a doctor — now a funded startup!
-        </p>
+        
       </div>
     </div>
   </div>
@@ -628,5 +632,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="impact-stories.js"></script>
 </body>
 </html>

@@ -40,9 +40,9 @@
   bottom: 0;
   background: linear-gradient(
     135deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.8) 100%
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.55) 100%
   );
   z-index: 2;
 }
@@ -829,19 +829,18 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
-  backdrop-filter: blur(1px);
   border-radius: var(--border-radius-xl);
   pointer-events: none;
 }
 
 .courses-preview .coming-soon-overlay span {
   background: rgba(255, 255, 255, 0.95);
-  color: #664840;
+  color: #000000;
   padding: var(--space-sm) var(--space-lg);
   border-radius: var(--border-radius-md);
   font-size: var(--text-base);
@@ -851,7 +850,6 @@
   border: 2px solid rgba(102, 72, 64, 0.3);
   text-shadow: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
 }
 
 /* Ensure overlay appears on both front and back during flip */
@@ -869,7 +867,6 @@
     rgba(45, 42, 38, 0.7) 50%,
     rgba(45, 42, 38, 0.9) 100%
   );
-  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
 }
@@ -921,7 +918,6 @@
   justify-content: center;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: var(--space-lg);
-  backdrop-filter: blur(5px);
   border: 2px solid rgba(255, 255, 255, 0.2);
   animation: mysteryPulse 3s ease-in-out infinite;
 }
@@ -970,7 +966,6 @@
     rgba(255, 255, 255, 0.95) 0%, 
     rgba(250, 249, 246, 0.9) 100%
   );
-  backdrop-filter: blur(20px);
 }
 
 .courses-preview .coming-soon-card .back-content h4 {
@@ -1053,7 +1048,6 @@
   box-shadow: 
     0 4px 16px rgba(45, 42, 38, 0.08),
     0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-  backdrop-filter: blur(20px);
 }
 
 .courses-preview .program-flip-card:hover .flip-card-front,
@@ -1252,7 +1246,7 @@
 .outcomes-difference-content .logo-section-title {
   font-size: var(--text-xl);
   font-weight: 700;
-  color: #664840;
+  color: #000000;
   margin: 0;
   text-align: left;
 }

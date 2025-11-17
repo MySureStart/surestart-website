@@ -46,8 +46,10 @@
   --ss-dark: #2E2E2E;
   --ss-neutral: #F4EFEA;
   --ss-neutral-2: #F9F6EE;
-  --ss-accent-1: #664840;
-  --ss-accent-2: #94746b;
+  /* --ss-accent-1: #664840; */
+   --ss-accent-1: #000000;
+  /* --ss-accent-2: #94746b; */
+    --ss-accent-2: #000000;
   
   /* Semantic Colors */
   --surface-primary: var(--ss-neutral-2);
@@ -516,12 +518,12 @@ p {
   }
   
   .hero-video-overlay {
-    /* Stronger overlay on mobile for better text readability */
+    /* Lighter overlay on mobile while maintaining text readability */
     background: linear-gradient(
       135deg,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 0.6) 50%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.45) 50%,
+      rgba(0, 0, 0, 0.55) 100%
     );
   }
 }
@@ -535,9 +537,9 @@ p {
   .hero-video-overlay {
     background: linear-gradient(
       135deg,
-      rgba(0, 0, 0, 0.6) 0%,
-      rgba(0, 0, 0, 0.7) 50%,
-      rgba(0, 0, 0, 0.8) 100%
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.55) 50%,
+      rgba(0, 0, 0, 0.65) 100%
     );
   }
 }
@@ -550,9 +552,9 @@ p {
   bottom: 0;
   background: linear-gradient(
     135deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.6) 100%
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.35) 50%,
+    rgba(0, 0, 0, 0.4) 100%
   );
   z-index: 2;
 }
@@ -3012,7 +3014,7 @@ p {
 .logo-section-title {
   font-size: var(--text-xl);
   font-weight: 700;
-  color:#664840;
+  color:#000000;
   margin: 0;
   text-align: left;
 }
