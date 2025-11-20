@@ -226,13 +226,11 @@
   max-width: 150px;
   width: auto;
   object-fit: contain;
-  filter: grayscale(30%) opacity(0.8);
   transition: all var(--transition-normal);
 }
 
 .logo-item:hover img {
-  filter: grayscale(0%) opacity(1);
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
 }
 
 @keyframes marquee {

@@ -1287,20 +1287,15 @@
 
 .outcomes-difference-content .logo-item {
   flex: 0 1 auto;
-  opacity: 0.8;
   transition: opacity var(--transition-normal);
 }
 
-.outcomes-difference-content .logo-item:hover {
-  opacity: 1;
-}
 
 .outcomes-difference-content .logo-item img {
   height: clamp(36px, 3.5vw, 50px);
   width: auto;
   display: block;
   object-fit: contain;
-  filter: grayscale(0.2) opacity(0.9);
   transition: all var(--transition-normal);
 }
 
@@ -1330,10 +1325,6 @@
 
 .outcomes-difference-content .logo-item img[alt="Consumer Reports"] {
   height: clamp(28px, 2.6vw, 36px);
-}
-
-.outcomes-difference-content .logo-item:hover img {
-  filter: grayscale(0) opacity(1);
 }
 
 @keyframes marquee {

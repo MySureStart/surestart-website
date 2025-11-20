@@ -3387,16 +3387,10 @@
 /* Callout hover effects - keeping original transform but making it more subtle */
 .spiral-callout {
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
-  cursor: pointer;
 }
 
 .spiral-callout:hover {
   transform: translate(-50%, -50%) scale(1.02);
-}
-
-.spiral-callout:hover h3 {
-  color: var(--ss-red);
-  transition: color 0.3s ease;
 }
 
 /* Enhanced focus states for individual elements */
@@ -4138,7 +4132,6 @@
   font-size: var(--text-2xl);
   font-weight: 700;
   color: white;
-  opacity: 0.9;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -4146,13 +4139,8 @@
   max-height: 50px;
   max-width: 180px;
   object-fit: contain;
-  filter: brightness(0) invert(1) opacity(0.9);
-  transition: all 0.3s ease;
-}
-
-.rotating-quote-item .company-logo img:hover {
-  filter: brightness(0) invert(1) opacity(1);
   transform: scale(1.05);
+
 }
 
 /* Navigation Indicators */

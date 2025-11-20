@@ -412,11 +412,9 @@
       const logos = marquee.querySelectorAll('.logo-item img');
       logos.forEach(logo => {
         logo.addEventListener('mouseenter', function() {
-          this.style.filter = 'grayscale(0) opacity(1) brightness(1.1)';
         });
         
         logo.addEventListener('mouseleave', function() {
-          this.style.filter = 'grayscale(0.3) opacity(0.8)';
         });
       });
     });
