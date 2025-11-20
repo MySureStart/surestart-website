@@ -875,9 +875,44 @@
 
 /* School Partnership Section */
 .school-partnership {
-  background: var(--surface-secondary);
-  padding: var(--space-5xl) 0;
   position: relative;
+  padding: var(--space-5xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.school-partnership::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.school-partnership::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .school-partnership-container {
@@ -1290,8 +1325,44 @@
 
 /* Essential Skills Section */
 .essential-skills {
-  background: var(--surface-secondary);
+  position: relative;
   padding: var(--space-5xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.essential-skills::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.essential-skills::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .essential-skills-container {
@@ -1302,8 +1373,44 @@
 
 /* Student Outcomes Section */
 .student-outcomes {
-  background: var(--surface-secondary);
+  position: relative;
   padding: var(--space-5xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.student-outcomes::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.student-outcomes::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .student-outcomes-container {
@@ -3387,10 +3494,8 @@
 /* Callout hover effects - keeping original transform but making it more subtle */
 .spiral-callout {
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
-}
+  color: var(--ss-red);
 
-.spiral-callout:hover {
-  transform: translate(-50%, -50%) scale(1.02);
 }
 
 /* Enhanced focus states for individual elements */

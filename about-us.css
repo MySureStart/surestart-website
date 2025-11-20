@@ -152,8 +152,44 @@
 
 /* News & Recognition Section */
 .news-recognition {
-  background: var(--surface-secondary);
+  position: relative;
   padding: var(--space-3xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.news-recognition::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.news-recognition::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .news-recognition-container {
@@ -407,8 +443,44 @@
 
 /* Podcasts Section */
 .podcasts-section {
-  background: var(--surface-secondary);
+  position: relative;
   padding: var(--space-3xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.podcasts-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.podcasts-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .podcasts-container {
@@ -673,8 +745,44 @@
 
 /* Our Team Section */
 .our-team {
-  background: var(--surface-secondary);
+  position: relative;
   padding: var(--space-3xl) 0 var(--space-2xl);
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.our-team::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.our-team::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .team-container {

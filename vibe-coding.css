@@ -356,9 +356,13 @@
    ========================================== */
 
 .problem-solution {
-  background: var(--surface-secondary);
-  padding: var(--space-5xl) 0;
   position: relative;
+  padding: var(--space-5xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
   overflow: hidden;
 }
 
@@ -368,13 +372,29 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(90deg, rgba(102, 72, 64, 0.05) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(148, 116, 107, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
   z-index: 1;
-  opacity: 0.4;
+}
+
+.problem-solution::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .problem-solution-container {
@@ -652,8 +672,44 @@
    ========================================== */
 
 .why-vibe {
-  background: var(--surface-secondary);
+  position: relative;
   padding: var(--space-5xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.why-vibe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.why-vibe::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .why-vibe-container {
@@ -780,8 +836,44 @@
    ========================================== */
 
 .pricing-section {
-  background: var(--surface-primary);
+  position: relative;
   padding: var(--space-5xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-primary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.pricing-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-primary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pricing-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-primary) 100%
+  );
+  pointer-events: none;
 }
 
 .pricing-container {

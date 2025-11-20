@@ -209,7 +209,7 @@ p {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(250, 249, 246, 0.92);
+  background: var(--surface-secondary);
   backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--border-subtle);
   transition: all var(--transition-normal);
@@ -1582,10 +1582,14 @@ p {
    ========================================== */
 
 .asu-gsv-section {
-  background: var(--surface-secondary);
   position: relative;
   padding-top: calc(var(--space-3xl) + 40px);
   padding-bottom: var(--space-3xl);
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
 }
 
 .asu-gsv-section::before {
@@ -1596,12 +1600,27 @@ p {
   right: 0;
   height: 120px;
   background: linear-gradient(180deg, 
-    var(--surface-primary) 0%, 
-    rgba(250, 249, 246, 0.6) 40%,
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
     transparent 100%
   );
   pointer-events: none;
   z-index: 1;
+}
+
+.asu-gsv-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .asu-gsv-container {
@@ -1744,10 +1763,15 @@ p {
    ========================================== */
 
 .mission {
-  background: white;
+  /* background: white; */
   position: relative;
   padding-top: calc(var(--space-3xl) + 40px);
   padding-bottom: var(--space-3xl);
+    background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
 }
 
 .mission::before {
@@ -1758,7 +1782,7 @@ p {
   right: 0;
   height: 160px;
   background: linear-gradient(180deg, 
-    var(--surface-primary) 0%, 
+    var(--surface-secondary) 0%, 
     rgba(250, 249, 246, 0.8) 30%,
     transparent 100%
   );
@@ -2852,11 +2876,19 @@ p {
    ========================================== */
 
 .surestart-difference {
-  background: var(--surface-secondary);
   position: relative;
-  margin-top: -40px;
-  padding-top: calc(var(--space-3xl) + 40px);
+  padding-top: calc(var(--space-3xl));
   padding-bottom: var(--space-5xl);
+    /* background: linear-gradient(180deg,
+    var(--surface-secondary) 0%,
+    rgba(245, 243, 240, 0.6) 40%,
+    transparent 100%
+  ); */
+      background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
 }
 
 .surestart-difference::before {
@@ -2868,6 +2900,17 @@ p {
   height: 120px;
   pointer-events: none;
   z-index: 1;
+  /* background: linear-gradient(180deg,
+    var(--surface-secondary) 0%,
+    rgba(245, 243, 240, 0.6) 40%,
+    transparent 100%
+  ); */
+
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
 }
 
 .surestart-difference::after {
@@ -2877,12 +2920,16 @@ p {
   left: 0;
   right: 0;
   height: 80px;
+  /* background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(26, 24, 22, 0.02) 50%,
+    rgba(26, 24, 22, 0.08) 100%
+  ) */
   background: linear-gradient(180deg,
     transparent 0%,
     rgba(245, 243, 240, 0.3) 70%,
     var(--surface-secondary) 100%
   );
-  pointer-events: none;
 }
 
 .surestart-difference-container {
@@ -2933,12 +2980,13 @@ p {
   border: 1px solid rgba(84, 134, 135, 0.08);
   transition: all var(--transition-normal);
   height: max-content;
-}
-
-.stat-item:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
   background: rgba(255, 255, 255, 0.95);
+}
+
+.stat-item:hover {
+
 }
 
 .stat-icon {
