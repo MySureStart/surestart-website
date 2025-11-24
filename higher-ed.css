@@ -51,7 +51,6 @@
 .hero-content-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
   align-items: flex-start;
   justify-items: start;
   width: 100%;
@@ -65,6 +64,7 @@
   gap: var(--space-2xl) var(--space-xl);
   text-align: left;
   width: 100%;
+  align-items: end;
   margin-top: -75px;
 }
 
@@ -1321,15 +1321,52 @@
 
 /* Graduate Career Success Section */
 .graduate-career-success {
-  background: white;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
   padding: var(--space-5xl) 0;
   position: relative;
+}
+
+.graduate-career-success::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.graduate-career-success::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .graduate-career-success-container {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--space-lg);
+  position: relative;
+  z-index: 2;
 }
 
 .graduate-career-success .logo-section {

@@ -64,10 +64,9 @@
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
-  gap: var(--space-lg) var(--space-xl);
+  gap: var(--space-2xl) var(--space-xl);
   text-align: left;
   width: 100%;
-  margin-top: -40px;
   align-items: end;
 }
 
@@ -217,10 +216,44 @@
 
 /* Colleges Attended Section */
 .colleges-attended {
-  background: white;
-  padding: var(--space-5xl) 0;
   position: relative;
-  padding-bottom: 0px;
+  padding: var(--space-5xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
+.colleges-attended::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.colleges-attended::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .colleges-attended-container {
@@ -1618,14 +1651,13 @@
 
 /* Success Stories Hero Section */
 .success-stories-hero {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(250, 249, 246, 0.95) 50%,
-    rgba(245, 244, 241, 0.9) 100%
-  );
-  padding: var(--space-5xl) 0;
   position: relative;
+  padding: var(--space-5xl) 0;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
   overflow: hidden;
 }
 
@@ -1635,12 +1667,29 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(231, 48, 82, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(102, 72, 64, 0.03) 0%, transparent 50%);
+  height: 120px;
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+  pointer-events: none;
   z-index: 1;
+}
+
+.success-stories-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 243, 240, 0.3) 70%,
+    var(--surface-secondary) 100%
+  );
+  pointer-events: none;
 }
 
 .success-stories-container {

@@ -1078,8 +1078,7 @@
 
 .program-outcomes {
   position: relative;
-  padding-top: calc(var(--space-xl) + 30px);
-  padding-bottom: var(--space-3xl);
+  padding: var(--space-5xl) 0;
   background: linear-gradient(180deg, 
     var(--surface-secondary) 0%, 
     rgba(250, 249, 246, 0.8) 30%,
@@ -1099,33 +1098,6 @@
     rgba(250, 249, 246, 0.8) 30%,
     transparent 100%
   );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.program-outcomes::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(180deg,
-    transparent 0%,
-    rgba(245, 243, 240, 0.3) 70%,
-    var(--surface-secondary) 100%
-  );
-  pointer-events: none;
-}
-
-.program-outcomes::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(245, 243, 240, 0.85);
   pointer-events: none;
   z-index: 1;
 }

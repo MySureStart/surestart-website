@@ -174,7 +174,7 @@
     transparent 100%
   );
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
 .news-recognition::after {
@@ -701,6 +701,7 @@
 .our-team {
   position: relative;
   padding: var(--space-3xl) 0 var(--space-2xl);
+  padding-bottom: var(--space-4xl);
   background: linear-gradient(180deg, 
     var(--surface-secondary) 0%, 
     rgba(250, 249, 246, 0.8) 30%,
@@ -721,7 +722,6 @@
     transparent 100%
   );
   pointer-events: none;
-  z-index: 1;
 }
 
 .our-team::after {
@@ -745,11 +745,34 @@
   padding: 0 var(--space-lg);
 }
 
+.team-subsection {
+  margin-bottom: var(--space-4xl);
+}
+
+.advisory-subsection {
+  margin-bottom: 0;
+}
+
+.team-subsection .logo-section-title,
+.advisory-subsection .logo-section-title {
+  margin-bottom: var(--space-2xl);
+}
+
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-xl);
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-lg);
+}
+
+.advisory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-lg);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .team-member {

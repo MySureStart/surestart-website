@@ -209,7 +209,7 @@ p {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: var(--surface-secondary);
+  background: white;
   backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--border-subtle);
   transition: all var(--transition-normal);
