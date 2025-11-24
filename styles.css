@@ -55,9 +55,12 @@
   --surface-primary: var(--ss-neutral-2);
   --surface-secondary: var(--ss-neutral);
   --surface-elevated: rgba(255, 255, 255, 0.9);
-  --text-primary: var(--ss-dark);
+  /* --text-primary: var(--ss-dark);
   --text-secondary: #5A564F;
-  --text-muted: #857F78;
+  --text-muted: #857F78; */
+   --text-primary:#000000;
+  --text-secondary: #000000;
+  --text-muted: #000000;
   --border-subtle: rgba(84, 134, 135, 0.12);
   --border-medium: rgba(84, 134, 135, 0.2);
   
