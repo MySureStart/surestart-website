@@ -731,8 +731,16 @@
   color: var(--ss-orange);
 }
 
-.courses-preview .program-flip-card[data-program="robotics"] .back-content h4 {
+.courses-preview .program-flip-card[data-program="mit-futuremakers"] .back-content h4 {
   color: var(--ss-red); 
+}
+
+.courses-preview .program-flip-card[data-program="pas4ai"] .back-content h4 {
+  color: var(--ss-pink);
+}
+
+.courses-preview .program-flip-card[data-program="branksome-hall"] .back-content h4 {
+  color: var(--ss-yellow);
 }
 
 .courses-preview .badge-icon {
@@ -764,7 +772,34 @@
   font-weight: bold;
 }
 
-/* Program meta removed - no longer needed */
+/* Program Meta Information */
+.courses-preview .program-meta {
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.courses-preview .meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.courses-preview .meta-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.courses-preview .meta-value {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
 
 /* Back Content Layout - Clean like K-12 bottom row */
 .courses-preview .back-content {
@@ -820,6 +855,35 @@
 .courses-preview .btn-register.btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(231, 48, 82, 0.35);
+}
+
+.courses-preview .btn-register.btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ss-accent-1);
+  border: 2px solid var(--ss-accent-1);
+  box-shadow: 0 4px 16px rgba(102, 72, 64, 0.15);
+}
+
+.courses-preview .btn-register.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 72, 64, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.courses-preview .btn-register.btn-secondary:hover::before {
+  left: 100%;
+}
+
+.courses-preview .btn-register.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(102, 72, 64, 0.25);
+  background: var(--ss-accent-1);
+  color: white;
 }
 
 /* Coming Soon Overlay Styling */

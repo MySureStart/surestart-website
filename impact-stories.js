@@ -2231,9 +2231,19 @@ class ImpactStoriesApp {
   }
 
   initCounters() {
+    // Original counter elements
     const counterElements = document.querySelectorAll('.value[data-value]');
     counterElements.forEach(element => {
       new AnimatedCounter(element);
+    });
+    
+    // New "by the numbers" section counter elements
+    const statisticElements = document.querySelectorAll('.statistic-number[data-target]');
+    statisticElements.forEach(element => {
+      new AnimatedCounter(element, {
+        duration: 2000, // Longer animation for impact
+        targetAttribute: 'data-target'
+      });
     });
     
     // Ensure values render as 2,000 and 85%
