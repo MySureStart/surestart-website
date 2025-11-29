@@ -97,23 +97,128 @@
       });
     }
     
-    // Mobile menu toggle
-    if (navToggle && navMenu) {
-      navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.classList.toggle('nav-open');
-      });
+  // Mobile menu toggle functionality
+  function initMobileMenu() {
+    if (!navToggle || !navMenu) {
+      console.error('Navigation elements not found:', { navToggle, navMenu });
+      return;
     }
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navbar.contains(e.target) && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-        document.body.classList.remove('nav-open');
+
+    // Set initial ARIA states
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Toggle navigation menu');
+    navToggle.setAttribute('role', 'button');
+    navMenu.setAttribute('aria-hidden', 'true');
+    navMenu.setAttribute('role', 'navigation');
+
+    // Enhanced toggle function
+    function toggleMobileMenu(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      
+      console.log('Mobile menu toggle clicked');
+      
+      const isCurrentlyOpen = navMenu.classList.contains('active');
+      const willBeOpen = !isCurrentlyOpen;
+      
+      // Toggle classes with fallback
+      try {
+        if (willBeOpen) {
+          navToggle.classList.add('active');
+          navMenu.classList.add('active');
+          document.body.classList.add('nav-open');
+        } else {
+          navToggle.classList.remove('active');
+          navMenu.classList.remove('active');
+          document.body.classList.remove('nav-open');
+        }
+        
+        // Update ARIA attributes
+        navToggle.setAttribute('aria-expanded', willBeOpen.toString());
+        navMenu.setAttribute('aria-hidden', (!willBeOpen).toString());
+        
+        console.log('Menu state changed:', willBeOpen ? 'opened' : 'closed');
+      } catch (error) {
+        console.error('Error toggling menu:', error);
+      }
+    }
+
+    // Add click event listener
+    navToggle.addEventListener('click', toggleMobileMenu);
+
+    // Add touch event listeners for better mobile support
+    navToggle.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      toggleMobileMenu();
+    });
+
+    // Add keyboard support
+    navToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMobileMenu();
       }
     });
+
+    // Enhanced outside click handling
+    function closeMobileMenu() {
+      if (navMenu.classList.contains('active')) {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navMenu.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navbar.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+    // Close menu when touching outside (mobile)
+    document.addEventListener('touchstart', (e) => {
+      if (!navbar.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+        navToggle.focus(); // Return focus to toggle button
+      }
+    });
+
+    // Close menu when nav links are clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+
+    // Handle orientation change
+    window.addEventListener('orientationchange', () => {
+      setTimeout(closeMobileMenu, 100);
+    });
+
+    // Handle resize to close menu on desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeMobileMenu();
+      }
+    });
+
+    console.log('Mobile menu initialization complete');
+  }
+
+  // Initialize mobile menu
+  initMobileMenu();
     
     // Initialize components
     initSmoothScroll();
@@ -1750,6 +1855,7 @@
       initScrollAnimations();
       initSpiralAnimations(); // Add spiral callouts animation
       initNavigation();
+      initDropdownNavigation(); // Add dropdown navigation functionality
       initButtonEffects();
       initFloatingCards();
       initTestimonialEffects();
@@ -1892,11 +1998,5 @@
     });
   }
 
-  // Add dropdown initialization to the main init function
-  const originalInit = init;
-  init = function() {
-    originalInit.call(this);
-    initDropdownNavigation();
-  };
 
 })();
