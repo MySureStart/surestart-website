@@ -1703,6 +1703,7 @@ class CaseStudiesCarousel {
     this.isResetting = false;
     this.autoAdvanceInterval = null;
     this.direction = 'next'; // Track direction for animation states
+    this.isMobile = window.innerWidth <= 768; // Track mobile state
     
     this.init();
   }
@@ -1719,6 +1720,22 @@ class CaseStudiesCarousel {
     this.addEventListeners();
     this.updateCarousel();
     this.startAutoAdvance();
+    
+    // Add resize listener
+    window.addEventListener('resize', debounce(() => {
+      this.handleResize();
+    }, 250));
+  }
+  
+  handleResize() {
+    const wasMobile = this.isMobile;
+    this.isMobile = window.innerWidth <= 768;
+    
+    // Re-setup carousel if mobile state changed
+    if (wasMobile !== this.isMobile) {
+      this.setupCarousel();
+      this.updateCarousel();
+    }
   }
 
   createClonedSlide() {
@@ -1736,20 +1753,42 @@ class CaseStudiesCarousel {
   setupCarousel() {
     // Professional animation setup
     this.track.style.display = 'flex';
-    this.track.style.width = '600%'; // 5 slides (4 real + 1 clone)
     this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     
-    // Each slide takes exactly 1/5 of the track width
-    this.slides.forEach((slide, index) => {
-      slide.style.flex = '0 0 16.67%';
-      slide.style.width = '16.67%';
-      slide.style.margin = '0 auto';
+    if (this.isMobile) {
+      // Mobile: Each slide takes full width with gap
+      // Gap is handled by CSS (--space-lg = 24px typically)
+      this.mobileGap = 24; // Match CSS gap value
       
-      // Set initial animation state
-      if (index === 0) {
-        slide.classList.add('active');
-      }
-    });
+      // Calculate card width: 100% of container minus some padding for peek effect
+      this.slides.forEach((slide, index) => {
+        slide.style.flex = '0 0 calc(100% - 16px)'; // Full width minus small margin
+        slide.style.width = 'calc(100% - 16px)';
+        slide.style.margin = '0 8px';
+        slide.style.boxSizing = 'border-box';
+        
+        // Set initial animation state
+        if (index === 0) {
+          slide.classList.add('active');
+        }
+      });
+      
+      // Set track width to accommodate all slides plus gaps
+      this.track.style.width = 'auto';
+    } else {
+      // Desktop: Original layout with 16.67% per slide
+      this.track.style.width = '600%'; // 6 slides
+      this.slides.forEach((slide, index) => {
+        slide.style.flex = '0 0 16.67%';
+        slide.style.width = '16.67%';
+        slide.style.margin = '0 auto';
+        
+        // Set initial animation state
+        if (index === 0) {
+          slide.classList.add('active');
+        }
+      });
+    }
   }
 
   addEventListeners() {
@@ -1959,15 +1998,27 @@ class CaseStudiesCarousel {
     }
     
     // Calculate transform to show current slide
-    const translateX = -(this.currentIndex * 16.67); // 16.67% per slide for 5-slide track
+    let translateValue;
+    if (this.isMobile) {
+      // Mobile: Calculate pixel-based transform to account for gaps
+      // Each card is (100% - 16px) wide, plus gap between cards
+      const containerWidth = this.track.parentElement.offsetWidth;
+      const cardWidth = containerWidth; // Match the calc(100% - 16px)
+      const gap = 24; // Match CSS gap
+      const slideOffset = this.currentIndex * (cardWidth + gap);
+      translateValue = `-${slideOffset}px`;
+    } else {
+      // Desktop: Each slide is 16.67%
+      translateValue = `${-(this.currentIndex * 16.67)}%`;
+    }
     
-    console.log(`Updating carousel - slide ${this.currentIndex + 1}/${this.totalSlides}, transform: ${translateX}%`);
+    console.log(`Updating carousel - slide ${this.currentIndex + 1}/${this.totalSlides}, transform: ${translateValue}, mobile: ${this.isMobile}`);
     
     // Force reflow to ensure animation occurs
     this.track.offsetHeight;
     
     // Apply the transform to trigger smooth sliding animation
-    this.track.style.transform = `translateX(${translateX}%)`;
+    this.track.style.transform = `translateX(${translateValue})`;
     
     this.updateDots();
   }
