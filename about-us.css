@@ -968,6 +968,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-lg);
+  overflow-y: auto;
 }
 
 .modal-content {
@@ -977,27 +978,46 @@
   width: 100%;
   position: relative;
   box-shadow: var(--shadow-xl);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-close {
   position: absolute;
   top: var(--space-lg);
   right: var(--space-lg);
-  background: none;
+  background: rgba(255, 255, 255, 0.9);
   border: none;
   cursor: pointer;
   color: var(--text-muted);
   transition: color var(--transition-normal);
   z-index: 1001;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-close:hover {
   color: var(--text-primary);
+  background: white;
 }
 
 .modal-body {
   padding: var(--space-2xl);
   text-align: center;
+  overflow-y: auto;
+  flex: 1;
+  /* Hide scrollbar on desktop while keeping scroll functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.modal-body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .modal-photo {
@@ -1034,6 +1054,12 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .title-highlight::after {
+    bottom: -12px;
+    height: 16px;
+    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
+  }
+  
   .our-story-grid,
   .founder-grid {
     grid-template-columns: 1fr;
@@ -1059,9 +1085,19 @@
 }
 
 @media (max-width: 768px) {
+  .title-highlight::after {
+    bottom: -10px;
+    height: 14px;
+    transform: translateY(60%) translateX(-10%) scaleX(20) scaleY(20) rotate(3deg);
+  }
+  
   .about-hero {
     padding: 100px 0 40px;
     min-height: 50vh;
+  }
+  
+  .founder-social {
+    justify-content: center;
   }
   
   .about-hero-title {
@@ -1178,23 +1214,67 @@
     font-size: var(--text-xl);
   }
   
+  /* Modal mobile adjustments */
+  .team-modal {
+    align-items: flex-start;
+    padding: var(--space-md);
+    padding-top: var(--space-lg);
+  }
+  
   .modal-content {
-    margin: var(--space-lg);
-    max-width: calc(100% - 2 * var(--space-lg));
+    margin: 0 auto;
+    max-width: calc(100% - 2 * var(--space-sm));
+    max-height: calc(100vh - 2 * var(--space-lg));
+  }
+  
+  .modal-close {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    width: 32px;
+    height: 32px;
   }
   
   .modal-body {
-    padding: var(--space-xl);
+    padding: var(--space-lg);
+    padding-top: var(--space-2xl);
+  }
+  
+  .modal-photo {
+    margin-bottom: var(--space-lg);
+  }
+  
+  .modal-photo img {
+    width: 80px !important;
+    height: 80px !important;
   }
   
   .modal-photo .placeholder-avatar {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    font-size: var(--text-lg);
+  }
+  
+  .modal-info h3 {
     font-size: var(--text-xl);
+  }
+  
+  #modalRole {
+    font-size: var(--text-base);
+  }
+  
+  #modalBio {
+    font-size: var(--text-sm);
+    line-height: 1.5;
   }
 }
 
 @media (max-width: 480px) {
+  .title-highlight::after {
+    bottom: -8px;
+    height: 12px;
+    transform: translateY(40%) translateX(-5%) scaleX(15) scaleY(15) rotate(2deg);
+  }
+  
   .about-hero {
     padding: 80px 0 30px;
   }
@@ -1235,5 +1315,13 @@
   
   .news-logo {
     height: 32px;
+  }
+}
+
+@media (max-width: 360px) {
+  .title-highlight::after {
+    bottom: -6px;
+    height: 10px;
+    transform: translateY(20%) translateX(0%) scaleX(12) scaleY(12) rotate(1deg);
   }
 }
