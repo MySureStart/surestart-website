@@ -1456,23 +1456,23 @@ p {
   .hero-title-underlined::after {
     bottom: -12px;
     height: 16px;
-    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
+    transform: translateY(80%) translateX(-15%) scaleX(17) scaleY(25) rotate(4deg);
   }
 }
 
 @media (max-width: 768px) {
-  .hero-title-underlined::after {
-    bottom: -10px;
-    height: 14px;
-    transform: translateY(60%) translateX(-10%) scaleX(20) scaleY(20) rotate(3deg);
+  /* Unified section spacing for mobile */
+  .cta-section {
+    padding-top: var(--space-4xl) !important;
+    padding-bottom: var(--space-4xl) !important;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-title-underlined::after {
-    bottom: -8px;
-    height: 12px;
-    transform: translateY(40%) translateX(-5%) scaleX(15) scaleY(15) rotate(2deg);
+  /* Unified section spacing for small mobile */
+  .cta-section {
+    padding-top: var(--space-4xl) !important;
+    padding-bottom: var(--space-4xl) !important;
   }
 }
 
@@ -1516,6 +1516,37 @@ p {
   flex-wrap: wrap;
   justify-content: flex-start;
   z-index: 5;
+}
+
+/* Mobile hero buttons - equal sizing */
+@media (max-width: 768px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-md) var(--space-lg);
+    min-height: 52px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-actions {
+    max-width: 260px;
+  }
+  
+  .hero-actions .btn {
+    font-size: var(--text-base);
+    padding: var(--space-md) var(--space-md);
+    min-height: 50px;
+  }
 }
 
 .hero-stats {
@@ -2621,7 +2652,7 @@ p {
 }
 
 .back-content {
-  margin-top: 20px;
+  margin-top: 0px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -2965,8 +2996,9 @@ p {
   }
   
   .program-highlights li {
-    font-size: var(--text-sm);
-    padding: var(--space-xs) 0;
+    font-size: var(--text-md);
+    padding: var(--space-lg) 0;
+    padding-top: 0px;
     padding-left: 18px;
     line-height: 1.4;
     position: relative;
@@ -3069,8 +3101,9 @@ p {
   }
   
   .program-highlights li {
-    font-size: var(--text-sm);
-    padding: var(--space-xs) 0;
+    font-size: var(--text-md);
+    padding: var(--space-lg) 0;
+    padding-top: 0px;
     padding-left: 20px;
     line-height: 1.4;
     position: relative;
@@ -3137,6 +3170,8 @@ p {
   
   .program-highlights li {
     font-size: var(--text-sm);
+    padding: var(--space-md) 0;
+    padding-top: 0px;
     padding-left: 18px;
     line-height: 1.3;
   }
@@ -3818,12 +3853,133 @@ p {
     text-align: center !important;
   }
   
-  .logo-marquee {
-    padding: var(--space-sm) 0;
+  /* Enhanced logo marquee optimizations for small mobile - matching higher-ed page */
+  .surestart-difference .logo-marquee {
+    padding: var(--space-xl) 0;
+    min-height: 120px;
+    border-radius: var(--border-radius-md);
+    background: rgba(255, 255, 255, 0.05);
   }
   
-  .logo-item img {
-    height: 28px;
+  .surestart-difference .logo-track {
+    gap: var(--space-4xl);
+    animation-duration: 40s;
+  }
+  
+  .surestart-difference .logo-item {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .surestart-difference .logo-item img {
+    height: clamp(50px, 6vw, 65px) !important;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    transition: all var(--transition-normal);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+  
+  /* Specific logo adjustments for mobile readability */
+  .surestart-difference .logo-item img[alt="Harvard University"] {
+    height: clamp(45px, 5.5vw, 58px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="UC Berkeley"],
+  .surestart-difference .logo-item img[alt="Princeton University"],
+  .surestart-difference .logo-item img[alt="Stanford University"],
+  .surestart-difference .logo-item img[alt="Dartmouth"],
+  .surestart-difference .logo-item img[alt="Georgia Tech"] {
+    height: clamp(55px, 6.5vw, 70px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="The City University of New York"] {
+    height: clamp(60px, 7vw, 75px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="Microsoft"],
+  .surestart-difference .logo-item img[alt="Red Hat"],
+  .surestart-difference .logo-item img[alt="Consumer Reports"] {
+    height: clamp(45px, 5.5vw, 58px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="NASA"],
+  .surestart-difference .logo-item img[alt="Salesforce"],
+  .surestart-difference .logo-item img[alt="Linkedin"] {
+    height: clamp(55px, 6.5vw, 70px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="Meta"] {
+    height: clamp(50px, 6vw, 65px) !important;
+  }
+}
+
+/* Extra small mobile devices - 360px and below - matching higher-ed page */
+@media (max-width: 360px) {
+  .surestart-difference .logo-marquee {
+    padding: var(--space-2xl) 0;
+    min-height: 140px;
+    border-radius: var(--border-radius-lg);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .surestart-difference .logo-track {
+    gap: var(--space-5xl);
+    animation-duration: 45s;
+  }
+  
+  .surestart-difference .logo-item {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm);
+  }
+  
+  .surestart-difference .logo-item img {
+    height: clamp(55px, 7vw, 75px) !important;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    transition: all var(--transition-normal);
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+  }
+  
+  /* Ultra-optimized logo sizes for very small screens */
+  .surestart-difference .logo-item img[alt="Harvard University"] {
+    height: clamp(50px, 6.5vw, 68px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="UC Berkeley"],
+  .surestart-difference .logo-item img[alt="Princeton University"],
+  .surestart-difference .logo-item img[alt="Stanford University"],
+  .surestart-difference .logo-item img[alt="Dartmouth"],
+  .surestart-difference .logo-item img[alt="Georgia Tech"] {
+    height: clamp(60px, 7.5vw, 80px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="The City University of New York"] {
+    height: clamp(70px, 8.5vw, 90px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="Microsoft"],
+  .surestart-difference .logo-item img[alt="Red Hat"],
+  .surestart-difference .logo-item img[alt="Consumer Reports"],
+  .surestart-difference .logo-item img[alt="Meta"] {
+    height: clamp(50px, 6.5vw, 68px) !important;
+  }
+  
+  .surestart-difference .logo-item img[alt="NASA"],
+  .surestart-difference .logo-item img[alt="Salesforce"],
+  .surestart-difference .logo-item img[alt="Linkedin"] {
+    height: clamp(60px, 7.5vw, 80px) !important;
   }
 }
 
@@ -4177,6 +4333,50 @@ p {
 .fade-up:nth-child(6) { transition-delay: 0.6s; }
 
 /* ==========================================
+   UNIFIED MOBILE SECTION SPACING
+   ========================================== */
+
+/* Mobile section spacing - 768px and below */
+@media (max-width: 768px) {
+  /* Unified section spacing for mobile */
+  .section,
+  .surestart-difference,
+  .programs,
+  .mission,
+  .our-accolades,
+  .podcasts-section,
+  .asu-gsv-section {
+    padding-top: var(--space-3xl) !important;
+    padding-bottom: var(--space-3xl) !important;
+  }
+  
+  /* Section headers spacing adjustment for mobile */
+  .section-header {
+    margin-bottom: var(--space-xl);
+  }
+}
+
+/* Small mobile section spacing - 480px and below */
+@media (max-width: 480px) {
+  /* Unified section spacing for small mobile */
+  .section,
+  .surestart-difference,
+  .programs,
+  .mission,
+  .our-accolades,
+  .podcasts-section,
+  .asu-gsv-section {
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
+  }
+  
+  /* Section headers spacing adjustment for small mobile */
+  .section-header {
+    margin-bottom: var(--space-lg);
+  }
+}
+
+/* ==========================================
    RESPONSIVE DESIGN
    ========================================== */
 
@@ -4230,20 +4430,21 @@ p {
   .hero-text-grid {
     grid-template-columns: 1fr;
     gap: clamp(24px, 4vh, 32px);
-    text-align: center;
+    text-align: left;
     padding-top: 20px;
+    align-items: flex-start;
   }
   
   .hero-title {
-    text-align: center;
+    text-align: left;
   }
   
   .hero-subtitle {
-    text-align: center;
+    text-align: left;
   }
   
   .hero-actions {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
@@ -4428,13 +4629,17 @@ p {
     text-align: center;
   }
   
-  /* Additional mobile title centering for other sections */
+  /* Hero title and subtitle left-aligned on mobile */
   .hero-title {
-    text-align: center !important;
+    text-align: left !important;
   }
   
   .hero-subtitle {
-    text-align: center !important;
+    text-align: left !important;
+  }
+  
+  .hero-actions {
+    justify-content: flex-start;
   }
   
   .cta-title {

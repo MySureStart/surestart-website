@@ -107,31 +107,39 @@
   .title-highlight::after {
     bottom: -12px;
     height: 16px;
-    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
+    transform: translateY(80%) translateX(-20%) scaleX(15) scaleY(25) rotate(4deg);
   }
 }
 
 @media (max-width: 768px) {
-  .title-highlight::after {
-    bottom: -10px;
-    height: 14px;
-    transform: translateY(60%) translateX(-10%) scaleX(20) scaleY(20) rotate(3deg);
+  /* Unified section spacing for Higher Ed mobile */
+  .program-options,
+  .partnerships-institutions,
+  .success-stories-section,
+  .implementation-section {
+    padding-top: var(--space-3xl) !important;
+    padding-bottom: var(--space-3xl) !important;
+  }
+  
+  .cta-section {
+    padding-top: var(--space-4xl) !important;
+    padding-bottom: var(--space-3xl) !important;
   }
 }
 
 @media (max-width: 480px) {
-  .title-highlight::after {
-    bottom: -8px;
-    height: 12px;
-    transform: translateY(40%) translateX(-5%) scaleX(15) scaleY(15) rotate(2deg);
+  /* Unified section spacing for Higher Ed small mobile */
+  .program-options,
+  .partnerships-institutions,
+  .success-stories-section,
+  .implementation-section {
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
   }
-}
-
-@media (max-width: 360px) {
-  .title-highlight::after {
-    bottom: -6px;
-    height: 10px;
-    transform: translateY(20%) translateX(0%) scaleX(12) scaleY(12) rotate(1deg);
+  
+  .cta-section {
+    padding-top: var(--space-4xl) !important;
+    padding-bottom: var(--space-2xl) !important;
   }
 }
 
@@ -182,7 +190,6 @@
     transparent 100%
   );
   pointer-events: none;
-  z-index: 1;
 }
 
 .how-we-work-container {
@@ -607,6 +614,8 @@
     min-height: 140px;
     border-radius: var(--border-radius-2xl) var(--border-radius-2xl) 0 0;
     object-fit: cover;
+
+    object-position: center 20%;
   }
   
   .success-achievements .achievement-card:nth-child(3) .achievement-content {
@@ -679,6 +688,7 @@
   .success-achievements .achievement-card:nth-child(3) .achievement-image-left img {
     height: 120px;
     min-height: 120px;
+    object-position: center 20%;
   }
   
   .success-achievements .achievement-card:nth-child(3) .achievement-content {
@@ -1526,6 +1536,42 @@
 .graduate-career-success .logo-section {
   margin-top: var(--space-3xl);
 }
+
+/* ==========================================
+   UNIFIED MOBILE SECTION SPACING - HIGHER ED
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Unified section spacing for Higher Ed mobile */
+  .how-we-work,
+  .partnerships-action,
+  .partner-testimonials,
+  .graduate-career-success {
+    padding-top: var(--space-3xl) !important;
+    padding-bottom: var(--space-3xl) !important;
+  }
+
+  .impact-cta{
+    padding-top: var(--space-5xl) !important;
+    padding-bottom: var(--space-5xl) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Unified section spacing for Higher Ed small mobile */
+  .how-we-work,
+  .partnerships-action,
+  .partner-testimonials,
+  .graduate-career-success{
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
+  }
+}
+
+  .impact-cta{
+    padding-top: var(--space-5xl) !important;
+    padding-bottom: var(--space-5xl) !important;
+  }
 
 /* Print Styles */
 @media print {

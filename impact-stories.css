@@ -4027,3 +4027,45 @@ a {
     outline: 2px solid currentColor;
   }
 }
+
+/* ==========================================
+   UNIFIED MOBILE SECTION SPACING - IMPACT STORIES
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Unified section spacing for Impact Stories mobile */
+  .by-the-numbers-impact,
+  .case-studies-testimonials,
+  .student-network-section,
+  .success-stories,
+  .makeathon-spotlight,
+  .industry-recognition,
+  .student-gallery {
+    padding-top: var(--space-3xl) !important;
+    padding-bottom: var(--space-3xl) !important;
+  }
+
+  .impact-cta{
+     padding-top: var(--space-5xl) !important;
+    padding-bottom: var(--space-3xl) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Unified section spacing for Impact Stories small mobile */
+  .by-the-numbers-impact,
+  .case-studies-testimonials,
+  .student-network-section,
+  .success-stories,
+  .makeathon-spotlight,
+  .industry-recognition,
+  .student-gallery {
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
+  }
+
+  .impact-cta{
+     padding-top: var(--space-5xl) !important;
+    padding-bottom: var(--space-5xl) !important;
+  }
+}

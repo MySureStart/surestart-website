@@ -1806,3 +1806,33 @@
     max-width: 150px;
   }
 }
+
+/* ==========================================
+   UNIFIED MOBILE SECTION SPACING - VIBE LAB
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Unified section spacing for Vibe Lab mobile */
+  .vibe-content-section,
+  .learning-outcomes-section,
+  .course-schedule-section,
+  .details-section,
+  .interest-list-section,
+  .registration-section {
+    padding-top: var(--space-3xl) !important;
+    padding-bottom: var(--space-3xl) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Unified section spacing for Vibe Lab small mobile */
+  .vibe-content-section,
+  .learning-outcomes-section,
+  .course-schedule-section,
+  .details-section,
+  .interest-list-section,
+  .registration-section {
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
+  }
+}

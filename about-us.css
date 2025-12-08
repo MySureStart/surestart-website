@@ -1325,3 +1325,39 @@
     transform: translateY(20%) translateX(0%) scaleX(12) scaleY(12) rotate(1deg);
   }
 }
+
+/* ==========================================
+   UNIFIED MOBILE SECTION SPACING - ABOUT US
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Unified section spacing for About Us mobile */
+  .our-story,
+  .news-recognition,
+  .meet-founder,
+  .our-team,
+  .ai-advisory-council {
+    padding-top: var(--space-3xl) !important;
+    padding-bottom: var(--space-3xl) !important;
+  }
+
+  .our-team{
+      padding-bottom: var(--space-5xl) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Unified section spacing for About Us small mobile */
+  .our-story,
+  .news-recognition,
+  .meet-founder,
+  .our-team,
+  .ai-advisory-council {
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
+  }
+
+  .our-team{
+      padding-bottom: var(--space-5xl) !important;
+  }
+}
