@@ -4055,7 +4055,7 @@ p {
   position: relative;
 }
 
-.cta-content::before {
+#cta-content::before {
   content: '';
   position: absolute;
   top: -40px;
