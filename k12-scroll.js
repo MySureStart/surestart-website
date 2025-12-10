@@ -163,3 +163,163 @@ const scrollEffectCSS = `
 const styleSheet = document.createElement('style');
 styleSheet.textContent = scrollEffectCSS;
 document.head.appendChild(styleSheet);
+
+/**
+ * Mobile Benefits Circle - K12 Page
+ * Interactive circular layout for Benefits for Teachers & Schools section
+ * Click numbered circles to display benefit content in center
+ * Auto-rotates through benefits every 5 seconds
+ */
+
+class MobileBenefitsCircle {
+  constructor() {
+    this.container = document.querySelector('.mobile-benefits-circle');
+    this.centerCircle = document.querySelector('.center-benefits-circle');
+    this.benefitTitle = document.querySelector('.mobile-benefit-title');
+    this.benefitText = document.querySelector('.mobile-benefit-text');
+    this.numberCircles = document.querySelectorAll('.benefit-number-circle');
+    
+    this.currentIndex = -1; // -1 means no selection (show prompt)
+    this.autoRotateInterval = null;
+    this.autoRotateDelay = 5000; // 5 seconds
+    this.isUserInteracting = false;
+    
+    this.init();
+  }
+  
+  init() {
+    if (!this.container || !this.numberCircles.length) {
+      // Not on K-12 page or section not found
+      return;
+    }
+    
+    this.setupClickHandlers();
+    this.startAutoRotate();
+    
+    console.log('✅ Mobile Benefits Circle initialized with', this.numberCircles.length, 'benefits');
+  }
+  
+  setupClickHandlers() {
+    this.numberCircles.forEach((circle, index) => {
+      circle.addEventListener('click', () => {
+        this.isUserInteracting = true;
+        this.selectBenefit(index);
+        
+        // Restart auto-rotate after user interaction
+        this.restartAutoRotate();
+      });
+      
+      // Touch support
+      circle.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.isUserInteracting = true;
+        this.selectBenefit(index);
+        this.restartAutoRotate();
+      });
+    });
+    
+    // Pause auto-rotate on hover/focus
+    this.container.addEventListener('mouseenter', () => {
+      this.pauseAutoRotate();
+    });
+    
+    this.container.addEventListener('mouseleave', () => {
+      if (!this.isUserInteracting) {
+        this.startAutoRotate();
+      }
+    });
+  }
+  
+  selectBenefit(index) {
+    // Remove active state from all circles
+    this.numberCircles.forEach(circle => {
+      circle.classList.remove('active');
+    });
+    
+    // Get benefit data from the clicked circle
+    const circle = this.numberCircles[index];
+    const title = circle.dataset.title;
+    const text = circle.dataset.text;
+    
+    // Update center content
+    if (this.benefitTitle && this.benefitText) {
+      this.benefitTitle.textContent = title;
+      this.benefitText.textContent = text;
+    }
+    
+    // Add active class to selected circle
+    circle.classList.add('active');
+    
+    // Show content (hide prompt)
+    if (this.centerCircle) {
+      this.centerCircle.classList.add('has-content');
+    }
+    
+    this.currentIndex = index;
+  }
+  
+  startAutoRotate() {
+    // Clear any existing interval
+    this.stopAutoRotate();
+    
+    this.autoRotateInterval = setInterval(() => {
+      this.rotateToNext();
+    }, this.autoRotateDelay);
+  }
+  
+  stopAutoRotate() {
+    if (this.autoRotateInterval) {
+      clearInterval(this.autoRotateInterval);
+      this.autoRotateInterval = null;
+    }
+  }
+  
+  pauseAutoRotate() {
+    this.stopAutoRotate();
+  }
+  
+  restartAutoRotate() {
+    // Reset interaction flag after a delay
+    setTimeout(() => {
+      this.isUserInteracting = false;
+      this.startAutoRotate();
+    }, this.autoRotateDelay);
+  }
+  
+  rotateToNext() {
+    const totalBenefits = this.numberCircles.length;
+    const nextIndex = (this.currentIndex + 1) % totalBenefits;
+    this.selectBenefit(nextIndex);
+  }
+  
+  destroy() {
+    this.stopAutoRotate();
+    // Remove event listeners if needed
+  }
+}
+
+// Initialize Mobile Benefits Circle when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Only initialize on mobile viewport
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  
+  if (isMobile && document.querySelector('.mobile-benefits-circle')) {
+    window.mobileBenefitsCircle = new MobileBenefitsCircle();
+  }
+  
+  // Re-initialize on resize if transitioning to mobile
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const nowMobile = window.matchMedia('(max-width: 768px)').matches;
+      
+      if (nowMobile && !window.mobileBenefitsCircle && document.querySelector('.mobile-benefits-circle')) {
+        window.mobileBenefitsCircle = new MobileBenefitsCircle();
+      } else if (!nowMobile && window.mobileBenefitsCircle) {
+        window.mobileBenefitsCircle.destroy();
+        window.mobileBenefitsCircle = null;
+      }
+    }, 250);
+  });
+});

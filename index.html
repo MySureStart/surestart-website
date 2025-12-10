@@ -491,7 +491,8 @@
         <p class="network-subtitle">Click on any student to explore their journey and see how SureStart transformed their future.</p>
       </div>
       
-      <div class="network-visualization">
+      <!-- Desktop: Canvas Network Visualization -->
+      <div class="network-visualization desktop-network">
         <canvas id="networkCanvas" class="network-canvas"></canvas>
         
         <!-- Floating Testimonial Card -->
@@ -512,6 +513,48 @@
           </div>
         </div>
         
+      </div>
+      
+      <!-- Mobile: Circular Layout -->
+      <div class="mobile-community-circle">
+        <!-- Center Circle with Testimonial -->
+        <div class="center-testimonial-circle">
+          <div class="center-prompt">
+            <span>👆</span>
+            <p>Click one of the student images</p>
+          </div>
+          <div class="mobile-testimonial-display">
+            <h4 class="mobile-student-name"></h4>
+            <p class="mobile-student-program"></p>
+            <p class="mobile-student-quote"></p>
+          </div>
+        </div>
+        
+        <!-- Student Circles (8 students) -->
+        <div class="student-circle" data-index="0">
+          <img src="static/images/students-headshots/Ammran Mohamed.png" alt="Ammran H Mohamed">
+        </div>
+        <div class="student-circle" data-index="1">
+          <img src="static/images/students-headshots/Vitaliy Stepanov.png" alt="Vitaliy Stephanov">
+        </div>
+        <div class="student-circle" data-index="2">
+          <img src="static/images/students-headshots/Alexa Urrea.png" alt="Alexa Urrea">
+        </div>
+        <div class="student-circle" data-index="3">
+          <img src="static/images/students-headshots/Jonathan Williams.png" alt="Jonathan Williams">
+        </div>
+        <div class="student-circle" data-index="4">
+          <img src="static/images/students-headshots/Netra Ramesh.png" alt="Netra Ramesh">
+        </div>
+        <div class="student-circle" data-index="5">
+          <img src="static/images/students-headshots/Jed Rendo M.png" alt="Jed Rendo Margarcia">
+        </div>
+        <div class="student-circle" data-index="6">
+          <img src="static/images/students-headshots/Ashmita Kumar.png" alt="Ashmita Kumar">
+        </div>
+        <div class="student-circle" data-index="7">
+          <img src="static/images/students-headshots/Ashna Khetan.png" alt="Ashna Khetan">
+        </div>
       </div>
     </div>
   </div>

@@ -2378,11 +2378,305 @@ class ImpactStoriesApp {
 }
 
 // ==========================================
+// MOBILE COMMUNITY CIRCLE WITH AUTO-ROTATION
+// ==========================================
+
+class MobileCommunityCicle {
+  constructor() {
+    this.container = document.querySelector('.mobile-community-circle');
+    this.centerCircle = document.querySelector('.center-testimonial-circle');
+    this.centerPrompt = document.querySelector('.center-prompt');
+    this.testimonialDisplay = document.querySelector('.mobile-testimonial-display');
+    this.studentCircles = document.querySelectorAll('.student-circle');
+    
+    // Student data for the 8 selected students (matching the HTML data-index order)
+    this.mobileStudentData = [
+      {
+        name: 'Ammran H Mohamed',
+        program: '2021-2022 Trainee',
+        quote: 'Thank you so much SureStart! From the mentorship provided to the coding gym, you all have helped me enhance my skills. I\'ve been able to surprise myself with my achievements and received offers for roles at the top of my list!'
+      },
+      {
+        name: 'Vitaliy Stephanov',
+        program: '2021 Trainee',
+        quote: 'SureStart helped prepare me with the skills I needed to become a Software Development Engineer at Amazon Web Services. I learned how to be a leader from 14 tech talks and the unique entrepreneurial makeathon.'
+      },
+      {
+        name: 'Alexa Urrea',
+        program: '2021 Trainee',
+        quote: 'SureStart dramatically and directly impacted my life. Thanks to SureStart, I found a real passion in computer science and AI specifically. It helped me land my first ever internship as a machine learning intern!'
+      },
+      {
+        name: 'Jonathan Williams',
+        program: '2021 Trainee',
+        quote: 'The SureStart program was truly transformative. The course curriculum and mentor guidance allowed me to gain a deep understanding of ML. The program connected me with a fulfilling ML internship opportunity.'
+      },
+      {
+        name: 'Netra Ramesh',
+        program: '2021 Trainee',
+        quote: 'My life changed because of the MIT FutureMaker program! I\'ve never been so passionate about my future — the program gave me a chance to learn and experience a formal community like SureStart.'
+      },
+      {
+        name: 'Jed Rendo Margarcia',
+        program: '2021 & 2022 Trainee',
+        quote: 'I love that SureStart is heavily project-based learning. I am able to apply it to future projects instead of just learning the theory. I\'m excited to apply what I have learned to projects that could help others.'
+      },
+      {
+        name: 'Ashmita Kumar',
+        program: '2021 Trainee',
+        quote: 'This program has been truly amazing. SureStart\'s passion really does show through and the experience is unforgettable. You gave me the tools to design a solution to a problem close to my heart.'
+      },
+      {
+        name: 'Ashna Khetan',
+        program: '2020 Trainee',
+        quote: 'I\'ve learned so much — not just machine learning, but also how to market myself in tech, the necessity for inclusivity, and how to lead a happy, successful life. This was the highlight of my summer.'
+      }
+    ];
+    
+    this.activeIndex = null;
+    
+    // Auto-rotation properties
+    this.rotationOffset = 0; // Current rotation offset (0-7)
+    this.rotationInterval = null;
+    this.rotationDelay = 4000; // 4 seconds between rotations
+    this.pauseTimeout = null;
+    this.isPaused = false;
+    this.isVisible = false;
+    
+    // Position data for 8 positions around the circle (in pixels from center)
+    // Using trigonometry: 8 positions = 45 degrees apart
+    this.positions = this.calculatePositions();
+    
+    this.init();
+  }
+  
+  calculatePositions() {
+    // Detect if we're on small screens or regular mobile
+    const isSmallScreen = window.innerWidth <= 360;
+    const orbitRadius = isSmallScreen ? 110 : 170; // Match CSS values
+    
+    // 8 positions, 45 degrees apart, starting from top (270 degrees or -90 degrees)
+    const positions = [];
+    for (let i = 0; i < 8; i++) {
+      const angle = (-90 + i * 45) * (Math.PI / 180); // Convert to radians
+      positions.push({
+        x: Math.round(Math.cos(angle) * orbitRadius),
+        y: Math.round(Math.sin(angle) * orbitRadius)
+      });
+    }
+    return positions;
+  }
+
+  init() {
+    if (!this.container || !this.studentCircles.length) {
+      console.log('Mobile community circle not found or no student circles');
+      return;
+    }
+    
+    console.log('Initializing Mobile Community Circle with Auto-Rotation...');
+    this.addEventListeners();
+    this.setupIntersectionObserver();
+    this.updatePositions(); // Initial position setup
+    
+    // Start with showing the first student's testimonial automatically
+    setTimeout(() => {
+      this.selectStudentAtTop();
+    }, 500);
+  }
+
+  addEventListeners() {
+    // Add click listeners to each student circle
+    this.studentCircles.forEach((circle, index) => {
+      circle.addEventListener('click', () => {
+        this.pauseRotation();
+        this.selectStudent(index);
+        this.resumeRotationAfterDelay(8000); // Resume after 8 seconds of user interaction
+      });
+    });
+    
+    // Add click listener to center circle to deselect
+    this.centerCircle.addEventListener('click', () => {
+      if (this.activeIndex !== null) {
+        this.pauseRotation();
+        this.deselectStudent();
+        this.resumeRotationAfterDelay(5000);
+      }
+    });
+    
+    // Handle resize to recalculate positions
+    window.addEventListener('resize', debounce(() => {
+      this.positions = this.calculatePositions();
+      this.updatePositions();
+    }, 250));
+    
+    // Respect reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReducedMotion.matches) {
+      this.rotationDelay = 8000; // Slower rotation for reduced motion preference
+    }
+    prefersReducedMotion.addEventListener('change', () => {
+      this.rotationDelay = prefersReducedMotion.matches ? 8000 : 4000;
+    });
+  }
+  
+  setupIntersectionObserver() {
+    // Only rotate when the section is visible on screen
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.isVisible = true;
+          if (!this.isPaused) {
+            this.startRotation();
+          }
+        } else {
+          this.isVisible = false;
+          this.stopRotation();
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    observer.observe(this.container);
+  }
+  
+  startRotation() {
+    if (this.rotationInterval) return; // Already running
+    
+    console.log('Starting auto-rotation');
+    this.rotationInterval = setInterval(() => {
+      this.rotateClockwise();
+    }, this.rotationDelay);
+  }
+  
+  stopRotation() {
+    if (this.rotationInterval) {
+      clearInterval(this.rotationInterval);
+      this.rotationInterval = null;
+      console.log('Stopped auto-rotation');
+    }
+  }
+  
+  pauseRotation() {
+    this.isPaused = true;
+    this.stopRotation();
+    
+    // Clear any pending resume timeout
+    if (this.pauseTimeout) {
+      clearTimeout(this.pauseTimeout);
+      this.pauseTimeout = null;
+    }
+  }
+  
+  resumeRotationAfterDelay(delay) {
+    // Clear any existing timeout
+    if (this.pauseTimeout) {
+      clearTimeout(this.pauseTimeout);
+    }
+    
+    this.pauseTimeout = setTimeout(() => {
+      this.isPaused = false;
+      if (this.isVisible) {
+        this.startRotation();
+      }
+    }, delay);
+  }
+  
+  rotateClockwise() {
+    // Increment rotation offset (clockwise = positions move in opposite direction)
+    this.rotationOffset = (this.rotationOffset + 1) % 8;
+    
+    console.log(`Rotating clockwise, offset: ${this.rotationOffset}`);
+    
+    // Update all circle positions with animation
+    this.updatePositions();
+    
+    // Select the student now at the top position
+    this.selectStudentAtTop();
+  }
+  
+  updatePositions() {
+    this.studentCircles.forEach((circle, studentIndex) => {
+      // Calculate which position this student should be at based on rotation offset
+      // Position index = (original position - rotation offset + 8) % 8
+      // This makes students move clockwise as offset increases
+      const positionIndex = (studentIndex - this.rotationOffset + 8) % 8;
+      const pos = this.positions[positionIndex];
+      
+      // Apply new position using CSS transform
+      circle.style.transform = `translate(-50%, -50%) translate(${pos.x}px, ${pos.y}px)`;
+    });
+  }
+  
+  selectStudentAtTop() {
+    // Find which student index is currently at the top position (position 0)
+    // The student at top is the one whose position index is 0 after rotation
+    // studentIndex - rotationOffset = 0  =>  studentIndex = rotationOffset
+    const studentAtTop = this.rotationOffset;
+    
+    this.selectStudent(studentAtTop);
+  }
+
+  selectStudent(index) {
+    // Remove active class from all circles
+    this.studentCircles.forEach(circle => {
+      circle.classList.remove('active');
+    });
+    
+    // Add active class to selected circle
+    this.studentCircles[index].classList.add('active');
+    
+    // Update center content
+    const student = this.mobileStudentData[index];
+    if (student) {
+      // Hide prompt, show testimonial
+      this.centerPrompt.style.display = 'none';
+      this.testimonialDisplay.classList.add('active');
+      
+      // Update content
+      const nameEl = this.testimonialDisplay.querySelector('.mobile-student-name');
+      const programEl = this.testimonialDisplay.querySelector('.mobile-student-program');
+      const quoteEl = this.testimonialDisplay.querySelector('.mobile-student-quote');
+      
+      if (nameEl) nameEl.textContent = student.name;
+      if (programEl) programEl.textContent = student.program;
+      if (quoteEl) quoteEl.textContent = student.quote;
+      
+      this.activeIndex = index;
+    }
+  }
+
+  deselectStudent() {
+    // Remove active class from all circles
+    this.studentCircles.forEach(circle => {
+      circle.classList.remove('active');
+    });
+    
+    // Hide testimonial, show prompt
+    this.testimonialDisplay.classList.remove('active');
+    this.centerPrompt.style.display = 'flex';
+    
+    this.activeIndex = null;
+  }
+  
+  destroy() {
+    this.stopRotation();
+    if (this.pauseTimeout) {
+      clearTimeout(this.pauseTimeout);
+    }
+  }
+}
+
+// ==========================================
 // AUTO-INITIALIZATION
 // ==========================================
 
 // Create global app instance
 window.ImpactStoriesApp = new ImpactStoriesApp();
+
+// Initialize Mobile Community Circle separately (only runs on mobile via CSS media queries)
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize mobile community circle
+  window.MobileCommunityCicle = new MobileCommunityCicle();
+});
 
 // Auto-initialize when script loads
 window.ImpactStoriesApp.init();

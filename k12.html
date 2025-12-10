@@ -555,8 +555,41 @@
       </p>
     </div>
     
-    <div class="partnership-benefits">      
-      <div class="spiral-wrap">
+    <div class="partnership-benefits">
+      <!-- Mobile-only circular layout -->
+      <div class="mobile-benefits-circle">
+        <!-- Center circle with benefit content -->
+        <div class="center-benefits-circle">
+          <div class="center-benefits-prompt">
+            <span>👆</span>
+            <p>Click a number to<br>learn more</p>
+          </div>
+          <div class="mobile-benefit-display">
+            <h4 class="mobile-benefit-title"></h4>
+            <p class="mobile-benefit-text"></p>
+          </div>
+        </div>
+        
+        <!-- Numbered circles around the center -->
+        <div class="benefit-number-circle" data-index="0" data-title="Professional Development in AI" data-text="Training and resources prepare teachers to understand AI basics, integrate tools into their classrooms, and guide students with confidence.">
+          <span>1</span>
+        </div>
+        <div class="benefit-number-circle" data-index="1" data-title="Curriculum Alignment" data-text="Programs are mapped to flexibly align with STEM, computer science, digital literacy, or interdisciplinary initiatives.">
+          <span>2</span>
+        </div>
+        <div class="benefit-number-circle" data-index="2" data-title="Enrichment Value" data-text="SureStart adds depth to existing offerings — whether as an elective, after-school program, or summer course — without requiring schools to redesign their curriculum.">
+          <span>3</span>
+        </div>
+        <div class="benefit-number-circle" data-index="3" data-title="Flexible Delivery Models" data-text="Options for semester, year-long, or summer sessions, delivered in hybrid or in-person formats, structured in 60-minute modular blocks fit seamlessly into your school calendar.">
+          <span>4</span>
+        </div>
+        <div class="benefit-number-circle" data-index="4" data-title="Visibility for your School" data-text="Capstone showcases highlight student achievements and give your school recognition as a forward-thinking leader in AI education.">
+          <span>5</span>
+        </div>
+      </div>
+      
+      <!-- Desktop spiral layout -->
+      <div class="spiral-wrap desktop-benefits">
         <div class="image-container">
           <img src="static/images/k-12 circles_.png" 
                alt="Benefits for Teachers & Schools - Interconnected learning illustration" 
