@@ -168,7 +168,6 @@ document.head.appendChild(styleSheet);
  * Mobile Benefits Circle - K12 Page
  * Interactive circular layout for Benefits for Teachers & Schools section
  * Click numbered circles to display benefit content in center
- * Auto-rotates through benefits every 5 seconds
  */
 
 class MobileBenefitsCircle {
@@ -180,9 +179,6 @@ class MobileBenefitsCircle {
     this.numberCircles = document.querySelectorAll('.benefit-number-circle');
     
     this.currentIndex = -1; // -1 means no selection (show prompt)
-    this.autoRotateInterval = null;
-    this.autoRotateDelay = 5000; // 5 seconds
-    this.isUserInteracting = false;
     
     this.init();
   }
@@ -194,7 +190,6 @@ class MobileBenefitsCircle {
     }
     
     this.setupClickHandlers();
-    this.startAutoRotate();
     
     console.log('✅ Mobile Benefits Circle initialized with', this.numberCircles.length, 'benefits');
   }
@@ -202,31 +197,14 @@ class MobileBenefitsCircle {
   setupClickHandlers() {
     this.numberCircles.forEach((circle, index) => {
       circle.addEventListener('click', () => {
-        this.isUserInteracting = true;
         this.selectBenefit(index);
-        
-        // Restart auto-rotate after user interaction
-        this.restartAutoRotate();
       });
       
       // Touch support
       circle.addEventListener('touchend', (e) => {
         e.preventDefault();
-        this.isUserInteracting = true;
         this.selectBenefit(index);
-        this.restartAutoRotate();
       });
-    });
-    
-    // Pause auto-rotate on hover/focus
-    this.container.addEventListener('mouseenter', () => {
-      this.pauseAutoRotate();
-    });
-    
-    this.container.addEventListener('mouseleave', () => {
-      if (!this.isUserInteracting) {
-        this.startAutoRotate();
-      }
     });
   }
   
@@ -258,42 +236,7 @@ class MobileBenefitsCircle {
     this.currentIndex = index;
   }
   
-  startAutoRotate() {
-    // Clear any existing interval
-    this.stopAutoRotate();
-    
-    this.autoRotateInterval = setInterval(() => {
-      this.rotateToNext();
-    }, this.autoRotateDelay);
-  }
-  
-  stopAutoRotate() {
-    if (this.autoRotateInterval) {
-      clearInterval(this.autoRotateInterval);
-      this.autoRotateInterval = null;
-    }
-  }
-  
-  pauseAutoRotate() {
-    this.stopAutoRotate();
-  }
-  
-  restartAutoRotate() {
-    // Reset interaction flag after a delay
-    setTimeout(() => {
-      this.isUserInteracting = false;
-      this.startAutoRotate();
-    }, this.autoRotateDelay);
-  }
-  
-  rotateToNext() {
-    const totalBenefits = this.numberCircles.length;
-    const nextIndex = (this.currentIndex + 1) % totalBenefits;
-    this.selectBenefit(nextIndex);
-  }
-  
   destroy() {
-    this.stopAutoRotate();
     // Remove event listeners if needed
   }
 }

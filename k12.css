@@ -5379,13 +5379,30 @@
   .mobile-benefits-circle {
     display: block;
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: 420px;
+    height: 420px;
     margin: var(--space-2xl) auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .desktop-benefits {
     display: none !important;
+  }
+  
+  /* Circular connecting line around numbered circles (orbit line) */
+  .mobile-benefits-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    border: 2px dashed rgba(231, 48, 82, 0.25);
+    pointer-events: none;
+    z-index: 1;
   }
   
   /* Center circle with solid red background */
@@ -5394,8 +5411,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 180px;
-    height: 180px;
+    width: 260px;
+    height: 260px;
     border-radius: 50%;
     background: linear-gradient(135deg, #E73052 0%, #c4283f 100%);
     display: flex;
@@ -5417,22 +5434,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: var(--space-xs);
-    color: white;
+    color: white !important;
     transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .center-benefits-prompt span {
-    font-size: 28px;
-    animation: bounceUpDown 1.5s ease-in-out infinite;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
   .center-benefits-prompt p {
     font-size: var(--text-sm);
-    font-weight: 600;
+    font-weight: 500;
     margin: 0;
     line-height: 1.3;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    color: white !important;
+    text-align: center;
+  }
+  
+  .center-benefits-prompt p:first-child {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-sm);
+    color: white !important;
+  }
+  
+  .center-benefits-prompt p:first-child strong {
+    font-weight: 700;
+    font-size: var(--text-lg);
+    color: white !important;
   }
   
   @keyframes bounceUpDown {
@@ -5478,7 +5512,7 @@
   
   .mobile-benefit-text {
     color: rgba(255, 255, 255, 0.95);
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.35;
     margin: 0;
     font-weight: 400;
@@ -5524,80 +5558,172 @@
   
   /* Position 5 numbers around the circle at 72° intervals */
   /* Starting from top (-90°), going clockwise */
-  /* Radius = 125px from center */
+  /* Radius = 180px from center (on the 360px orbit line) */
   
   /* #1: 0° (top) - at -90° in standard coords */
   .benefit-number-circle[data-index="0"] {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translate(0px, -125px);
+    transform: translate(-50%, -50%) translate(0px, -180px);
   }
   
-  /* #2: 72° (top-right) - at -18° in standard coords */
+  /* #2: 72° (top-right) - cos(18°)=0.951, sin(18°)=0.309 → 171px, -56px */
   .benefit-number-circle[data-index="1"] {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translate(119px, -39px);
+    transform: translate(-50%, -50%) translate(171px, -56px);
   }
   
-  /* #3: 144° (bottom-right) - at 54° in standard coords */
+  /* #3: 144° (bottom-right) - cos(54°)=0.588, sin(54°)=0.809 → 106px, 145px */
   .benefit-number-circle[data-index="2"] {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translate(74px, 101px);
+    transform: translate(-50%, -50%) translate(106px, 145px);
   }
   
-  /* #4: 216° (bottom-left) - at 126° in standard coords */
+  /* #4: 216° (bottom-left) - cos(126°)=-0.588, sin(126°)=0.809 → -106px, 145px */
   .benefit-number-circle[data-index="3"] {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translate(-74px, 101px);
+    transform: translate(-50%, -50%) translate(-106px, 145px);
   }
   
-  /* #5: 288° (top-left) - at 198° in standard coords */
+  /* #5: 288° (top-left) - cos(198°)=-0.951, sin(198°)=-0.309 → -171px, -56px */
   .benefit-number-circle[data-index="4"] {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) translate(-119px, -39px);
+    transform: translate(-50%, -50%) translate(-171px, -56px);
   }
   
   /* Active state transforms with scale */
   .benefit-number-circle[data-index="0"]:hover,
   .benefit-number-circle[data-index="0"].active {
-    transform: translate(-50%, -50%) translate(0px, -125px) scale(1.15);
+    transform: translate(-50%, -50%) translate(0px, -180px) scale(1.15);
   }
   
   .benefit-number-circle[data-index="1"]:hover,
   .benefit-number-circle[data-index="1"].active {
-    transform: translate(-50%, -50%) translate(119px, -39px) scale(1.15);
+    transform: translate(-50%, -50%) translate(171px, -56px) scale(1.15);
   }
   
   .benefit-number-circle[data-index="2"]:hover,
   .benefit-number-circle[data-index="2"].active {
-    transform: translate(-50%, -50%) translate(74px, 101px) scale(1.15);
+    transform: translate(-50%, -50%) translate(106px, 145px) scale(1.15);
   }
   
   .benefit-number-circle[data-index="3"]:hover,
   .benefit-number-circle[data-index="3"].active {
-    transform: translate(-50%, -50%) translate(-74px, 101px) scale(1.15);
+    transform: translate(-50%, -50%) translate(-106px, 145px) scale(1.15);
   }
   
   .benefit-number-circle[data-index="4"]:hover,
   .benefit-number-circle[data-index="4"].active {
-    transform: translate(-50%, -50%) translate(-119px, -39px) scale(1.15);
+    transform: translate(-50%, -50%) translate(-171px, -56px) scale(1.15);
   }
 }
 
 /* Small mobile adjustments - 480px */
 @media (max-width: 480px) {
   .mobile-benefits-circle {
-    width: 290px;
-    height: 290px;
+    width: 380px;
+    height: 380px;
+  }
+  
+  /* Orbit line for 480px - 320px diameter */
+  .mobile-benefits-circle::before {
+    width: 320px;
+    height: 320px;
   }
   
   .center-benefits-circle {
-    width: 160px;
-    height: 160px;
+    width: 240px;
+    height: 240px;
+    padding: var(--space-md);
+  }
+  
+  .mobile-benefit-title {
+    font-size: 12px;
+  }
+  
+  .mobile-benefit-text {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  
+  .benefit-number-circle {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .benefit-number-circle span {
+    font-size: var(--text-base);
+  }
+  
+  /* Adjusted positions for 480px container - radius 160px (on 320px orbit) */
+  /* cos/sin calculations for 72° intervals at 160px radius */
+  .benefit-number-circle[data-index="0"] {
+    transform: translate(-50%, -50%) translate(0px, -160px);
+  }
+  
+  .benefit-number-circle[data-index="1"] {
+    transform: translate(-50%, -50%) translate(152px, -49px);
+  }
+  
+  .benefit-number-circle[data-index="2"] {
+    transform: translate(-50%, -50%) translate(94px, 129px);
+  }
+  
+  .benefit-number-circle[data-index="3"] {
+    transform: translate(-50%, -50%) translate(-94px, 129px);
+  }
+  
+  .benefit-number-circle[data-index="4"] {
+    transform: translate(-50%, -50%) translate(-152px, -49px);
+  }
+  
+  /* Active state transforms for 480px */
+  .benefit-number-circle[data-index="0"]:hover,
+  .benefit-number-circle[data-index="0"].active {
+    transform: translate(-50%, -50%) translate(0px, -160px) scale(1.15);
+  }
+  
+  .benefit-number-circle[data-index="1"]:hover,
+  .benefit-number-circle[data-index="1"].active {
+    transform: translate(-50%, -50%) translate(152px, -49px) scale(1.15);
+  }
+  
+  .benefit-number-circle[data-index="2"]:hover,
+  .benefit-number-circle[data-index="2"].active {
+    transform: translate(-50%, -50%) translate(94px, 129px) scale(1.15);
+  }
+  
+  .benefit-number-circle[data-index="3"]:hover,
+  .benefit-number-circle[data-index="3"].active {
+    transform: translate(-50%, -50%) translate(-94px, 129px) scale(1.15);
+  }
+  
+  .benefit-number-circle[data-index="4"]:hover,
+  .benefit-number-circle[data-index="4"].active {
+    transform: translate(-50%, -50%) translate(-152px, -49px) scale(1.15);
+  }
+}
+
+/* Extra small mobile - 360px */
+@media (max-width: 360px) {
+  .mobile-benefits-circle {
+    width: 340px;
+    height: 340px;
+  }
+  
+  /* Orbit line for 360px - 280px diameter */
+  .mobile-benefits-circle::before {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .center-benefits-circle {
+    width: 180px;
+    height: 180px;
     padding: var(--space-sm);
   }
   
@@ -5606,87 +5732,8 @@
   }
   
   .mobile-benefit-text {
-    font-size: 8px;
+    font-size: 11px;
     line-height: 1.3;
-  }
-  
-  .benefit-number-circle {
-    width: 42px;
-    height: 42px;
-  }
-  
-  .benefit-number-circle span {
-    font-size: var(--text-base);
-  }
-  
-  /* Adjusted positions for smaller container - radius ~110px */
-  .benefit-number-circle[data-index="0"] {
-    transform: translate(-50%, -50%) translate(0px, -110px);
-  }
-  
-  .benefit-number-circle[data-index="1"] {
-    transform: translate(-50%, -50%) translate(105px, -34px);
-  }
-  
-  .benefit-number-circle[data-index="2"] {
-    transform: translate(-50%, -50%) translate(65px, 89px);
-  }
-  
-  .benefit-number-circle[data-index="3"] {
-    transform: translate(-50%, -50%) translate(-65px, 89px);
-  }
-  
-  .benefit-number-circle[data-index="4"] {
-    transform: translate(-50%, -50%) translate(-105px, -34px);
-  }
-  
-  /* Active state transforms for 480px */
-  .benefit-number-circle[data-index="0"]:hover,
-  .benefit-number-circle[data-index="0"].active {
-    transform: translate(-50%, -50%) translate(0px, -110px) scale(1.15);
-  }
-  
-  .benefit-number-circle[data-index="1"]:hover,
-  .benefit-number-circle[data-index="1"].active {
-    transform: translate(-50%, -50%) translate(105px, -34px) scale(1.15);
-  }
-  
-  .benefit-number-circle[data-index="2"]:hover,
-  .benefit-number-circle[data-index="2"].active {
-    transform: translate(-50%, -50%) translate(65px, 89px) scale(1.15);
-  }
-  
-  .benefit-number-circle[data-index="3"]:hover,
-  .benefit-number-circle[data-index="3"].active {
-    transform: translate(-50%, -50%) translate(-65px, 89px) scale(1.15);
-  }
-  
-  .benefit-number-circle[data-index="4"]:hover,
-  .benefit-number-circle[data-index="4"].active {
-    transform: translate(-50%, -50%) translate(-105px, -34px) scale(1.15);
-  }
-}
-
-/* Extra small mobile - 360px */
-@media (max-width: 360px) {
-  .mobile-benefits-circle {
-    width: 260px;
-    height: 260px;
-  }
-  
-  .center-benefits-circle {
-    width: 140px;
-    height: 140px;
-    padding: 8px;
-  }
-  
-  .mobile-benefit-title {
-    font-size: 10px;
-  }
-  
-  .mobile-benefit-text {
-    font-size: 7px;
-    line-height: 1.25;
   }
   
   .center-benefits-prompt span {
@@ -5706,50 +5753,51 @@
     font-size: var(--text-sm);
   }
   
-  /* Adjusted positions for smallest container - radius ~98px */
+  /* Adjusted positions for 360px container - radius 140px (on 280px orbit) */
+  /* cos/sin calculations for 72° intervals at 140px radius */
   .benefit-number-circle[data-index="0"] {
-    transform: translate(-50%, -50%) translate(0px, -98px);
+    transform: translate(-50%, -50%) translate(0px, -140px);
   }
   
   .benefit-number-circle[data-index="1"] {
-    transform: translate(-50%, -50%) translate(93px, -30px);
+    transform: translate(-50%, -50%) translate(133px, -43px);
   }
   
   .benefit-number-circle[data-index="2"] {
-    transform: translate(-50%, -50%) translate(58px, 79px);
+    transform: translate(-50%, -50%) translate(82px, 113px);
   }
   
   .benefit-number-circle[data-index="3"] {
-    transform: translate(-50%, -50%) translate(-58px, 79px);
+    transform: translate(-50%, -50%) translate(-82px, 113px);
   }
   
   .benefit-number-circle[data-index="4"] {
-    transform: translate(-50%, -50%) translate(-93px, -30px);
+    transform: translate(-50%, -50%) translate(-133px, -43px);
   }
   
   /* Active state transforms for 360px */
   .benefit-number-circle[data-index="0"]:hover,
   .benefit-number-circle[data-index="0"].active {
-    transform: translate(-50%, -50%) translate(0px, -98px) scale(1.12);
+    transform: translate(-50%, -50%) translate(0px, -140px) scale(1.12);
   }
   
   .benefit-number-circle[data-index="1"]:hover,
   .benefit-number-circle[data-index="1"].active {
-    transform: translate(-50%, -50%) translate(93px, -30px) scale(1.12);
+    transform: translate(-50%, -50%) translate(133px, -43px) scale(1.12);
   }
   
   .benefit-number-circle[data-index="2"]:hover,
   .benefit-number-circle[data-index="2"].active {
-    transform: translate(-50%, -50%) translate(58px, 79px) scale(1.12);
+    transform: translate(-50%, -50%) translate(82px, 113px) scale(1.12);
   }
   
   .benefit-number-circle[data-index="3"]:hover,
   .benefit-number-circle[data-index="3"].active {
-    transform: translate(-50%, -50%) translate(-58px, 79px) scale(1.12);
+    transform: translate(-50%, -50%) translate(-82px, 113px) scale(1.12);
   }
   
   .benefit-number-circle[data-index="4"]:hover,
   .benefit-number-circle[data-index="4"].active {
-    transform: translate(-50%, -50%) translate(-93px, -30px) scale(1.12);
+    transform: translate(-50%, -50%) translate(-133px, -43px) scale(1.12);
   }
 }
