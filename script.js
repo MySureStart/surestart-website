@@ -990,10 +990,51 @@
         }
       }
       
-      // Touch and mouse event listeners - add to card, front, and back faces
-      card.addEventListener('click', handleFlip);
-      if (frontFace) frontFace.addEventListener('click', handleFlip);
-      if (backFace) backFace.addEventListener('click', handleFlip);
+      // Touch handler for mobile - more reliable than click on touch devices
+      function handleTouch(e) {
+        // Don't flip if touching a link or button inside the card
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
+          return; // Let the link/button work normally
+        }
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isCurrentlyFlipped = card.classList.contains('flipped');
+        
+        // First, close all other cards
+        closeOtherCards(card);
+        
+        // Then toggle the tapped card
+        if (isCurrentlyFlipped) {
+          card.classList.remove('flipped');
+          card.setAttribute('aria-expanded', 'false');
+        } else {
+          card.classList.add('flipped');
+          card.setAttribute('aria-expanded', 'true');
+        }
+        
+        // Add subtle haptic feedback on mobile (if supported)
+        if ('vibrate' in navigator) {
+          navigator.vibrate(50);
+        }
+      }
+      
+      // Check if device supports touch
+      const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      
+      if (isTouchDevice) {
+        // On touch devices, use touchend for more reliable handling
+        card.addEventListener('touchend', handleTouch);
+        if (frontFace) frontFace.addEventListener('touchend', handleTouch);
+        if (backFace) backFace.addEventListener('touchend', handleTouch);
+      } else {
+        // On desktop, use click
+        card.addEventListener('click', handleFlip);
+        if (frontFace) frontFace.addEventListener('click', handleFlip);
+        if (backFace) backFace.addEventListener('click', handleFlip);
+      }
+      
       card.addEventListener('keydown', handleKeyboard);
       card.addEventListener('mouseleave', handleMouseLeave);
       

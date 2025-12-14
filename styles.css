@@ -2906,8 +2906,19 @@ p {
 
 /* Mobile Touch Support */
 @media (hover: none) and (pointer: coarse) {
-  .program-flip-card:hover .flip-card-inner {
-    transform: none;
+  /* Reset all transforms first, then only apply for flipped state */
+  .program-flip-card .flip-card-inner {
+    transform: none !important;
+  }
+  
+  /* Only the flipped class should control the transform on mobile */
+  .program-flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg) !important;
+  }
+  
+  /* Ensure back face can receive touch events */
+  .flip-card-back {
+    pointer-events: auto;
   }
   
   .flip-indicator {
