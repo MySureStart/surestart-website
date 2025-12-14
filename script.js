@@ -923,6 +923,9 @@
     }
     
     flipCards.forEach((card, index) => {
+      const frontFace = card.querySelector('.flip-card-front');
+      const backFace = card.querySelector('.flip-card-back');
+      
       // Add tabindex for keyboard accessibility
       card.setAttribute('tabindex', '0');
       card.setAttribute('role', 'button');
@@ -930,6 +933,11 @@
       
       // Click/Touch handler - works for both front and back of card
       function handleFlip(e) {
+        // Don't flip if clicking on a link or button inside the card
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
+          return; // Let the link/button work normally
+        }
+        
         e.preventDefault();
         e.stopPropagation();
         
@@ -982,8 +990,10 @@
         }
       }
       
-      // Touch and mouse event listeners
+      // Touch and mouse event listeners - add to card, front, and back faces
       card.addEventListener('click', handleFlip);
+      if (frontFace) frontFace.addEventListener('click', handleFlip);
+      if (backFace) backFace.addEventListener('click', handleFlip);
       card.addEventListener('keydown', handleKeyboard);
       card.addEventListener('mouseleave', handleMouseLeave);
       
