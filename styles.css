@@ -3000,6 +3000,14 @@ p {
   
   .card-content {
     padding: var(--space-md);
+    position: static; /* Allow flip-indicator to position relative to flip-card-front */
+  }
+  
+  /* Move "Tap to explore" label to bottom of card front on mobile */
+  .flip-card-front .flip-indicator {
+    position: absolute;
+    left: var(--space-md);
+    bottom: var(--space-md);
   }
   
   .card-content h3 {
@@ -4441,6 +4449,19 @@ p {
   .section-header {
     margin-bottom: var(--space-xl);
   }
+
+  .cta-features {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px solid rgba(139, 154, 142, 0.15);
+}
+
+  .cta-feature{
+    text-align: left;
+  }
 }
 
 /* Small mobile section spacing - 480px and below */
@@ -4647,8 +4668,7 @@ p {
   }
   
   .footer-links {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--space-lg);
+    display: none;
   }
   
   .footer-bottom {
@@ -4656,7 +4676,12 @@ p {
     gap: var(--space-md);
     text-align: center;
   }
+
+    .footer-bottom p {
+    color: #ffffff;
+  }
   
+
   /* Footer mobile optimizations */
   .footer-container {
     padding: var(--space-2xl) var(--space-lg) var(--space-lg);
