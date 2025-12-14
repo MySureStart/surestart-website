@@ -904,28 +904,49 @@
     
     if (flipCards.length === 0) return;
     
+    // Helper function to close all cards
+    function closeAllCards() {
+      flipCards.forEach(card => {
+        card.classList.remove('flipped');
+        card.setAttribute('aria-expanded', 'false');
+      });
+    }
+    
+    // Helper function to close all cards except the specified one
+    function closeOtherCards(exceptCard) {
+      flipCards.forEach(card => {
+        if (card !== exceptCard) {
+          card.classList.remove('flipped');
+          card.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+    
     flipCards.forEach((card, index) => {
-      let isFlipped = false;
-      
       // Add tabindex for keyboard accessibility
       card.setAttribute('tabindex', '0');
       card.setAttribute('role', 'button');
       card.setAttribute('aria-label', `Learn more about ${card.querySelector('h3').textContent}`);
       
-      // Click/Touch handler
+      // Click/Touch handler - works for both front and back of card
       function handleFlip(e) {
         e.preventDefault();
         e.stopPropagation();
         
-        // Toggle flip state
-        isFlipped = !isFlipped;
+        const isCurrentlyFlipped = card.classList.contains('flipped');
         
-        if (isFlipped) {
-          card.classList.add('flipped');
-          card.setAttribute('aria-expanded', 'true');
-        } else {
+        // First, close all other cards
+        closeOtherCards(card);
+        
+        // Then toggle the tapped card
+        if (isCurrentlyFlipped) {
+          // If this card is already flipped (showing back), flip it back to front
           card.classList.remove('flipped');
           card.setAttribute('aria-expanded', 'false');
+        } else {
+          // If this card is not flipped (showing front), flip it to show back
+          card.classList.add('flipped');
+          card.setAttribute('aria-expanded', 'true');
         }
         
         // Add subtle haptic feedback on mobile (if supported)
@@ -942,8 +963,7 @@
         }
         
         // Escape key to flip back
-        if (e.key === 'Escape' && isFlipped) {
-          isFlipped = false;
+        if (e.key === 'Escape' && card.classList.contains('flipped')) {
           card.classList.remove('flipped');
           card.setAttribute('aria-expanded', 'false');
         }
@@ -954,8 +974,7 @@
         // Only auto-flip back on desktop hover
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
           setTimeout(() => {
-            if (!card.matches(':hover') && isFlipped) {
-              isFlipped = false;
+            if (!card.matches(':hover') && card.classList.contains('flipped')) {
               card.classList.remove('flipped');
               card.setAttribute('aria-expanded', 'false');
             }
@@ -968,10 +987,13 @@
       card.addEventListener('keydown', handleKeyboard);
       card.addEventListener('mouseleave', handleMouseLeave);
       
-      // Enhanced focus management
+      // Enhanced focus management - only for keyboard users
       card.addEventListener('focus', () => {
-        card.style.outline = '2px solid var(--ss-accent-1)';
-        card.style.outlineOffset = '2px';
+        // Check if focus came from keyboard (not mouse/touch)
+        if (document.body.classList.contains('keyboard-navigation')) {
+          card.style.outline = '2px solid var(--ss-accent-1)';
+          card.style.outlineOffset = '2px';
+        }
       });
       
       card.addEventListener('blur', () => {
@@ -1000,28 +1022,24 @@
       cardObserver.observe(card);
     });
     
-    // Handle clicks outside flip cards to close them (optional UX enhancement)
+    // Handle clicks outside flip cards to close them
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.program-flip-card')) {
-        flipCards.forEach(card => {
-          if (card.classList.contains('flipped')) {
-            card.classList.remove('flipped');
-            card.setAttribute('aria-expanded', 'false');
-          }
-        });
+        closeAllCards();
+      }
+    });
+    
+    // Handle touch outside flip cards on mobile
+    document.addEventListener('touchend', (e) => {
+      if (!e.target.closest('.program-flip-card')) {
+        closeAllCards();
       }
     });
     
     // Handle orientation change on mobile
     window.addEventListener('orientationchange', () => {
       setTimeout(() => {
-        // Reset any flipped cards on orientation change for better UX
-        flipCards.forEach(card => {
-          if (card.classList.contains('flipped')) {
-            card.classList.remove('flipped');
-            card.setAttribute('aria-expanded', 'false');
-          }
-        });
+        closeAllCards();
       }, 100);
     });
   }

@@ -1268,11 +1268,25 @@
 @media (max-width: 768px) {
   .higher-ed-hero {
     padding: 100px 0 40px;
-    min-height: 55vh;
+    min-height: 70vh;
+  }
+  
+  .higher-ed-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+  }
+  
+  .hero-content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   .higher-ed-hero-title {
-    font-size: clamp(28px, 6vw, 48px);
+    font-size: 40px;
   }
   
   .higher-ed-hero-subtitle {

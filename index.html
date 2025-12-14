@@ -53,7 +53,9 @@
   <div class="banner-container">
     <div class="banner-content">
       <span class="banner-icon">🚀</span>
-      <span class="banner-text">Apply for Vibe Lab - AI for Building Your First Social Enterprise - Starts January 10, 2026</span>
+      <div class="banner-text-wrapper">
+        <span class="banner-text" data-text="Apply for Vibe Lab - AI for Building Your First Social Enterprise - Starts January 10, 2026">Apply for Vibe Lab - AI for Building Your First Social Enterprise - Starts January 10, 2026</span>
+      </div>
       <a href="vibe-lab.html" class="banner-cta">Apply Now</a>
     </div>
   </div>
@@ -75,14 +77,21 @@
         <h1 class="hero-title">
           <span class="hero-title-subtext">Turning today's learners into</span> <span class="hero-title-underlined">tomorrow's AI leaders</span>
         </h1>
-        <p class="hero-subtitle">
-          Small-group AI programs for middle and high school students.
-        </p>
-        <p class="hero-subtitle" style="margin-top: -30px;">
-          Learn from top tech university mentors, solve real-world problems,  
-        </p>
-        <p class="hero-subtitle" style="margin-top: -30px;">
-          and emerge ready to lead with confidence.
+        <!-- Desktop: Three separate subtitle lines -->
+        <div class="hero-subtitle-desktop">
+          <p class="hero-subtitle">
+            Small-group AI programs for middle and high school students.
+          </p>
+          <p class="hero-subtitle" style="margin-top: -30px;">
+            Learn from top tech university mentors, solve real-world problems,  
+          </p>
+          <p class="hero-subtitle" style="margin-top: -30px;">
+            and emerge ready to lead with confidence.
+          </p>
+        </div>
+        <!-- Mobile: Single combined subtitle -->
+        <p class="hero-subtitle hero-subtitle-mobile">
+          Small-group AI programs for middle and high school students. Learn from top tech university mentors, solve real-world problems, and emerge ready to lead with confidence.
         </p>
         <div class="hero-actions">
           <a href="k12.html" class="btn btn-primary">

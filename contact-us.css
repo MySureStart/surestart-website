@@ -702,7 +702,21 @@
 @media (max-width: 768px) {
   .contact-hero {
     padding: 100px 0 40px;
+    min-height: 70vh;
+  }
+  
+  .contact-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 50vh;
+  }
+  
+  .hero-content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   .hero-text-section {
@@ -714,7 +728,7 @@
   }
   
   .contact-hero-title {
-    font-size: clamp(36px, 6vw, 60px);
+    font-size: 40px;
     text-align: center;
     grid-column: unset;
     grid-row: unset;
@@ -807,6 +821,25 @@
 @media (max-width: 480px) {
   .contact-hero {
     padding: 80px 0 30px;
+    min-height: 70vh;
+  }
+  
+  .contact-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+  }
+  
+  .hero-content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact-hero-title {
+    font-size: 40px;
   }
   
   .contact-form-section,

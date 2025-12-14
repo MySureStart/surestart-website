@@ -955,6 +955,105 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Careers Section */
+.careers-section {
+  background: white;
+  padding: var(--space-4xl) 0;
+}
+
+.careers-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  text-align: center;
+}
+
+.careers-section .section-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.careers-section .section-title {
+  margin-bottom: var(--space-lg);
+}
+
+.careers-section .section-subtitle {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: var(--text-lg);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.careers-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.careers-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--gradient-button);
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--border-radius-full);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--text-lg);
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 16px rgba(231, 48, 82, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.careers-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.careers-btn:hover::before {
+  left: 100%;
+}
+
+.careers-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(231, 48, 82, 0.35);
+}
+
+.careers-btn .btn-arrow {
+  transition: transform var(--transition-normal);
+}
+
+.careers-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.careers-alt {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.careers-alt a {
+  color: var(--ss-accent-1);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-normal);
+}
+
+.careers-alt a:hover {
+  color: var(--ss-red);
+  text-decoration: underline;
+}
+
 /* Team Modal */
 .team-modal {
   display: none;
@@ -1093,7 +1192,21 @@
   
   .about-hero {
     padding: 100px 0 40px;
+    min-height: 70vh;
+  }
+  
+  .about-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 50vh;
+  }
+  
+  .hero-content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   .founder-social {
@@ -1101,7 +1214,7 @@
   }
   
   .about-hero-title {
-    font-size: clamp(36px, 6vw, 60px);
+    font-size: 40px;
   }
   
   .about-hero-subtitle {
@@ -1344,6 +1457,12 @@
   .our-team{
       padding-bottom: var(--space-5xl) !important;
   }
+
+  .featured-podcast-bg{
+    background: url('static/images/Pioneers of AI thumbnails.jpg');
+    background-position: right;
+    background-size: cover;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1359,5 +1478,10 @@
 
   .our-team{
       padding-bottom: var(--space-5xl) !important;
+  }
+    .featured-podcast-bg{
+    background: url('static/images/Pioneers of AI thumbnails.jpg');
+    background-position: right;
+    background-size: cover;
   }
 }

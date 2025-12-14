@@ -1974,14 +1974,28 @@
 
 @media (max-width: 768px) {
   .students-hero {
-    min-height: 80vh;
+    min-height: 70vh;
     padding: var(--space-4xl) 0;
     background-size: cover;
     background-position: right;
   }
   
+  .students-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+  }
+  
+  .hero-content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
   .students-hero-title {
-    font-size: clamp(var(--text-3xl), 8vw, var(--text-5xl));
+    font-size: 40px;
   }
   
   .students-hero-subtitle {
