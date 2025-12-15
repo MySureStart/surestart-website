@@ -109,7 +109,7 @@
   .title-highlight::after {
     bottom: -12px;
     height: 16px;
-    transform: translateY(80%) translateX(-25%) scaleX(17) scaleY(25) rotate(4deg);
+   transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
 
   }
 }
@@ -118,7 +118,7 @@
   .title-highlight::after {
     bottom: -10px;
     height: 14px;
-    transform: translateY(80%) translateX(-25%) scaleX(17) scaleY(25) rotate(4deg);
+    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
 
   }
 }
@@ -127,7 +127,7 @@
   .title-highlight::after {
     bottom: -8px;
     height: 12px;
-    transform: translateY(80%) translateX(-25%) scaleX(17) scaleY(25) rotate(4deg);
+    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
   }
 }
 
@@ -135,7 +135,7 @@
   .title-highlight::after {
     bottom: -6px;
     height: 10px;
-    transform: translateY(10%) translateX(0%) scaleX(12) scaleY(12) rotate(1deg);
+    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
   }
 }
 

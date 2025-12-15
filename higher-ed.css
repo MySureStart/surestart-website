@@ -107,7 +107,7 @@
   .title-highlight::after {
     bottom: -12px;
     height: 16px;
-    transform: translateY(80%) translateX(-20%) scaleX(15) scaleY(25) rotate(4deg);
+    transform: translateY(80%) translateX(-13%) scaleX(20) scaleY(25) rotate(4deg);
   }
 }
 
@@ -154,6 +154,7 @@
   text-align: left;
   grid-column: 1;
   grid-row: 2;
+  padding-top: 20px;
 }
 
 .hero-actions {
@@ -583,7 +584,6 @@
     align-items: center;
     top: 0;
     left: 0;
-    padding-top: 60px;
     display: flex;
     justify-content: center;
     min-height: 50vh;

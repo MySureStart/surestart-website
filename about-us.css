@@ -1156,7 +1156,7 @@
   .title-highlight::after {
     bottom: -12px;
     height: 16px;
-    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
+    transform: translateY(80%) translateX(0%) scaleX(25) scaleY(25) rotate(4deg);
   }
   
   .our-story-grid,
@@ -1244,7 +1244,6 @@
     align-items: center;
     top: 0;
     left: 0;
-    padding-top: 60px;
     display: flex;
     justify-content: center;
     min-height: 50vh;
@@ -1423,7 +1422,7 @@
   .title-highlight::after {
     bottom: -8px;
     height: 12px;
-    transform: translateY(40%) translateX(-5%) scaleX(15) scaleY(15) rotate(2deg);
+    transform:translateY(80%) translateX(0%) scaleX(25) scaleY(25) rotate(4deg);
   }
   
   .about-hero {
@@ -1473,7 +1472,7 @@
   .title-highlight::after {
     bottom: -6px;
     height: 10px;
-    transform: translateY(20%) translateX(0%) scaleX(12) scaleY(12) rotate(1deg);
+    transform: translateY(80%) translateX(0%) scaleX(25) scaleY(25) rotate(4deg);
   }
 }
 
