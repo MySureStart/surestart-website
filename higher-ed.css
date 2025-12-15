@@ -1576,13 +1576,13 @@
   .partnerships-action,
   .partner-testimonials,
   .graduate-career-success {
-    padding-top: var(--space-3xl) !important;
-    padding-bottom: var(--space-3xl) !important;
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
   }
 
   .impact-cta{
-    padding-top: var(--space-5xl) !important;
-    padding-bottom: var(--space-5xl) !important;
+    padding-top: var(--space-4xl) !important;
+    padding-bottom: var(--space-4xl) !important;
   }
 }
 
@@ -1598,8 +1598,8 @@
 }
 
   .impact-cta{
-    padding-top: var(--space-5xl) !important;
-    padding-bottom: var(--space-5xl) !important;
+    padding-top: var(--space-4xl) !important;
+    padding-bottom: var(--space-4xl) !important;
   }
 
 /* Print Styles */
