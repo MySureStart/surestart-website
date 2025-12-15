@@ -2588,40 +2588,50 @@
    ========================================== */
 
 @media (max-width: 768px) {
-  /* Unified section spacing for K12 mobile */
-  .surestart-advantage,
-  .proven-pathways,
-  .journey-into-ai,
-  .school-partnership,
-  .student-impact,
-  .success-stories-hero,
-  .essential-skills,
-  .student-outcomes,
-  .empowering-students,
-  .testimonials,
-  .colleges-attended,
-  .impact-cta {
-    padding-top: var(--space-3xl) !important;
-    padding-bottom: var(--space-3xl) !important;
+  .k12-hero {
+    padding: 90px 0 30px;
+    min-height: 70vh;
   }
-}
-
-@media (max-width: 480px) {
-  /* Unified section spacing for K12 small mobile */
-  .surestart-advantage,
-  .proven-pathways,
-  .journey-into-ai,
-  .school-partnership,
-  .student-impact,
-  .success-stories-hero,
-  .essential-skills,
-  .student-outcomes,
-  .empowering-students,
-  .testimonials,
-  .colleges-attended,
-  .impact-cta {
-    padding-top: var(--space-2xl) !important;
-    padding-bottom: var(--space-2xl) !important;
+  
+  .k12-hero-container {
+    margin-top: -120px !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .hero-content-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    justify-items: start;
+  }
+  
+  .hero-text-section {
+    text-align: left;
+    max-width: 100%;
+    gap: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .k12-hero-title {
+    font-size: clamp(28px, 6vw, 48px);
+    text-align: left;
+  }
+  
+  .k12-hero-subtitle {
+    font-size: clamp(16px, 2.5vw, 20px);
+    text-align: left;
+    margin-bottom: var(--space-sm);
+  }
+  
+  .hero-actions {
+    justify-content: center;
+    margin-right: 0;
+    margin-left: 0;
+    justify-self: center;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    align-self: start;
   }
 }
 
@@ -2888,7 +2898,34 @@
 
 @media (max-width: 480px) {
   .k12-hero {
-    padding: 80px 0 30px;
+    padding: 70px 0 20px;
+  }
+  
+  .k12-hero-container {
+    margin-top: -100px !important;
+  }
+  
+  .hero-content-grid {
+    gap: var(--space-sm);
+  }
+  
+  .hero-text-section {
+    gap: var(--space-xl) var(--space-md);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .k12-hero-subtitle {
+    margin-bottom: var(--space-xs);
+  }
+  
+  .hero-actions {
+    margin-right: 0;
+    margin-left: 0;
+    justify-content: center;
+    justify-self: center;
+    grid-column: 1 / -1;
+    grid-row: auto;
   }
   
   .surestart-advantage,
@@ -3839,39 +3876,39 @@
 
 /* Responsive Design for CTA */
 @media (max-width: 768px) {
-  .impact-cta{
-    padding-top: var(--space-4xl) !important;
-    padding-bottom: var(--space-3xl) !important;
+  .k12-hero {
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center center;
   }
   
-  .cta-title {
-    font-size: clamp(24px, 6vw, 40px);
-    margin-bottom: var(--space-xl);
-  }
-  
-  .cta-section .btn {
-    padding: var(--space-md) var(--space-xl);
-    font-size: var(--text-base);
-  }
-  
-  /* Impact CTA - Stack vertically and center on mobile */
-  .impact-cta .cta-content {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-xl);
-  }
-  
-  .impact-cta .cta-content::before {
-    left: 50%;
-  }
-  
-  .impact-cta .spotlight-title {
-    max-width: 100%;
-    text-align: center;
-  }
-  
-  .impact-cta .cta-actions {
+  .k12-hero-container {
+    align-items: center;
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+    display: flex;
     justify-content: center;
+    min-height: 50vh;
+  }
+  
+  .hero-text-section {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-content-grid {
+    min-height: 50vh;
+    gap: var(--space-2xl);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .k12-hero-title {
+    font-size: 40px !important;
   }
 }
 

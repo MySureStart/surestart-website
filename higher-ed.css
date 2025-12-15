@@ -573,39 +573,40 @@
 }
 
 @media (max-width: 768px) {
-  .success-achievements {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
+  .higher-ed-hero {
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center center;
   }
   
-  .achievement-card {
-    padding: var(--space-xl);
-    padding-bottom: calc(var(--space-xl) + 60px);
+  .higher-ed-hero-container {
+    align-items: center;
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    min-height: 50vh;
   }
   
-  .achievement-content h3 {
-    font-size: var(--text-lg);
+  .hero-text-section {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xl) var(--space-md);
   }
-  
-  /* Make third card vertical like the first two on mobile */
-  .success-achievements .achievement-card:nth-child(3) {
-    grid-column: 1;
+
+  .hero-content-grid {
+    min-height: 50vh;
+    gap: var(--space-2xl);
+    align-items: center;
     display: flex;
     flex-direction: column;
-    grid-template-columns: none;
-    gap: 0;
-    text-align: left;
-    padding: var(--space-xl);
-    padding-bottom: calc(var(--space-xl) + 60px);
+    justify-content: center;
   }
   
-  .success-achievements .achievement-card:nth-child(3) .achievement-image-left {
-    position: absolute;
-    top: 6px;
-    left: 0;
-    right: 0;
-    align-self: auto;
-    margin: 0;
+  .higher-ed-hero-title {
+    font-size: 40px !important;
   }
   
   .success-achievements .achievement-card:nth-child(3) .achievement-image-left img {
@@ -643,6 +644,10 @@
 }
 
 @media (max-width: 480px) {
+  .hero-text-section {
+    gap: var(--space-xl) var(--space-md);
+  }
+  
   .achievement-card {
     padding: var(--space-lg);
     padding-bottom: calc(var(--space-lg) + 50px);
@@ -1291,7 +1296,6 @@
   
   .higher-ed-hero-subtitle {
     font-size: clamp(14px, 2.2vw, 18px);
-    margin-top: 40px;
   }
   
   .how-we-work {
@@ -1455,39 +1459,50 @@
 
 /* Mobile Animation Optimization for Partnership-Driven Section */
 @media (max-width: 768px) {
-  /* Sequential animation for all 6 differentiator cards on mobile */
-  .differentiators-grid .differentiator-card:nth-child(1) { 
-    transition-delay: 0.1s; 
+  .higher-ed-hero {
+    padding: 100px 0 40px;
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center center;
   }
-  .differentiators-grid .differentiator-card:nth-child(2) { 
-    transition-delay: 0.2s; 
+  
+  .higher-ed-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
   }
-  .differentiators-grid .differentiator-card:nth-child(3) { 
-    transition-delay: 0.3s; 
+  
+  .hero-content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .differentiators-grid .differentiator-card:nth-child(4) { 
-    transition-delay: 0.4s; 
+  
+  .higher-ed-hero-title {
+    font-size: 40px;
   }
-  .differentiators-grid .differentiator-card:nth-child(5) { 
-    transition-delay: 0.5s; 
+  
+  .higher-ed-hero-subtitle {
+    font-size: clamp(14px, 2vw, 18px);
   }
-  .differentiators-grid .differentiator-card:nth-child(6) { 
-    transition-delay: 0.6s; 
+  
+  .hero-actions {
+    justify-content: center;
+    margin-right: 0;
+    margin-left: 0;
+    justify-self: start;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    align-self: start;
   }
-}
 
-/* Focus States for Accessibility */
-.differentiator-card:focus,
-.partnership-card:focus,
-.testimonial-card:focus {
-  outline: 2px solid var(--ss-accent-1);
-  outline-offset: 2px;
-}
-
-.differentiator-card:focus,
-.partnership-card:focus,
-.testimonial-card:focus {
-  transform: translateY(-4px);
+  .differentiator-card:focus,
+  .partnership-card:focus,
+  .testimonial-card:focus {
+    transform: translateY(-4px);
+  }
 }
 
 /* Animation Performance Optimization */

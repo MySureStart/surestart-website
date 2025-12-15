@@ -1974,10 +1974,10 @@
 
 @media (max-width: 768px) {
   .students-hero {
+    padding: 100px 0 40px;
     min-height: 70vh;
-    padding: var(--space-4xl) 0;
     background-size: cover;
-    background-position: right;
+    background-position: center center;
   }
   
   .students-hero-container {
@@ -1995,11 +1995,21 @@
   }
   
   .students-hero-title {
-    font-size: 40px;
+    font-size: 40px !important;
   }
   
   .students-hero-subtitle {
-    font-size: var(--text-base);
+    font-size: clamp(14px, 2vw, 18px);
+  }
+  
+  .hero-actions {
+    justify-content: center;
+    margin-right: 0;
+    margin-left: 0;
+    justify-self: start;
+    grid-column: 1 / -1;
+    grid-row: auto;
+    align-self: start;
   }
   
   /* Merged section responsive - mobile */
@@ -2598,37 +2608,83 @@
    ========================================== */
 
 @media (max-width: 768px) {
-  /* Unified section spacing for Students mobile */
-  .future-work-skills-merged,
-  .courses-preview,
-  .program-outcomes,
-  .success-logos {
-    padding-top: var(--space-3xl) !important;
-    padding-bottom: var(--space-3xl) !important;
+  .students-hero {
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center center;
   }
   
-  .impact-cta {
-    padding-top: var(--space-4xl) !important;
-    padding-bottom: var(--space-4xl) !important;
+  .students-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    max-height: none;
   }
-
-  .students-hero-container{
-    max-height: 50vh;
+  
+  .hero-text-section {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    gap: var(--space-xl) var(--space-lg);
+  }
+  
+  .hero-content-grid {
+    min-height: auto;
+    gap: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .students-hero-title {
+    font-size: 40px !important;
+    text-align: left;
+  }
+  
+  .students-hero-subtitle {
+    text-align: left;
   }
 }
 
 @media (max-width: 480px) {
-  /* Unified section spacing for Students small mobile */
-  .future-work-skills-merged,
-  .courses-preview,
-  .program-outcomes,
-  .success-logos{
-    padding-top: var(--space-2xl) !important;
-    padding-bottom: var(--space-2xl) !important;
+  .students-hero {
+    min-height: 70vh;
   }
   
-  .impact-cta{
-    padding-top: var(--space-4xl) !important;
-    padding-bottom: var(--space-4xl) !important;
+  .students-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    max-height: none;
+  }
+  
+  .hero-content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .hero-text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-xl) var(--space-md);
+  }
+  
+  .students-hero-title {
+    font-size: 40px !important;
+    text-align: left;
+  }
+  
+  .students-hero-subtitle {
+    text-align: left;
   }
 }
