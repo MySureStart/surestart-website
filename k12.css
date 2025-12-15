@@ -3448,21 +3448,26 @@
   }
   
   .statistics-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
   }
   
   .statistic-card {
-    padding: var(--space-lg);
+    padding: var(--space-md);
   }
   
   .statistic-number {
-    font-size: clamp(20px, 6vw, 32px);
+    font-size: clamp(18px, 5vw, 28px);
   }
   
   .statistic-description {
-    font-size: var(--text-sm);
-    line-height: 1.4;
+    font-size: var(--text-xs);
+    line-height: 1.3;
+  }
+  
+  .statistic-icon {
+    width: 60px;
+    height: 60px;
   }
   
   .video-testimonial-card {
