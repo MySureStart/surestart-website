@@ -2579,7 +2579,8 @@
   .student-outcomes,
   .empowering-students,
   .testimonials {
-    padding: var(--space-4xl) 0;
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
   }
 }
 
@@ -2673,7 +2674,8 @@
   .student-outcomes,
   .empowering-students,
   .testimonials {
-    padding: var(--space-4xl) 0;
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
   }
   
   /* SureStart Advantage - Tablet layout (2 columns) */
@@ -2938,7 +2940,8 @@
   .student-outcomes,
   .empowering-students,
   .testimonials {
-    padding: var(--space-3xl) 0;
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
   }
   
   .advantages-grid-top {
@@ -3910,12 +3913,47 @@
   .k12-hero-title {
     font-size: 40px !important;
   }
+  
+  /* Impact CTA Mobile Responsive Styles - text top, button under */
+  .impact-cta .cta-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-xl);
+  }
+  
+  .impact-cta .cta-content::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .impact-cta .spotlight-title {
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .impact-cta .cta-actions {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
   .impact-cta {
     padding-top: var(--space-4xl) !important;
-    padding-bottom: var(--space-2xl) !important;
+    padding-bottom: var(--space-4xl) !important;
+  }
+  
+  .impact-cta .cta-content {
+    gap: var(--space-lg);
+  }
+  
+  .impact-cta .spotlight-title {
+    font-size: var(--text-2xl);
+  }
+  
+  .impact-cta .cta-actions .btn {
+    padding: var(--space-sm) var(--space-xl);
+    font-size: var(--text-base);
   }
   
   .cta-title {
@@ -4797,40 +4835,144 @@
 }
 
 @media (max-width: 768px) {
+  /* Tighten vertical spacing */
   .partnership-testimonials-rotating {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-lg) 0;
+  }
+  
+  .partnership-testimonials-rotating .recognition-container {
+    padding: 0 var(--space-md);
+  }
+  
+  /* Add more horizontal padding around text so arrows don't cover quote */
+  .partnership-testimonials-rotating .quote-content {
+    padding: 0 var(--space-3xl);
+    gap: var(--space-md);
   }
   
   .partnership-testimonials-rotating .industry-quote {
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-lg);
   }
   
   .partnership-testimonials-rotating .quote-attribution {
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-sm);
     text-align: center;
+    padding-top: var(--space-sm);
   }
   
   .partnership-testimonials-rotating .author-info {
     align-items: center;
   }
   
+  /* Reduce name/title size for mobile */
+  .partnership-testimonials-rotating .author-name {
+    font-size: var(--text-base);
+  }
+  
+  .partnership-testimonials-rotating .author-title {
+    font-size: var(--text-sm);
+  }
+  
   .partnership-testimonials-rotating .company-logo img {
     height: 30px;
+  }
+  
+  /* Simplify arrow design - clean white arrows without bubble effect */
+  .partnership-testimonials-rotating .quote-nav-arrow {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-arrow:hover {
+    background: transparent;
+    border: none;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-arrow:hover::before {
+    transform: none;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-arrow svg {
+    width: 28px;
+    height: 28px;
+    stroke: white;
+    stroke-width: 2.5;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-arrow:hover svg {
+    transform: none;
+  }
+  
+  .partnership-testimonials-rotating .rotating-quotes-navigation {
+    padding: 0 var(--space-xs);
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-prev {
+    margin-left: -10px;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-next {
+    margin-right: -10px;
   }
 }
 
 @media (max-width: 480px) {
-  .partnership-testimonials-rotating .industry-quote {
-    font-size: var(--text-lg);
+  /* Further tighten spacing on small mobile */
+  .partnership-testimonials-rotating {
+    padding: var(--space-md) 0;
   }
   
+  /* Add more horizontal padding for very small screens */
+  .partnership-testimonials-rotating .quote-content {
+    padding: 0 var(--space-2xl);
+    gap: var(--space-sm);
+  }
+  
+  .partnership-testimonials-rotating .industry-quote {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+  }
+  
+  .partnership-testimonials-rotating .quote-attribution {
+    gap: var(--space-xs);
+    padding-top: var(--space-xs);
+  }
+  
+  /* Further reduce name/title size */
   .partnership-testimonials-rotating .author-name {
-    font-size: var(--text-lg);
+    font-size: var(--text-sm);
   }
   
   .partnership-testimonials-rotating .author-title {
-    font-size: var(--text-base);
+    font-size: var(--text-xs);
+  }
+  
+  /* Smaller clean arrows for small mobile */
+  .partnership-testimonials-rotating .quote-nav-arrow {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-arrow svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-prev {
+    margin-left: -5px;
+  }
+  
+  .partnership-testimonials-rotating .quote-nav-next {
+    margin-right: -5px;
   }
 }
 

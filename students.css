@@ -2586,6 +2586,11 @@
 }
 
 @media (max-width: 480px) {
+  .impact-cta {
+    padding-top: var(--space-4xl) !important;
+    padding-bottom: var(--space-4xl) !important;
+  }
+  
   .impact-cta .spotlight-title {
     font-size: var(--text-2xl);
   }
@@ -2600,6 +2605,8 @@
     width: 100%;
     max-width: 340px;
     justify-content: center;
+    padding: var(--space-sm) var(--space-xl);
+    font-size: var(--text-base);
   }
 }
 
