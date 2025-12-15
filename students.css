@@ -277,8 +277,8 @@
 .industry-flip-card .flip-card-front {
   background: white;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   position: relative;
   overflow: hidden;
 }
@@ -1483,14 +1483,44 @@
     padding-top: calc(var(--space-4xl) + 40px);
     padding-bottom: var(--space-4xl);
   }
+
+  .outcomes-description{
+    margin-bottom: 0px;
+  }
   
   .outcomes-difference-grid {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-2xl);
   }
   
+  /* Use display: contents to allow reordering children across containers */
+  .outcomes-difference-content {
+    display: contents;
+  }
+  
+  /* Order for mobile: Title (1) -> Paragraphs (2,3) -> Checkmarks (4) -> Logos (5) */
+  .outcomes-difference-content .section-title {
+    order: 1;
+    text-align: center;
+  }
+  
+  .outcomes-subtitle {
+    order: 2;
+  }
+  
+  .outcomes-description {
+    order: 3;
+  }
+  
   .outcomes-stats {
+    order: 4;
     flex-direction: column;
     gap: var(--space-lg);
+  }
+  
+  .outcomes-difference-content .logo-sections {
+    order: 5;
   }
   
   .outcomes-stats .outcome-item {
@@ -1515,13 +1545,13 @@
   
   .outcomes-subtitle,
   .outcomes-description {
-    font-size: var(--text-base);
-    text-align: left;
+    font-size: var(--text-lg);
+    text-align: center;
   }
   
   .outcomes-difference-content .logo-section-title {
-    font-size: var(--text-lg);
-    text-align: left;
+    font-size: var(--text-2xl);
+    text-align: center;
   }
   
   /* Logo marquee mobile optimizations - matching K-12 page */
@@ -1577,13 +1607,20 @@
     font-size: var(--text-sm);
   }
   
+  /* Keep subtitle/description centered and slightly larger than before */
   .outcomes-subtitle,
   .outcomes-description {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
+    text-align: center;
+  }
+  
+  .outcomes-difference-content .section-title {
+    text-align: center;
   }
   
   .outcomes-difference-content .logo-section-title {
-    font-size: var(--text-base);
+    font-size: var(--text-2xl);
+    text-align: center;
   }
   
   /* Enhanced logo marquee optimizations for small mobile - matching K-12 page */
@@ -2014,7 +2051,8 @@
   
   /* Merged section responsive - mobile */
   .column-title {
-    font-size: var(--text-xl);
+    font-size: var(--text-4xl);
+    text-align: center;
   }
   
   .column-subtitle {
@@ -2027,12 +2065,12 @@
   }
   
   .industry-flip-card {
-    height: 200px;
+    height: 150px;
   }
   
   .industry-flip-card .flip-card-front,
   .industry-flip-card .flip-card-back {
-    min-height: 200px;
+    min-height: 150px;
   }
   
   .industry-flip-card .industry-icon {
@@ -2050,6 +2088,7 @@
   .accordion-question {
     padding: var(--space-lg);
     font-size: var(--text-base);
+    text-align: center;
   }
   
   .accordion-content {
@@ -2168,6 +2207,12 @@
     font-size: var(--text-base);
   }
   
+  /* Column title mobile - 480px */
+  .column-title {
+    font-size: var(--text-4xl);
+    text-align: center;
+  }
+  
   .industry-card {
     padding: var(--space-xl);
   }
@@ -2222,7 +2267,7 @@
   
   .courses-preview .flip-indicator {
     font-size: 11px;
-    bottom: 12px;
+    bottom: 20px;
   }
   
   .courses-preview .flip-card-back {
@@ -2655,6 +2700,40 @@
   
   .students-hero-subtitle {
     text-align: left;
+  }
+  
+  /* Skills Section Mobile - Center Alignment */
+  .skills-accordion-column .column-header {
+    text-align: center;
+  }
+  
+  .skills-accordion-column .column-title {
+    text-align: center;
+  }
+  
+  .skills-accordion-column .column-subtitle {
+    text-align: center;
+  }
+  
+  .skills-accordion-grid .skills-list {
+    text-align: center;
+  }
+  
+  .skills-accordion-grid .skills-list li {
+    text-align: center;
+    justify-content: center;
+  }
+  
+  /* Remove hover effects from skill labels on mobile */
+  .skills-accordion-grid .skills-list li:hover {
+    transform: none;
+    color: var(--text-secondary);
+    background: rgba(102, 72, 64, 0.05);
+    border-left-color: transparent;
+  }
+  
+  .skills-accordion-grid .skills-list li:hover::before {
+    width: 0;
   }
 }
 
