@@ -150,6 +150,16 @@
   display: block;
 }
 
+/* Mobile-only image between paragraphs - hidden on desktop */
+.story-image-mobile {
+  display: none;
+}
+
+/* Mobile-only founder image - hidden on desktop */
+.founder-image-mobile {
+  display: none;
+}
+
 /* News & Recognition Section */
 .news-recognition {
   position: relative;
@@ -1233,6 +1243,10 @@
     grid-row: auto;
     align-self: start;
   }
+
+  .founder-social{
+    justify-content: center;
+  }
   
   .about-hero {
     min-height: 70vh;
@@ -1499,6 +1513,61 @@
     background: url('static/images/Pioneers of AI thumbnails.jpg');
     background-position: right;
     background-size: cover;
+  }
+
+  /* Our Story section mobile adjustments */
+  /* Reduce font size to match standard paragraph style */
+  .story-text p {
+    font-size: var(--text-base);
+  }
+
+  /* Hide sidebar image on mobile */
+  .story-image {
+    display: none;
+  }
+
+  /* Show inline image between paragraphs on mobile */
+  .story-image-mobile {
+    display: block;
+    margin: var(--space-xl) 0;
+  }
+
+  .story-image-mobile .image-container {
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .story-image-mobile img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Meet the Founder section mobile adjustments */
+  /* Hide sidebar image on mobile */
+  .founder-image {
+    display: none;
+  }
+
+  /* Show inline image between paragraphs on mobile */
+  .founder-image-mobile {
+    display: block;
+    margin: var(--space-lg) auto;
+    max-width: 200px;
+  }
+
+  .founder-image-mobile .image-container {
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .founder-image-mobile img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
   }
 }
 

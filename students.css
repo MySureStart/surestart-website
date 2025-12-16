@@ -2660,6 +2660,21 @@
    ========================================== */
 
 @media (max-width: 768px) {
+  /* Unified section spacing for Students mobile */
+  .future-work-skills-merged,
+  .courses-preview,
+  .program-outcomes,
+  .success-logos,
+  .cta-section {
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
+  }
+
+  .impact-cta {
+    padding-top: var(--space-4xl) !important;
+    padding-bottom: var(--space-4xl) !important;
+  }
+
   .students-hero {
     min-height: 70vh;
     background-size: cover;

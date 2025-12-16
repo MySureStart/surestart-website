@@ -9,8 +9,8 @@
 
 // Intersection Observer for scroll-triggered animations
 const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+  threshold: 0.01,
+  rootMargin: '300px 0px 0px 0px'  // Trigger 300px BEFORE entering viewport for earlier animation
 };
 
 // Debounce function for performance optimization
@@ -58,7 +58,9 @@ function smoothScrollTo(element, duration = 1000) {
 class AnimatedCounter {
   constructor(element, options = {}) {
     this.element = element;
-    this.target = parseInt(element.dataset.value) || parseInt(element.textContent);
+    // Support both data-value and data-target attributes
+    const targetAttr = options.targetAttribute || 'value';
+    this.target = parseInt(element.dataset[targetAttr]) || parseInt(element.dataset.value) || parseInt(element.textContent.replace(/[^0-9]/g, ''));
     this.duration = options.duration || 500;
     this.suffix = element.dataset.suffix || '';
     this.prefix = element.dataset.prefix || '';
@@ -2292,8 +2294,8 @@ class ImpactStoriesApp {
     const statisticElements = document.querySelectorAll('.statistic-number[data-target]');
     statisticElements.forEach(element => {
       new AnimatedCounter(element, {
-        duration: 2000, // Longer animation for impact
-        targetAttribute: 'data-target'
+        duration: 800, // Faster animation so it completes while section is visible
+        targetAttribute: 'target'
       });
     });
     

@@ -979,8 +979,8 @@
   /* Unified section spacing for Contact Us mobile */
   .contact-form-section,
   .faq-section {
-    padding-top: var(--space-3xl) !important;
-    padding-bottom: var(--space-3xl) !important;
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-2xl) !important;
   }
 }
 
