@@ -2107,13 +2107,19 @@ class CaseStudiesCarousel {
   }
 
   startAutoAdvance() {
+    // Disable auto-advance on mobile to prevent glitching
+    if (this.isMobile) {
+      console.log('Auto-advance disabled on mobile');
+      return;
+    }
+    
     // Clear any existing interval first to prevent stacking
     if (this.autoAdvanceInterval) {
       clearInterval(this.autoAdvanceInterval);
       this.autoAdvanceInterval = null;
     }
     
-    // Auto-advance every 5 seconds with professional timing
+    // Auto-advance every 5 seconds with professional timing (desktop only)
     this.autoAdvanceInterval = setInterval(() => {
       // Double-check state before advancing
       if (!this.isTransitioning && !this.isResetting && !this.touchCooldown) {

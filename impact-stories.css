@@ -3053,17 +3053,22 @@ a {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Disable hover effects specifically for Rezwan's video thumbnail (3rd breakthrough story) */
-.breakthrough-story:nth-child(3) .breakthrough-video .video-thumbnail:hover img {
+/* Disable hover effects specifically for Rezwan's video thumbnail (4th breakthrough story - static image) */
+.breakthrough-story:nth-child(4) .breakthrough-video .video-thumbnail:hover img {
   transform: none;
 }
 
-.breakthrough-story:nth-child(3) .breakthrough-video .video-thumbnail::after {
+.breakthrough-story:nth-child(4) .breakthrough-video .video-thumbnail::after {
   display: none;
 }
 
-.breakthrough-story:nth-child(3) .breakthrough-video .video-thumbnail::before {
+.breakthrough-story:nth-child(4) .breakthrough-video .video-thumbnail::before {
   display: none;
+}
+
+/* Also disable cursor pointer for Rezwan's thumbnail since it's not clickable */
+.breakthrough-story:nth-child(4) .breakthrough-video .video-thumbnail {
+  cursor: default;
 }
 
 .breakthrough-text {
@@ -3140,63 +3145,53 @@ a {
 /* Responsive Design for Breakthrough Stories */
 @media (max-width: 900px) {
   .breakthrough-story {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
     text-align: center;
+  }
+  
+  /* Reorder: text (title + description) above video on mobile */
+  .breakthrough-text {
+    order: 1;
+    text-align: center;
+  }
+  
+  .breakthrough-video {
+    order: 2;
   }
   
   .breakthrough-story-reverse {
     direction: ltr;
   }
   
-  .breakthrough-text {
-    text-align: center;
-  }
-  
   .breakthrough-text h3 {
     text-align: center;
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-md);
   }
   
   .breakthrough-description {
     text-align: center;
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
   }
   
-  .breakthrough-text blockquote {
+  /* Center-align video caption/legend beneath the video */
+  .breakthrough-video blockquote {
     text-align: center;
+    font-size: var(--text-sm);
+    margin-top: var(--space-md);
   }
   
   .breakthrough-text .btn {
     align-self: center;
+    margin-top: var(--space-sm);
   }
 }
 
 @media (max-width: 768px) {
-  .breakthrough-grid {
-    gap: var(--space-3xl);
-  }
-  
-  .breakthrough-story {
-    gap: var(--space-xl);
-  }
-  
-  .breakthrough-text h3 {
-    font-size: var(--text-xl);
-  }
-  
-  .breakthrough-description {
-    font-size: var(--text-base);
-  }
-  
-  .breakthrough-text blockquote {
-    font-size: var(--text-base);
-  }
-  
-  .breakthrough-video .video-thumbnail img {
-    min-height: 250px;
-  }
-}
-
-@media (max-width: 480px) {
   .breakthrough-grid {
     gap: var(--space-2xl);
   }
@@ -3207,18 +3202,76 @@ a {
   
   .breakthrough-text h3 {
     font-size: var(--text-lg);
+    margin-bottom: var(--space-sm);
   }
   
   .breakthrough-description {
     font-size: var(--text-sm);
+    line-height: 1.5;
+    margin-bottom: var(--space-sm);
   }
   
-  .breakthrough-text blockquote {
-    font-size: var(--text-sm);
+  .breakthrough-video blockquote {
+    font-size: var(--text-xs);
+    line-height: 1.4;
   }
   
   .breakthrough-video .video-thumbnail img {
-    min-height: 200px;
+    min-height: 220px;
+  }
+  
+  /* Section header consistency */
+  .stories-container .section-title {
+    font-size: var(--text-2xl);
+  }
+  
+  .stories-container .section-subtitle {
+    font-size: var(--text-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .breakthrough-grid {
+    gap: var(--space-xl);
+  }
+  
+  .breakthrough-story {
+    gap: var(--space-md);
+  }
+  
+  .breakthrough-text h3 {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-xs);
+  }
+  
+  .breakthrough-description {
+    font-size: var(--text-xs);
+    line-height: 1.45;
+    margin-bottom: var(--space-xs);
+  }
+  
+  .breakthrough-video blockquote {
+    font-size: 0.75rem;
+    line-height: 1.35;
+    margin-top: var(--space-sm);
+  }
+  
+  .breakthrough-video .video-thumbnail img {
+    min-height: 180px;
+  }
+  
+  .breakthrough-text .btn {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--text-sm);
+  }
+  
+  /* Section header for smallest screens */
+  .stories-container .section-title {
+    font-size: var(--text-xl);
+  }
+  
+  .stories-container .section-subtitle {
+    font-size: var(--text-xs);
   }
 }
 
