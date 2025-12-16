@@ -1286,6 +1286,8 @@ a {
   margin: 0 auto;
   overflow: hidden;
   padding: 0 80px; /* Space for arrows */
+  /* Prevent horizontal scroll interference while allowing vertical scrolling */
+  touch-action: pan-y pinch-zoom;
 }
 
 .testimonials-track {
@@ -1293,6 +1295,11 @@ a {
   transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   width: 100%; /* 6 slides for seamless loop (5 real + 1 clone) */
   will-change: transform;
+  /* Prevent any native scroll behavior on the track */
+  touch-action: none;
+  /* Prevent text selection during swipe */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Enhanced card styling with consistent sliding animations only */
@@ -1642,6 +1649,12 @@ a {
     align-self: start;
   }
   
+  /* Mobile testimonials section header - match other sections */
+  .meet-students-label {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-md);
+  }
+  
   .case-studies-title {
     font-size: var(--text-base);
     line-height: 1.5;
@@ -1670,12 +1683,13 @@ a {
     box-sizing: border-box;
   }
   
-  /* Photo section - Full width at top */
+  /* Photo section - Full width at top - MOVED UP */
   .testimonial-photo {
     flex: 0 0 auto;
     width: 100%;
-    height: 260px;
-    min-height: 260px;
+    height: 220px;
+    min-height: 220px;
+    margin-top: -10px;
   }
   
   .testimonial-photo img {
@@ -1683,29 +1697,40 @@ a {
     height: 100%;
     border-radius: 16px 16px 0 0;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 35%;
   }
   
-  /* Content section */
+  /* Individual photo position overrides for mobile */
+  /* Lili (slide 0) - show area 25% from top */
+  .testimonial-case-card[data-slide="0"] .testimonial-photo img {
+    object-position: center 10%;
+  }
+  
+  /* Aashna (slide 4) - keep original top position */
+  .testimonial-case-card[data-slide="4"] .testimonial-photo img {
+    object-position: center 10%;
+  }
+  
+  /* Content section - TIGHTER SPACING */
   .testimonial-content {
-    padding: var(--space-lg);
+    padding: var(--space-md) var(--space-lg);
     text-align: left;
   }
   
   .testimonial-quote {
     font-size: 0.9rem;
     line-height: 1.5;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
   }
   
   .testimonial-content hr {
-    margin: var(--space-md) 0;
+    margin: var(--space-sm) 0;
   }
   
   .testimonial-content .quote-attribution {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-md);
+    gap: var(--space-sm);
   }
   
   .testimonial-content .quote-attribution .author-name {
@@ -1720,9 +1745,16 @@ a {
     margin-top: var(--space-xs);
   }
   
+  /* INCREASED & STANDARDIZED logo sizes for mobile */
   .testimonial-content .quote-attribution .company-logo .university-logo {
-    height: 40px;
-    max-width: 100px;
+    height: 80px !important;
+    max-width: 200px !important;
+  }
+  
+  /* Specific adjustments for McGill to keep it proportional */
+  .testimonial-content .quote-attribution .company-logo .university-logo[src*="Mcgill_univ_ca_logo.png"] {
+    height: 50px !important;
+    max-width: 130px !important;
   }
   
   /* Navigation dots */
@@ -1773,22 +1805,26 @@ a {
     border-radius: 12px;
   }
   
+  /* Photo section - moved up */
   .testimonial-photo {
-    height: 220px;
-    min-height: 220px;
+    height: 200px;
+    min-height: 200px;
+    margin-top: -8px;
   }
   
   .testimonial-photo img {
     border-radius: 12px 12px 0 0;
   }
   
+  /* Content section - tighter spacing */
   .testimonial-content {
-    padding: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
   }
   
   .testimonial-quote {
     font-size: 0.85rem;
     line-height: 1.45;
+    margin-bottom: var(--space-xs);
   }
   
   .testimonial-content .quote-attribution .author-name {
@@ -1799,9 +1835,16 @@ a {
     font-size: var(--text-xs);
   }
   
+  /* INCREASED logo sizes for 480px screens */
   .testimonial-content .quote-attribution .company-logo .university-logo {
-    height: 32px;
-    max-width: 80px;
+    height: 70px !important;
+    max-width: 180px !important;
+  }
+  
+  /* Keep McGill proportional */
+  .testimonial-content .quote-attribution .company-logo .university-logo[src*="Mcgill_univ_ca_logo.png"] {
+    height: 45px !important;
+    max-width: 120px !important;
   }
   
   .testimonials-indicators {
@@ -1834,27 +1877,38 @@ a {
     /* Flex sizing handled by JS */
   }
   
+  /* Photo section - moved up */
   .testimonial-photo {
-    height: 200px;
-    min-height: 200px;
+    height: 180px;
+    min-height: 180px;
+    margin-top: -6px;
   }
   
+  /* Content section - tighter spacing */
   .testimonial-content {
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-xs) var(--space-sm);
   }
   
   .testimonial-quote {
     font-size: 0.8rem;
     line-height: 1.4;
+    margin-bottom: var(--space-xs);
   }
   
   .testimonial-content hr {
-    margin: var(--space-sm) 0;
+    margin: var(--space-xs) 0;
   }
   
+  /* INCREASED logo sizes for 360px screens */
   .testimonial-content .quote-attribution .company-logo .university-logo {
-    height: 28px;
-    max-width: 70px;
+    height: 60px !important;
+    max-width: 150px !important;
+  }
+  
+  /* Keep McGill proportional */
+  .testimonial-content .quote-attribution .company-logo .university-logo[src*="Mcgill_univ_ca_logo.png"] {
+    height: 40px !important;
+    max-width: 105px !important;
   }
 }
 

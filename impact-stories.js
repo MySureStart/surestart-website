@@ -1704,8 +1704,13 @@ class CaseStudiesCarousel {
     this.isTransitioning = false;
     this.isResetting = false;
     this.autoAdvanceInterval = null;
+    this.autoAdvanceResumeTimeout = null; // Track resume timeout separately
     this.direction = 'next'; // Track direction for animation states
     this.isMobile = window.innerWidth <= 768; // Track mobile state
+    this.touchCooldown = false; // Prevent rapid touch interactions
+    
+    // Cache container width for mobile calculations
+    this.containerWidth = 0;
     
     this.init();
   }
@@ -1733,6 +1738,11 @@ class CaseStudiesCarousel {
     const wasMobile = this.isMobile;
     this.isMobile = window.innerWidth <= 768;
     
+    // Update cached container width
+    if (this.track && this.track.parentElement) {
+      this.containerWidth = this.track.parentElement.offsetWidth;
+    }
+    
     // Re-setup carousel if mobile state changed
     if (wasMobile !== this.isMobile) {
       this.setupCarousel();
@@ -1756,6 +1766,11 @@ class CaseStudiesCarousel {
     // Professional animation setup
     this.track.style.display = 'flex';
     this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    
+    // Cache container width
+    if (this.track.parentElement) {
+      this.containerWidth = this.track.parentElement.offsetWidth;
+    }
     
     if (this.isMobile) {
       // Mobile: Each slide takes full width with gap
@@ -1800,6 +1815,7 @@ class CaseStudiesCarousel {
     
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
+        if (this.isTransitioning || this.isResetting) return;
         this.pauseAutoAdvance();
         this.previousSlide();
         this.resumeAutoAdvance();
@@ -1808,6 +1824,7 @@ class CaseStudiesCarousel {
     
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
+        if (this.isTransitioning || this.isResetting) return;
         this.pauseAutoAdvance();
         this.nextSlide();
         this.resumeAutoAdvance();
@@ -1817,7 +1834,7 @@ class CaseStudiesCarousel {
     // Dot navigation
     this.dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
-        if (index !== this.currentIndex && !this.isTransitioning) {
+        if (index !== this.currentIndex && !this.isTransitioning && !this.isResetting) {
           this.pauseAutoAdvance();
           this.goToSlide(index);
           this.resumeAutoAdvance();
@@ -1843,11 +1860,33 @@ class CaseStudiesCarousel {
     let currentX = 0;
     let isDragging = false;
     let startTime = 0;
+    let initialTransform = 0;
+    
+    const getTransformValue = () => {
+      // Get the current transform value based on mode
+      if (this.isMobile) {
+        const cardWidth = this.containerWidth;
+        const gap = this.mobileGap;
+        return -(this.currentIndex * (cardWidth + gap));
+      } else {
+        return -(this.currentIndex * 16.67);
+      }
+    };
     
     this.track.addEventListener('touchstart', (e) => {
+      // Don't start new drag if carousel is busy or in cooldown
+      if (this.isTransitioning || this.isResetting || this.touchCooldown) {
+        return;
+      }
+      
       startX = e.touches[0].clientX;
+      currentX = startX; // Initialize currentX to startX to prevent zero-value bug
       startTime = Date.now();
       isDragging = true;
+      
+      // Store initial transform value
+      initialTransform = getTransformValue();
+      
       this.pauseAutoAdvance();
       
       // Disable CSS transitions during drag
@@ -1855,23 +1894,39 @@ class CaseStudiesCarousel {
     }, { passive: true });
     
     this.track.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
+      if (!isDragging || this.isTransitioning || this.isResetting) return;
+      
       currentX = e.touches[0].clientX;
       
-      // Provide visual feedback during drag
+      // Calculate drag distance
       const diffX = currentX - startX;
-      const maxDrag = 100; // Limit drag distance
+      const maxDrag = this.isMobile ? 150 : 100; // Allow more drag on mobile
       const clampedDiff = Math.max(-maxDrag, Math.min(maxDrag, diffX));
-      const currentTransform = -(this.currentIndex * 16.67); // 16.67% per slide
-      const newTransform = currentTransform + (clampedDiff / window.innerWidth * 20);
       
-      this.track.style.transform = `translateX(${newTransform}%)`;
+      // Calculate new transform based on mode
+      let newTransform;
+      if (this.isMobile) {
+        // Mobile: pixel-based transform
+        newTransform = initialTransform + clampedDiff;
+        this.track.style.transform = `translateX(${newTransform}px)`;
+      } else {
+        // Desktop: percentage-based transform
+        const diffPercent = (clampedDiff / window.innerWidth) * 20;
+        newTransform = initialTransform + diffPercent;
+        this.track.style.transform = `translateX(${newTransform}%)`;
+      }
     }, { passive: true });
     
     this.track.addEventListener('touchend', () => {
       if (!isDragging) return;
       
       isDragging = false;
+      
+      // Set cooldown to prevent rapid interactions
+      this.touchCooldown = true;
+      setTimeout(() => {
+        this.touchCooldown = false;
+      }, 100);
       
       // Re-enable CSS transitions
       this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
@@ -1880,20 +1935,37 @@ class CaseStudiesCarousel {
       const deltaTime = Date.now() - startTime;
       const velocity = Math.abs(diffX) / deltaTime; // px/ms
       
-      const threshold = velocity > 0.5 ? 30 : 80; // Lower threshold for fast swipes
+      // Adjust threshold based on velocity and mobile
+      const threshold = velocity > 0.5 ? 30 : (this.isMobile ? 50 : 80);
       
-      if (Math.abs(diffX) > threshold) {
-        if (diffX > 0) {
-          this.previousSlide();
+      // Only process swipe if not in transition
+      if (!this.isTransitioning && !this.isResetting) {
+        if (Math.abs(diffX) > threshold) {
+          if (diffX > 0) {
+            this.previousSlide();
+          } else {
+            this.nextSlide();
+          }
         } else {
-          this.nextSlide();
+          // Snap back to current position
+          this.updateCarousel();
         }
       } else {
-        // Snap back to current position
+        // If busy, just snap back
         this.updateCarousel();
       }
       
       this.resumeAutoAdvance();
+    }, { passive: true });
+    
+    // Handle touch cancel (e.g., interrupted by system gesture)
+    this.track.addEventListener('touchcancel', () => {
+      if (isDragging) {
+        isDragging = false;
+        this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        this.updateCarousel();
+        this.resumeAutoAdvance();
+      }
     }, { passive: true });
   }
 
@@ -2035,28 +2107,48 @@ class CaseStudiesCarousel {
   }
 
   startAutoAdvance() {
-    this.pauseAutoAdvance(); // Clear any existing interval
+    // Clear any existing interval first to prevent stacking
+    if (this.autoAdvanceInterval) {
+      clearInterval(this.autoAdvanceInterval);
+      this.autoAdvanceInterval = null;
+    }
     
     // Auto-advance every 5 seconds with professional timing
     this.autoAdvanceInterval = setInterval(() => {
-      if (!this.isTransitioning && !this.isResetting) {
+      // Double-check state before advancing
+      if (!this.isTransitioning && !this.isResetting && !this.touchCooldown) {
         this.nextSlide();
       }
     }, 5000);
   }
 
   pauseAutoAdvance() {
+    // Clear the auto-advance interval
     if (this.autoAdvanceInterval) {
       clearInterval(this.autoAdvanceInterval);
       this.autoAdvanceInterval = null;
     }
+    
+    // Also clear any pending resume timeout to prevent conflicts
+    if (this.autoAdvanceResumeTimeout) {
+      clearTimeout(this.autoAdvanceResumeTimeout);
+      this.autoAdvanceResumeTimeout = null;
+    }
   }
 
   resumeAutoAdvance() {
+    // Clear any pending resume timeout first
+    if (this.autoAdvanceResumeTimeout) {
+      clearTimeout(this.autoAdvanceResumeTimeout);
+      this.autoAdvanceResumeTimeout = null;
+    }
+    
     // Resume after 3 seconds to give user time to interact
-    this.pauseAutoAdvance(); // Clear any pending resume
-    setTimeout(() => {
-      if (!this.isTransitioning && !this.isResetting) {
+    this.autoAdvanceResumeTimeout = setTimeout(() => {
+      this.autoAdvanceResumeTimeout = null;
+      
+      // Only start if carousel is not busy
+      if (!this.isTransitioning && !this.isResetting && !this.touchCooldown) {
         this.startAutoAdvance();
       }
     }, 3000);
