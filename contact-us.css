@@ -697,6 +697,14 @@
   .contact-info-section {
     order: 2;
   }
+
+  .faq-section::before{
+    z-index: 0;
+  }
+
+  .faq-section{
+    padding-bottom: var(--space-4xl) !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -882,6 +890,8 @@
   .faq-section {
     padding: var(--space-2xl) 0;
   }
+
+
   
   .form-section {
     padding: var(--space-xl);
@@ -986,9 +996,13 @@
 
 @media (max-width: 480px) {
   /* Unified section spacing for Contact Us small mobile */
-  .contact-form-section,
-  .faq-section {
+  .contact-form-section {
     padding-top: var(--space-2xl) !important;
     padding-bottom: var(--space-2xl) !important;
+  }
+
+  .faq-section{
+    padding-top: var(--space-2xl) !important;
+    padding-bottom: var(--space-4xl) !important;
   }
 }
