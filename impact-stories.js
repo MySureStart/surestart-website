@@ -1708,9 +1708,13 @@ class CaseStudiesCarousel {
     this.direction = 'next'; // Track direction for animation states
     this.isMobile = window.innerWidth <= 768; // Track mobile state
     this.touchCooldown = false; // Prevent rapid touch interactions
+    this.isDragging = false; // Track drag state globally
     
     // Cache container width for mobile calculations
     this.containerWidth = 0;
+    
+    // Consistent slide width percentage for desktop (6 slides = 16.67% each)
+    this.slideWidthPercent = 100 / this.totalSlides; // 16.67%
     
     this.init();
   }
@@ -2026,28 +2030,35 @@ class CaseStudiesCarousel {
   }
 
   performSeamlessReset() {
+    // Set both flags synchronously FIRST to prevent any touch events
     this.isResetting = true;
+    this.isTransitioning = true;
     
     // Temporarily disable transitions
     this.track.style.transition = 'none';
     
-    // Reset to first slide instantly
+    // Reset to first slide instantly using the consistent slide width percentage
     this.currentIndex = 0;
-    const translateX = -(this.currentIndex * 25);
+    
+    // Use the same calculation as updateCarousel for consistency
+    const translateX = -(this.currentIndex * this.slideWidthPercent);
     this.track.style.transform = `translateX(${translateX}%)`;
     
-    // Re-enable transitions after a brief delay
+    // Force a reflow to ensure the transform is applied before re-enabling transitions
+    this.track.offsetHeight;
+    
+    // Re-enable transitions after a single frame
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        this.isResetting = false;
-        this.isTransitioning = false;
-        
-        // Update dots to reflect real slide position
-        this.updateDots();
-        
-        console.log('Seamless loop reset completed');
-      });
+      this.track.style.transition = 'transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      
+      // Reset flags synchronously
+      this.isResetting = false;
+      this.isTransitioning = false;
+      
+      // Update dots to reflect real slide position
+      this.updateDots();
+      
+      console.log('Seamless loop reset completed');
     });
   }
 
@@ -2075,15 +2086,14 @@ class CaseStudiesCarousel {
     let translateValue;
     if (this.isMobile) {
       // Mobile: Calculate pixel-based transform to account for gaps
-      // Each card is (100% - 16px) wide, plus gap between cards
-      const containerWidth = this.track.parentElement.offsetWidth;
-      const cardWidth = containerWidth; // Match the calc(100% - 16px)
-      const gap = 24; // Match CSS gap
-      const slideOffset = this.currentIndex * (cardWidth + gap);
+      // Each card takes full container width, plus gap between cards
+      const containerWidth = this.track.parentElement ? this.track.parentElement.offsetWidth : this.containerWidth;
+      const gap = this.mobileGap || 24; // Match CSS gap value
+      const slideOffset = this.currentIndex * (containerWidth + gap);
       translateValue = `-${slideOffset}px`;
     } else {
-      // Desktop: Each slide is 16.67%
-      translateValue = `${-(this.currentIndex * 16.67)}%`;
+      // Desktop: Use the consistent slide width percentage
+      translateValue = `${-(this.currentIndex * this.slideWidthPercent)}%`;
     }
     
     console.log(`Updating carousel - slide ${this.currentIndex + 1}/${this.totalSlides}, transform: ${translateValue}, mobile: ${this.isMobile}`);
@@ -2143,6 +2153,11 @@ class CaseStudiesCarousel {
   }
 
   resumeAutoAdvance() {
+    // Don't try to resume auto-advance on mobile - it's permanently disabled
+    if (this.isMobile) {
+      return;
+    }
+    
     // Clear any pending resume timeout first
     if (this.autoAdvanceResumeTimeout) {
       clearTimeout(this.autoAdvanceResumeTimeout);
@@ -2153,8 +2168,8 @@ class CaseStudiesCarousel {
     this.autoAdvanceResumeTimeout = setTimeout(() => {
       this.autoAdvanceResumeTimeout = null;
       
-      // Only start if carousel is not busy
-      if (!this.isTransitioning && !this.isResetting && !this.touchCooldown) {
+      // Double-check mobile state hasn't changed and carousel is not busy
+      if (!this.isMobile && !this.isTransitioning && !this.isResetting && !this.touchCooldown) {
         this.startAutoAdvance();
       }
     }, 3000);
