@@ -1860,6 +1860,11 @@ class CaseStudiesCarousel {
   }
 
   addTouchSupport() {
+    // Disable touch/drag scrolling on mobile - only allow button navigation
+    if (this.isMobile) {
+      return; // Skip adding touch event listeners on mobile
+    }
+    
     let startX = 0;
     let currentX = 0;
     let isDragging = false;
