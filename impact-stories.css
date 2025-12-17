@@ -214,6 +214,10 @@ a {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
   }
+
+  .stories-container .section-header{
+    margin-bottom: 0px;
+  }
 }
 
 @media (max-width: 768px) {

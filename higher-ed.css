@@ -609,23 +609,39 @@
     font-size: 40px !important;
   }
   
+  /* Third card - reset to vertical layout like first two cards */
+  .success-achievements .achievement-card:nth-child(3) {
+    display: block;
+    grid-template-columns: 1fr;
+    padding: var(--space-2xl);
+    padding-bottom: calc(var(--space-2xl) + 60px);
+    text-align: left;
+  }
+  
+  .success-achievements .achievement-card:nth-child(3) .achievement-image-left {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    right: 0;
+    margin: 0;
+  }
+  
   .success-achievements .achievement-card:nth-child(3) .achievement-image-left img {
     width: 100%;
     height: 140px;
     min-height: 140px;
     border-radius: var(--border-radius-2xl) var(--border-radius-2xl) 0 0;
     object-fit: cover;
-
     object-position: center 20%;
   }
   
   .success-achievements .achievement-card:nth-child(3) .achievement-content {
     padding: 0;
-    padding-top: 150px;
+    padding-top: 120px;
   }
   
   .success-achievements .achievement-card:nth-child(3) .achievement-content .achievement-description {
-    margin-bottom: 0;
+    margin-bottom: 50px;
   }
   
   .success-achievements .achievement-card:nth-child(3) .achievement-icons {
