@@ -2122,25 +2122,22 @@ class CaseStudiesCarousel {
   }
 
   startAutoAdvance() {
-    // Disable auto-advance on mobile to prevent glitching
-    if (this.isMobile) {
-      console.log('Auto-advance disabled on mobile');
-      return;
-    }
-    
     // Clear any existing interval first to prevent stacking
     if (this.autoAdvanceInterval) {
       clearInterval(this.autoAdvanceInterval);
       this.autoAdvanceInterval = null;
     }
     
-    // Auto-advance every 5 seconds with professional timing (desktop only)
+    // Auto-advance every 5 seconds (works on both desktop and mobile)
+    // Race condition safeguards: isTransitioning and isResetting flags prevent conflicts
     this.autoAdvanceInterval = setInterval(() => {
-      // Double-check state before advancing
+      // Double-check state before advancing - prevents conflicts with user clicks
       if (!this.isTransitioning && !this.isResetting && !this.touchCooldown) {
         this.nextSlide();
       }
     }, 5000);
+    
+    console.log('Auto-advance started');
   }
 
   pauseAutoAdvance() {
@@ -2158,11 +2155,6 @@ class CaseStudiesCarousel {
   }
 
   resumeAutoAdvance() {
-    // Don't try to resume auto-advance on mobile - it's permanently disabled
-    if (this.isMobile) {
-      return;
-    }
-    
     // Clear any pending resume timeout first
     if (this.autoAdvanceResumeTimeout) {
       clearTimeout(this.autoAdvanceResumeTimeout);
@@ -2173,8 +2165,8 @@ class CaseStudiesCarousel {
     this.autoAdvanceResumeTimeout = setTimeout(() => {
       this.autoAdvanceResumeTimeout = null;
       
-      // Double-check mobile state hasn't changed and carousel is not busy
-      if (!this.isMobile && !this.isTransitioning && !this.isResetting && !this.touchCooldown) {
+      // Double-check carousel is not busy before restarting
+      if (!this.isTransitioning && !this.isResetting && !this.touchCooldown) {
         this.startAutoAdvance();
       }
     }, 3000);

@@ -1598,6 +1598,43 @@ a {
 
 /* Hide arrows on smaller screens to avoid overlap */
 @media (max-width: 768px) {
+  /* DISABLE DRAG SCROLLING ON MOBILE - Only allow button navigation */
+  .testimonials-carousel {
+    touch-action: pan-y !important; /* Only allow vertical scrolling, block horizontal */
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: auto; /* Disable momentum scrolling */
+  }
+  
+  .testimonials-track {
+    touch-action: none !important;
+    pointer-events: none; /* Block all touch/pointer events on the track */
+  }
+  
+  /* Re-enable pointer events on navigation elements */
+  .testimonials-arrow,
+  .testimonial-dot,
+  .testimonials-indicators {
+    pointer-events: auto !important;
+    z-index: 100;
+  }
+  
+  /* Ensure arrows are visible and properly positioned on mobile */
+  .testimonials-arrow {
+    display: flex !important;
+    position: absolute !important;
+    width: 40px;
+    height: 40px;
+    top: 35%;
+  }
+  
+  .testimonials-arrow-prev {
+    left: 5px;
+  }
+  
+  .testimonials-arrow-next {
+    right: 5px;
+  }
+  
   .impact-hero {
     padding: 100px 0 40px;
     min-height: 70vh;
