@@ -1,0 +1,14 @@
+old_url,new_path,priority
+# URL mapping for Squarespace to new static site migration
+# old_url: Full URL from old Squarespace site
+# new_path: Path on new site (relative to domain root)
+# priority: high, medium, low (affects audit severity)
+https://www.mysurestart.com/,/,high
+https://www.mysurestart.com/about,/about-us.html,high
+https://www.mysurestart.com/contact,/contact-us.html,medium
+https://www.mysurestart.com/k-12,/k12.html,high
+https://www.mysurestart.com/higher-education,/higher-ed.html,high
+https://www.mysurestart.com/students,/students.html,high
+https://www.mysurestart.com/impact,/impact-stories.html,medium
+https://www.mysurestart.com/vibe-coding,/vibe-coding.html,medium
+https://www.mysurestart.com/vibe-lab,/vibe-lab.html,medium

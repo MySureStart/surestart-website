@@ -1,0 +1,23 @@
+{
+  "siteName": "MySureStart",
+  "baseUrl": "https://example.com",
+  "canonicalHostPolicy": "non-www",
+  "trailingSlash": false,
+  "defaultRobotsProd": "index,follow",
+  "defaultRobotsNonProd": "noindex,nofollow",
+  "defaultOgImage": "/static/images/SureStart_Standard Logo (1).png",
+  "organization": {
+    "name": "MySureStart",
+    "legalName": "MySureStart Inc.",
+    "description": "Empowering the next generation of AI leaders through accessible, world-class education.",
+    "logo": "/static/images/SureStart_Standard Logo (1).png",
+    "sameAs": [
+      "https://www.linkedin.com/company/mysurestart",
+      "https://twitter.com/mysurestart"
+    ],
+    "contactPoint": {
+      "contactType": "customer service",
+      "email": "info@mysurestart.com"
+    }
+  }
+}

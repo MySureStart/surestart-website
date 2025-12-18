@@ -1,0 +1,13 @@
+from,to,status,note
+# Old site structure redirects
+/home,/,301,Homepage redirect
+/about,/about-us,301,URL structure change
+/contact,/contact-us,301,URL structure change
+/k-12,/k12,301,URL simplification
+/higher-education,/higher-ed,301,URL simplification
+/programs/students,/students,301,Flattened URL structure
+/vibe-coding,/vibe-lab,301,Renamed feature
+/impact,/impact-stories,301,URL structure change
+# Legacy promotional URLs
+/summer-program,/students,302,Temporary redirect to students page
+/ai-course,/vibe-lab,302,Promotional redirect

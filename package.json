@@ -1,0 +1,31 @@
+{
+  "name": "surestart-website",
+  "version": "1.0.0",
+  "description": "MySureStart website - Empowering the next generation of AI leaders",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js && npm run seo:sitemap && npm run seo:robots && npm run seo:redirects:build",
+    "build:prod": "cross-env NODE_ENV=production node scripts/build.js && npm run seo:sitemap && npm run seo:robots && npm run seo:redirects:build",
+    "dev": "npm run build && npx serve dist -l 3000",
+    "serve": "npx serve dist -l 3000",
+    "seo:sitemap": "node scripts/generate-sitemap.js",
+    "seo:robots": "node scripts/generate-robots.js",
+    "seo:redirects:validate": "node scripts/validate-redirects.js",
+    "seo:redirects:build": "node scripts/build-redirects.js",
+    "seo:smoke": "node scripts/seo-smoke-test.js",
+    "seo:links": "node scripts/link-check.js",
+    "seo:parity": "node scripts/parity-audit.js",
+    "seo:prelaunch": "node scripts/prelaunch-checks.js"
+  },
+  "keywords": [
+    "surestart",
+    "ai",
+    "education"
+  ],
+  "author": "MySureStart",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "serve": "^14.2.0"
+  }
+}
