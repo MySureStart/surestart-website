@@ -103,7 +103,7 @@
 }
 
 /* Responsive adjustments for the pen underline */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .title-highlight::after {
     bottom: -12px;
     height: 16px;
@@ -566,8 +566,7 @@
 }
 
 /* Responsive Design for Achievement Cards */
-@media (max-width: 1024px) {
-  .success-achievements {
+@media (max-width: 768px) { {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--space-xl);
   }
@@ -1102,8 +1101,7 @@
 }
 
 /* Responsive Design for Partnership Testimonials Carousel */
-@media (max-width: 1024px) {
-  .partner-testimonials .testimonial-case-card {
+@media (max-width: 768px) { .testimonial-case-card {
     flex: 0 0 100%;
     padding: var(--space-2xl);
   }
@@ -1269,8 +1267,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .differentiators-grid {
+@media (max-width: 768px) { {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
   }
@@ -1893,8 +1890,7 @@
 }
 
 /* Responsive Design for Rotating Quotes */
-@media (max-width: 1024px) {
-  .partnership-testimonials-rotating .recognition-content {
+@media (max-width: 768px) { .recognition-content {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
     text-align: center;

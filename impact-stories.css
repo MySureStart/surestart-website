@@ -205,7 +205,7 @@ a {
 }
 
 /* Responsive Design for By the Numbers */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .by-the-numbers-impact {
     padding: var(--space-3xl) 0;
   }
@@ -508,7 +508,7 @@ a {
 }
 
 /* Responsive adjustments for the pen underline on mobile */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .title-highlight::after {
     bottom: -12px;
     height: 16px;
@@ -2282,7 +2282,7 @@ a {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .network-visualization {
     min-height: 400px;
   }
@@ -3184,7 +3184,7 @@ a {
 }
 
 /* Responsive Design for Breakthrough Stories */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .breakthrough-story {
     display: flex;
     flex-direction: column;
@@ -3805,7 +3805,7 @@ a {
    RESPONSIVE DESIGN
    ========================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .hero-content-grid {
     grid-template-columns: 1fr;
     gap: var(--space-3xl);

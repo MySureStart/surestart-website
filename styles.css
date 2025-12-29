@@ -1247,7 +1247,7 @@ p {
 }
 
 /* Responsive adjustments for shapes */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .geometric-shapes {
     opacity: 0.7;
   }
@@ -1452,7 +1452,7 @@ p {
 }
 
 /* Responsive adjustments for the pen underline */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .hero-title-underlined::after {
     bottom: -12px;
     height: 16px;
@@ -2128,7 +2128,7 @@ p {
 }
 
 /* Responsive Design for ASU-GSV Section */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .asu-gsv-grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
@@ -3424,7 +3424,7 @@ p {
 }
 
 /* Responsive Design for Accolades */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .accolades-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-3xl) var(--space-xl);
@@ -3684,13 +3684,13 @@ p {
 }
 
 /* Mobile optimization for logo section titles */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .logo-section-title {
     text-align: center !important;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .logo-section-title {
     text-align: center !important;
   }
@@ -3783,7 +3783,7 @@ p {
 }
 
 /* Responsive Design for SureStart Difference Section */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .surestart-difference-grid {
     grid-template-columns: 1fr;
     gap: var(--space-3xl);
@@ -4498,48 +4498,9 @@ p {
    RESPONSIVE DESIGN
    ========================================== */
 
-@media (max-width: 1024px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
-    text-align: center;
-  }
-  
-  .hero-visual {
-    height: 400px;
-  }
-  
-  .students-image {
-    min-width: 600px;
-  }
-  
-  .hero-image {
-    max-width: 800px;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
-    text-align: center;
-  }
-  
-  .footer-links {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--space-2xl);
-    justify-items: center;
-  }
-  
-  .footer-container {
-    padding: var(--space-3xl) var(--space-lg) var(--space-xl);
-  }
-  
-  .footer-brand {
-    max-width: 100%;
-    margin: 0 auto var(--space-2xl);
-  }
-}
+/* Tablet: Keep desktop layout until 768px - footer adjustments only at mobile */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   /* Hero responsive breakpoint - Stack to single column */
   .hero {
     padding: 100px 0 40px;
@@ -5149,7 +5110,7 @@ p {
 }
 
 /* Responsive Design for Podcasts Section */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .podcasts-row {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);

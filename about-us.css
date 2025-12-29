@@ -1162,36 +1162,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .title-highlight::after {
-    bottom: -12px;
-    height: 16px;
-    transform: translateY(80%) translateX(0%) scaleX(25) scaleY(25) rotate(4deg);
-  }
-  
-  .our-story-grid,
-  .founder-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
-    text-align: center;
-  }
-  
-  .story-content .section-title,
-  .founder-content .section-title {
-    text-align: center;
-  }
-  
-  .accolades-grid {
-    justify-content: center;
-    gap: var(--space-md);
-  }
-  
-  .accolade-item {
-    flex: 0 1 180px;
-    min-width: 160px;
-    max-width: 200px;
-  }
-}
+/* Tablet: desktop layout - moved to 768px for tablet optimization */
 
 @media (max-width: 768px) {
   .about-hero {

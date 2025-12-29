@@ -595,7 +595,7 @@
 }
 
 /* Responsive Design for Card Layout */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .vibe-skills-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
@@ -1122,7 +1122,7 @@
    RESPONSIVE DESIGN
    ========================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .content-grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
@@ -1148,7 +1148,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   /* Hero responsive breakpoint - Stack to single column */
   .vibe-lab-hero {
     padding: 100px 0 40px;
@@ -1709,7 +1709,7 @@
    REGISTRATION FORM RESPONSIVE DESIGN
    ========================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .registration-grid {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);

@@ -105,7 +105,7 @@
 }
 
 /* Responsive adjustments for the pen underline */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .title-highlight::after {
     bottom: -12px;
     height: 16px;
@@ -1438,7 +1438,7 @@
 }
 
 /* Responsive Design for Outcomes Difference Section */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .outcomes-difference-grid {
     grid-template-columns: 1fr;
     gap: var(--space-3xl);
@@ -1955,7 +1955,7 @@
    RESPONSIVE DESIGN
    ========================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   /* Merged section responsive - tablet */
   .merged-content-grid {
     grid-template-columns: 1fr;
