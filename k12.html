@@ -752,28 +752,18 @@
     <div class="student-spotlight fade-up">
       <h3 class="subsection-title">Student Spotlight</h3>
       <div class="spotlight-grid">
-        <div class="video-testimonial-card">
-          <div class="video-placeholder">
-            <div class="video-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="5,3 19,12 5,21"/>
-              </svg>
-            </div>
-            <p class="placeholder-text">Student Video Testimonial #1</p>
-            <span class="coming-soon">Coming Soon</span>
-          </div>
+        <div class="spotlight-video-card">
+          <video controls preload="metadata" playsinline class="student-video">
+            <source src="static/videos/Student Testimonial - Juan (1).mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
         
-        <div class="video-testimonial-card">
-          <div class="video-placeholder">
-            <div class="video-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="5,3 19,12 5,21"/>
-              </svg>
-            </div>
-            <p class="placeholder-text">Student Video Testimonial #2</p>
-            <span class="coming-soon">Coming Soon</span>
-          </div>
+        <div class="spotlight-video-card">
+          <video controls preload="metadata" playsinline class="student-video">
+            <source src="static/videos/Student Testimonial - Juan (1).mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>
@@ -1031,5 +1021,24 @@
 
 <script src="script.js"></script>
 <script src="k12-scroll.js"></script>
+<script>
+// Spotlight Video Player Function
+function playSpotlightVideo(thumbnail) {
+  const video = thumbnail.querySelector('video');
+  const poster = thumbnail.querySelector('.video-poster');
+  
+  if (video && poster) {
+    // Hide the poster image
+    poster.style.display = 'none';
+    // Show and play the video
+    video.style.display = 'block';
+    video.controls = true;
+    video.play();
+    
+    // Remove the play button overlay styling
+    thumbnail.classList.add('playing');
+  }
+}
+</script>
 </body>
 </html>

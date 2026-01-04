@@ -3237,6 +3237,40 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* Video Container and Player Styles */
+.video-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  background: #000;
+}
+
+.student-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--border-radius-md);
+}
+
+.video-caption {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.95);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--border-radius-full);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
 .video-placeholder {
   display: flex;
   flex-direction: column;
@@ -3282,6 +3316,73 @@
   border-radius: var(--border-radius-full);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+/* ==========================================
+   SPOTLIGHT VIDEO CARD STYLES (Simple 2-Video Layout)
+   ========================================== */
+
+.spotlight-video-card {
+  background: #000;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.spotlight-video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.spotlight-video-card .student-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  border-radius: var(--border-radius-xl);
+  display: block;
+}
+
+/* Responsive styles for spotlight video - Stack vertically on mobile */
+@media (max-width: 768px) {
+  .spotlight-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+  
+  .spotlight-video-card {
+    width: 100%;
+    max-width: 100%;
+    /* Change to vertical aspect ratio for vertical videos */
+    aspect-ratio: 9 / 16;
+  }
+  
+  .spotlight-video-card .student-video {
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotlight-grid {
+    gap: var(--space-lg);
+  }
+  
+  .spotlight-video-card {
+    border-radius: var(--border-radius-lg);
+    /* Use vertical aspect ratio for vertical video content */
+    aspect-ratio: 9 / 16;
+    max-height: 70vh;
+  }
+  
+  .spotlight-video-card .student-video {
+    border-radius: var(--border-radius-lg);
+    object-fit: cover;
+  }
 }
 
 /* By the Numbers Subsection */
