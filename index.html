@@ -577,36 +577,67 @@
   <div class="cta-decorative cta-decorative-3"></div>
   
   <div class="cta-container">
-    <div id="cta-content" class="cta-content fade-up">
-      <h2 class="cta-title">Ready to Shape the Future?</h2>
-      <p class="cta-description">
-        Join thousands of students building tomorrow's AI solutions.
-      </p>
-      <p class="cta-description" style="margin-top: -50px;">
-        We have the perfect program for you.
-      </p>
-      <div class="cta-actions">
-        <a href="contact-us.html" class="btn btn-primary">
-          <span>Get Started Today</span>
-          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </a>
+    <div class="cta-grid fade-up">
+      <!-- Left Column: CTA Text Content -->
+      <div id="cta-content" class="cta-content">
+        <h2 class="cta-title">Ready to Shape the Future?</h2>
+        <p class="cta-description">
+          Join thousands of students building tomorrow's AI solutions.<br><br>
+          We have the perfect program for you.
+        </p>
+        
+        <!-- Video - Visible only on mobile, positioned between text and button -->
+        <div class="cta-video-mobile">
+          <div class="cta-video-container">
+            <iframe
+              src="https://www.youtube.com/embed/CeHu0Sylo2c"
+              title="SureStart: Building Leaders of the AI Generation"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        
+        <div class="cta-actions">
+          <a href="students.html" class="btn btn-primary">
+            Get Started Today
+            <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
       </div>
       
-      <div class="cta-features">
-        <div class="cta-feature">
-          <div class="cta-feature-icon">🎓</div>
-          <span>Expert Mentorship</span>
+      <!-- Right Column: YouTube Video - Desktop only -->
+      <div class="cta-video cta-video-desktop">
+        <div class="cta-video-container">
+          <iframe
+            src="https://www.youtube.com/embed/CeHu0Sylo2c"
+            title="SureStart: Building Leaders of the AI Generation"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
-        <div class="cta-feature">
-          <div class="cta-feature-icon">🌍</div>
-          <span>Global Community</span>
-        </div>
-        <div class="cta-feature">
-          <div class="cta-feature-icon">🚀</div>
-          <span>Career Ready</span>
-        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+    
+    <!-- Features: Full Width Below Grid -->
+    <div class="cta-features fade-up">
+      <div class="cta-feature">
+        <div class="cta-feature-icon">🎓</div>
+        <span>Expert Mentorship</span>
+      </div>
+      <div class="cta-feature">
+        <div class="cta-feature-icon">🌍</div>
+        <span>Global Community</span>
+      </div>
+      <div class="cta-feature">
+        <div class="cta-feature-icon">🚀</div>
+        <span>Career Ready</span>
       </div>
     </div>
   </div>

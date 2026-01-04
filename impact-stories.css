@@ -648,6 +648,10 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.testimonials-carousel{
+  padding: 0px;
+}
+
 .testimonial-card::before {
   content: '';
   position: absolute;
@@ -1618,21 +1622,43 @@ a {
     z-index: 100;
   }
   
-  /* Ensure arrows are visible and properly positioned on mobile */
+  /* Simplify arrow design - clean white arrows without bubble effect */
   .testimonials-arrow {
     display: flex !important;
     position: absolute !important;
     width: 40px;
     height: 40px;
     top: 35%;
+    background: transparent;
+    border: none;
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+  
+  .testimonials-arrow:hover {
+    background: transparent;
+    border: none;
+    transform: translateY(-50%);
+    box-shadow: none;
+  }
+  
+  .testimonials-arrow svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--ss-accent-1);
+    stroke-width: 2.5;
+  }
+  
+  .testimonials-arrow:hover svg {
+    transform: none;
   }
   
   .testimonials-arrow-prev {
-    left: 5px;
+    left: -10px;
   }
   
   .testimonials-arrow-next {
-    right: 5px;
+    right: -10px;
   }
   
   .impact-hero {
@@ -1692,7 +1718,7 @@ a {
   
   /* Mobile testimonials section header - match other sections */
   .meet-students-label {
-    font-size: var(--text-2xl);
+    font-size: var(--text-4xl);
     margin-bottom: var(--space-md);
   }
   
@@ -1830,15 +1856,30 @@ a {
   }
   
   .meet-students-label {
-    font-size: var(--text-xl);
+    font-size: var(--text-4xl);
   }
   
   .case-studies-title {
     font-size: var(--text-sm);
   }
   
-  .testimonials-carousel {
-    padding: 0;
+  /* Smaller clean arrows for small mobile */
+  .testimonials-arrow {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .testimonials-arrow svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .testimonials-arrow-prev {
+    left: -5px;
+  }
+  
+  .testimonials-arrow-next {
+    right: -5px;
   }
   
   /* Note: flex-basis controlled by JavaScript */
@@ -1902,7 +1943,7 @@ a {
 @media (max-width: 360px) {
   /* Extra small screens */
   .meet-students-label {
-    font-size: var(--text-lg);
+    font-size: var(--text-4xl);
   }
   
   .case-studies-title {
@@ -2963,23 +3004,27 @@ a {
 
 .stories-container .section-header {
   text-align: center;
-  margin-bottom: var(--space-4xl);
+  margin-bottom: var(--space-3xl);
 }
 
 .stories-container .section-title {
-  text-align: center;
+  font-family: 'Eastman Grotesque', serif;
   font-size: var(--text-4xl);
+  font-weight: 800;
   color: var(--ss-accent-1);
   margin-bottom: var(--space-lg);
+  line-height: 1.1;
+  text-align: center;
 }
 
 .stories-container .section-subtitle {
   font-size: var(--text-lg);
   line-height: 1.7;
   color: var(--text-secondary);
-  margin: 0;
+  margin: 0 auto;
   font-weight: 400;
   text-align: center;
+  max-width: 800px;
 }
 
 .breakthrough-grid {
@@ -3192,14 +3237,14 @@ a {
     text-align: center;
   }
   
-  /* Reorder: text (title + description) above video on mobile */
-  .breakthrough-text {
+  /* Reorder: video/image FIRST, then text with CTA button AFTER */
+  .breakthrough-video {
     order: 1;
-    text-align: center;
   }
   
-  .breakthrough-video {
+  .breakthrough-text {
     order: 2;
+    text-align: center;
   }
   
   .breakthrough-story-reverse {
@@ -3228,7 +3273,7 @@ a {
   
   .breakthrough-text .btn {
     align-self: center;
-    margin-top: var(--space-sm);
+    margin-top: var(--space-lg);
   }
 }
 
@@ -3273,7 +3318,7 @@ a {
 
 @media (max-width: 480px) {
   .breakthrough-grid {
-    gap: var(--space-xl);
+    gap: var(--space-4xl);
   }
   
   .breakthrough-story {
@@ -3308,7 +3353,7 @@ a {
   
   /* Section header for smallest screens */
   .stories-container .section-title {
-    font-size: var(--text-xl);
+    font-size: var(--text-4xl);
   }
   
   .stories-container .section-subtitle {
@@ -3917,7 +3962,7 @@ a {
   }
   
   .spotlight-title {
-    font-size: clamp(var(--text-2xl), 6vw, var(--text-4xl));
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-4xl));
   }
   
   .spotlight-description {
@@ -4046,7 +4091,7 @@ a {
   
   /* Add more horizontal padding around text */
   .recognition-content {
-    padding: 0 var(--space-3xl);
+    padding: 0 var(--space-lg);
   }
   
   .industry-quote {

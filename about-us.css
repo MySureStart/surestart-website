@@ -1487,6 +1487,11 @@
   }
 
   /* Our Story section mobile adjustments */
+  /* Make grid single column on mobile */
+  .our-story-grid {
+    grid-template-columns: 1fr;
+  }
+
   /* Reduce font size to match standard paragraph style */
   .story-text p {
     font-size: var(--text-base);
@@ -1516,6 +1521,11 @@
   }
 
   /* Meet the Founder section mobile adjustments */
+  /* Make grid single column on mobile */
+  .founder-grid {
+    grid-template-columns: 1fr;
+  }
+
   /* Hide sidebar image on mobile */
   .founder-image {
     display: none;
@@ -1524,14 +1534,13 @@
   /* Show inline image between paragraphs on mobile */
   .founder-image-mobile {
     display: block;
-    margin: var(--space-lg) auto;
-    max-width: 200px;
+    margin: var(--space-xl) 0;
   }
 
   .founder-image-mobile .image-container {
     border-radius: var(--border-radius-xl);
     overflow: hidden;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
   }
 
   .founder-image-mobile img {

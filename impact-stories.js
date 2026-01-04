@@ -1914,16 +1914,18 @@ class CaseStudiesCarousel {
       
       // Calculate new transform based on mode
       let newTransform;
-      if (this.isMobile) {
-        // Mobile: pixel-based transform
-        newTransform = initialTransform + clampedDiff;
-        this.track.style.transform = `translateX(${newTransform}px)`;
-      } else {
-        // Desktop: percentage-based transform
-        const diffPercent = (clampedDiff / window.innerWidth) * 20;
-        newTransform = initialTransform + diffPercent;
-        this.track.style.transform = `translateX(${newTransform}%)`;
-      }
+    if (this.isMobile) {
+      // Mobile: Calculate pixel-based transform using actual card dimensions
+      // Get the actual card width from the first slide
+      const firstCard = this.slides[0];
+      const cardWidth = firstCard ? firstCard.offsetWidth : this.containerWidth;
+      // Calculate the actual stride between slides by measuring the second card's position
+      // This accounts for: card margin (8px each side) + CSS gap (var(--space-lg) ~32px)
+      // Total gap = 8 + 32 + 8 = 48px, but let's be safe and use slightly more
+      const totalGap = 56;
+      const slideOffset = this.currentIndex * (cardWidth + totalGap);
+      translateValue = `-${slideOffset}px`;
+    }
     }, { passive: true });
     
     this.track.addEventListener('touchend', () => {
@@ -2090,11 +2092,13 @@ class CaseStudiesCarousel {
     // Calculate transform to show current slide
     let translateValue;
     if (this.isMobile) {
-      // Mobile: Calculate pixel-based transform to account for gaps
-      // Each card takes full container width, plus gap between cards
-      const containerWidth = this.track.parentElement ? this.track.parentElement.offsetWidth : this.containerWidth;
-      const gap = this.mobileGap || 24; // Match CSS gap value
-      const slideOffset = this.currentIndex * (containerWidth + gap);
+      // Mobile: Calculate pixel-based transform using actual card dimensions
+      // Get the actual card width from the first slide
+      const firstCard = this.slides[0];
+      const cardWidth = firstCard ? firstCard.offsetWidth : this.containerWidth;
+      // Total spacing between cards: margin-right(8px) + CSS gap(~32px) + margin-left(8px) = 48-56px
+      const totalGap = 56;
+      const slideOffset = this.currentIndex * (cardWidth + totalGap);
       translateValue = `-${slideOffset}px`;
     } else {
       // Desktop: Use the consistent slide width percentage
