@@ -1558,12 +1558,45 @@
       let autoRotateInterval;
       let isPaused = false;
       
+      // Get the quote content container for height adjustment
+      const quoteContent = container.querySelector('.quote-content');
+      
+      // Function to update container height based on active quote
+      function updateContainerHeight(index) {
+        if (!quoteContent) return;
+        
+        const activeItem = quoteItems[index];
+        if (activeItem) {
+          // Temporarily make item visible to measure its height
+          const wasHidden = !activeItem.classList.contains('active');
+          if (wasHidden) {
+            activeItem.style.visibility = 'hidden';
+            activeItem.style.position = 'relative';
+            activeItem.style.opacity = '1';
+          }
+          
+          const height = activeItem.offsetHeight;
+          
+          // Restore original state if it was hidden
+          if (wasHidden) {
+            activeItem.style.visibility = '';
+            activeItem.style.position = '';
+            activeItem.style.opacity = '';
+          }
+          
+          quoteContent.style.height = height + 'px';
+        }
+      }
+      
       // Function to update active quote
       function updateActiveQuote(index, animate = true) {
         if (index < 0) index = quoteItems.length - 1;
         if (index >= quoteItems.length) index = 0;
         
         currentQuote = index;
+        
+        // Update container height for the new active quote
+        updateContainerHeight(currentQuote);
         
         // Update quote items
         quoteItems.forEach((item, i) => {

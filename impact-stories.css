@@ -87,246 +87,259 @@ a {
 }
 
 /* ==========================================
-   BY THE NUMBERS SECTION
+   BY THE NUMBERS SECTION - COMPACT INSPIRIT STYLE
    ========================================== */
 
-.by-the-numbers-impact {
+.by-the-numbers-compact {
   background: white;
-  padding: var(--space-4xl) 0;
+  padding: var(--space-2xl) 0;
   position: relative;
   margin-top: 0;
 }
 
-.by-the-numbers-container {
+.by-the-numbers-wrapper {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 var(--space-lg);
+  margin-left: 0;
+  padding: 0;
+  padding-right: var(--space-lg);
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-3xl);
 }
 
-.by-the-numbers-impact .section-header {
-  text-align: center;
-  margin-bottom: var(--space-4xl);
-}
-
-.by-the-numbers-impact .subsection-title {
-  font-family: 'Eastman Grotesque', serif;
-  font-size: var(--text-4xl);
-  font-weight: 800;
-  color: var(--ss-accent-1);
-  margin: 0 0 var(--space-lg) 0;
-  line-height: 1.1;
-}
-
-.by-the-numbers-impact .section-subtitle {
-  font-size: var(--text-lg);
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin: 0;
-  font-weight: 400;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.statistics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-xl);
-  margin-top: var(--space-3xl);
-}
-
-.statistic-card {
-  transition: all var(--transition-normal);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.statistic-card:hover {
-  transform: translateY(-8px);
-}
-
-.statistic-icon {
-  width: 90px;
-  height: 90px;
+/* Left: Gradient Title Block - Extends to left edge */
+.numbers-title-block {
+  flex: 0 0 320px;
+  background: var(--gradient-primary);
+  border-radius: 0 var(--border-radius-xl) var(--border-radius-xl) 0;
+  padding: var(--space-2xl) var(--space-2xl) var(--space-2xl) var(--space-3xl);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto var(--space-lg);
-  transition: all var(--transition-normal);
-  position: relative;
-  overflow: hidden;
+  min-height: 140px;
+  box-shadow: 0 8px 32px rgba(231, 48, 82, 0.25);
 }
 
-.statistic-icon::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
-  transform: rotate(45deg);
-  animation: shine 3s ease-in-out infinite;
-}
-
-@keyframes shine {
-  0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-  50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-}
-
-.statistic-card:hover .statistic-icon {
-  transform: scale(1.1);
-}
-
-.statistic-number {
-  font-size: clamp(32px, 4vw, 48px);
+.numbers-title {
+  font-family: 'Eastman Grotesque', serif;
+  font-size: clamp(24px, 3vw, 32px);
   font-weight: 800;
-  color: var(--ss-accent-1);
-  background: var(--gradient-primary);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: var(--space-md);
-  line-height: 1.1;
-  transition: all 0.3s ease;
+  color: white;
+  margin: 0;
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.statistic-number.counting {
+/* Right: Statistics Row */
+.numbers-stats-row {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.compact-stat {
+  text-align: center;
+  flex: 1;
+  padding: var(--space-md);
+}
+
+.compact-stat-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+  color: var(--ss-red);
+}
+
+.compact-stat-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Color variations for icons */
+.compact-stat:nth-child(1) .compact-stat-icon {
+  color: var(--ss-red);
+}
+
+.compact-stat:nth-child(2) .compact-stat-icon {
+  color: var(--ss-orange);
+}
+
+.compact-stat:nth-child(3) .compact-stat-icon {
+  color: var(--ss-yellow);
+}
+
+.compact-stat:nth-child(4) .compact-stat-icon {
+  color: var(--ss-pink);
+}
+
+.compact-stat-number {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: var(--space-sm);
+  transition: transform 0.3s ease;
+}
+
+.compact-stat-number.counting {
   transform: scale(1.05);
 }
 
-.statistic-description {
-  font-size: var(--text-base);
-  line-height: 1.5;
+.compact-stat-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--text-sm);
+  line-height: 1.4;
   color: var(--text-secondary);
   margin: 0;
   font-weight: 500;
 }
 
-/* Responsive Design for By the Numbers */
-@media (max-width: 768px) {
-  .by-the-numbers-impact {
-    padding: var(--space-3xl) 0;
+/* Responsive Design for Compact By the Numbers */
+@media (max-width: 1024px) {
+  .by-the-numbers-wrapper {
+    gap: var(--space-2xl);
   }
   
-  .statistics-grid {
+  .numbers-title-block {
+    flex: 0 0 220px;
+    padding: var(--space-xl) var(--space-lg);
+  }
+  
+  .numbers-title {
+    font-size: clamp(20px, 2.5vw, 28px);
+  }
+  
+  .compact-stat-number {
+    font-size: clamp(24px, 3vw, 36px);
+  }
+  
+  .compact-stat-desc {
+    font-size: var(--text-xs);
+  }
+}
+
+@media (max-width: 768px) {
+  .by-the-numbers-compact {
+    padding: var(--space-xl) 0;
+  }
+  
+  .by-the-numbers-wrapper {
+    flex-direction: column;
+    gap: var(--space-xl);
+    align-items: stretch;
+    padding: 0 var(--space-md);
+  }
+  
+  .numbers-title-block {
+    flex: none;
+    width: 100%;
+    min-height: 160px;
+    padding: var(--space-2xl) var(--space-xl);
+    border-radius: var(--border-radius-xl);
+  }
+  
+  .numbers-title {
+    font-size: clamp(28px, 6vw, 36px);
+  }
+  
+  .numbers-stats-row {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
   }
+  
+  .compact-stat {
+    padding: var(--space-md);
+  }
+  
+  .compact-stat-number {
+    font-size: clamp(26px, 6vw, 36px);
+  }
+  
+  .compact-stat-desc {
+    font-size: var(--text-sm);
+  }
 
-  .stories-container .section-header{
+  .stories-container .section-header {
     margin-bottom: 0px;
   }
 }
 
-@media (max-width: 768px) {
-  .by-the-numbers-impact {
-    padding: var(--space-3xl) 0;
+@media (max-width: 480px) {
+  .by-the-numbers-compact {
+    padding: var(--space-lg) 0;
   }
   
-  .statistics-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .by-the-numbers-wrapper {
+    padding: 0 var(--space-md);
+    gap: var(--space-lg);
+  }
+  
+  .numbers-title-block {
+    min-height: 80px;
+    padding: var(--space-lg);
+  }
+  
+  .numbers-title {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+  
+  .numbers-stats-row {
     gap: var(--space-md);
   }
   
-  .statistic-card {
-    padding: var(--space-md);
-  }
-  
-  .statistic-icon {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .statistic-number {
-    font-size: clamp(20px, 5vw, 32px);
-  }
-  
-  .statistic-description {
-    font-size: var(--text-xs);
-    line-height: 1.4;
-  }
-}
-
-@media (max-width: 480px) {
-  .by-the-numbers-impact {
-    padding: var(--space-2xl) 0;
-  }
-  
-  .statistics-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm);
-  }
-  
-  .statistic-card {
+  .compact-stat {
     padding: var(--space-sm);
   }
   
-  .statistic-icon {
-    width: 50px;
-    height: 50px;
+  .compact-stat-number {
+    font-size: clamp(22px, 5.5vw, 30px);
   }
   
-  .statistic-number {
-    font-size: clamp(18px, 5vw, 28px);
-  }
-  
-  .statistic-description {
+  .compact-stat-desc {
     font-size: var(--text-xs);
     line-height: 1.3;
   }
 }
 
 /* Focus States for Accessibility */
-.statistic-card:focus {
+.compact-stat:focus {
   outline: 2px solid var(--ss-accent-1);
   outline-offset: 2px;
 }
 
 /* Animation Performance Optimization */
-.statistic-card,
-.statistic-icon,
-.statistic-number {
+.compact-stat-number {
   will-change: transform;
 }
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  .statistic-icon::before {
-    animation: none;
-  }
-  
-  .statistic-card:hover {
-    transform: translateY(-4px);
-  }
-  
-  .statistic-card:hover .statistic-icon {
-    transform: scale(1.05);
+  .compact-stat-number.counting {
+    transform: none;
   }
 }
 
 /* Print Styles */
 @media print {
-  .by-the-numbers-impact {
+  .by-the-numbers-compact {
     background: white !important;
-    padding: var(--space-lg) 0 !important;
+    padding: var(--space-md) 0 !important;
   }
   
-  .statistic-number {
+  .numbers-title-block {
+    background: #333 !important;
+    box-shadow: none !important;
+  }
+  
+  .compact-stat-number {
     color: black !important;
-    -webkit-text-fill-color: black !important;
-  }
-  
-  .statistic-card {
-    box-shadow: none !important;
-    border: 2px solid #ccc !important;
-    break-inside: avoid;
-  }
-  
-  .statistic-icon {
-    background: #ccc !important;
-    box-shadow: none !important;
   }
 }
 

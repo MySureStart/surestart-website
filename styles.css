@@ -4476,6 +4476,10 @@ p {
   margin-top: var(--space-lg);
 }
 
+.footer-bottom p {
+  color: #ffffff;
+}
+
 .footer-legal {
   display: flex;
   gap: var(--space-lg);
@@ -5559,4 +5563,111 @@ p {
 .vibe-lab-floating-btn:focus-visible {
   outline: 3px solid white;
   outline-offset: 2px;
+}
+
+/* ==========================================
+   IMPACT CTA VIDEO SECTION (K-12 & Higher Ed)
+   ========================================== */
+
+/* Impact CTA Grid Layout - Two columns on desktop */
+.impact-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4xl);
+  align-items: center;
+}
+
+/* Impact CTA Content - Title and button stacked vertically */
+.impact-cta .cta-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: var(--space-xl);
+}
+
+.impact-cta .cta-content .spotlight-title {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.impact-cta .cta-content .cta-actions {
+  margin-top: 0;
+  justify-content: flex-start !important;
+  width: 100%;
+}
+
+/* Impact CTA Video Styles */
+.impact-cta-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile video - hidden on desktop */
+.impact-cta-video-mobile {
+  display: none;
+}
+
+/* Desktop video - visible on desktop */
+.impact-cta-video-desktop {
+  display: flex;
+}
+
+.impact-cta-video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.impact-cta-video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--border-radius-xl);
+}
+
+/* Impact CTA Section Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .impact-cta-grid {
+    display: block;
+  }
+  
+  .impact-cta .cta-content {
+    text-align: center;
+  }
+  
+  /* Hide desktop video on mobile */
+  .impact-cta-video-desktop {
+    display: none;
+  }
+  
+  /* Show mobile video (between text and button) */
+  .impact-cta-video-mobile {
+    display: block;
+    width: 100%;
+    margin: var(--space-xl) 0;
+  }
+  
+  .impact-cta-video-container {
+    border-radius: var(--border-radius-lg);
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-cta-grid {
+    gap: var(--space-xl);
+  }
+  
+  .impact-cta-video-container {
+    border-radius: var(--border-radius-md);
+  }
 }

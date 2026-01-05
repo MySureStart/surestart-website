@@ -2404,8 +2404,8 @@ class ImpactStoriesApp {
       new AnimatedCounter(element);
     });
     
-    // New "by the numbers" section counter elements
-    const statisticElements = document.querySelectorAll('.statistic-number[data-target]');
+    // New "by the numbers" section counter elements (compact Inspirit-style)
+    const statisticElements = document.querySelectorAll('.compact-stat-number[data-target]');
     statisticElements.forEach(element => {
       new AnimatedCounter(element, {
         duration: 800, // Faster animation so it completes while section is visible
