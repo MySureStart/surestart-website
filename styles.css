@@ -82,6 +82,42 @@
   --space-4xl: 6rem;     /* 96px */
   --space-5xl: 8rem;     /* 128px */
   
+  /* ==========================================
+     GLOBAL MOBILE SECTION SPACING VARIABLES
+     Change these values to adjust spacing site-wide
+     ========================================== */
+  --mobile-section-padding: var(--space-2xl);     /* 48px - Regular sections at 768px */
+  --mobile-section-padding-sm: var(--space-2xl);  /* 48px - Regular sections at 480px */
+  --mobile-content-spacing: var(--space-lg);      /* 24px - Title margins, grid margins, grid gaps */
+  --mobile-cta-padding: var(--space-4xl);         /* 96px - CTA sections at 768px */
+  --mobile-cta-padding-sm: var(--space-4xl);      /* 96px - CTA sections at 480px */
+  /* ==========================================
+     UNIFIED HERO SECTION VARIABLES
+     Override these in page-specific CSS as needed
+     Example: .k12-hero { --hero-min-height-mobile: 55vh; }
+     ========================================== */
+  
+  /* Desktop hero (default) */
+  --hero-min-height: 60vh;
+  --hero-padding-top: 120px;
+  --hero-padding-bottom: 60px;
+  
+  /* Tablet/Mobile hero (768px) */
+  --hero-min-height-mobile: 50vh;
+  --hero-padding-top-mobile: 60px;
+  --hero-padding-bottom-mobile: 40px;
+  
+  /* Small mobile hero (480px) */
+  --hero-min-height-mobile-sm: 45vh;
+  --hero-padding-top-mobile-sm: 50px;
+  --hero-padding-bottom-mobile-sm: 30px;
+  
+  /* Legacy variables - kept for backwards compatibility */
+  --mobile-hero-padding-top: var(--hero-padding-top-mobile);
+  --mobile-hero-padding-bottom: var(--hero-padding-bottom-mobile);
+  --mobile-hero-padding-top-sm: var(--hero-padding-top-mobile-sm);
+  --mobile-hero-padding-bottom-sm: var(--hero-padding-bottom-mobile-sm);
+  
   /* Typography Scale */
   --text-xs: 0.75rem;    /* 12px */
   --text-sm: 0.875rem;   /* 14px */
@@ -729,7 +765,37 @@ p {
 }
 
 /* ==========================================
-   HERO SECTION
+   UNIFIED HERO SECTION BASE CLASS
+   All page heroes can extend this or use these variables
+   Override variables in page-specific CSS for customization
+   ========================================== */
+
+.hero-section {
+  position: relative;
+  min-height: var(--hero-min-height);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: var(--hero-padding-top) 0 var(--hero-padding-bottom);
+}
+
+/* Unified hero responsive - uses CSS variables for easy override */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: var(--hero-min-height-mobile);
+    padding: var(--hero-padding-top-mobile) 0 var(--hero-padding-bottom-mobile);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: var(--hero-min-height-mobile-sm);
+    padding: var(--hero-padding-top-mobile-sm) 0 var(--hero-padding-bottom-mobile-sm);
+  }
+}
+
+/* ==========================================
+   HERO SECTION (Homepage)
    ========================================== */
 
 .hero {
@@ -1528,13 +1594,13 @@ p {
 
 /* Mobile: Show single paragraph, hide three-line version */
 @media (max-width: 768px) {
-  .hero-subtitle-desktop {
-    display: none;
+  /* Ensure all section headers are centered on mobile */
+  .section-header {
+    text-align: center;
   }
   
-  .hero-subtitle-mobile {
-    display: block;
-    margin-top: 20px;
+  .section-title {
+    text-align: center !important;
   }
 }
 
@@ -1868,23 +1934,208 @@ p {
   margin-bottom: var(--space-lg);
 }
 
+/* ==========================================
+   UNIFIED TYPOGRAPHY SYSTEM
+   Section Titles, Subtitles, and Paragraphs
+   All typography for consistency across pages
+   ========================================== */
+
+/* Section Titles - h2 */
 .section-title {
- /* background: -webkit-linear-gradient(var(--ss-accent-1),var(--ss-accent-2));
--webkit-background-clip: text;
--webkit-text-fill-color: transparent; */
-  color:var(--ss-accent-1);  
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--ss-accent-1);
+  line-height: 1.2;
   margin-bottom: var(--space-lg);
   text-align: center;
 }
 
-
+/* Section Subtitles - h3 */
 .section-subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: var(--text-lg);
+  font-weight: 500;
   color: var(--text-secondary);
   line-height: 1.7;
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
+}
+
+/* Base Paragraph Styles */
+.section-paragraph,
+.section-header p:not(.section-subtitle) {
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================
+   UNIFIED QUOTE MODULE STYLES
+   Consistent styling for testimonials and quotes across all pages
+   ========================================== */
+
+/* Quote Text Styling */
+.industry-quote,
+.testimonial-quote {
+  font-family: 'Source Serif Pro', serif;
+  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  line-height: 1.5;
+  font-style: italic;
+  font-weight: 400;
+  color: white;
+  margin: 0;
+  margin-bottom: var(--space-2xl);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Quote Attribution Container */
+.quote-attribution {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Author Info Container */
+.quote-attribution .author-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* Author Name Styling */
+.quote-attribution .author-name {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  text-align: left;
+  color: white;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  margin: 0;
+}
+
+/* Author Title Styling */
+.quote-attribution .author-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+/* Author Institution (for Higher Ed) */
+.quote-attribution .author-institution {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Company/Institution Logo */
+.quote-attribution .company-logo {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: white;
+  opacity: 0.9;
+}
+
+.quote-attribution .company-logo img {
+  max-height: 50px;
+  max-width: 180px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.quote-attribution .company-logo img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Quote Icon Styling */
+.quote-icon {
+  color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.4s ease-out;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Quote Divider Line */
+.testimonial-content hr,
+.quote-divider {
+  width: 60px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  margin: var(--space-xl) auto var(--space-lg) auto;
+}
+
+/* Quote Module Responsive Styles */
+@media (max-width: 768px) {
+  .industry-quote,
+  .testimonial-quote {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-lg);
+    line-height: 1.5;
+  }
+  
+  .quote-attribution {
+    flex-direction: column;
+    gap: var(--space-lg);
+    text-align: center;
+    padding-top: var(--space-md);
+  }
+  
+  .quote-attribution .author-info {
+    align-items: center;
+  }
+  
+  .quote-attribution .author-name {
+    font-size: var(--text-base);
+    text-align: center;
+  }
+  
+  .quote-attribution .author-title {
+    font-size: var(--text-sm);
+    text-align: center;
+  }
+  
+  .quote-attribution .company-logo img {
+    max-height: 40px;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .industry-quote,
+  .testimonial-quote {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+  }
+  
+  .quote-attribution {
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+  }
+  
+  .quote-attribution .author-name {
+    font-size: var(--text-sm);
+  }
+  
+  .quote-attribution .author-title {
+    font-size: var(--text-xs);
+  }
+  
+  .quote-attribution .company-logo img {
+    max-height: 35px;
+    max-width: 120px;
+  }
 }
 /* Operational Details Inline */
 .operational-details-inline {
@@ -3566,7 +3817,7 @@ p {
   grid-template-columns: 1fr 1.5fr;
   gap: var(--space-4xl);
   align-items: start;
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-xl);
   align-items: stretch;
 }
 
@@ -3833,14 +4084,16 @@ p {
 
 @media (max-width: 768px) {
   .surestart-difference {
-    padding-top: calc(var(--space-4xl) + 40px);
-    padding-bottom: var(--space-4xl);
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+    margin-top: 0;
   }
   
   .surestart-difference-grid {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xl);
+    gap: var(--space-lg);
+    margin-top: 0;
   }
   
   /* Flatten the content container to allow reordering of its children */
@@ -3852,6 +4105,7 @@ p {
   .surestart-difference-content .section-title {
     order: 1;
     width: 100%;
+    margin-bottom: 0 !important;
   }
   
   .difference-description {
@@ -3914,8 +4168,8 @@ p {
 
 @media (max-width: 480px) {
   .surestart-difference {
-    padding-top: calc(var(--space-3xl) + 40px);
-    padding-bottom: var(--space-3xl);
+    padding-top: var(--mobile-section-padding-sm);
+    padding-bottom: var(--mobile-section-padding-sm);
   }
   
   .credibility-stats {
@@ -4021,6 +4275,33 @@ p {
   .surestart-difference .logo-item img[alt="Meta"] {
     height: clamp(50px, 6vw, 65px) !important;
   }
+  
+  /* Differentiate logo sections for mobile - Colleges Attended vs AI/ML Internships */
+  .surestart-difference .logo-sections .logo-section:first-child {
+    padding-top: var(--space-lg) !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .surestart-difference .logo-sections .logo-section:first-child .logo-marquee {
+    padding-top: var(--space-sm) !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+  }
+  
+  .surestart-difference .logo-sections .logo-section:last-child {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .surestart-difference .logo-sections .logo-section:last-child .logo-marquee {
+    padding: var(--space-sm) 0 !important;
+    min-height: auto !important;
+  }
+  
+  .surestart-difference .logo-sections {
+    gap: var(--space-md) !important;
+  }
 }
 
 /* Extra small mobile devices - 360px and below - matching higher-ed page */
@@ -4085,6 +4366,16 @@ p {
   .surestart-difference .logo-item img[alt="Salesforce"],
   .surestart-difference .logo-item img[alt="Linkedin"] {
     height: clamp(60px, 7.5vw, 80px) !important;
+  }
+  
+  /* Differentiate logo sections for very small mobile - Colleges Attended vs AI/ML Internships */
+  .surestart-difference .logo-sections .logo-section:first-child {
+    padding-top: var(--space-xl);  /* Top padding only on Colleges Attended */
+    padding-bottom: 0;              /* No bottom padding */
+  }
+  
+  .surestart-difference .logo-sections .logo-section:last-child {
+    padding: 0;                     /* No padding on AI/ML Internships */
   }
 }
 
@@ -4583,13 +4874,161 @@ p {
   .our-accolades,
   .podcasts-section,
   .asu-gsv-section {
-    padding-top: var(--space-2xl) !important;
-    padding-bottom: var(--space-2xl) !important;
+    padding-top: var(--mobile-section-padding-sm) !important;
+    padding-bottom: var(--mobile-section-padding-sm) !important;
   }
   
   /* Section headers spacing adjustment for small mobile */
   .section-header {
     margin-bottom: var(--space-lg);
+  }
+}
+
+/* ==========================================
+   GLOBAL UNIFIED MOBILE SECTION SPACING
+   These rules apply site-wide to all section types
+   Uses CSS variables defined in :root for easy global changes
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* GLOBAL: All regular sections use mobile section padding */
+  .section,
+  [class$="-section"],
+  .our-story,
+  .news-recognition,
+  .meet-founder,
+  .our-team,
+  .ai-advisory-council,
+  .careers-section,
+  .surestart-advantage,
+  .proven-pathways,
+  .journey-into-ai,
+  .school-partnership,
+  .student-impact,
+  .success-stories-hero,
+  .essential-skills,
+  .student-outcomes,
+  .empowering-students,
+  .testimonials,
+  .colleges-attended,
+  .how-we-work,
+  .partnerships-action,
+  .partner-testimonials,
+  .graduate-career-success,
+  .program-options,
+  .partnerships-institutions,
+  .success-stories-section,
+  .implementation-section,
+  .mission,
+  .programs,
+  .surestart-difference,
+  .student-network-section,
+  .our-accolades,
+  .podcasts-section,
+  .asu-gsv-section,
+  .contact-hero,
+  .contact-form-section,
+  .contact-info-section,
+  .impact-hero,
+  .impact-stats,
+  .featured-stories,
+  .student-journeys,
+  .students-hero,
+  .student-programs,
+  .student-outcomes,
+  .student-testimonials,
+  .vibe-hero,
+  .vibe-features,
+  .vibe-pricing,
+  .vibe-faq {
+    padding-top: var(--mobile-section-padding) !important;
+    padding-bottom: var(--mobile-section-padding) !important;
+  }
+  
+  /* GLOBAL: All CTA sections use larger padding */
+  .cta-section,
+  .impact-cta,
+  [class*="cta-section"] {
+    padding-top: var(--mobile-cta-padding) !important;
+    padding-bottom: var(--mobile-cta-padding) !important;
+  }
+  
+  /* GLOBAL: All hero sections use hero-specific padding */
+  .hero,
+  [class$="-hero"] {
+    padding-top: var(--mobile-hero-padding-top) !important;
+    padding-bottom: var(--mobile-hero-padding-bottom) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* GLOBAL: All regular sections use small mobile padding */
+  .section,
+  [class$="-section"],
+  .our-story,
+  .news-recognition,
+  .meet-founder,
+  .our-team,
+  .ai-advisory-council,
+  .careers-section,
+  .surestart-advantage,
+  .proven-pathways,
+  .journey-into-ai,
+  .school-partnership,
+  .student-impact,
+  .success-stories-hero,
+  .essential-skills,
+  .student-outcomes,
+  .empowering-students,
+  .testimonials,
+  .colleges-attended,
+  .how-we-work,
+  .partnerships-action,
+  .partner-testimonials,
+  .graduate-career-success,
+  .program-options,
+  .partnerships-institutions,
+  .success-stories-section,
+  .implementation-section,
+  .mission,
+  .programs,
+  .surestart-difference,
+  .student-network-section,
+  .our-accolades,
+  .podcasts-section,
+  .asu-gsv-section,
+  .contact-hero,
+  .contact-form-section,
+  .contact-info-section,
+  .impact-hero,
+  .impact-stats,
+  .featured-stories,
+  .student-journeys,
+  .students-hero,
+  .student-programs,
+  .student-outcomes,
+  .student-testimonials,
+  .vibe-hero,
+  .vibe-features,
+  .vibe-pricing,
+  .vibe-faq {
+    padding-top: var(--mobile-section-padding-sm) !important;
+    padding-bottom: var(--mobile-section-padding-sm) !important;
+  }
+  
+  /* GLOBAL: All CTA sections use larger padding on small mobile */
+  .cta-section,
+  .impact-cta,
+  [class*="cta-section"] {
+    padding-top: var(--mobile-cta-padding-sm) !important;
+    padding-bottom: var(--mobile-cta-padding-sm) !important;
+  }
+  
+  /* GLOBAL: All hero sections use small mobile hero padding */
+  .hero,
+  [class$="-hero"] {
+    padding-top: var(--mobile-hero-padding-top-sm) !important;
+    padding-bottom: var(--mobile-hero-padding-bottom-sm) !important;
   }
 }
 

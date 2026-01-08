@@ -1,15 +1,15 @@
 /* K-12 Specific Styles */
 
-/* Hero Section */
+/* Hero Section - Uses unified hero variables from styles.css */
 .k12-hero {
   position: relative;
-  min-height: 60vh;
+  min-height: var(--hero-min-height);
   display: flex;
   align-items: center;
   overflow: hidden;
   /* Show Isabella*/
   background: url('static/images/about-us-hero.jpg')  center 30%/cover no-repeat;
-  padding: 120px 0 60px;
+  padding: var(--hero-padding-top) 0 var(--hero-padding-bottom);
 }
 
 .k12-hero-background {
@@ -2588,11 +2588,13 @@
 
 /* ==========================================
    UNIFIED MOBILE SECTION SPACING - K12
+   Uses global variables from styles.css
    ========================================== */
 
 @media (max-width: 768px) {
   .k12-hero {
-    padding: 90px 0 30px;
+    padding-top: var(--mobile-hero-padding-top) !important;
+    padding-bottom: var(--mobile-hero-padding-bottom) !important;
     min-height: 70vh;
   }
   
@@ -2658,12 +2660,28 @@
     justify-content: center;
   }
   
+  .hero-text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0;
+  }
+  
   .k12-hero-title {
     font-size: 40px;
+    text-align: left;
   }
   
   .k12-hero-subtitle {
     font-size: clamp(14px, 2vw, 18px);
+    padding-top: 0;
+    text-align: left;
+  }
+  
+  .hero-actions {
+    justify-content: flex-start;
+    margin-right: 0;
+    margin-left: 0;
   }
   
   .surestart-advantage,
@@ -3481,11 +3499,15 @@
     grid-template-columns: 1fr;
     gap: var(--space-xl);
     justify-items: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   
   .hero-text-section {
     text-align: left;
     max-width: 100%;
+    align-items: flex-start;
   }
   
   .k12-hero-title {
@@ -5938,6 +5960,91 @@
   .benefit-number-circle[data-index="4"]:hover,
   .benefit-number-circle[data-index="4"].active {
     transform: translate(-50%, -50%) translate(-171px, -56px) scale(1.15);
+  }
+}
+
+/* ==========================================
+   K-12 UNIFIED MOBILE SPACING STANDARDIZATION
+   Matches "Bold Ideas In Action" reference section
+   Uses centralized --mobile-content-spacing variable from styles.css
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Section title margin - standardized */
+  .surestart-advantage .section-title,
+  .colleges-attended .section-title,
+  .journey-into-ai .section-title,
+  .school-partnership .section-title,
+  .essential-skills .section-title,
+  .student-outcomes .section-title,
+  .student-impact .section-title,
+  .success-stories-hero .section-title,
+  .empowering-students .section-title,
+  .testimonials .section-title {
+    margin-bottom: var(--mobile-content-spacing);
+  }
+  
+  /* Grid/container margin-top - standardized */
+  .advantages-grid-top {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .advantages-grid-bottom {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .journey-into-ai .program-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .statistics-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .logo-sections {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .spotlight-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .programs-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .testimonials-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .success-achievements {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  /* Grid gaps - standardized */
+  .advantages-grid-top,
+  .advantages-grid-bottom {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .journey-into-ai .program-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .statistics-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .programs-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .testimonials-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .success-achievements {
+    gap: var(--mobile-content-spacing);
   }
 }
 

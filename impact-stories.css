@@ -2016,6 +2016,13 @@ a {
   position: relative;
 }
 
+/* Mobile: Remove extra margin from student-network-web */
+@media (max-width: 768px) {
+  .student-network-web {
+    margin: 0;
+  }
+}
+
 .network-container {
   max-width: none;
   margin: 0;
@@ -4306,13 +4313,13 @@ a {
   .makeathon-spotlight,
   .industry-recognition,
   .student-gallery {
-    padding-top: var(--space-2xl) !important;
-    padding-bottom: var(--space-2xl) !important;
+    padding-top: var(--mobile-section-padding-sm) !important;
+    padding-bottom: var(--mobile-section-padding-sm) !important;
   }
-
+  
   .impact-cta {
-    padding-top: var(--space-4xl) !important;
-    padding-bottom: var(--space-4xl) !important;
+    padding-top: var(--mobile-cta-padding-sm) !important;
+    padding-bottom: var(--mobile-cta-padding-sm) !important;
   }
 }
 

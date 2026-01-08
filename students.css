@@ -1447,7 +1447,6 @@
 @media (max-width: 768px) {
   .outcomes-difference-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-3xl);
     text-align: center;
   }
   
@@ -1486,8 +1485,8 @@
 
 @media (max-width: 768px) {
   .program-outcomes {
-    padding-top: calc(var(--space-4xl) + 40px);
-    padding-bottom: var(--space-4xl);
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--mobile-section-padding);
   }
 
   .outcomes-description{
@@ -1497,7 +1496,7 @@
   .outcomes-difference-grid {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xl);
+    gap: 24px;
   }
   
   /* Use display: contents to allow reordering children across containers */
@@ -1586,8 +1585,8 @@
 
 @media (max-width: 480px) {
   .program-outcomes {
-    padding-top: calc(var(--space-3xl) + 40px);
-    padding-bottom: var(--space-3xl);
+    padding-top: var(--mobile-section-padding-sm);
+    padding-bottom: var(--mobile-section-padding-sm);
   }
   
   .outcomes-stats {
@@ -2662,6 +2661,63 @@
 }
 
 /* ==========================================
+   STUDENTS UNIFIED MOBILE CONTENT SPACING STANDARDIZATION
+   Uses centralized --mobile-content-spacing variable from styles.css
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Section title margin - standardized */
+  .future-work-skills-merged .section-title,
+  .courses-preview .section-title,
+  .program-outcomes .section-title,
+  .success-logos .section-title {
+    margin-bottom: var(--mobile-content-spacing);
+  }
+
+  .program-outcomes .section-title {
+    margin-bottom: 0px;
+  }
+  
+  /* Grid/container margin-top - standardized */
+  .industry-flip-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .skills-accordion-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .courses-preview .program-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .outcomes-difference-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .outcomes-difference-content .logo-sections {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  /* Grid gaps - standardized */
+  .industry-flip-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .skills-accordion-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .courses-preview .program-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .outcomes-difference-content .logo-sections {
+    gap: var(--mobile-content-spacing);
+  }
+}
+
+/* ==========================================
    UNIFIED MOBILE SECTION SPACING - STUDENTS
    ========================================== */
 
@@ -2672,13 +2728,13 @@
   .program-outcomes,
   .success-logos,
   .cta-section {
-    padding-top: var(--space-2xl) !important;
-    padding-bottom: var(--space-2xl) !important;
+    padding-top: var(--mobile-section-padding) !important;
+    padding-bottom: var(--mobile-section-padding) !important;
   }
-
+  
   .impact-cta {
-    padding-top: var(--space-4xl) !important;
-    padding-bottom: var(--space-4xl) !important;
+    padding-top: var(--mobile-cta-padding) !important;
+    padding-bottom: var(--mobile-cta-padding) !important;
   }
 
   .students-hero {

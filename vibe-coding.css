@@ -1537,3 +1537,73 @@
   outline: 3px solid var(--brand-yellow);
   outline-offset: 2px;
 }
+
+/* ==========================================
+   UNIFIED MOBILE SECTION SPACING - VIBE CODING
+   Uses global variables from styles.css
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Unified section spacing for Vibe Coding mobile */
+  .problem-solution,
+  .journey-section,
+  .why-vibe,
+  .what-youll-build,
+  .pricing-section,
+  .faq-section {
+    padding-top: var(--mobile-section-padding) !important;
+    padding-bottom: var(--mobile-section-padding) !important;
+  }
+  
+  .impact-cta {
+    padding-top: var(--mobile-cta-padding) !important;
+    padding-bottom: var(--mobile-cta-padding) !important;
+  }
+  
+  .impact-cta .cta-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-xl);
+  }
+  
+  .impact-cta .cta-content::before {
+    left: 50%;
+  }
+  
+  .impact-cta .spotlight-title {
+    max-width: 100%;
+    text-align: center;
+    font-size: var(--text-3xl);
+  }
+  
+  .impact-cta .cta-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Unified section spacing for Vibe Coding small mobile */
+  .problem-solution,
+  .journey-section,
+  .why-vibe,
+  .what-youll-build,
+  .pricing-section,
+  .faq-section {
+    padding-top: var(--mobile-section-padding-sm) !important;
+    padding-bottom: var(--mobile-section-padding-sm) !important;
+  }
+  
+  .impact-cta {
+    padding-top: var(--mobile-cta-padding-sm) !important;
+    padding-bottom: var(--mobile-cta-padding-sm) !important;
+  }
+  
+  .impact-cta .spotlight-title {
+    font-size: var(--text-2xl);
+  }
+  
+  .impact-cta .cta-actions .btn {
+    padding: var(--space-sm) var(--space-xl);
+    font-size: var(--text-base);
+  }
+}

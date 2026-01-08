@@ -1462,18 +1462,77 @@
 }
 
 /* ==========================================
-   UNIFIED MOBILE SECTION SPACING - ABOUT US
+   ABOUT US UNIFIED MOBILE CONTENT SPACING STANDARDIZATION
+   Uses centralized --mobile-content-spacing variable from styles.css
    ========================================== */
 
 @media (max-width: 768px) {
-  /* Unified section spacing for About Us mobile */
+  /* Section title margin - standardized */
+  .our-story .section-title,
+  .news-recognition .section-title,
+  .meet-founder .section-title,
+  .our-team .section-title,
+  .ai-advisory-council .section-title {
+    margin-bottom: var(--mobile-content-spacing);
+  }
+  
+  /* Grid/container margin-top - standardized */
+  .our-story-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .logo-sections {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .founder-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .team-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  .advisory-grid {
+    margin-top: var(--mobile-content-spacing);
+  }
+  
+  /* Grid gaps - standardized */
+  .our-story-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .logo-sections {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .founder-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .team-grid {
+    gap: var(--mobile-content-spacing);
+  }
+  
+  .advisory-grid {
+    gap: var(--mobile-content-spacing);
+  }
+}
+
+/* ==========================================
+   UNIFIED MOBILE SECTION SPACING - ABOUT US
+   Uses global variables from styles.css
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Unified section spacing for About Us mobile - using global variables */
   .our-story,
   .news-recognition,
   .meet-founder,
   .our-team,
   .ai-advisory-council {
-    padding-top: var(--space-3xl) !important;
-    padding-bottom: var(--space-3xl) !important;
+    padding-top: var(--mobile-section-padding) !important;
+    padding-bottom: var(--mobile-section-padding) !important;
   }
 
   .our-team{

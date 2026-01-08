@@ -1,14 +1,14 @@
 /* Higher Ed Specific Styles */
 
-/* Hero Section */
+/* Hero Section - Uses unified hero variables from styles.css */
 .higher-ed-hero {
   position: relative;
-  min-height: 60vh;
+  min-height: var(--hero-min-height);
   display: flex;
   align-items: center;
   overflow: hidden;
   background: url('static/images/impact-stories-hero-mirrored.jpg') center 25%/cover no-repeat;
-  padding: 120px 0 60px;
+  padding: var(--hero-padding-top) 0 var(--hero-padding-bottom);
 }
 
 .higher-ed-hero-background {
@@ -607,8 +607,10 @@
   .hero-text-section {
     max-width: 100%;
     align-items: center;
-    text-align: center;
     gap: var(--space-xl) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
   }
 
   .hero-content-grid {
@@ -622,6 +624,16 @@
   
   .higher-ed-hero-title {
     font-size: 40px !important;
+  }
+  
+  .higher-ed-hero-subtitle {
+    padding-top: 0;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+    margin-right: 0;
+    margin-left: 0;
   }
   
   /* Third card - reset to vertical layout like first two cards */
@@ -1125,6 +1137,10 @@
   .partner-testimonials .testimonial-quote {
     font-size: var(--text-lg);
   }
+
+  .success-achievements{
+    margin-top: 0px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1598,37 +1614,38 @@
 
 /* ==========================================
    UNIFIED MOBILE SECTION SPACING - HIGHER ED
+   Uses global variables from styles.css
    ========================================== */
 
 @media (max-width: 768px) {
-  /* Unified section spacing for Higher Ed mobile */
+  /* Unified section spacing for Higher Ed mobile - uses --mobile-content-spacing from styles.css */
   .how-we-work,
   .partnerships-action,
   .partner-testimonials,
   .graduate-career-success {
-    padding-top: var(--space-2xl) !important;
-    padding-bottom: var(--space-2xl) !important;
+    padding-top: var(--mobile-section-padding) !important;
+    padding-bottom: var(--mobile-section-padding) !important;
   }
 
   .impact-cta{
-    padding-top: var(--space-4xl) !important;
-    padding-bottom: var(--space-4xl) !important;
+    padding-top: var(--mobile-cta-padding) !important;
+    padding-bottom: var(--mobile-cta-padding) !important;
   }
 }
 
 @media (max-width: 480px) {
-  /* Unified section spacing for Higher Ed small mobile */
+  /* Unified section spacing for Higher Ed small mobile - using global variables */
   .how-we-work,
   .partnerships-action,
   .partner-testimonials,
   .graduate-career-success {
-    padding-top: var(--space-2xl) !important;
-    padding-bottom: var(--space-2xl) !important;
+    padding-top: var(--mobile-section-padding-sm) !important;
+    padding-bottom: var(--mobile-section-padding-sm) !important;
   }
   
   .impact-cta {
-    padding-top: var(--space-4xl) !important;
-    padding-bottom: var(--space-4xl) !important;
+    padding-top: var(--mobile-cta-padding-sm) !important;
+    padding-bottom: var(--mobile-cta-padding-sm) !important;
   }
 }
 
