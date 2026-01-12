@@ -210,43 +210,19 @@
   margin: 0;
 }
 
-/* Airtable Form Container */
+/* Airtable Form Container - Normal embed with scrolling */
 .airtable-form-container {
   width: 100%;
+  height: 50%;
   border-radius: var(--border-radius-lg);
-  overflow: hidden;
   background: white;
-  height: 680px;  /* Container height = 1400px - 400px (top) - 400px (bottom) = 600px */
 }
 
 .airtable-form-container iframe.airtable-embed {
   display: block;
   width: 100%;
-  min-height: 1400px;
-  margin-top: -300px;  /* Shift up to hide top 400px */
   border: none;
   background: transparent;
-}
-
-/* Responsive Airtable Embed */
-@media (max-width: 768px) {
-  .airtable-form-container iframe.airtable-embed {
-    min-height: 1500px;
-  }
-  
-  .form-header {
-    margin-bottom: var(--space-lg);
-  }
-}
-
-@media (max-width: 480px) {
-  .airtable-form-container iframe.airtable-embed {
-    min-height: 1600px;
-  }
-  
-  .form-section {
-    padding: var(--space-lg);
-  }
 }
 
 /* Contact Information Section */
