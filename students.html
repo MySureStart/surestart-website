@@ -690,6 +690,42 @@
   </div>
 </footer>
 
+<!-- NOTIFICATION POPUP MODAL -->
+<div id="notify-popup-overlay" class="notify-popup-overlay">
+  <div class="notify-popup-modal">
+    <button id="notify-popup-close" class="notify-popup-close" aria-label="Close popup">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="notify-popup-content">
+      <div class="iframe-loading" id="notify-loading">
+        <div class="loading-spinner"></div>
+        <p>Loading form...</p>
+      </div>
+      <iframe class="airtable-embed" src="https://airtable.com/embed/appT3zqq4jsmWQHEe/pagFREorgdned4diN/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;" onload="document.getElementById('waitlist-loading').style.display='none';"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- WAITLIST POPUP MODAL -->
+<div id="waitlist-popup-overlay" class="notify-popup-overlay">
+  <div class="notify-popup-modal">
+    <button id="waitlist-popup-close" class="notify-popup-close" aria-label="Close popup">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="notify-popup-content">
+      <div class="iframe-loading" id="waitlist-loading">
+        <div class="loading-spinner"></div>
+        <p>Loading form...</p>
+      </div>
+      <iframe class="airtable-embed" src="https://airtable.com/embed/appT3zqq4jsmWQHEe/pagzR5DZ2s8BrNeud/form" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;" onload="document.getElementById('notify-loading').style.display='none';"></iframe>
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
