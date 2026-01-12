@@ -98,7 +98,6 @@ a {
 }
 
 .by-the-numbers-wrapper {
-  max-width: var(--container-max);
   margin: 0 auto;
   margin-left: 0;
   padding: 0;

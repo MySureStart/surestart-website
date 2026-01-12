@@ -60,11 +60,11 @@
   --surface-secondary: var(--ss-neutral);
   --surface-elevated: rgba(255, 255, 255, 0.9);
   /* --text-primary: var(--ss-dark);
-  --text-secondary: #5A564F;
-  --text-muted: #857F78; */
+  --text-secondary: #5A564F; */
+  --text-muted: #857F78;
    --text-primary:#000000;
   --text-secondary: #000000;
-  --text-muted: #000000;
+  /* --text-muted: #000000; */
   --border-subtle: rgba(84, 134, 135, 0.12);
   --border-medium: rgba(84, 134, 135, 0.2);
   
@@ -380,6 +380,8 @@ p {
   transition: color var(--transition-slow);
   cursor: pointer;
   padding: var(--space-sm) 0;
+  padding-bottom: 0px;
+  padding-top: 0px;
 }
 
 .nav-dropdown-toggle:hover {

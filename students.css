@@ -1162,7 +1162,6 @@
 
 /* Focus States for Accessibility */
 .courses-preview .program-flip-card:focus {
-  outline: 2px solid var(--ss-accent-1);
   outline-offset: 2px;
 }
 
