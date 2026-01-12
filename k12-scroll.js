@@ -266,3 +266,173 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 250);
   });
 });
+
+/**
+ * Student Impact Video Carousel - K12 Page
+ * Auto-switching video carousel with manual navigation controls
+ * Switches videos every 3 minutes with arrow buttons and dot indicators
+ */
+
+class StudentImpactVideoCarousel {
+  constructor() {
+    this.container = document.querySelector('.student-impact-video-carousel');
+    this.videoItems = document.querySelectorAll('.carousel-video-item');
+    this.dots = document.querySelectorAll('.carousel-dot');
+    this.prevBtn = document.querySelector('.carousel-prev');
+    this.nextBtn = document.querySelector('.carousel-next');
+    
+    this.currentIndex = 0;
+    this.totalVideos = this.videoItems.length;
+    this.autoSwitchInterval = null;
+    this.autoSwitchDelay = 180000; // 3 minutes in milliseconds
+    
+    this.init();
+  }
+  
+  init() {
+    if (!this.container || this.totalVideos === 0) {
+      return;
+    }
+    
+    this.setupEventListeners();
+    this.startAutoSwitch();
+    this.updateActiveState();
+    
+    console.log('✅ Student Impact Video Carousel initialized with', this.totalVideos, 'videos');
+  }
+  
+  setupEventListeners() {
+    // Arrow button clicks
+    if (this.prevBtn) {
+      this.prevBtn.addEventListener('click', () => {
+        this.goToPrevious();
+        this.resetAutoSwitch();
+      });
+    }
+    
+    if (this.nextBtn) {
+      this.nextBtn.addEventListener('click', () => {
+        this.goToNext();
+        this.resetAutoSwitch();
+      });
+    }
+    
+    // Dot indicator clicks
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        this.goToVideo(index);
+        this.resetAutoSwitch();
+      });
+    });
+    
+    // Pause auto-switch when video is playing
+    this.videoItems.forEach((item) => {
+      const video = item.querySelector('video');
+      if (video) {
+        video.addEventListener('play', () => {
+          this.pauseAutoSwitch();
+        });
+        
+        video.addEventListener('pause', () => {
+          this.startAutoSwitch();
+        });
+        
+        video.addEventListener('ended', () => {
+          this.startAutoSwitch();
+        });
+      }
+    });
+    
+    // Keyboard navigation
+    this.container.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        this.goToPrevious();
+        this.resetAutoSwitch();
+      } else if (e.key === 'ArrowRight') {
+        this.goToNext();
+        this.resetAutoSwitch();
+      }
+    });
+  }
+  
+  goToVideo(index) {
+    if (index < 0 || index >= this.totalVideos) return;
+    
+    // Pause current video if playing
+    this.pauseCurrentVideo();
+    
+    this.currentIndex = index;
+    this.updateActiveState();
+  }
+  
+  goToNext() {
+    const nextIndex = (this.currentIndex + 1) % this.totalVideos;
+    this.goToVideo(nextIndex);
+  }
+  
+  goToPrevious() {
+    const prevIndex = (this.currentIndex - 1 + this.totalVideos) % this.totalVideos;
+    this.goToVideo(prevIndex);
+  }
+  
+  updateActiveState() {
+    // Update video items
+    this.videoItems.forEach((item, index) => {
+      if (index === this.currentIndex) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+    
+    // Update dots
+    this.dots.forEach((dot, index) => {
+      if (index === this.currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
+  pauseCurrentVideo() {
+    const currentItem = this.videoItems[this.currentIndex];
+    if (currentItem) {
+      const video = currentItem.querySelector('video');
+      if (video && !video.paused) {
+        video.pause();
+      }
+    }
+  }
+  
+  startAutoSwitch() {
+    if (this.autoSwitchInterval) return;
+    
+    this.autoSwitchInterval = setInterval(() => {
+      this.goToNext();
+    }, this.autoSwitchDelay);
+  }
+  
+  pauseAutoSwitch() {
+    if (this.autoSwitchInterval) {
+      clearInterval(this.autoSwitchInterval);
+      this.autoSwitchInterval = null;
+    }
+  }
+  
+  resetAutoSwitch() {
+    this.pauseAutoSwitch();
+    this.startAutoSwitch();
+  }
+  
+  destroy() {
+    this.pauseAutoSwitch();
+  }
+}
+
+// Initialize Student Impact Video Carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.student-impact-video-carousel')) {
+    window.studentImpactVideoCarousel = new StudentImpactVideoCarousel();
+  }
+});

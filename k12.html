@@ -715,29 +715,53 @@
 <!-- STUDENT IMPACT: VOICES + OUTCOMES SECTION -->
 <section class="student-impact">
   <div class="student-impact-container">
-    <div class="section-header fade-up">
-      <h2 class="section-title">Student Impact: Voices + Outcomes</h2>
-      <h3 class="section-subtitle">
-        Real stories and measurable results from students who've transformed their futures through AI education.
-      </h3>
-    </div>
-    
-    <!-- Student Spotlight Subsection -->
-    <div class="student-spotlight fade-up">
-      <h3 class="student-spotlight-subsection-title subsection-title">Student Spotlight</h3>
-      <div class="spotlight-grid">
-        <div class="spotlight-video-card">
-          <video controls preload="metadata" playsinline class="student-video">
-            <source src="static/videos/Student Testimonial - Juan (1).mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+    <div class="student-impact-two-column fade-up">
+      <!-- Left Column: Title and Subtitle -->
+      <div class="student-impact-text">
+        <h2 class="section-title">Student Impact: Voices + Outcomes</h2>
+        <h3 class="section-subtitle">
+          Real stories and measurable results from students who've transformed their futures through AI education.
+        </h3>
+      </div>
+      
+      <!-- Right Column: Video Carousel -->
+      <div class="student-impact-video-carousel">
+        <div class="video-carousel-container">
+          <!-- Video 1 -->
+          <div class="carousel-video-item active" data-video-index="0">
+            <video controls preload="metadata" playsinline class="student-video">
+              <source src="static/videos/Student Testimonial - Juan (1).mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          
+          <!-- Video 2 -->
+          <div class="carousel-video-item" data-video-index="1">
+            <video controls preload="metadata" playsinline class="student-video">
+              <source src="static/videos/Student Testimonial - Juan (1).mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
         
-        <div class="spotlight-video-card">
-          <video controls preload="metadata" playsinline class="student-video">
-            <source src="static/videos/Student Testimonial - Juan (1).mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <!-- Carousel Navigation -->
+        <div class="video-carousel-nav">
+          <button class="carousel-arrow carousel-prev" aria-label="Previous video">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          
+          <div class="carousel-indicators">
+            <button class="carousel-dot active" data-video-index="0" aria-label="Video 1"></button>
+            <button class="carousel-dot" data-video-index="1" aria-label="Video 2"></button>
+          </div>
+          
+          <button class="carousel-arrow carousel-next" aria-label="Next video">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
