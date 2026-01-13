@@ -1497,10 +1497,6 @@ p {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.hero-title-subtext{
-
-}
-
 /* Hero Title Underlined Text with Pen SVG */
 .hero-title-underlined {
   position: relative;
@@ -3857,10 +3853,6 @@ p {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
   background: rgba(255, 255, 255, 0.95);
-}
-
-.stat-item:hover {
-
 }
 
 .stat-icon {

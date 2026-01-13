@@ -2064,9 +2064,6 @@
   padding-left: 0px;
   }
 }
-.success-achievements .achievement-card:nth-child(3) .achievement-icons {
-
-}
 
 .achievement-content h3 {
   font-size: var(--text-xl);
@@ -4738,8 +4735,6 @@
 
 /* Responsive Design for Spiral */
 @media (max-width: 768px) {
-  .spiral-wrap {
-  }
   
   .spiral-callout {
     width: clamp(160px, 20vmin, 260px);
@@ -4753,8 +4748,6 @@
 }
 
 @media (max-width: 768px) {
-  .spiral-wrap {
-  }
   
   .spiral-callout {
     width: clamp(140px, 18vmin, 220px);
@@ -4780,8 +4773,6 @@
 }
 
 @media (max-width: 480px) {
-  .spiral-wrap {
-  }
   
   .spiral-callout {
     width: clamp(120px, 16vmin, 180px);

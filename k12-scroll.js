@@ -284,7 +284,7 @@ class StudentImpactVideoCarousel {
     this.currentIndex = 0;
     this.totalVideos = this.videoItems.length;
     this.autoSwitchInterval = null;
-    this.autoSwitchDelay = 180000; // 3 minutes in milliseconds
+    this.autoSwitchDelay = 240000; // 3 minutes in milliseconds
     
     this.init();
   }
