@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mysurestart.org/sitemap.xml
+
+# Disallow development files
+Disallow: /*.ps1$
+
+# Allow assets
+Allow: /assets/
