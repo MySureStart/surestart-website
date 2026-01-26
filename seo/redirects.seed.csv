@@ -1,0 +1,16 @@
+from,to,status,note
+/surestart,/,301,Legacy home alias
+/for-students-2024,/for-students/,301,Old students page URL
+/case-study,/impact-stories/,301,Case study moved to impact stories
+/store,/,301,Store retired - redirect to home
+/sel-checkout,/,301,SEL checkout retired - redirect to home
+/for-companies,/,301,Companies page retired - redirect to home
+/futuremakers-track-1,/for-students/,301,FutureMakers resources consolidated
+/futuremakers-track-2,/for-students/,301,FutureMakers resources consolidated
+/futuremakers-track-3,/for-students/,301,FutureMakers resources consolidated
+/discord,/contact/,301,Discord form - redirect to contact (form TBD)
+/join-newsletter,/contact/,301,Newsletter form - redirect to contact (form TBD)
+/getting-started-1,/for-students/,301,Getting started guide - redirect to students
+/vibe-lab,/for-students/,301,Vibe Lab page not created yet - redirect to students
+/vibe-lab-sneak-peek,/for-students/,301,Vibe Lab sneak peek - redirect to students
+/courses,/for-students/,301,Courses index not created yet - redirect to students

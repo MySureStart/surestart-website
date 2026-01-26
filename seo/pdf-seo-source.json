@@ -1,0 +1,74 @@
+[
+  {
+    "pageName": "Home",
+    "targetKeyword": "AI Education",
+    "seoTitle": "AI Education for the Next Generation",
+    "seoMetaDescription": "SureStart delivers AI education for middle and high school students through mentorship, real-world projects, and a strong foundation in AI literacy and responsible AI.",
+    "h1": "Empowering the Next Generation to Lead in an AI World",
+    "notes": "Used 'SEO Optimized Meta Description'. Draft 1 was also available but optimized version preferred.",
+    "pageGroup": "Existing Pages"
+  },
+  {
+    "pageName": "Contact",
+    "targetKeyword": "AI Education",
+    "seoTitle": "Partner With SureStart",
+    "seoMetaDescription": "Contact SureStart to learn how our AI education programs support schools, families, and students with ethical, mentorship-driven learning experiences.",
+    "h1": "Let's Talk About the Future of AI Education",
+    "notes": "Used 'SEO Optimized Meta Description'. Draft 1 was also available but optimized version preferred.",
+    "pageGroup": "Existing Pages"
+  },
+  {
+    "pageName": "Impact Stories",
+    "targetKeyword": "Career Readiness",
+    "seoTitle": "Real-World Impact. Future-Ready Students.",
+    "seoMetaDescription": "Explore real student stories showing how SureStart's AI education builds confidence, career readiness, and future-ready skills through mentorship and hands-on projects.",
+    "h1": "Real Students. Real Stories. Real Impact.",
+    "notes": "Used 'SEO Optimized Meta Description'. Draft 1 was also available but optimized version preferred.",
+    "pageGroup": "Existing Pages"
+  },
+  {
+    "pageName": "About",
+    "targetKeyword": "Responsible AI",
+    "seoTitle": "Building Responsible AI Education for the Future",
+    "seoMetaDescription": "Learn about SureStart's mission to deliver responsible AI education—combining ethics, mentorship, and real-world learning to prepare students for a rapidly changing future.",
+    "h1": "Our Story: Preparing the Next Generation for an AI-Driven World",
+    "notes": "Used 'SEO Optimized Meta Description'. Draft 1 was also available but optimized version preferred.",
+    "pageGroup": "Existing Pages"
+  },
+  {
+    "pageName": "For Universities",
+    "targetKeyword": "Career Readiness",
+    "seoTitle": "Preparing Students for AI-Driven Careers",
+    "seoMetaDescription": "SureStart partners with universities to strengthen career readiness through applied AI education, mentorship, and real-world, interdisciplinary learning experiences.",
+    "h1": "AI Programs that Prepare College Students for What's Next",
+    "notes": "Used 'SEO Optimized Meta Description'. Draft 1 was also available but optimized version preferred.",
+    "pageGroup": "Existing Pages"
+  },
+  {
+    "pageName": "Vibe Lab",
+    "targetKeyword": "AI Literacy",
+    "seoTitle": "Exploring AI Through Creative, Real-World Projects",
+    "seoMetaDescription": "Vibe Lab is SureStart's innovation space where students build AI literacy through creative projects, experimentation, and responsible use of emerging technologies.",
+    "h1": "Where Student Ideas and AI Come to Life",
+    "notes": "Used 'SEO Optimized Meta Description'. Draft 1 was also available but optimized version preferred. GAP: No corresponding page exists in repo.",
+    "pageGroup": "Existing Pages"
+  },
+  {
+    "pageName": "K-12",
+    "targetKeyword": "AI in the Classroom",
+    "seoTitle": "Bringing AI Into the Classroom for K–12 Schools",
+    "seoMetaDescription": "SureStart brings AI into the classroom for K–12 schools through mentorship, AI literacy, ethical learning, and age-appropriate, real-world applications.",
+    "h1": "Bring Future-Ready AI Learning to Your K–12 School",
+    "notes": "Used 'SEO Optimized Meta Description'. No Draft 1 available (marked as '-' in PDF).",
+    "pageGroup": "New Pages"
+  },
+  {
+    "pageName": "Students",
+    "targetKeyword": "AI Literacy",
+    "seoTitle": "Build AI Skills That Shape Your Future",
+    "seoMetaDescription": "Students develop AI literacy, confidence, and career-ready skills through mentorship, hands-on projects, and responsible AI learning with SureStart.",
+    "h1": "Learn AI, Build Real Projects, and Launch Your Future",
+    "notes": "Used 'SEO Optimized Meta Description'. No Draft 1 available (marked as '-' in PDF).",
+    "pageGroup": "New Pages"
+  }
+]

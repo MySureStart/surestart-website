@@ -1,2 +1,59 @@
+# ======================
+# Secrets & Environment
+# ======================
 .env
+.env.*
+.env.local
+.env.*.local
+
+# ======================
+# Dependencies
+# ======================
 node_modules/
+
+# ======================
+# Build Output
+# ======================
+dist/
+!dist/redirects/
+
+# ======================
+# OS Generated Files
+# ======================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+__MACOSX/
+
+# ======================
+# Editor / IDE
+# ======================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ======================
+# Logs & Cache
+# ======================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.cache/
+
+# ======================
+# Optional: PDF/XLSX Inputs
+# (Uncomment to ignore SEO source files in repo root)
+# ======================
+SureStart New Website - SEO (URL + Meta Descriptions) - SureStart New Website - Meta Descriptions.pdf
+SureStart Website - URL Structure.xlsx

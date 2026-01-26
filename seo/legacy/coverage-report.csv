@@ -1,0 +1,20 @@
+legacy_path,status,proposed_new_path,notes
+/contact,needs_redirect,/contact-us.html,URL renamed from /contact to /contact-us.html
+/surestart,needs_redirect,/,Was alternate homepage on Squarespace - redirect to main index
+/case-study,needs_redirect,/impact-stories.html,EMPath case study content merged into impact stories page
+/for-students-2024,needs_redirect,/students.html,Student page renamed and year removed from URL
+/impact-stories,covered,/impact-stories.html,Direct equivalent exists (add .html extension)
+/for-companies,needs_redirect,/,Page retired - corporate partnerships no longer featured separately
+/about,needs_redirect,/about-us.html,URL renamed from /about to /about-us.html
+/vibe-lab-sneak-peek,gap,/students.html,No dedicated Vibe Lab page exists yet - temp redirect to students
+/for-universities,needs_redirect,/higher-ed.html,URL renamed from /for-universities to /higher-ed.html
+/discord,needs_redirect,https://discord.gg/vCc8W8595m,External redirect to Discord invite link
+/futuremakers-track-1,needs_redirect,/students.html,FutureMakers tracks consolidated into students page
+/futuremakers-track-2,needs_redirect,/students.html,FutureMakers tracks consolidated into students page
+/futuremakers-track-3,needs_redirect,/students.html,FutureMakers tracks consolidated into students page
+/sel-checkout,needs_redirect,/,Page retired - SEL checkout no longer exists
+/join-newsletter,gap,/contact-us.html,Newsletter form needs embedding - temp redirect to contact
+/courses,gap,/students.html,No dedicated courses page yet - temp redirect to students
+/vibe-lab,gap,/students.html,No dedicated Vibe Lab page exists yet - temp redirect to students
+/getting-started-1,needs_redirect,/students.html,Getting started guide consolidated into students page
+/store,needs_redirect,/,Store page retired - redirect to homepage

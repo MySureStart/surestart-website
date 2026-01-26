@@ -1,11 +1,8 @@
+# robots.txt - Production
+# Generated: 2026-01-26
+
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap location
 Sitemap: https://mysurestart.org/sitemap.xml
-
-# Disallow development files
-Disallow: /*.ps1$
-
-# Allow assets
-Allow: /assets/

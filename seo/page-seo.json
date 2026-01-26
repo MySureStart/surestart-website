@@ -1,0 +1,65 @@
+[
+  {
+    "path": "/",
+    "file": "index.html",
+    "title": "AI Education for the Next Generation",
+    "metaDescription": "SureStart delivers AI education for middle and high school students through mentorship, real-world projects, and a strong foundation in AI literacy and responsible AI.",
+    "h1": "Empowering the Next Generation to Lead in an AI World",
+    "robots": "index, follow",
+    "ogImage": "/assets/images/og/home.png"
+  },
+  {
+    "path": "/about/",
+    "file": "about/index.html",
+    "title": "Building Responsible AI Education for the Future",
+    "metaDescription": "Learn about SureStart's mission to deliver responsible AI education—combining ethics, mentorship, and real-world learning to prepare students for a rapidly changing future.",
+    "h1": "Our Story: Preparing the Next Generation for an AI-Driven World",
+    "robots": "index, follow",
+    "ogImage": "/assets/images/og/about.png"
+  },
+  {
+    "path": "/contact/",
+    "file": "contact/index.html",
+    "title": "Partner With SureStart",
+    "metaDescription": "Contact SureStart to learn how our AI education programs support schools, families, and students with ethical, mentorship-driven learning experiences.",
+    "h1": "Let's Talk About the Future of AI Education",
+    "robots": "index, follow",
+    "ogImage": "/assets/images/og/contact.png"
+  },
+  {
+    "path": "/for-universities/",
+    "file": "for-universities/index.html",
+    "title": "Preparing Students for AI-Driven Careers",
+    "metaDescription": "SureStart partners with universities to strengthen career readiness through applied AI education, mentorship, and real-world, interdisciplinary learning experiences.",
+    "h1": "AI Programs that Prepare College Students for What's Next",
+    "robots": "index, follow",
+    "ogImage": "/assets/images/og/higher-ed.png"
+  },
+  {
+    "path": "/for-students/",
+    "file": "for-students/index.html",
+    "title": "Build AI Skills That Shape Your Future",
+    "metaDescription": "Students develop AI literacy, confidence, and career-ready skills through mentorship, hands-on projects, and responsible AI learning with SureStart.",
+    "h1": "Learn AI, Build Real Projects, and Launch Your Future",
+    "robots": "index, follow",
+    "ogImage": "/assets/images/og/students.png"
+  },
+  {
+    "path": "/k12/",
+    "file": "k12/index.html",
+    "title": "Bringing AI Into the Classroom for K–12 Schools",
+    "metaDescription": "SureStart brings AI into the classroom for K–12 schools through mentorship, AI literacy, ethical learning, and age-appropriate, real-world applications.",
+    "h1": "Bring Future-Ready AI Learning to Your K–12 School",
+    "robots": "index, follow",
+    "ogImage": "/assets/images/og/k12.png"
+  },
+  {
+    "path": "/impact-stories/",
+    "file": "impact-stories/index.html",
+    "title": "Real-World Impact. Future-Ready Students.",
+    "metaDescription": "Explore real student stories showing how SureStart's AI education builds confidence, career readiness, and future-ready skills through mentorship and hands-on projects.",
+    "h1": "Real Students. Real Stories. Real Impact.",
+    "robots": "index, follow",
+    "ogImage": "/assets/images/og/impact-stories.png"
+  }
+]

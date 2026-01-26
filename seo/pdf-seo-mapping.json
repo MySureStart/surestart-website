@@ -1,0 +1,58 @@
+[
+  {
+    "pageName": "Home",
+    "repoFile": "index.html",
+    "finalPath": "/",
+    "mappingConfidence": "high",
+    "mappingNotes": "Direct match. Homepage maps to index.html at root."
+  },
+  {
+    "pageName": "Contact",
+    "repoFile": "contact/index.html",
+    "finalPath": "/contact/",
+    "mappingConfidence": "high",
+    "mappingNotes": "Direct match. Contact page uses folder URL structure."
+  },
+  {
+    "pageName": "Impact Stories",
+    "repoFile": "impact-stories/index.html",
+    "finalPath": "/impact-stories/",
+    "mappingConfidence": "high",
+    "mappingNotes": "Direct match. Impact Stories page uses folder URL structure."
+  },
+  {
+    "pageName": "About",
+    "repoFile": "about/index.html",
+    "finalPath": "/about/",
+    "mappingConfidence": "high",
+    "mappingNotes": "Direct match. About page uses folder URL structure."
+  },
+  {
+    "pageName": "For Universities",
+    "repoFile": "for-universities/index.html",
+    "finalPath": "/for-universities/",
+    "mappingConfidence": "high",
+    "mappingNotes": "PDF says 'For Universities', repo has 'for-universities/index.html'. Higher Ed content."
+  },
+  {
+    "pageName": "Vibe Lab",
+    "repoFile": null,
+    "finalPath": "/vibe-lab/",
+    "mappingConfidence": "gap",
+    "mappingNotes": "GAP: No corresponding page exists in repo. PDF references a Vibe Lab page but no vibe-lab.html or vibe-lab/index.html exists. Do not create page in this task."
+  },
+  {
+    "pageName": "K-12",
+    "repoFile": "k12/index.html",
+    "finalPath": "/k12/",
+    "mappingConfidence": "high",
+    "mappingNotes": "Direct match. K-12 page uses folder URL structure."
+  },
+  {
+    "pageName": "Students",
+    "repoFile": "for-students/index.html",
+    "finalPath": "/for-students/",
+    "mappingConfidence": "high",
+    "mappingNotes": "PDF says 'Students', repo has 'for-students/index.html'. Naming differs slightly but content intent matches."
+  }
+]
