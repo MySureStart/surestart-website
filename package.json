@@ -14,7 +14,8 @@
     "redirects:validate": "node scripts/validate-redirects.js",
     "redirects:build": "node scripts/build-redirects.js",
     "redirects:all": "npm run redirects:merge && npm run redirects:validate && npm run redirects:build",
-    "seo:check": "node scripts/seo-smoke-test.js"
+    "seo:check": "node scripts/seo-smoke-test.js",
+    "assets:check": "node scripts/validate-assets.js"
   },
   "keywords": [
     "ai",
@@ -26,6 +27,7 @@
   "author": "SureStart",
   "license": "UNLICENSED",
   "devDependencies": {
-    "cross-env": "^10.1.0"
+    "cross-env": "^10.1.0",
+    "glob": "^13.0.0"
   }
 }
