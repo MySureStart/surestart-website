@@ -402,15 +402,12 @@ a {
   z-index: 3;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
+  padding: 0 var(--space-lg);
   width: 100%;
   display: flex;
-  align-items: flex-start;
-  
+  align-items: center;
+  justify-content: center;
   min-height: 50vh;
-  padding-top: 80px;
-  top: -4f0px;
-  left: -15px;
 }
 
 .hero-content-grid {
@@ -4169,18 +4166,17 @@ a {
 }
 
 @media (max-width: 480px) {
-  .impact-hero-container {
-    padding: 0 var(--space-md);
-  }
-  
-  .hero-text-section {
-    gap: var(--space-lg);
-  }
-  
-  .impact-hero-title {
-    font-size: clamp(2rem, 10vw, 3rem);
-    line-height: 1.1;
-  }
+.impact-hero-container {
+  position: relative;
+  z-index: 3;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   
   .impact-hero-subtitle {
     font-size: var(--text-base);
