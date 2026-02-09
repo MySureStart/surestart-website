@@ -418,6 +418,7 @@ a {
   min-height: 30vh;
   padding: 0;
   justify-items: start;
+  width: 100%;
 }
 
 .hero-text-section {
