@@ -837,6 +837,18 @@ body.popup-open {
   overflow: hidden;
 }
 
+/* Front Card Styling */
+.courses-preview .flip-card-front:nth-child(1), .courses-preview .flip-card-front:nth-child(3)  {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-normal);
+  position: relative;
+  background-size: 100% auto;
+  background-position: 0px 80px;
+  overflow: hidden;
+}
+
 .courses-preview .flip-card-front::before {
   content: '';
   position: absolute;
