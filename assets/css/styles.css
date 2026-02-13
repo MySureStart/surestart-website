@@ -2850,7 +2850,7 @@ p {
   transition: all var(--transition-normal);
   position: relative;
   background-size: 100% auto;
-  background-position: 0px 100px;
+  background-position: 0px 90px;
   overflow: hidden;
 }
 

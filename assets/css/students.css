@@ -838,7 +838,7 @@ body.popup-open {
 }
 
 /* Front Card Styling */
-.courses-preview .flip-card-front:nth-child(1), .courses-preview .flip-card-front:nth-child(3)  {
+#vibe-lab  {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -846,6 +846,7 @@ body.popup-open {
   position: relative;
   background-size: 100% auto;
   background-position: 0px 80px;
+  background-repeat: repeat;
   overflow: hidden;
 }
 
