@@ -12,13 +12,14 @@
 </script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Access Denied — SureStart</title>
+<title>Server Error — SureStart</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="assets/css/styles.css">
 <link rel="stylesheet" href="assets/css/error-pages.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-</head>
+
+<link rel="preload" href="assets/fonts/eastman_grotesque/eastmangrotesque_medium_macroman/eastmangrotesque-medium-webfont.woff2" as="font" type="font/woff2" crossorigin></head>
 <body class="error-page">
 
 <!-- NAVIGATION -->
@@ -26,7 +27,7 @@
   <div class="nav-container">
     <div class="nav-brand">
       <a href="index.html">
-        <img src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="nav-logo">
+        <img decoding="async" height="459" width="1705" src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="nav-logo">
       </a>
     </div>
     <div class="nav-menu">
@@ -60,14 +61,14 @@
 <!-- ERROR CONTENT -->
 <main class="error-content">
   <div class="error-container">
-    <div class="error-icon">🔒</div>
-    <div class="error-code">403</div>
-    <h1 class="error-title">Access Denied</h1>
+    <div class="error-icon">⚙️</div>
+    <div class="error-code">500</div>
+    <h1 class="error-title">Something Went Wrong</h1>
     <p class="error-description">
-      You don't have permission to access this page.
+      We're sorry, but something went wrong on our end. Our team has been notified and we're working to fix the issue.
     </p>
     <p class="error-description">
-      If you believe this is an error, please contact us for assistance.
+      Please try again later or return to our homepage.
     </p>
     
     <div class="error-navigation">
@@ -78,7 +79,6 @@
             <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </a>
-        <a href="contact-us.html" class="error-btn-secondary">Contact Us</a>
       </div>
     </div>
   </div>
@@ -89,7 +89,7 @@
   <div class="footer-container">
     <div class="footer-content">
       <div class="footer-brand">
-        <img src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="footer-logo">
+        <img decoding="async" height="459" width="1705" src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="footer-logo">
         <p class="footer-tagline">Empowering the next generation of AI leaders through accessible, world-class education.</p>
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/mysurestart" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
@@ -154,6 +154,6 @@
   </div>
 </footer>
 
-<script src="assets/js/script.js"></script>
+<script src="assets/js/script.js" defer></script>
 </body>
 </html>

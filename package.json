@@ -15,7 +15,14 @@
     "redirects:build": "node scripts/build-redirects.js",
     "redirects:all": "npm run redirects:merge && npm run redirects:validate && npm run redirects:build",
     "seo:check": "node scripts/seo-smoke-test.js",
-    "assets:check": "node scripts/validate-assets.js"
+    "assets:check": "node scripts/validate-assets.js",
+    "images:optimize": "node scripts/optimize-images.js",
+    "images:update-html": "node scripts/update-html-images.js",
+    "perf:images": "npm run images:optimize",
+    "build:prod": "node scripts/build-prod.js",
+    "serve:dist": "npx serve dist -p 3000",
+    "perf:build": "npm run build:prod",
+    "perf:lighthouse": "node scripts/lighthouse-audit.js"
   },
   "keywords": [
     "ai",
@@ -27,7 +34,12 @@
   "author": "SureStart",
   "license": "UNLICENSED",
   "devDependencies": {
+    "chrome-launcher": "^1.2.1",
+    "clean-css-cli": "^5.6.3",
     "cross-env": "^10.1.0",
-    "glob": "^13.0.0"
+    "glob": "^13.0.0",
+    "lighthouse": "^12.8.2",
+    "sharp": "^0.33.5",
+    "terser": "^5.46.0"
   }
 }

@@ -18,7 +18,8 @@
 <link rel="stylesheet" href="assets/css/error-pages.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-</head>
+
+<link rel="preload" href="assets/fonts/eastman_grotesque/eastmangrotesque_medium_macroman/eastmangrotesque-medium-webfont.woff2" as="font" type="font/woff2" crossorigin></head>
 <body class="error-page">
 
 <!-- NAVIGATION -->
@@ -26,7 +27,7 @@
   <div class="nav-container">
     <div class="nav-brand">
       <a href="index.html">
-        <img src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="nav-logo">
+        <img decoding="async" height="459" width="1705" src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="nav-logo">
       </a>
     </div>
     <div class="nav-menu">
@@ -96,7 +97,7 @@
   <div class="footer-container">
     <div class="footer-content">
       <div class="footer-brand">
-        <img src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="footer-logo">
+        <img decoding="async" height="459" width="1705" src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="footer-logo">
         <p class="footer-tagline">Empowering the next generation of AI leaders through accessible, world-class education.</p>
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/mysurestart" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
@@ -161,6 +162,6 @@
   </div>
 </footer>
 
-<script src="assets/js/script.js"></script>
+<script src="assets/js/script.js" defer></script>
 </body>
 </html>
