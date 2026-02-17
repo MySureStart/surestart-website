@@ -850,6 +850,13 @@ body.popup-open {
   overflow: hidden;
 }
 
+/* Mobile: Adjusted background position for vibe-lab */
+@media (max-width: 768px) {
+  #vibe-lab {
+    background-position: 0px 60px;
+  }
+}
+
 .courses-preview .flip-card-front::before {
   display:none
 }

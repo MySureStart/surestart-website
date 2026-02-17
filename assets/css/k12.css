@@ -532,6 +532,13 @@
   overflow: hidden;
 }
 
+/* Mobile: Adjusted background position for flip card front */
+@media (max-width: 768px) {
+  .journey-into-ai .flip-card-front {
+    background-position: 0px 0px;
+  }
+}
+
 .journey-into-ai .flip-card-front::before {
   display:none
 }
