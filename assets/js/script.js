@@ -1987,24 +1987,37 @@
         setTimeout(() => closeBtn.focus(), 100);
       }
       
-      // Handle iframe loading state
+      // Handle iframe lazy-loading
       const iframe = overlay.querySelector('iframe');
       const content = overlay.querySelector('.notify-popup-content');
       
       if (iframe && content) {
-        // Reset loaded state when opening (in case it was closed before fully loading)
+        // Reset loaded state when opening
         content.classList.remove('loaded');
         
-        // Check if iframe is already loaded (cached)
+        // Check if iframe is already loaded from a previous open
         if (iframe.dataset.loaded === 'true') {
           content.classList.add('loaded');
         } else {
-          // Add load listener
+          // Lazy-load: copy data-src to src if not already set
+          if (!iframe.getAttribute('src') && iframe.dataset.src) {
+            iframe.setAttribute('src', iframe.dataset.src);
+          }
+          
+          // Attach load listener (will fire because we just set src)
           iframe.addEventListener('load', function onLoad() {
             content.classList.add('loaded');
             iframe.dataset.loaded = 'true';
             iframe.removeEventListener('load', onLoad);
           });
+          
+          // Fallback: force show after 8 seconds in case load event never fires
+          setTimeout(function() {
+            if (!content.classList.contains('loaded')) {
+              content.classList.add('loaded');
+              iframe.dataset.loaded = 'true';
+            }
+          }, 8000);
         }
       }
     }
