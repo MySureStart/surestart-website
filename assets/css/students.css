@@ -2258,16 +2258,21 @@ body.popup-open {
   }
   
   .industry-flip-card {
-    height: 150px;
+    height: 200px;
   }
   
   .industry-flip-card .flip-card-front,
   .industry-flip-card .flip-card-back {
-    min-height: 150px;
+    min-height: 200px;
   }
   
   .industry-flip-card .industry-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+  
+  .industry-flip-card .card-content {
+    padding: var(--space-sm);
   }
   
   .industry-flip-card .card-content h3 {
