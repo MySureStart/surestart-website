@@ -1,0 +1,367 @@
+/* ==========================================
+   SURESTART ERROR PAGES STYLES
+   Consistent styling for 404, 500, 403, 503 pages
+   ========================================== */
+
+/* Error Page Container */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-primary);
+}
+
+.error-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4xl) var(--space-lg);
+  min-height: calc(100vh - 160px);
+}
+
+.error-container {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  animation: errorFadeUp 0.6s ease-out;
+}
+
+@keyframes errorFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error Code - Large Gradient Number */
+.error-code {
+  font-family: 'Eastman Grotesque', serif;
+  font-size: clamp(120px, 20vw, 200px);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: var(--space-lg);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  letter-spacing: -0.02em;
+}
+
+/* Error Title */
+.error-title {
+  font-family: 'Eastman Grotesque', serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  line-height: 1.2;
+}
+
+/* Error Description */
+.error-description {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Error Reasons List */
+.error-reasons {
+  text-align: left;
+  max-width: 550px;
+  margin: 0 auto var(--space-2xl);
+  padding: var(--space-xl);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.error-reasons-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.error-reasons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.error-reasons li {
+  position: relative;
+  padding-left: var(--space-xl);
+  margin-bottom: var(--space-md);
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.error-reasons li:last-child {
+  margin-bottom: 0;
+}
+
+.error-reasons li::before {
+  content: '•';
+  position: absolute;
+  left: var(--space-sm);
+  color: var(--ss-red);
+  font-weight: bold;
+}
+
+/* Navigation Links Section */
+.error-navigation {
+  margin-top: var(--space-2xl);
+}
+
+.error-navigation-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.error-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+/* Primary Button - Go Home */
+.error-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-2xl);
+  background: var(--gradient-button);
+  color: white;
+  text-decoration: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  font-size: var(--text-base);
+  border-radius: var(--border-radius-full);
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 16px rgba(231, 48, 82, 0.25);
+}
+
+.error-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(231, 48, 82, 0.35);
+}
+
+.error-btn-primary svg {
+  transition: transform var(--transition-fast);
+}
+
+.error-btn-primary:hover svg {
+  transform: translateX(4px);
+}
+
+/* Secondary Link Buttons */
+.error-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  background: white;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  border-radius: var(--border-radius-full);
+  border: 2px solid var(--border-medium);
+  transition: all var(--transition-normal);
+}
+
+.error-btn-secondary:hover {
+  border-color: var(--ss-accent-1);
+  color: var(--ss-accent-1);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Decorative Elements */
+.error-decoration {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.1;
+}
+
+.error-circle-1 {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  top: 10%;
+  left: -100px;
+}
+
+.error-circle-2 {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ss-yellow), var(--ss-orange));
+  bottom: 15%;
+  right: -50px;
+}
+
+/* Error Icon (optional) */
+.error-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-lg);
+  display: inline-block;
+  animation: errorIconBounce 2s ease-in-out infinite;
+}
+
+@keyframes errorIconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Maintenance-specific styling */
+.maintenance-message {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--text-lg);
+  color: var(--ss-accent-1);
+  font-weight: 600;
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md) var(--space-xl);
+  background: rgba(102, 72, 64, 0.1);
+  border-radius: var(--border-radius-md);
+  display: inline-block;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 768px) {
+  .error-content {
+    padding: var(--space-2xl) var(--space-md);
+    min-height: calc(100vh - 120px);
+  }
+  
+  .error-code {
+    font-size: clamp(80px, 25vw, 150px);
+    margin-bottom: var(--space-md);
+  }
+  
+  .error-title {
+    font-size: clamp(24px, 5vw, 32px);
+    margin-bottom: var(--space-md);
+  }
+  
+  .error-description {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .error-reasons {
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+  
+  .error-reasons li {
+    font-size: var(--text-sm);
+    padding-left: var(--space-lg);
+  }
+  
+  .error-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  
+  .error-btn-primary,
+  .error-btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  
+  .error-btn-primary {
+    padding: var(--space-md) var(--space-xl);
+  }
+  
+  .error-icon {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-content {
+    padding: var(--space-xl) var(--space-sm);
+  }
+  
+  .error-code {
+    font-size: clamp(60px, 20vw, 100px);
+  }
+  
+  .error-title {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+  
+  .error-description {
+    font-size: var(--text-sm);
+  }
+  
+  .error-reasons {
+    padding: var(--space-md);
+  }
+  
+  .error-reasons-title {
+    font-size: var(--text-sm);
+  }
+  
+  .error-reasons li {
+    font-size: var(--text-xs);
+  }
+  
+  .error-navigation-title {
+    font-size: var(--text-sm);
+  }
+  
+  .maintenance-message {
+    font-size: var(--text-base);
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .error-container {
+    animation: none;
+  }
+  
+  .error-icon {
+    animation: none;
+  }
+  
+  .error-btn-primary:hover,
+  .error-btn-secondary:hover {
+    transform: none;
+  }
+}
