@@ -29,8 +29,8 @@ All `url()` references use the correct **relative** path pattern:
 /* Fonts - from assets/css/ going up to assets/fonts/ */
 url('../fonts/...')  → resolves to assets/fonts/...  ✓
 
-/* Images - from assets/css/ going up to assets/images/ */
-url('../images/...') → resolves to assets/images/... ✓
+/* Images - from assets/css/ going up to https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/ */
+url('../images/...') → resolves to https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/... ✓
 ```
 
 ### No Broken Patterns Found

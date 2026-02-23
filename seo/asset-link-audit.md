@@ -20,7 +20,7 @@ All subdirectory HTML files have been updated to use root-relative paths for ass
 ### Types of Changes Made
 
 1. **CSS References:** `href="assets/css/..."` → `href="/assets/css/..."`
-2. **Image References:** `src="assets/images/..."` → `src="/assets/images/..."`
+2. **Image References:** `src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/..."` → `src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/..."`
 3. **JS References:** `src="assets/js/..."` → `src="/assets/js/..."`
 4. **Video Sources:** `src="assets/videos/..."` → `src="/assets/videos/..."`
 5. **Inline Background URLs:** `url('assets/...')` → `url('/assets/...')`
@@ -51,7 +51,7 @@ Use **root-relative** `/assets/...` paths everywhere in HTML:
 Use **correct relative paths** from CSS file location:
 - `url('../images/...')` - goes up one level from `assets/css/` to `assets/`
 - `url('../fonts/...')` - same pattern for fonts
-- Alternatively: root-relative `/assets/images/...` also works
+- Alternatively: root-relative `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/...` also works
 
 ### Navigation Links
 

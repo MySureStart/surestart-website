@@ -15,11 +15,11 @@ Implemented a minimal OG image solution using a single default SVG file for all 
 
 ### 1. Created Directory
 ```
-assets/images/og/
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/
 ```
 
 ### 2. Created Default OG Image
-**File:** `assets/images/og/default.svg`
+**File:** `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg`
 
 **Specifications:**
 - **Dimensions:** 1200×630 (optimal for Facebook/Twitter)
@@ -52,7 +52,7 @@ All 7 public pages updated to use the default OG image:
 
 ### OG Image File ✅
 ```
-assets/images/og/default.svg
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg
 ```
 - ✅ File exists
 - ✅ Valid SVG format
@@ -63,8 +63,8 @@ assets/images/og/default.svg
 
 All 7 public pages now reference:
 ```html
-<meta property="og:image" content="{{BASE_URL}}/assets/images/og/default.svg">
-<meta name="twitter:image" content="{{BASE_URL}}/assets/images/og/default.svg">
+<meta property="og:image" content="{{BASE_URL}}https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg">
+<meta name="twitter:image" content="{{BASE_URL}}https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg">
 ```
 
 ### No Missing References ✅
@@ -83,7 +83,7 @@ Search confirmed no remaining references to page-specific OG files:
 ## Files Created/Modified
 
 ### Created
-- `assets/images/og/default.svg`
+- `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg`
 - `scripts/create-og-svg.js` (helper script)
 
 ### Modified
@@ -102,7 +102,7 @@ Search confirmed no remaining references to page-specific OG files:
 After replacing `{{BASE_URL}}` with `https://mysurestart.org`, the OG image URL will be:
 
 ```
-https://mysurestart.org/assets/images/og/default.svg
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg
 ```
 
 ### Testing
@@ -122,5 +122,5 @@ Most modern social platforms support SVG for OG images. However, if compatibilit
 
 ### Future Enhancement
 To add page-specific OG images later:
-1. Create images in `assets/images/og/` (e.g., `k12.png`)
+1. Create images in `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/` (e.g., `k12.png`)
 2. Update the respective page's og:image and twitter:image meta tags

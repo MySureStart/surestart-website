@@ -86,7 +86,7 @@ Since caching headers depend on your hosting platform, here are recommended sett
 Cache-Control: public, max-age=31536000, immutable
 ```
 Apply to:
-- `/assets/images/*`
+- `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/*`
 - `/assets/fonts/*`
 - `*.min.css`
 - `*.min.js`

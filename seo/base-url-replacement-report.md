@@ -87,7 +87,7 @@ npm run seo:generate:prod
 ### OG Images (now absolute)
 All pages use:
 ```
-https://mysurestart.org/assets/images/og/default.svg
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg
 ```
 
 ---

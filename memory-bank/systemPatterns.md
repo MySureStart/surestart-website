@@ -161,7 +161,7 @@ All pages use identical navigation HTML:
   <div class="nav-container">
     <div class="nav-brand">
       <a href="index.html">
-        <img src="assets/images/logos/surestart/surestart-logo.png" alt="SureStart" class="nav-logo">
+        <img src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/logos/surestart/surestart-logo.png" alt="SureStart" class="nav-logo">
       </a>
     </div>
     <div class="nav-menu">
@@ -199,7 +199,7 @@ Consistent footer across all pages with:
 ### Images
 
 ```
-assets/images/
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/
 ├── heroes/              # Page hero backgrounds
 ├── icons/               # UI icons, feature icons
 ├── logos/
@@ -315,5 +315,5 @@ Subfolder pages use `../` prefix for relative assets:
 ```html
 <!-- In /about/index.html -->
 <link rel="stylesheet" href="../assets/css/styles.css">
-<img src="../assets/images/logos/surestart/logo.png">
+<img src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/logos/surestart/logo.png">
 ```

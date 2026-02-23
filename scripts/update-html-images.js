@@ -26,7 +26,7 @@ const CONFIG = {
     'impact-stories/*.html',
     'k12/*.html',
   ],
-  optimizedDir: 'assets/images/optimized',
+  optimizedDir: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized',
   
   // Images that should NOT be lazy loaded (above the fold)
   noLazyPatterns: [

@@ -30,7 +30,7 @@ const CONFIG = {
     'for-universities/**',
     'impact-stories/**',
     'k12/**',
-    'assets/images/**',
+    'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/**',
     'assets/fonts/**',
     'assets/videos/**',
     'assets/css/**',

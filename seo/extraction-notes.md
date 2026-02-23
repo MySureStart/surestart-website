@@ -89,13 +89,13 @@ The spreadsheet planned a different URL structure than what we implemented:
 The `ogImage` paths in `page-seo.json` are **placeholders**. These images don't exist yet:
 
 ```
-/assets/images/og/home.png
-/assets/images/og/about.png
-/assets/images/og/contact.png
-/assets/images/og/higher-ed.png
-/assets/images/og/students.png
-/assets/images/og/k12.png
-/assets/images/og/impact-stories.png
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/home.png
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/about.png
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/contact.png
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/higher-ed.png
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/students.png
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/k12.png
+https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/impact-stories.png
 ```
 
 **Action needed:** Create OG images (recommended size: 1200x630px) or update paths to existing images.

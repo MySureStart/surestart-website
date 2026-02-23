@@ -54,8 +54,8 @@ npm run seo:check           # Runs SEO smoke test on all pages
 | **sitemap.xml URLs** | ✅ | 7 URLs, all use `https://mysurestart.org` |
 | **{{BASE_URL}} in outputs** | ✅ | 0 occurrences in HTML files |
 | **{{BASE_URL}} in repo** | ⚠️ | Found in docs/scripts (expected — these are templates) |
-| **OG image file** | ✅ | `/assets/images/og/default.svg` exists |
-| **OG image references** | ✅ | All 7 pages use `https://mysurestart.org/assets/images/og/default.svg` |
+| **OG image file** | ✅ | `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg` exists |
+| **OG image references** | ✅ | All 7 pages use `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg` |
 | **Error pages excluded** | ✅ | 403/404/500/503 not in sitemap |
 | **Error pages noindex** | ✅ | All 4 have `noindex, nofollow` |
 

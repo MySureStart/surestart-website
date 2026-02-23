@@ -25,7 +25,7 @@ Image optimization has been implemented for the SureStart website, achieving **1
 ### What Was Done
 
 1. **WebP Conversion**: All PNG/JPG images (except logos/icons) converted to WebP
-2. **Output Location**: `/assets/images/optimized/` (preserving folder structure)
+2. **Output Location**: `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/` (preserving folder structure)
 3. **HTML Updates**: 357 images updated across 17 HTML files with:
    - `loading="lazy"` for below-fold images
    - `decoding="async"` for all images
@@ -49,8 +49,8 @@ To use the WebP versions with fallback for older browsers:
 
 ```html
 <picture>
-  <source srcset="assets/images/optimized/heroes/about-us-hero.webp" type="image/webp">
-  <img src="assets/images/heroes/about-us-hero.jpg" 
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/heroes/about-us-hero.webp" type="image/webp">
+  <img src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/heroes/about-us-hero.jpg" 
        alt="About Us Hero" 
        width="1920" height="1080" 
        loading="lazy" decoding="async">
@@ -129,8 +129,8 @@ npm run assets:check       # Verify all asset references
 
 | Purpose | Location |
 |---------|----------|
-| Original images | `/assets/images/` |
-| Optimized WebP | `/assets/images/optimized/` |
+| Original images | `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/` |
+| Optimized WebP | `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/` |
 | Optimization script | `/scripts/optimize-images.js` |
 | HTML updater script | `/scripts/update-html-images.js` |
 | Image report | `/seo/image-optimization-report.md` |

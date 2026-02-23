@@ -83,7 +83,7 @@
 ### Assets
 - [x] CSS stylesheets organized by page
 - [x] JavaScript for interactions (carousels, modals, accordions)
-- [x] Images organized in `/assets/images/`
+- [x] Images organized in `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/`
 - [x] Videos for hero and testimonials
 
 ### Forms & Integrations
@@ -166,7 +166,7 @@
 **Session 6: Image Optimization & CSS/JS Minification**
 - Created `scripts/optimize-images.js` - Converts PNG/JPG to WebP
 - Created `scripts/update-html-images.js` - Updates HTML with `<picture>` fallbacks
-- Generated WebP images in `/assets/images/optimized/`
+- Generated WebP images in `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/`
 - Created `scripts/build-prod.js` - Production build system:
   - Copies all files to `/dist/`
   - Minifies 8 CSS files (~30% each)
@@ -305,7 +305,7 @@
 - `redirects-report.md` - Redirect implementation report
 - `/legacy/` - Legacy site analysis files
 
-### `/assets/images/og/`
+### `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/`
 - `default.svg` - Default OG image placeholder
 
 ### `/dist/redirects/` (Platform-Specific Outputs)

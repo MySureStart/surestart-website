@@ -23,7 +23,7 @@
 ### Session 6: Image Optimization & CSS/JS Minification
 - Created `scripts/optimize-images.js` - Converts PNG/JPG to WebP
 - Created `scripts/update-html-images.js` - Updates HTML with `<picture>` fallbacks
-- Generated WebP images in `/assets/images/optimized/`
+- Generated WebP images in `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/`
 - Created `scripts/build-prod.js` - Production build system
 - **Total savings: 270.1 KB (36% reduction)**
   - 8 CSS files minified (~30% each)

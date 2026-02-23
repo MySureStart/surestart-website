@@ -236,7 +236,7 @@ Add these headers on your hosting platform:
 \`\`\`
 # Static assets (1 year)
 Cache-Control: public, max-age=31536000, immutable
-Applies to: /assets/images/*, /assets/fonts/*, *.min.css, *.min.js
+Applies to: https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/*, /assets/fonts/*, *.min.css, *.min.js
 
 # HTML pages (short cache)
 Cache-Control: public, max-age=3600, must-revalidate

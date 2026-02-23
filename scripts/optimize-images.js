@@ -3,7 +3,7 @@
  * Image Optimization Script for SureStart Website
  * 
  * Converts PNG/JPG images to WebP format for better performance.
- * Preserves original files and outputs optimized versions to /assets/images/optimized/
+ * Preserves original files and outputs optimized versions to https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/
  * 
  * Usage: npm run images:optimize
  */
@@ -16,7 +16,7 @@ const { glob } = require('glob');
 // Configuration
 const CONFIG = {
   inputDir: 'assets/images',
-  outputDir: 'assets/images/optimized',
+  outputDir: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized',
   reportPath: 'seo/image-optimization-report.md',
   
   // Skip patterns (relative to inputDir)
@@ -253,8 +253,8 @@ For optimized images, use the \`<picture>\` element with WebP source and fallbac
 
 \`\`\`html
 <picture>
-  <source srcset="assets/images/optimized/heroes/hero-image.webp" type="image/webp">
-  <img src="assets/images/heroes/hero-image.jpg" alt="Description" width="1920" height="1080" loading="lazy" decoding="async">
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/heroes/hero-image.webp" type="image/webp">
+  <img src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/heroes/hero-image.jpg" alt="Description" width="1920" height="1080" loading="lazy" decoding="async">
 </picture>
 \`\`\`
 
@@ -268,8 +268,8 @@ For optimized images, use the \`<picture>\` element with WebP source and fallbac
 
 ## File Locations
 
-- **Original images:** \`/assets/images/\`
-- **Optimized WebP:** \`/assets/images/optimized/\`
+- **Original images:** \`https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/\`
+- **Optimized WebP:** \`https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/\`
 - **This report:** \`/seo/image-optimization-report.md\`
 
 ---

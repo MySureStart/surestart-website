@@ -52,7 +52,7 @@ The initial validation run found **136 broken references**, primarily in subdire
 3. **impact-stories/index.html** - Converted 37+ relative paths to root-relative
 
 4. **k12/index.html** - Converted 6 relative paths to root-relative
-   - Fixed inline style `url(assets/images/...)` references
+   - Fixed inline style `url(https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/...)` references
 
 ### Skipped References (Expected)
 
@@ -89,7 +89,7 @@ npm run assets:check
    ```html
    <!-- Good - works from any subdirectory -->
    <link href="/assets/css/styles.css" rel="stylesheet">
-   <img src="/assets/images/logo.png">
+   <img src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/logo.png">
    
    <!-- Bad - breaks when served from /k12/ -->
    <link href="assets/css/styles.css" rel="stylesheet">
