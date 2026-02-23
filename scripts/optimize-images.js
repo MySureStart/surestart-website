@@ -268,8 +268,8 @@ For optimized images, use the \`<picture>\` element with WebP source and fallbac
 
 ## File Locations
 
-- **Original images:** \`https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/\`
-- **Optimized WebP:** \`https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/\`
+- **Original images:** \`https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images//`
+- **Optimized WebP:** \`https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized//`
 - **This report:** \`/seo/image-optimization-report.md\`
 
 ---
