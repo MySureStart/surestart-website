@@ -49,7 +49,7 @@ Use **root-relative** `/assets/...` paths everywhere in HTML:
 ### For CSS Files
 
 Use **correct relative paths** from CSS file location:
-- `url('../images/...')` - goes up one level from `assets/css/` to `assets/`
+- `url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/...')` - goes up one level from `assets/css/` to `assets/`
 - `url('../fonts/...')` - same pattern for fonts
 - Alternatively: root-relative `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/...` also works
 

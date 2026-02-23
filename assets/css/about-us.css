@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('../images/heroes/about-us-hero.jpg') center 90%/cover no-repeat;
+  background: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/heroes/about-us-hero.jpg') center 90%/cover no-repeat;
   padding: 120px 0 60px;
 }
 
@@ -89,7 +89,7 @@
   right: 0;
   bottom: -20px;
   height: 14px;
-  background-image: url('../images/icons/pen-underline.svg');
+  background-image: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/icons/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   transform: translateY(50%) translateX(-23.5%) scaleX(30) scaleY(30) rotate(5deg);
@@ -292,7 +292,7 @@
 }
 
 .featured-article-content {
-  background: url('../images/misc/fortune-article-bg.png') center/cover no-repeat;
+  background: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/misc/fortune-article-bg.png') center/cover no-repeat;
   border-radius: var(--border-radius-xl);
   padding: var(--space-3xl);
   box-shadow: var(--shadow-lg);
@@ -468,7 +468,7 @@
 }
 
 .featured-podcast-bg {
-  background: url('../images/media/pioneers-of-ai.jpg') center/cover no-repeat;
+  background: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/media/pioneers-of-ai.jpg') center/cover no-repeat;
 }
 
 .featured-podcast-content::before {
@@ -1540,7 +1540,7 @@
   }
 
   .featured-podcast-bg{
-    background: url('../images/media/pioneers-of-ai.jpg');
+    background: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/media/pioneers-of-ai.jpg');
     background-position: right;
     background-size: cover;
   }
@@ -1625,7 +1625,7 @@
       padding-bottom: var(--space-5xl) !important;
   }
     .featured-podcast-bg{
-    background: url('../images/media/pioneers-of-ai.jpg');
+    background: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/media/pioneers-of-ai.jpg');
     background-position: right;
     background-size: cover;
   }

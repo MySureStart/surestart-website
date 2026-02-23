@@ -310,7 +310,7 @@ p {
   right: 0;
   bottom: -50px;
   height: 180px;
-  background-image: url('../images/icons/pen-underline.svg');
+  background-image: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/icons/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 200px 100px;
   transform: scaleX(1) scaleY(1);
@@ -395,7 +395,7 @@ p {
   right: 0;
   bottom: -50px;
   height: 180px;
-  background-image: url('../images/icons/pen-underline.svg');
+  background-image: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/icons/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 200px 100px;
   transform: scaleX(1) scaleY(1);
@@ -1510,7 +1510,7 @@ p {
   right: 0;
   bottom: -15px;
   height: 20px;
-  background-image: url('../images/icons/pen-underline.svg');
+  background-image: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/icons/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   transform: translateY(100%) translateX(-40%) scaleX(30) scaleY(30) rotate(5deg);

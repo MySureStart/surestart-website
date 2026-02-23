@@ -98,7 +98,7 @@ npm run assets:check
 2. **CSS url() can stay relative:**
    ```css
    /* Good - relative to CSS file location */
-   background-image: url('../images/hero.jpg');
+   background-image: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/hero.jpg');
    ```
 
 3. **Run `npm run assets:check` before deployment** to catch broken references.

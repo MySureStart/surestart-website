@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: url('../images/heroes/higher-ed-hero.jpg') center 25%/cover no-repeat;
+  background: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/heroes/higher-ed-hero.jpg') center 25%/cover no-repeat;
   padding: var(--hero-padding-top) 0 var(--hero-padding-bottom);
 }
 
@@ -93,7 +93,7 @@
   right: 0;
   bottom: -15px;
   height: 20px;
-  background-image: url('../images/icons/pen-underline.svg');
+  background-image: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/icons/pen-underline.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   transform: translateY(100%) translateX(-15%) scaleX(30) scaleY(30) rotate(5deg);

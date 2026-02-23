@@ -30,7 +30,7 @@ All `url()` references use the correct **relative** path pattern:
 url('../fonts/...')  → resolves to assets/fonts/...  ✓
 
 /* Images - from assets/css/ going up to https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/ */
-url('../images/...') → resolves to https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/... ✓
+url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/...') → resolves to https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/... ✓
 ```
 
 ### No Broken Patterns Found
@@ -44,13 +44,13 @@ url('../images/...') → resolves to https://pub-dcb79d88e2ec4567824453cc853f55f
 **No fixes required.** All CSS `url()` references are correctly written and will resolve properly regardless of the HTML page location, because:
 
 1. CSS files are always served from `/assets/css/`
-2. Relative paths `../images/` and `../fonts/` correctly navigate up to the parent `assets/` directory
+2. Relative paths `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/` and `../fonts/` correctly navigate up to the parent `assets/` directory
 3. This pattern is independent of HTML page location
 
 ## Recommended Best Practice
 
 For CSS files, continue using relative paths:
-- `url('../images/...')` for images
+- `url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/...')` for images
 - `url('../fonts/...')` for fonts
 
 This approach is:
