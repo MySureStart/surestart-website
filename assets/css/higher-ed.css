@@ -1959,6 +1959,19 @@
     gap: var(--space-md);
   }
   
+  /* Fix: Make active quote use relative position on mobile so height flows naturally */
+  .partnership-testimonials-rotating .rotating-quote-item.active {
+    position: relative !important;
+  }
+  
+  .partnership-testimonials-rotating .rotating-quote-item:not(.active) {
+    position: absolute !important;
+  }
+  
+  .partnership-testimonials-rotating .quote-content {
+    height: auto !important;
+  }
+  
   .partnership-testimonials-rotating .industry-quote {
     font-size: var(--text-lg);
     margin-bottom: var(--space-lg);
