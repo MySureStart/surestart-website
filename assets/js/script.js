@@ -108,7 +108,9 @@
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.setAttribute('aria-label', 'Toggle navigation menu');
     navToggle.setAttribute('role', 'button');
-    navMenu.setAttribute('aria-hidden', 'true');
+    // Only hide nav from assistive technology on mobile; on desktop the menu is always visible
+    const isMobileView = window.innerWidth <= 768;
+    navMenu.setAttribute('aria-hidden', isMobileView ? 'true' : 'false');
     navMenu.setAttribute('role', 'navigation');
 
     // Enhanced toggle function
@@ -118,7 +120,6 @@
         e.stopPropagation();
       }
       
-      console.log('Mobile menu toggle clicked');
       
       const isCurrentlyOpen = navMenu.classList.contains('active');
       const willBeOpen = !isCurrentlyOpen;
@@ -139,7 +140,6 @@
         navToggle.setAttribute('aria-expanded', willBeOpen.toString());
         navMenu.setAttribute('aria-hidden', (!willBeOpen).toString());
         
-        console.log('Menu state changed:', willBeOpen ? 'opened' : 'closed');
       } catch (error) {
         console.error('Error toggling menu:', error);
       }
@@ -210,11 +210,15 @@
     // Handle resize to close menu on desktop
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768) {
-        closeMobileMenu();
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        // On desktop the menu is always visible, so don't hide it from assistive technology
+        navMenu.setAttribute('aria-hidden', 'false');
       }
     });
 
-    console.log('Mobile menu initialization complete');
   }
 
   // Initialize mobile menu
@@ -2109,7 +2113,6 @@
       }
     });
     
-    console.log('Popup modals initialized');
   }
 
   // ==========================================
@@ -2147,7 +2150,6 @@
       // Optional: Add preloader for luxury feel
       // initPreloader();
       
-      console.log('✨ SureStart website initialized successfully');
     } catch (error) {
       console.error('Error initializing website:', error);
     }

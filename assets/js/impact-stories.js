@@ -371,11 +371,9 @@ class StudentNetworkWeb {
   async init() {
     try {
       if (!this.canvas) {
-        console.warn('Network canvas not found');
         return;
       }
       
-      console.log('Initializing StudentNetworkWeb...');
       this.ctx = this.canvas.getContext('2d');
       
       if (!this.ctx) {
@@ -390,7 +388,6 @@ class StudentNetworkWeb {
       this.createConnections();
       this.addEventListeners();
       this.startAnimation();
-      console.log('StudentNetworkWeb initialized successfully');
     } catch (error) {
       console.error('Error initializing StudentNetworkWeb:', error);
       // Gracefully fail without crashing the page
@@ -415,8 +412,6 @@ class StudentNetworkWeb {
     
     this.centerX = this.canvasWidth / 2;
     this.centerY = this.canvasHeight / 2;
-    
-    console.log('Canvas dimensions:', this.canvasWidth, 'x', this.canvasHeight);
     
     // Set actual canvas size for crisp rendering
     this.canvas.width = this.canvasWidth * dpr;
@@ -459,20 +454,16 @@ class StudentNetworkWeb {
         // img.crossOrigin = 'anonymous';
         img.onload = () => {
           student.imageElement = img;
-          console.log(`Successfully loaded image for ${student.name}`);
           resolve();
         };
         img.onerror = () => {
-          console.warn(`Failed to load image for ${student.name}, will use fallback`);
           // Try loading without CORS restrictions
           const fallbackImg = new Image();
           fallbackImg.onload = () => {
             student.imageElement = fallbackImg;
-            console.log(`Fallback image loaded for ${student.name}`);
             resolve();
           };
           fallbackImg.onerror = () => {
-            console.warn(`Fallback also failed for ${student.name}`);
             resolve(); // Continue even if image fails
           };
           fallbackImg.src = student.image;
@@ -1570,7 +1561,6 @@ class PerformanceMonitor {
     // Monitor page load time
     window.addEventListener('load', () => {
       this.metrics.loadTime = performance.now();
-      console.log(`Impact Stories page loaded in ${this.metrics.loadTime.toFixed(2)}ms`);
     });
 
     // Monitor animation performance
@@ -1721,11 +1711,9 @@ class CaseStudiesCarousel {
 
   init() {
     if (!this.track || this.slides.length === 0) {
-      console.warn('Testimonials track or slides not found');
       return;
     }
     
-    console.log('Initializing Professional Carousel with Seamless Loop...');
     this.createClonedSlide();
     this.setupCarousel();
     this.addEventListeners();
@@ -1763,7 +1751,6 @@ class CaseStudiesCarousel {
     
     // Update slides collection to include the clone
     this.slides = document.querySelectorAll('.testimonial-case-card');
-    console.log(`Created clone slide. Total slides: ${this.slides.length}`);
   }
 
   setupCarousel() {
@@ -2065,7 +2052,6 @@ class CaseStudiesCarousel {
       // Update dots to reflect real slide position
       this.updateDots();
       
-      console.log('Seamless loop reset completed');
     });
   }
 
@@ -2105,8 +2091,6 @@ class CaseStudiesCarousel {
       translateValue = `${-(this.currentIndex * this.slideWidthPercent)}%`;
     }
     
-    console.log(`Updating carousel - slide ${this.currentIndex + 1}/${this.totalSlides}, transform: ${translateValue}, mobile: ${this.isMobile}`);
-    
     // Force reflow to ensure animation occurs
     this.track.offsetHeight;
     
@@ -2141,7 +2125,6 @@ class CaseStudiesCarousel {
       }
     }, 5000);
     
-    console.log('Auto-advance started');
   }
 
   pauseAutoAdvance() {
@@ -2390,7 +2373,6 @@ class ImpactStoriesApp {
       this.addGlobalListeners();
 
       this.isInitialized = true;
-      console.log('Impact Stories app initialized successfully');
 
     } catch (error) {
       console.error('Error initializing Impact Stories app:', error);
@@ -2446,7 +2428,6 @@ class ImpactStoriesApp {
     images.forEach(img => {
       img.addEventListener('error', () => {
         img.style.display = 'none';
-        console.warn('Failed to load image:', img.src);
       });
     });
   }
@@ -2585,11 +2566,9 @@ class MobileCommunityCicle {
 
   init() {
     if (!this.container || !this.studentCircles.length) {
-      console.log('Mobile community circle not found or no student circles');
       return;
     }
     
-    console.log('Initializing Mobile Community Circle with Auto-Rotation...');
     this.addEventListeners();
     this.setupIntersectionObserver();
     this.updatePositions(); // Initial position setup
@@ -2657,7 +2636,6 @@ class MobileCommunityCicle {
   startRotation() {
     if (this.rotationInterval) return; // Already running
     
-    console.log('Starting auto-rotation');
     this.rotationInterval = setInterval(() => {
       this.rotateClockwise();
     }, this.rotationDelay);
@@ -2667,7 +2645,6 @@ class MobileCommunityCicle {
     if (this.rotationInterval) {
       clearInterval(this.rotationInterval);
       this.rotationInterval = null;
-      console.log('Stopped auto-rotation');
     }
   }
   
@@ -2699,8 +2676,6 @@ class MobileCommunityCicle {
   rotateClockwise() {
     // Increment rotation offset (clockwise = positions move in opposite direction)
     this.rotationOffset = (this.rotationOffset + 1) % 8;
-    
-    console.log(`Rotating clockwise, offset: ${this.rotationOffset}`);
     
     // Update all circle positions with animation
     this.updatePositions();
