@@ -1942,19 +1942,21 @@
         document.head.appendChild(style);
       }
       
-      // Store form data in localStorage for potential use later (optional)
-      localStorage.setItem('vibeLabRegistration', JSON.stringify({
-        firstName,
-        lastName,
-        studentEmail,
-        parentName: formData.get('parentName'),
-        parentEmail: formData.get('parentEmail'),
-        country,
-        timeZone,
-        age,
-        newsletter: formData.get('newsletter') === 'on',
-        timestamp: new Date().toISOString()
-      }));
+      // Store form data in localStorage only if preferences consent granted
+      if (window.SsConsent && window.SsConsent.hasConsent('preferences')) {
+        localStorage.setItem('vibeLabRegistration', JSON.stringify({
+          firstName,
+          lastName,
+          studentEmail,
+          parentName: formData.get('parentName'),
+          parentEmail: formData.get('parentEmail'),
+          country,
+          timeZone,
+          age,
+          newsletter: formData.get('newsletter') === 'on',
+          timestamp: new Date().toISOString()
+        }));
+      }
       
       // Redirect to Stripe checkout after a short delay
       setTimeout(() => {

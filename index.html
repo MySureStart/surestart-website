@@ -1,15 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CM0T1ZNC15"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CM0T1ZNC15');
-</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AI Education for the Next Generation</title>
@@ -33,6 +24,7 @@
 <link rel="apple-touch-icon" href="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/icons/favicon.png">
 <link rel="stylesheet" href="assets/css/styles.css">
 <link rel="stylesheet" href="assets/css/impact-stories.css">
+<link rel="stylesheet" href="/assets/css/consent.css">
 <link rel="preload" href="assets/fonts/eastman_grotesque/eastmangrotesque_extrabold_macroman/eastmangrotesque-extrabold-webfont.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/eastman_grotesque/eastmangrotesque_regular_macroman/eastmangrotesque-regular-webfont.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -672,7 +664,7 @@
         <div class="cta-video-mobile">
           <div class="cta-video-container">
             <iframe
-              src="https://www.youtube.com/embed/CeHu0Sylo2c"
+              data-src="https://www.youtube.com/embed/CeHu0Sylo2c"
               title="SureStart: Building Leaders of the AI Generation"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -695,7 +687,7 @@
       <div class="cta-video cta-video-desktop">
         <div class="cta-video-container">
           <iframe
-            src="https://www.youtube.com/embed/CeHu0Sylo2c"
+            data-src="https://www.youtube.com/embed/CeHu0Sylo2c"
             title="SureStart: Building Leaders of the AI Generation"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -789,7 +781,9 @@
     <div class="footer-bottom">
       <p>&copy; 2025 SureStart. All rights reserved.</p>
       <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
+        <a href="/privacy/">Privacy Policy</a>
+        <span>•</span>
+        <a href="/cookies/">Cookie Policy</a>
         <span>•</span>
         <a href="#">Terms of Service</a>
       </div>
@@ -799,5 +793,8 @@
 
 <script src="assets/js/script.js" defer></script>
 <script src="assets/js/impact-stories.js" defer></script>
+<script src="/assets/js/consent.js"></script>
+<script src="/assets/js/consent-vendors.js"></script>
+<script src="/assets/js/consent-ui.js"></script>
 </body>
 </html>

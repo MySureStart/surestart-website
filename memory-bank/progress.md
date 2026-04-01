@@ -24,6 +24,9 @@
 | Deployment platform | ✅ GitHub Pages | Feb 9, 2026 |
 | Flat files cleanup | ✅ Complete | Feb 9, 2026 |
 | Error pages organized | ✅ Complete | Feb 9, 2026 |
+| Cookie consent system | ✅ Complete | Mar 11, 2026 |
+| Privacy & Cookie policy pages | ✅ Complete | Mar 11, 2026 |
+| Consent E2E tests (Playwright) | ✅ Complete | Mar 11, 2026 |
 | Domain cutover | ⏳ Pending | TBD |
 
 ---
@@ -124,6 +127,8 @@
 | For Students | `/for-students/` | `for-students/index.html` |
 | K-12 | `/k12/` | `k12/index.html` |
 | Impact Stories | `/impact-stories/` | `impact-stories/index.html` |
+| Privacy Policy | `/privacy/` | `privacy/index.html` |
+| Cookie Policy | `/cookies/` | `cookies/index.html` |
 
 ---
 

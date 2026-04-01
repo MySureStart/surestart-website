@@ -1,0 +1,437 @@
+/* ================================================================
+ * SureStart Cookie Consent – Styles
+ *
+ * Matches site design tokens from styles.css (:root vars).
+ * Mobile-first, accessible, no dark patterns.
+ * ============================================================= */
+
+/* ----------------------------------------------------------------
+ * 1. OVERLAY (shared by banner backdrop & modal)
+ * -------------------------------------------------------------- */
+.cc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.cc-overlay.cc-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ----------------------------------------------------------------
+ * 2. BANNER (first layer — bottom bar)
+ * -------------------------------------------------------------- */
+.cc-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+  padding: 1.25rem 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  font-family: inherit;
+}
+.cc-banner.cc-visible {
+  transform: translateY(0);
+}
+.cc-banner-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cc-banner-text {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ss-dark, #2E2E2E);
+  margin: 0;
+}
+.cc-banner-text a {
+  color: var(--ss-accent-1, #000);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.cc-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+/* All three buttons: equal visual weight */
+.cc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6875rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 6px;
+  border: 2px solid var(--ss-dark, #2E2E2E);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-family: inherit;
+  min-height: 44px; /* WCAG touch target */
+  flex: 1 1 0;
+  min-width: 0;
+}
+.cc-btn:focus-visible {
+  outline: 3px solid var(--ss-red, #E73052);
+  outline-offset: 2px;
+}
+
+/* Accept All — filled */
+.cc-btn--accept {
+  background: var(--ss-dark, #2E2E2E);
+  color: #fff;
+  border-color: var(--ss-dark, #2E2E2E);
+}
+.cc-btn--accept:hover {
+  background: #444;
+  border-color: #444;
+}
+
+/* Reject Non-Essential — equally prominent outline */
+.cc-btn--reject {
+  background: #fff;
+  color: var(--ss-dark, #2E2E2E);
+  border-color: var(--ss-dark, #2E2E2E);
+}
+.cc-btn--reject:hover {
+  background: var(--ss-grey, #EFEFF0);
+}
+
+/* Manage Preferences — equally prominent outline */
+.cc-btn--manage {
+  background: #fff;
+  color: var(--ss-dark, #2E2E2E);
+  border-color: var(--ss-dark, #2E2E2E);
+}
+.cc-btn--manage:hover {
+  background: var(--ss-grey, #EFEFF0);
+}
+
+/* ----------------------------------------------------------------
+ * 3. PREFERENCES MODAL (second layer)
+ * -------------------------------------------------------------- */
+.cc-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 99999;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: min(92vw, 560px);
+  max-height: 85vh;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  font-family: inherit;
+}
+.cc-modal.cc-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Header */
+.cc-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+.cc-modal-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ss-dark, #2E2E2E);
+  margin: 0;
+}
+.cc-modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  color: var(--ss-dark, #2E2E2E);
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+}
+.cc-modal-close:hover {
+  background: var(--ss-grey, #EFEFF0);
+}
+.cc-modal-close:focus-visible {
+  outline: 3px solid var(--ss-red, #E73052);
+  outline-offset: 2px;
+}
+.cc-modal-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Body (scrollable) */
+.cc-modal-body {
+  padding: 1rem 1.5rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  -webkit-overflow-scrolling: touch;
+}
+.cc-modal-description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 1rem;
+}
+
+/* GPC notice */
+.cc-gpc-notice {
+  background: #FFF8E1;
+  border: 1px solid #FFE082;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #5D4037;
+  margin-bottom: 1rem;
+}
+
+/* Category rows */
+.cc-category {
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.cc-category:last-child {
+  border-bottom: none;
+}
+.cc-category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.cc-category-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.cc-category-name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--ss-dark, #2E2E2E);
+  margin: 0;
+}
+.cc-category-description {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #666;
+  margin: 0.25rem 0 0;
+}
+
+/* Always-on badge (necessary) */
+.cc-always-on {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2E7D32;
+  background: #E8F5E9;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+ * 4. TOGGLE SWITCH
+ * -------------------------------------------------------------- */
+.cc-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+.cc-toggle input {
+  /* visually hidden but accessible */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.cc-toggle-track {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  border-radius: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  position: relative;
+}
+.cc-toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+.cc-toggle input:checked + .cc-toggle-track {
+  background: #2E7D32;
+}
+.cc-toggle input:checked + .cc-toggle-track::after {
+  transform: translateX(22px);
+}
+.cc-toggle input:focus-visible + .cc-toggle-track {
+  outline: 3px solid var(--ss-red, #E73052);
+  outline-offset: 2px;
+}
+.cc-toggle input:disabled + .cc-toggle-track {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ----------------------------------------------------------------
+ * 5. MODAL FOOTER
+ * -------------------------------------------------------------- */
+.cc-modal-footer {
+  display: flex;
+  gap: 0.625rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+.cc-modal-footer .cc-btn {
+  flex: 1 1 0;
+}
+
+/* ----------------------------------------------------------------
+ * 6. GPC BADGE (banner & modal)
+ * -------------------------------------------------------------- */
+.cc-gpc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3125rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1B5E20;
+  background: #E8F5E9;
+  border: 1px solid #A5D6A7;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 0.25rem;
+}
+.cc-gpc-badge svg {
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+ * 7. FOOTER "COOKIE SETTINGS" LINK
+ * -------------------------------------------------------------- */
+.cc-footer-link {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+.cc-footer-link:hover {
+  text-decoration: underline;
+}
+
+/* ----------------------------------------------------------------
+ * 7. RESPONSIVE
+ * -------------------------------------------------------------- */
+@media (min-width: 768px) {
+  .cc-banner-inner {
+    flex-direction: row;
+    align-items: center;
+  }
+  .cc-banner-text {
+    flex: 1 1 auto;
+    margin-right: 1.5rem;
+  }
+  .cc-banner-actions {
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+  }
+  .cc-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .cc-banner {
+    padding: 1rem;
+  }
+  .cc-banner-actions {
+    flex-direction: column;
+  }
+  .cc-btn {
+    width: 100%;
+  }
+  .cc-modal {
+    width: 96vw;
+    max-height: 90vh;
+  }
+  .cc-modal-header,
+  .cc-modal-body,
+  .cc-modal-footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .cc-modal-footer {
+    flex-direction: column;
+  }
+}
+
+/* ----------------------------------------------------------------
+ * 8. REDUCED MOTION
+ * -------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .cc-banner,
+  .cc-modal,
+  .cc-overlay,
+  .cc-toggle-track,
+  .cc-toggle-track::after {
+    transition: none;
+  }
+}
+
+/* ----------------------------------------------------------------
+ * 9. HIGH CONTRAST
+ * -------------------------------------------------------------- */
+@media (prefers-contrast: high) {
+  .cc-btn {
+    border-width: 3px;
+  }
+  .cc-toggle-track {
+    border: 2px solid #000;
+  }
+}

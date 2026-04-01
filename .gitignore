@@ -52,6 +52,14 @@ yarn-error.log*
 .cache/
 
 # ======================
+# Test Output & Results
+# ======================
+test-results/
+test-output*.txt
+test-run*.txt
+playwright-report/
+
+# ======================
 # Optional: PDF/XLSX Inputs
 # (Uncomment to ignore SEO source files in repo root)
 # ======================
