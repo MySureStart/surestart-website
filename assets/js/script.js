@@ -636,6 +636,7 @@
           // Allow navigation to contact page with parameters
           if (this.getAttribute('href') && 
               (this.getAttribute('href').includes('contact-us.html') || 
+               this.getAttribute('href').includes('/contact/') ||
                this.getAttribute('href').includes('#contact'))) {
             return; // Let contact page links work normally
           }
