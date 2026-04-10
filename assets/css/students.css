@@ -195,7 +195,7 @@ body.popup-open {
   align-items: center;
   overflow: hidden;
   /* your line – NOT edited */
-  background: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/heroes/students-hero.png') center/cover no-repeat;
+  background: url('https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/success-stories/k12/AdobeStock_956183976.jpeg') center/cover no-repeat;
 
   /* ZOOM */
   background-size: 100%;        /* >100% = zoomed in, 100% = normal */
@@ -858,7 +858,20 @@ body.popup-open {
 }
 
 .courses-preview .flip-card-front::before {
-  display:none
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.15) 40%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
 .courses-preview .flip-card-front:hover {
