@@ -1018,7 +1018,7 @@ body.popup-open {
 .courses-preview .program-meta {
   display: flex;
   gap: var(--space-lg);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-sm);
   padding-top: var(--space-md);
   border-top: 1px solid var(--border-subtle);
 }
@@ -1052,7 +1052,7 @@ body.popup-open {
 .courses-preview .program-register {
   margin-top: auto;
   text-align: center;
-  padding-top: var(--space-lg);
+  padding-top: 0;
 }
 
 .courses-preview .btn-register {
