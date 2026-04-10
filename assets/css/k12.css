@@ -655,19 +655,19 @@
 
 /* Bottom row colorful title colors */
 .journey-into-ai .program-flip-card[data-program="robotics"] .back-content h4 {
-  color: var(--ss-pink);
+  color: #EEB86E;
 }
 
 .journey-into-ai .program-flip-card[data-program="social-impact"] .back-content h4 {
-  color: var(--ss-red);
+  color: #D05465;
 }
 
 .journey-into-ai .program-flip-card[data-program="planetary-health"] .back-content h4 {
-  color: var(--ss-orange);
+  color: #D88256;
 }
 
 .journey-into-ai .program-flip-card[data-program="agriculture"] .back-content h4 {
-  color: var(--ss-yellow);
+  color: #D88256;
 }
 
 .journey-into-ai .program-flip-card[data-program="gaming"] .back-content h4 {
