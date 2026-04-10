@@ -857,7 +857,7 @@ body.popup-open {
   }
 }
 
-.courses-preview .flip-card-front::before {
+.courses-preview .program-flip-card .flip-card-inner .flip-card-front::before {
   content: '';
   position: absolute;
   top: 0;
