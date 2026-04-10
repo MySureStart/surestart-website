@@ -638,19 +638,19 @@
 
 /* Program-specific title colors */
 .journey-into-ai .program-flip-card[data-program="explorations"] .back-content h4 {
-  color: var(--ss-yellow);
+  color: #EEB86E;
 }
 
 .journey-into-ai .program-flip-card[data-program="foundations"] .back-content h4 {
-  color: var(--ss-orange);
+  color: #D88256;
 }
 
 .journey-into-ai .program-flip-card[data-program="applications"] .back-content h4 {
-  color: var(--ss-red); 
+  color: #D05465;
 }
 
 .journey-into-ai .program-flip-card[data-program="innovations"] .back-content h4 {
-  color: var(--ss-pink); 
+  color: #D88256;
 }
 
 /* Bottom row colorful title colors */

@@ -2965,19 +2965,19 @@ p {
 
 /* Program-specific title colors matching original badge colors */
 .program-flip-card[data-program="explorations"] .back-content h4 {
-  color: var(--ss-yellow);
+  color: #EEB86E;
 }
 
 .program-flip-card[data-program="foundations"] .back-content h4 {
-  color: var(--ss-orange);
+  color: #D88256;
 }
 
 .program-flip-card[data-program="applications"] .back-content h4 {
-  color: var(--ss-red); 
+  color: #D05465;
 }
 
 .program-flip-card[data-program="innovations"] .back-content h4 {
-  color: var(--ss-pink); 
+  color: #D88256;
 }
 
 .course-subtitle {
@@ -3107,7 +3107,8 @@ p {
 
 .program-meta {
   display: flex;
-  gap: var(--space-lg);
+  flex-direction: column;
+  gap: var(--space-md);
   margin-bottom: var(--space-lg);
   padding-top: var(--space-md);
   border-top: 1px solid var(--border-subtle);
@@ -3117,6 +3118,12 @@ p {
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+.meta-item.meta-inline {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-sm);
 }
 
 .meta-label {
@@ -3131,6 +3138,25 @@ p {
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text-primary);
+}
+
+.meta-item.course-options {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.course-options-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.course-options-list .meta-value {
+  background: rgba(79, 70, 229, 0.08);
+  padding: 2px 10px;
+  border-radius: var(--border-radius-full);
+  font-size: var(--text-xs);
+  white-space: nowrap;
 }
 
 /* Button Styling */
