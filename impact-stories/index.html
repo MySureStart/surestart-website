@@ -305,6 +305,110 @@
   </div>
 </section>
 
+<!-- STUDENT NETWORK WEB SECTION -->
+<section class="student-network-section">
+  <div class="student-network-web fade-up">
+    <div class="network-container">
+      <div class="network-header">
+        <div class="section-header">
+          <h2 class="section-title">Our Broader Community</h2>
+          <h3 class="section-subtitle">Click on any student to explore their journey and see how SureStart transformed their future.</h3>
+        </div>
+      </div>
+      
+      <!-- Desktop: Canvas Network Visualization -->
+      <div class="network-visualization desktop-network">
+        <canvas id="networkCanvas" class="network-canvas"></canvas>
+        
+        <!-- Floating Testimonial Card -->
+        <div id="testimonialCard" class="floating-testimonial-card">
+          <div class="testimonial-close" id="testimonialClose">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+          
+          <img id="testimonialAvatarImg" class="testimonial-avatar" src="" alt="">
+          
+          <div class="testimonial-content-wrapper">
+            <h4 id="testimonialName" class="testimonial-name"></h4>
+            <p id="testimonialSubtitle" class="testimonial-subtitle"></p>
+            <p id="testimonialText" class="testimonial-text"></p>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- Mobile: Circular Layout -->
+      <div class="mobile-community-circle">
+        <!-- Center Circle with Testimonial -->
+        <div class="center-testimonial-circle">
+          <div class="center-prompt">
+            <span>👆</span>
+            <p>Click one of the student images</p>
+          </div>
+          <div class="mobile-testimonial-display">
+            <h4 class="mobile-student-name"></h4>
+            <p class="mobile-student-program"></p>
+            <p class="mobile-student-quote"></p>
+          </div>
+        </div>
+        
+        <!-- Student Circles (8 students) -->
+        <div class="student-circle" data-index="0">
+          <picture>
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/team/students/ammran-mohamed.webp" type="image/webp">
+  <img decoding="async" loading="lazy" height="1024" width="1024" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/students/ammran-mohamed.png" alt="Ammran H Mohamed">
+</picture>
+        </div>
+        <div class="student-circle" data-index="1">
+          <picture>
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/team/students/vitaliy-stepanov.webp" type="image/webp">
+  <img decoding="async" loading="lazy" height="1024" width="1024" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/students/vitaliy-stepanov.png" alt="Vitaliy Stephanov">
+</picture>
+        </div>
+        <div class="student-circle" data-index="2">
+          <picture>
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/team/students/alexa-urrea.webp" type="image/webp">
+  <img decoding="async" loading="lazy" height="1024" width="1024" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/students/alexa-urrea.png" alt="Alexa Urrea">
+</picture>
+        </div>
+        <div class="student-circle" data-index="3">
+          <picture>
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/team/students/jonathan-williams.webp" type="image/webp">
+  <img decoding="async" loading="lazy" height="1024" width="1024" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/students/jonathan-williams.png" alt="Jonathan Williams">
+</picture>
+        </div>
+        <div class="student-circle" data-index="4">
+          <picture>
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/team/students/netra-ramesh.webp" type="image/webp">
+  <img decoding="async" loading="lazy" height="1024" width="1024" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/students/netra-ramesh.png" alt="Netra Ramesh">
+</picture>
+        </div>
+        <div class="student-circle" data-index="5">
+          <picture>
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/team/students/jed-rendo-m.webp" type="image/webp">
+  <img decoding="async" loading="lazy" height="1024" width="1024" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/students/jed-rendo-m.png" alt="Jed Rendo Margarcia">
+</picture>
+        </div>
+        <div class="student-circle" data-index="6">
+          <picture>
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/team/students/ashmita-kumar.webp" type="image/webp">
+  <img decoding="async" loading="lazy" height="1024" width="1024" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/students/ashmita-kumar.png" alt="Ashmita Kumar">
+</picture>
+        </div>
+        <div class="student-circle" data-index="7">
+          <picture>
+  <source srcset="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/optimized/team/students/ashna-khetan.webp" type="image/webp">
+  <img decoding="async" loading="lazy" height="1024" width="1024" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/students/ashna-khetan.png" alt="Ashna Khetan">
+</picture>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SUCCESS STORIES SHOWCASE -->
 <section class="success-stories">
   <div class="stories-container">
