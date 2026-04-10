@@ -857,7 +857,7 @@ body.popup-open {
   }
 }
 
-.courses-preview .program-flip-card .flip-card-inner .flip-card-front::before {
+.courses-preview .flip-card-front::before {
   content: '';
   position: absolute;
   top: 0;
@@ -1328,15 +1328,18 @@ body.popup-open {
 .courses-preview .program-flip-card::before {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: var(--gradient-primary);
-  border-radius: var(--border-radius-xl);
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.15) 40%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
 .courses-preview .program-flip-card:hover::before {
