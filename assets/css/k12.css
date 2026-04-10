@@ -658,8 +658,16 @@
   color: var(--ss-pink);
 }
 
-.journey-into-ai .program-flip-card[data-program="vibe-coding"] .back-content h4 {
+.journey-into-ai .program-flip-card[data-program="social-impact"] .back-content h4 {
   color: var(--ss-red);
+}
+
+.journey-into-ai .program-flip-card[data-program="planetary-health"] .back-content h4 {
+  color: var(--ss-orange);
+}
+
+.journey-into-ai .program-flip-card[data-program="agriculture"] .back-content h4 {
+  color: var(--ss-yellow);
 }
 
 .journey-into-ai .program-flip-card[data-program="gaming"] .back-content h4 {
@@ -731,6 +739,32 @@
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--text-primary);
+}
+
+/* Course options layout for journey-into-ai */
+.journey-into-ai .meta-item.meta-inline {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.journey-into-ai .meta-item.course-options {
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.journey-into-ai .course-options-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.journey-into-ai .course-options-list .meta-value {
+  background: rgba(79, 70, 229, 0.08);
+  padding: 2px 8px;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--text-xs);
+  white-space: nowrap;
 }
 
 /* Button Styling */
