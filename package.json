@@ -25,7 +25,8 @@
     "perf:lighthouse": "node scripts/lighthouse-audit.js",
     "test": "npx playwright test",
     "test:consent": "npx playwright test tests/e2e/consent.spec.js",
-    "test:report": "npx playwright show-report tests/reports"
+    "test:report": "npx playwright show-report tests/reports",
+    "dev": "npx serve . -p 3000"
   },
   "keywords": [
     "ai",
