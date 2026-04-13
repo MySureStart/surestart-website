@@ -335,7 +335,7 @@ body.popup-open {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
-  gap: var(--space-2xl) var(--space-xl);
+  gap: var(--space-xl) var(--space-xl);
   text-align: left;
   width: 100%;
   align-items: end;
