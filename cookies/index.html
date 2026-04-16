@@ -49,10 +49,20 @@
     </div>
     <div class="nav-menu">
       <a href="/" class="nav-link">Home</a>
-      <a href="/k12/" class="nav-link">K-12</a>
+      <div class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle">
+          K-12
+          <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="/k12/" class="nav-dropdown-item">K-12</a>
+          <a href="/vibe-lab/" class="nav-dropdown-item">Vibe Lab</a>
+        </div>
+      </div>
       <a href="/for-universities/" class="nav-link">Higher Ed</a>
       <a href="/for-students/" class="nav-link">Students</a>
-      <a href="/vibe-lab/" class="nav-link nav-highlight">Vibe Lab</a>
       <a href="/impact-stories/" class="nav-link">Impact Stories</a>
       <a href="/about/" class="nav-link">About</a>
       <a href="/contact/" class="nav-link nav-cta">Contact Us</a>

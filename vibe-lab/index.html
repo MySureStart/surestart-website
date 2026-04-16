@@ -40,10 +40,20 @@
     </div>
     <div class="nav-menu">
       <a href="/" class="nav-link">Home</a>
-      <a href="/k12/" class="nav-link">K-12</a>
+      <div class="nav-dropdown">
+        <a href="#" class="nav-dropdown-toggle">
+          K-12
+          <svg class="dropdown-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="/k12/" class="nav-dropdown-item">K-12</a>
+          <a href="/vibe-lab/" class="nav-dropdown-item">Vibe Lab</a>
+        </div>
+      </div>
       <a href="/for-universities/" class="nav-link">Higher Ed</a>
       <a href="/for-students/" class="nav-link">Students</a>
-      <a href="/vibe-lab/" class="nav-link nav-highlight">Vibe Lab</a>
       <a href="/impact-stories/" class="nav-link">Impact Stories</a>
       <div class="nav-dropdown">
         <a href="#" class="nav-dropdown-toggle">
@@ -76,39 +86,13 @@
   <div class="vibe-lab-hero-container">
     <div class="hero-content-grid">
       <div class="hero-text-section fade-up">
-        <h1 class="hero-title">
+        <h1 class="vibe-lab-hero-title">
           <span class="gradient-text">Where Student Ideas and AI Come to Life</span>
         </h1>
         
-        <p class="hero-subtitle">
+        <p class="vibe-lab-hero-subtitle">
           Turn your ideas into apps that make a difference.
         </p>
-        
-        <div class="hero-features-cta-container">
-          <div class="hero-features">
-            <div class="hero-feature">
-              <div class="hero-feature-icon">📅</div>
-              <span>6-Week Program</span>
-            </div>
-            <div class="hero-feature">
-              <div class="hero-feature-icon">💻</div>
-              <span>Live Online</span>
-            </div>
-            <div class="hero-feature">
-              <div class="hero-feature-icon">🚀</div>
-              <span>No Coding Experience Required</span>
-            </div>
-          </div>
-          
-          <div class="hero-cta">
-            <a href="#registration" class="btn btn-primary btn-large">
-              <span>Secure Your Spot</span>
-              <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </a>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -129,10 +113,7 @@
         </div>
         
         <div class="content-actions">
-          <a href="#registration" class="btn btn-primary">
-            <span>Register Now</span>
-          </a>
-          <a href="#video-preview" class="btn btn-secondary">
+          <a href="#video-preview" class="btn btn-gradient-orange-pink">
             <span>Get a sneak peek</span>
           </a>
         </div>
@@ -250,11 +231,6 @@
         
         <div class="details-content">
           <div class="detail-item">
-            <h4>When:</h4>
-            <p>1pm ET sessions on Saturdays — 6 consecutive weeks</p>
-          </div>
-          
-          <div class="detail-item">
             <h4>Who it's for:</h4>
             <p>High school students who want to learn how to Vibe code effectively, build apps, solve real problems, and explore the intersection of AI, entrepreneurship, and social good. No prior coding experience required!</p>
           </div>
@@ -275,11 +251,6 @@
           </div>
         </div>
         
-        <div class="details-cta">
-          <a href="#registration" class="btn btn-secondary">
-            <span>Register Now</span>
-          </a>
-        </div>
       </div>
       
       <!-- Right Column - Image -->
@@ -401,126 +372,6 @@
   </div>
 </section>
 
-<!-- REGISTRATION FORM SECTION -->
-<section id="registration" class="registration-section">
-  <div class="registration-container">
-    <div class="registration-grid">
-      <!-- Left Column - Registration Info -->
-      <div class="registration-image-content">
-        <div class="registration-info">
-          <h2 class="registration-title">
-            <span class="gradient-text">Register for Vibe Lab now!</span>
-          </h2>
-          
-          <p class="registration-subtitle">
-            Limited seats available — only 30 spots per cohort.
-          </p>
-          
-          <div class="pricing-section">
-            <h3 class="pricing-title">Price:</h3>
-            <p class="pricing-details">Early-bird $695 | Standard $795</p>
-          </div>
-          
-          <p class="discount-text">
-            Use the early bird discount code <strong>EARLYBIRD</strong> to save $100!
-          </p>
-          
-          <p class="scholarship-text">
-            We're committed to accessibility — limited scholarships will be available for qualifying students. Please <a href="/contact/">contact us</a> for scholarship consideration.
-          </p>
-        </div>
-        
-        <div class="robot-image-container">
-          <img decoding="async" loading="lazy" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/misc/robots-illustration.webp" alt="AI Robot Illustration" class="robot-image">
-        </div>
-      </div>
-      
-      <!-- Right Column - Registration Form -->
-      <div class="registration-form-container">
-        <form class="registration-form" id="vibe-lab-registration">
-          <!-- Student Name -->
-          <div class="form-section">
-            <h3 class="form-section-title">Student Name <span class="required">(required)</span></h3>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required>
-              </div>
-              <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required>
-              </div>
-            </div>
-          </div>
-
-          <!-- Student Email -->
-          <div class="form-section">
-            <h3 class="form-section-title">Student Email <span class="required">(required)</span></h3>
-            <div class="form-group">
-              <input type="email" id="studentEmail" name="studentEmail" required>
-            </div>
-            <div class="form-checkbox">
-              <input type="checkbox" id="newsletter" name="newsletter">
-              <label for="newsletter">Sign up for news and updates</label>
-            </div>
-          </div>
-
-          <!-- Parent Name -->
-          <div class="form-section">
-            <h3 class="form-section-title">Parent Name:</h3>
-            <div class="form-group">
-              <input type="text" id="parentName" name="parentName">
-            </div>
-          </div>
-
-          <!-- Parent Email -->
-          <div class="form-section">
-            <h3 class="form-section-title">Parent Email Address:</h3>
-            <div class="form-group">
-              <input type="email" id="parentEmail" name="parentEmail">
-            </div>
-          </div>
-
-          <!-- Country -->
-          <div class="form-section">
-            <h3 class="form-section-title">Country <span class="required">(required)</span></h3>
-            <div class="form-group">
-              <input type="text" id="country" name="country" required>
-            </div>
-          </div>
-
-          <!-- Time Zone -->
-          <div class="form-section">
-            <h3 class="form-section-title">Time Zone <span class="required">(required)</span></h3>
-            <div class="form-group">
-              <input type="text" id="timeZone" name="timeZone" required>
-            </div>
-          </div>
-
-          <!-- Age -->
-          <div class="form-section">
-            <h3 class="form-section-title">Age you will be at the start of Vibe Lab <span class="required">(required)</span></h3>
-            <p class="form-note">*Must be a high school student between (14-18)</p>
-            <div class="form-group">
-              <input type="number" id="age" name="age" min="14" max="18" required>
-            </div>
-          </div>
-
-          <!-- Submit Button -->
-          <div class="form-submit">
-            <button type="submit" class="btn btn-primary btn-large">
-              <span>Submit Registration</span>
-              <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- FINAL CTA SECTION -->
 <section class="impact-cta">
   <div class="cta-container">
@@ -530,13 +381,7 @@
       </h2>
       
       <div class="cta-actions">
-        <a href="#registration" class="btn btn-primary">
-          <span>Register for Vibe Lab</span>
-          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </a>
-        <a href="/contact/" class="btn btn-secondary">
+        <a href="/contact/" class="btn btn-gradient-orange-pink">
           <span>Have Questions? Contact Us</span>
         </a>
       </div>
