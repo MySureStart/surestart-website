@@ -37,6 +37,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://mysurestart.org/vibe-lab/</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://mysurestart.org/impact-stories/</loc>
     <lastmod>2026-01-26</lastmod>
     <changefreq>monthly</changefreq>

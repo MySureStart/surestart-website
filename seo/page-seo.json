@@ -54,6 +54,15 @@
     "ogImage": "https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/k12.png"
   },
   {
+    "path": "/vibe-lab/",
+    "file": "vibe-lab/index.html",
+    "title": "Vibe Lab – Build Your First AI-Powered App",
+    "metaDescription": "Vibe Lab is SureStart's innovation space where students build AI literacy through creative projects, experimentation, and responsible use of emerging technologies.",
+    "h1": "Build Real Apps. Learn AI. Launch Your Future.",
+    "robots": "index, follow",
+    "ogImage": "https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg"
+  },
+  {
     "path": "/impact-stories/",
     "file": "impact-stories/index.html",
     "title": "Real-World Impact. Future-Ready Students.",
