@@ -525,6 +525,21 @@
       if (C.hasConsent('marketing')) activateAllYouTubeFacades();
       if (C.hasConsent('preferences')) activateAllAirtableIframes();
     }
+
+    // Belt-and-braces: when `preferences` consent is already granted, re-assert
+    // the src of any Airtable iframe that was left un-gated (i.e. iframes
+    // rendered with a live `src`, not replaced by a placeholder). Some
+    // browsers fail to kick off the network request for a cross-origin
+    // iframe when the page is reached via same-site link navigation with
+    // a query string rather than a fresh reload; re-setting `src` reliably
+    // triggers the fetch without affecting already-loaded iframes.
+    if (C.hasConsent('preferences')) {
+      var liveAirtables = doc.querySelectorAll('iframe.airtable-embed[src*="airtable.com"]');
+      for (var la = 0; la < liveAirtables.length; la++) {
+        var reSrc = liveAirtables[la].getAttribute('src');
+        if (reSrc) liveAirtables[la].setAttribute('src', reSrc);
+      }
+    }
   }
 
   // Run when DOM is ready
