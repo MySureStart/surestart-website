@@ -1152,12 +1152,17 @@
     line-height: 1;
   }
 
-  /* Active checkpoint */
+  /* Active checkpoint — keep a clean circle by painting the gradient inside
+     the padding-box (not the border) and dropping the scale transform, which
+     was rasterizing the edge into a squircle on some devices. */
   .schedule-table tbody tr.is-open .date-cell {
     background: var(--gradient-primary);
+    background-clip: padding-box;
     color: white;
-    border-color: transparent;
-    transform: scale(1.1);
+    border-color: var(--ss-red);
+    border-radius: 50%;
+    transform: none;
+    box-shadow: 0 6px 18px rgba(231, 48, 82, 0.35);
   }
 
   /* Module title (label) — "Module N:" prefix is hidden; title reads as a
