@@ -2119,6 +2119,85 @@
   }
 
   // ==========================================
+  // VIBE LAB — SCHEDULE JOURNEY TRAIL (mobile only)
+  // Transforms the course schedule <table> into an interactive
+  // journey trail on mobile. Desktop (>768px) is untouched.
+  // ==========================================
+
+  function initScheduleTrail() {
+    const rows = document.querySelectorAll('.schedule-table tbody tr');
+    if (!rows.length) return;
+
+    const mql = window.matchMedia('(max-width: 768px)');
+
+    function toggleRow(row) {
+      const isOpen = row.classList.contains('is-open');
+      rows.forEach(r => {
+        r.classList.remove('is-open');
+        r.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        row.classList.add('is-open');
+        row.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    function onClick(e) {
+      if (!mql.matches) return;
+      toggleRow(e.currentTarget);
+    }
+
+    function onKeydown(e) {
+      if (!mql.matches) return;
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        toggleRow(e.currentTarget);
+      }
+    }
+
+    rows.forEach(row => {
+      // Listeners are always attached once; the mql guard makes them no-op
+      // on desktop. Attributes are added/removed based on viewport.
+      if (!row._trailBound) {
+        row.addEventListener('click', onClick);
+        row.addEventListener('keydown', onKeydown);
+        row._trailBound = true;
+      }
+    });
+
+    function applyMobile() {
+      rows.forEach(row => {
+        row.setAttribute('tabindex', '0');
+        row.setAttribute('role', 'button');
+        row.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    function removeMobile() {
+      rows.forEach(row => {
+        row.classList.remove('is-open');
+        row.removeAttribute('aria-expanded');
+        row.removeAttribute('tabindex');
+        row.removeAttribute('role');
+      });
+    }
+
+    function syncToViewport() {
+      if (mql.matches) applyMobile();
+      else removeMobile();
+    }
+
+    syncToViewport();
+
+    if (typeof mql.addEventListener === 'function') {
+      mql.addEventListener('change', syncToViewport);
+    } else if (typeof mql.addListener === 'function') {
+      // Safari < 14 fallback
+      mql.addListener(syncToViewport);
+    }
+  }
+
+  // ==========================================
   // INITIALIZATION
   // ==========================================
   
@@ -2149,6 +2228,7 @@
       initAccordion(); // Add accordion functionality
       initVibeLabForm(); // Add Vibe Lab form submission handling
       initPopupModals(); // Add popup modal functionality for students page
+      initScheduleTrail(); // Vibe Lab schedule journey trail (mobile)
       
       // Optional: Add preloader for luxury feel
       // initPreloader();

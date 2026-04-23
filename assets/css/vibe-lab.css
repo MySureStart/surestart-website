@@ -155,7 +155,7 @@
   height: 120px;
   background: linear-gradient(180deg, var(--surface-secondary) 0%, rgba(250, 249, 246, 0.8) 30%, transparent 100%);
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
 }
 
 .vibe-content-section::after{
@@ -874,29 +874,61 @@
 
 /* Tablet (768px) */
 @media (max-width: 768px) {
-  /* Hero */
+  /* Hero — mirrors K-12 mobile hero rhythm (shorter, vertically centered block) */
   .vibe-lab-hero {
-    padding: var(--hero-padding-top-mobile, 60px) 0 var(--hero-padding-bottom-mobile, 40px);
-    min-height: var(--hero-min-height-mobile, 50vh);
+    padding: 100px 0 40px;
+    min-height: 55vh;
   }
 
   .vibe-lab-hero-container {
-    min-height: 50vh;
+    min-height: 40vh;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .vibe-lab-hero .hero-content-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-xl);
+    min-height: 40vh;
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .vibe-lab-hero .hero-text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: var(--space-xl);
+    max-width: 100%;
   }
 
   .vibe-lab-hero-title {
+    font-size: clamp(28px, 6vw, 48px);
     text-align: left;
     grid-column: unset;
     grid-row: unset;
+    max-width: 100%;
   }
 
   .vibe-lab-hero-subtitle {
+    font-size: clamp(16px, 2.5vw, 20px);
     text-align: left;
     grid-column: unset;
     grid-row: unset;
-    padding-top: var(--space-lg);
-    margin-top: var(--space-lg);
+    padding-top: 0;
+    margin-top: 0;
     max-width: 100%;
+  }
+
+  /* Pen underline — match K-12 mobile scale so it sits under the title only */
+  .vibe-lab-hero-title .gradient-text::after {
+    bottom: -10px;
+    height: 14px;
+    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
   }
 
   /* Content */
@@ -967,27 +999,233 @@
     padding: var(--space-3xl) 0;
   }
 
-  /* Schedule table */
-  .schedule-table th {
-    padding: var(--space-md);
-    font-size: var(--text-base);
+  /* Schedule table — journey trail layout on mobile
+     Winding dashed path with alternating left/right checkpoints.
+     Tapping a checkpoint toggles the description panel (JS-driven). */
+  .schedule-table-wrapper {
+    position: relative;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 24px 0 0;
+    overflow-x: visible;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
   }
 
+  /* Dashed winding trail rendered as an inline-SVG data URI.
+     Checkpoints sit at y = 52, 192, 332, 472, 612, 752 in a 360x904 viewBox
+     so they align with the dot centers (padding-top 24 + rowTop + dotRadius 28)
+     when row min-height is 140px. SVG stretches to fill wrapper, so scaling
+     holds on the small-mobile breakpoint too. */
+  .schedule-table-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 904' preserveAspectRatio='none'%3E%3Cpath d='M 180 52 C 180 112 270 132 270 192 C 270 252 90 272 90 332 C 90 392 270 412 270 472 C 270 532 90 552 90 612 C 90 672 180 692 180 752' stroke='%23E73052' stroke-width='2.5' stroke-linecap='round' stroke-dasharray='2 9' opacity='0.55' fill='none'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .schedule-table {
+    display: block;
+    width: 100%;
+    background: transparent;
+  }
+
+  .schedule-table thead {
+    display: none;
+  }
+
+  .schedule-table tbody {
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    counter-reset: module-counter;
+  }
+
+  /* Row resets — wipe desktop table chrome, turn each row into a grid */
+  .schedule-table tbody tr,
+  .schedule-table tbody tr:nth-child(odd),
+  .schedule-table tbody tr:nth-child(even) {
+    display: grid;
+    width: 100%;
+    min-height: 140px;
+    column-gap: 14px;
+    padding: 0 16px;
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    align-items: start;
+    cursor: pointer;
+  }
+
+  /* Odd rows — checkpoint on LEFT (aligned to trail x=90 of 360) */
+  .schedule-table tbody tr:nth-child(odd) {
+    grid-template-columns: 46px 56px 1fr;
+    grid-template-areas:
+      ". dot label"
+      "desc desc desc";
+    text-align: left;
+  }
+
+  /* Even rows — checkpoint on RIGHT (aligned to trail x=270 of 360) */
+  .schedule-table tbody tr:nth-child(even) {
+    grid-template-columns: 1fr 56px 46px;
+    grid-template-areas:
+      "label dot ."
+      "desc desc desc";
+    text-align: right;
+  }
+
+  /* Module 1 — trail start, dot centered, label on the right */
+  .schedule-table tbody tr:first-child {
+    grid-template-columns: 1fr 56px 1fr;
+    grid-template-areas:
+      ". dot label"
+      "desc desc desc";
+    text-align: left;
+  }
+
+  /* Module 6 — trail end, dot centered, label on the left */
+  .schedule-table tbody tr:last-child {
+    grid-template-columns: 1fr 56px 1fr;
+    grid-template-areas:
+      "label dot ."
+      "desc desc desc";
+    text-align: right;
+  }
+
+  /* Trophy replaces the number in the last checkpoint */
+  .schedule-table tbody tr:last-child .date-cell::before {
+    content: '🏆';
+    font-size: 20px;
+  }
+
+  /* Cell resets */
   .schedule-table td {
-    padding: var(--space-md);
+    display: block;
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
     font-size: var(--text-sm);
+    line-height: 1.5;
+    text-transform: none;
+    letter-spacing: normal;
+    white-space: normal;
+    vertical-align: baseline;
   }
 
-  .date-column {
-    min-width: 80px;
+  /* Checkpoint dot */
+  .schedule-table .date-cell {
+    grid-area: dot;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: var(--ss-red);
+    border: 3px solid var(--ss-red);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(231, 48, 82, 0.25);
+    font-size: 0;
+    font-weight: 800;
+    text-align: center;
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   }
 
-  .module-column {
-    min-width: 220px;
+  .schedule-table .date-cell::before {
+    counter-increment: module-counter;
+    content: counter(module-counter);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
   }
 
+  /* Active checkpoint */
+  .schedule-table tbody tr.is-open .date-cell {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: transparent;
+    transform: scale(1.1);
+  }
+
+  /* Module title (label) — "Module N:" prefix is hidden; title reads as a
+     subdued grey label next to the red checkpoint. */
+  .schedule-table .module-cell {
+    grid-area: label;
+    padding: 8px 0;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--text-muted);
+  }
+
+  .schedule-table .module-prefix {
+    display: none;
+  }
+
+  /* Description panel — collapsed by default, expands when row is open */
+  .schedule-table .description-cell {
+    grid-area: desc;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 16px;
+    margin: 0 8px;
+    overflow: hidden;
+    background: white;
+    border: 1px solid rgba(231, 48, 82, 0.15);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    text-align: left;
+    transition: max-height 0.4s ease, opacity 0.3s ease 0.05s, padding 0.3s ease, margin 0.3s ease;
+  }
+
+  .schedule-table tbody tr.is-open .description-cell {
+    max-height: 400px;
+    opacity: 1;
+    padding: 16px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+  }
+
+  /* Accessibility — keyboard focus ring lives on the dot */
+  .schedule-table tbody tr:focus {
+    outline: none;
+  }
+
+  .schedule-table tbody tr:focus-visible {
+    outline: none;
+  }
+
+  .schedule-table tbody tr:focus-visible .date-cell {
+    box-shadow: 0 0 0 3px rgba(231, 48, 82, 0.35), 0 4px 12px rgba(231, 48, 82, 0.25);
+  }
+
+  /* Reset desktop column min-widths for mobile */
+  .date-column,
+  .module-column,
   .description-column {
-    min-width: 250px;
+    width: auto;
+    min-width: 0;
+  }
+
+  /* Tighten seam between trail and outcomes on mobile */
+  .course-outcomes-container {
+    padding-top: 0;
   }
 
   /* Outcomes */
@@ -1078,8 +1316,26 @@
 
 /* Small mobile (480px) */
 @media (max-width: 480px) {
+  /* Hero — matches K-12 small mobile treatment */
   .vibe-lab-hero {
-    min-height: var(--hero-min-height-mobile-sm, 45vh);
+    padding: 70px 0 20px;
+    min-height: 50vh;
+  }
+
+  .vibe-lab-hero .hero-content-grid,
+  .vibe-lab-hero .hero-text-section {
+    gap: var(--space-lg);
+  }
+
+  .vibe-lab-hero-subtitle {
+    margin-bottom: var(--space-xs);
+  }
+
+  /* Pen underline — tighter at small mobile */
+  .vibe-lab-hero-title .gradient-text::after {
+    bottom: -8px;
+    height: 12px;
+    transform: translateY(80%) translateX(-15%) scaleX(25) scaleY(25) rotate(4deg);
   }
 
   /* Skills */
@@ -1107,9 +1363,50 @@
     font-size: var(--text-2xl);
   }
 
+  /* Schedule trail — tighter geometry on small mobile */
+  .schedule-table-wrapper {
+    max-width: 320px;
+    padding: 20px 0 0;
+  }
+
+  .schedule-table tbody tr,
+  .schedule-table tbody tr:nth-child(odd),
+  .schedule-table tbody tr:nth-child(even) {
+    min-height: 120px;
+    column-gap: 12px;
+  }
+
+  /* Keep dots aligned to the new trail (x=80 / x=240 on a 320px wrapper) */
+  .schedule-table tbody tr:nth-child(odd) {
+    grid-template-columns: 40px 48px 1fr;
+  }
+
+  .schedule-table tbody tr:nth-child(even) {
+    grid-template-columns: 1fr 48px 40px;
+  }
+
+  .schedule-table tbody tr:first-child,
+  .schedule-table tbody tr:last-child {
+    grid-template-columns: 1fr 48px 1fr;
+  }
+
+  .schedule-table .date-cell {
+    width: 48px;
+    height: 48px;
+    border-width: 2.5px;
+  }
+
+  .schedule-table .date-cell::before {
+    font-size: 18px;
+  }
+
+  .schedule-table tbody tr.is-open .description-cell {
+    padding: 14px;
+  }
+
   /* Outcomes */
   .course-outcomes-container {
-    padding: var(--space-3xl) 0 0 0;
+    padding: 0;
   }
 
   .outcomes-title {
