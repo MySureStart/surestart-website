@@ -335,7 +335,7 @@
 
 .details-section {
   background: var(--ss-red);
-  padding: var(--space-5xl) 0;
+  padding: var(--space-3xl) 0;
   color: white;
 }
 
@@ -348,7 +348,7 @@
 .details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-4xl);
+  gap: var(--space-3xl);
   align-items: center;
 }
 
@@ -361,15 +361,15 @@
   font-weight: 700;
   line-height: 1.2;
   color: white;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
 }
 
 .details-content {
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-lg);
 }
 
 .detail-item {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .detail-item h4 {
@@ -387,7 +387,7 @@
 }
 
 .details-cta {
-  margin-top: var(--space-xl);
+  margin-top: var(--space-lg);
 }
 
 .details-section .btn-secondary {
@@ -404,12 +404,12 @@
 .details-image {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
 }
 
 .details-bg-image {
   width: 100%;
-  max-width: 500px;
+  max-width: 320px;
   height: auto;
   border-radius: var(--border-radius-xl);
   box-shadow: var(--shadow-xl);
@@ -964,7 +964,7 @@
   }
 
   .details-section {
-    padding: var(--space-4xl) 0;
+    padding: var(--space-3xl) 0;
   }
 
   /* Schedule table */
