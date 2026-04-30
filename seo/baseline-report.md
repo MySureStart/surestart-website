@@ -2,7 +2,7 @@
 
 **Generated:** January 20, 2026  
 **Repository:** https://github.com/MySureStart/surestart-website.git  
-**Domain:** https://mysurestart.org
+**Domain:** https://mysurestart.com
 
 ---
 
@@ -12,13 +12,13 @@
 
 | File | Purpose | URL |
 |------|---------|-----|
-| `index.html` | Homepage | https://mysurestart.org/ |
-| `about-us.html` | About Us | https://mysurestart.org/about-us.html |
-| `contact-us.html` | Contact Us | https://mysurestart.org/contact-us.html |
-| `higher-ed.html` | Higher Education Programs | https://mysurestart.org/higher-ed.html |
-| `impact-stories.html` | Impact Stories/Testimonials | https://mysurestart.org/impact-stories.html |
-| `k12.html` | K-12 Programs | https://mysurestart.org/k12.html |
-| `students.html` | Students Page | https://mysurestart.org/students.html |
+| `index.html` | Homepage | https://mysurestart.com/ |
+| `about-us.html` | About Us | https://mysurestart.com/about-us.html |
+| `contact-us.html` | Contact Us | https://mysurestart.com/contact-us.html |
+| `higher-ed.html` | Higher Education Programs | https://mysurestart.com/higher-ed.html |
+| `impact-stories.html` | Impact Stories/Testimonials | https://mysurestart.com/impact-stories.html |
+| `k12.html` | K-12 Programs | https://mysurestart.com/k12.html |
+| `students.html` | Students Page | https://mysurestart.com/students.html |
 
 ### Error Pages (4 pages - should not be indexed)
 
@@ -92,13 +92,13 @@
 
 | URL | Priority | Change Frequency |
 |-----|:--------:|:----------------:|
-| https://mysurestart.org/ | 1.0 | weekly |
-| https://mysurestart.org/k12.html | 0.9 | weekly |
-| https://mysurestart.org/higher-ed.html | 0.9 | weekly |
-| https://mysurestart.org/students.html | 0.9 | weekly |
-| https://mysurestart.org/about-us.html | 0.8 | monthly |
-| https://mysurestart.org/contact-us.html | 0.8 | monthly |
-| https://mysurestart.org/impact-stories.html | 0.7 | monthly |
+| https://mysurestart.com/ | 1.0 | weekly |
+| https://mysurestart.com/k12.html | 0.9 | weekly |
+| https://mysurestart.com/higher-ed.html | 0.9 | weekly |
+| https://mysurestart.com/students.html | 0.9 | weekly |
+| https://mysurestart.com/about-us.html | 0.8 | monthly |
+| https://mysurestart.com/contact-us.html | 0.8 | monthly |
+| https://mysurestart.com/impact-stories.html | 0.7 | monthly |
 
 ### Sitemap Validation
 
@@ -124,7 +124,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://mysurestart.org/sitemap.xml
+Sitemap: https://mysurestart.com/sitemap.xml
 
 # Disallow development files
 Disallow: /*.ps1$
@@ -190,7 +190,7 @@ Allow: /assets/
 
 2. **Add canonical tags to all pages**
    ```html
-   <link rel="canonical" href="https://mysurestart.org/[page-url]" />
+   <link rel="canonical" href="https://mysurestart.com/[page-url]" />
    ```
 
 3. **Add noindex directive to error pages**

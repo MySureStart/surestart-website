@@ -18,7 +18,7 @@ npm run seo:check           # Runs SEO smoke test on all pages
 ✅ sitemap.xml generated
    - 7 URLs included
    - Last modified: 2026-01-26
-   - Base URL: https://mysurestart.org
+   - Base URL: https://mysurestart.com
 
 ✅ robots.txt generated (production mode)
 ```
@@ -50,8 +50,8 @@ npm run seo:check           # Runs SEO smoke test on all pages
 | Check | Status | Details |
 |-------|--------|---------|
 | **robots.txt production** | ✅ | `Allow: /` (no `Disallow: /`) |
-| **robots.txt sitemap** | ✅ | `Sitemap: https://mysurestart.org/sitemap.xml` |
-| **sitemap.xml URLs** | ✅ | 7 URLs, all use `https://mysurestart.org` |
+| **robots.txt sitemap** | ✅ | `Sitemap: https://mysurestart.com/sitemap.xml` |
+| **sitemap.xml URLs** | ✅ | 7 URLs, all use `https://mysurestart.com` |
 | **{{BASE_URL}} in outputs** | ✅ | 0 occurrences in HTML files |
 | **{{BASE_URL}} in repo** | ⚠️ | Found in docs/scripts (expected — these are templates) |
 | **OG image file** | ✅ | `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg` exists |

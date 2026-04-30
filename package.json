@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "seo:sitemap": "node scripts/generate-sitemap.js",
-    "seo:sitemap:prod": "cross-env BASE_URL=https://mysurestart.org node scripts/generate-sitemap.js",
+    "seo:sitemap:prod": "cross-env BASE_URL=https://mysurestart.com node scripts/generate-sitemap.js",
     "seo:robots": "node scripts/generate-robots.js",
-    "seo:robots:prod": "cross-env SITE_ENV=production BASE_URL=https://mysurestart.org node scripts/generate-robots.js",
+    "seo:robots:prod": "cross-env SITE_ENV=production BASE_URL=https://mysurestart.com node scripts/generate-robots.js",
     "seo:generate": "npm run seo:sitemap && npm run seo:robots:prod",
     "seo:generate:prod": "npm run seo:sitemap:prod && npm run seo:robots:prod",
     "redirects:merge": "node scripts/generate-redirects.js",

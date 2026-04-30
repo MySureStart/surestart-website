@@ -3,7 +3,7 @@
  * 
  * Usage: 
  *   node scripts/generate-sitemap.js                              # Uses {{BASE_URL}} placeholder
- *   BASE_URL=https://mysurestart.org node scripts/generate-sitemap.js  # Uses actual domain
+ *   BASE_URL=https://mysurestart.com node scripts/generate-sitemap.js  # Uses actual domain
  * 
  * npm scripts:
  *   npm run seo:sitemap       # Development (placeholder)

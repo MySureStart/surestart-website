@@ -99,7 +99,7 @@ Search confirmed no remaining references to page-specific OG files:
 
 ## Usage
 
-After replacing `{{BASE_URL}}` with `https://mysurestart.org`, the OG image URL will be:
+After replacing `{{BASE_URL}}` with `https://mysurestart.com`, the OG image URL will be:
 
 ```
 https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/default.svg

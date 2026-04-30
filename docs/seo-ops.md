@@ -99,11 +99,11 @@ Both scripts use `{{BASE_URL}}` as a placeholder for the site URL.
 ```bash
 # Example: Replace placeholder with actual domain
 # Linux/Mac:
-sed -i 's/{{BASE_URL}}/https:\/\/mysurestart.org/g' sitemap.xml robots.txt
+sed -i 's/{{BASE_URL}}/https:\/\/mysurestart.com/g' sitemap.xml robots.txt
 
 # Windows PowerShell:
-(Get-Content sitemap.xml) -replace '\{\{BASE_URL\}\}', 'https://mysurestart.org' | Set-Content sitemap.xml
-(Get-Content robots.txt) -replace '\{\{BASE_URL\}\}', 'https://mysurestart.org' | Set-Content robots.txt
+(Get-Content sitemap.xml) -replace '\{\{BASE_URL\}\}', 'https://mysurestart.com' | Set-Content sitemap.xml
+(Get-Content robots.txt) -replace '\{\{BASE_URL\}\}', 'https://mysurestart.com' | Set-Content robots.txt
 ```
 
 ---

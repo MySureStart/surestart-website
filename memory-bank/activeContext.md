@@ -91,14 +91,14 @@ npm run assets:check        # Validate asset links
 
 ### Optional Cleanup
 - [ ] Delete old flat .html files (about-us.html, contact-us.html, etc.)
-- [ ] Consider domain redirect mysurestart.com → mysurestart.org (if needed)
+- [ ] Consider domain redirect mysurestart.com → mysurestart.com (if needed)
 
 ---
 
 ## GitHub Pages Notes
 
 - **Deployment:** Push to main branch, GitHub Pages serves from root
-- **CNAME:** File exists for custom domain (mysurestart.org)
+- **CNAME:** File exists for custom domain (mysurestart.com)
 - **Caching:** Built-in, no custom headers needed
 - **Redirects:** GitHub Pages doesn't support server-side 301 redirects
   - Legacy URLs will need to be handled differently if needed
@@ -144,13 +144,13 @@ npm run perf:lighthouse
 
 | Page | Live URL |
 |------|----------|
-| Home | `https://mysurestart.org/` |
-| About | `https://mysurestart.org/about/` |
-| Contact | `https://mysurestart.org/contact/` |
-| For Universities | `https://mysurestart.org/for-universities/` |
-| For Students | `https://mysurestart.org/for-students/` |
-| K-12 | `https://mysurestart.org/k12/` |
-| Impact Stories | `https://mysurestart.org/impact-stories/` |
+| Home | `https://mysurestart.com/` |
+| About | `https://mysurestart.com/about/` |
+| Contact | `https://mysurestart.com/contact/` |
+| For Universities | `https://mysurestart.com/for-universities/` |
+| For Students | `https://mysurestart.com/for-students/` |
+| K-12 | `https://mysurestart.com/k12/` |
+| Impact Stories | `https://mysurestart.com/impact-stories/` |
 
 ---
 

@@ -33,8 +33,8 @@ Added new npm scripts:
 
 | Script | Command | Purpose |
 |--------|---------|---------|
-| `seo:sitemap:prod` | `cross-env BASE_URL=https://mysurestart.org node scripts/generate-sitemap.js` | Generate sitemap with production URL |
-| `seo:robots:prod` | `cross-env SITE_ENV=production BASE_URL=https://mysurestart.org node scripts/generate-robots.js` | Generate production robots.txt with URL |
+| `seo:sitemap:prod` | `cross-env BASE_URL=https://mysurestart.com node scripts/generate-sitemap.js` | Generate sitemap with production URL |
+| `seo:robots:prod` | `cross-env SITE_ENV=production BASE_URL=https://mysurestart.com node scripts/generate-robots.js` | Generate production robots.txt with URL |
 | `seo:generate:prod` | `npm run seo:sitemap:prod && npm run seo:robots:prod` | Generate both for production |
 
 ### 4. Dependencies
@@ -51,22 +51,22 @@ Added new npm scripts:
 ✅ sitemap.xml generated
    - 7 URLs included
    - Last modified: 2026-01-26
-   - Base URL: https://mysurestart.org
+   - Base URL: https://mysurestart.com
 ```
 
 **Verification:**
-- ✅ Contains `https://mysurestart.org` (7 occurrences)
+- ✅ Contains `https://mysurestart.com` (7 occurrences)
 - ✅ No `{{BASE_URL}}` placeholders
 - ✅ All 7 public pages included
 
 **URLs in sitemap:**
-1. `https://mysurestart.org/`
-2. `https://mysurestart.org/about/`
-3. `https://mysurestart.org/contact/`
-4. `https://mysurestart.org/for-universities/`
-5. `https://mysurestart.org/for-students/`
-6. `https://mysurestart.org/k12/`
-7. `https://mysurestart.org/impact-stories/`
+1. `https://mysurestart.com/`
+2. `https://mysurestart.com/about/`
+3. `https://mysurestart.com/contact/`
+4. `https://mysurestart.com/for-universities/`
+5. `https://mysurestart.com/for-students/`
+6. `https://mysurestart.com/k12/`
+7. `https://mysurestart.com/impact-stories/`
 
 ### robots.txt ✅
 
@@ -74,13 +74,13 @@ Added new npm scripts:
 ✅ robots.txt generated
    - Environment: production
    - Crawling: ALLOWED
-   - Base URL: https://mysurestart.org
+   - Base URL: https://mysurestart.com
 ```
 
 **Verification:**
 - ✅ Contains `Allow: /` (crawling enabled)
 - ✅ No `Disallow: /` (not blocking crawlers)
-- ✅ Sitemap URL: `https://mysurestart.org/sitemap.xml`
+- ✅ Sitemap URL: `https://mysurestart.com/sitemap.xml`
 - ✅ No `{{BASE_URL}}` placeholders
 
 **robots.txt content:**
@@ -92,7 +92,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://mysurestart.org/sitemap.xml
+Sitemap: https://mysurestart.com/sitemap.xml
 ```
 
 ---
@@ -108,7 +108,7 @@ npm run seo:generate   # Development mode
 
 ### Production (actual domain)
 ```bash
-npm run seo:sitemap:prod   # Uses https://mysurestart.org
+npm run seo:sitemap:prod   # Uses https://mysurestart.com
 npm run seo:robots:prod    # Allows crawlers + real sitemap URL
 npm run seo:generate:prod  # Production mode (recommended before deploy)
 ```
@@ -137,7 +137,7 @@ Run this PowerShell command to replace all HTML placeholders:
 
 ```powershell
 Get-ChildItem -Path . -Filter *.html -Recurse | Where-Object { $_.FullName -notlike "*\assets\*" } | ForEach-Object {
-    (Get-Content $_.FullName) -replace '\{\{BASE_URL\}\}', 'https://mysurestart.org' | Set-Content $_.FullName
+    (Get-Content $_.FullName) -replace '\{\{BASE_URL\}\}', 'https://mysurestart.com' | Set-Content $_.FullName
 }
 ```
 

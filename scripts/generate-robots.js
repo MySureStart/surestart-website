@@ -4,7 +4,7 @@
  * Usage: 
  *   node scripts/generate-robots.js                                    # Development (Disallow all)
  *   SITE_ENV=production node scripts/generate-robots.js                # Production (Allow all, placeholder URL)
- *   SITE_ENV=production BASE_URL=https://mysurestart.org node scripts/generate-robots.js  # Production (actual domain)
+ *   SITE_ENV=production BASE_URL=https://mysurestart.com node scripts/generate-robots.js  # Production (actual domain)
  * 
  * npm scripts:
  *   npm run seo:robots       # Development (blocks crawlers)

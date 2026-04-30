@@ -98,4 +98,4 @@ Blocks crawling of URLs with these parameters:
 | AI bot blocking | **Decide:** Keep or remove AI bot rules in new robots.txt |
 | Squarespace paths | **Remove:** `/config`, `/commerce` rules not needed on static site |
 | Query parameters | **Review:** May not apply to static HTML site |
-| Sitemap reference | **Update:** Already pointing to mysurestart.org in new robots.txt |
+| Sitemap reference | **Update:** Already pointing to mysurestart.com in new robots.txt |

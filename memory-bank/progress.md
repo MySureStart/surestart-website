@@ -103,7 +103,7 @@
 - [ ] Google Search Console setup
 - [ ] Sitemap submission to Google
 - [ ] Monitor 404 errors post-launch
-- [ ] Configure mysurestart.com → mysurestart.org domain redirect (if needed)
+- [ ] Configure mysurestart.com → mysurestart.com domain redirect (if needed)
 - [ ] Run Lighthouse audit on live site for final metrics
 
 ### ✅ Completed (Feb 9, 2026)
@@ -194,7 +194,7 @@
   - `impact-stories.html`
 - Added elements:
   - Meta descriptions (unique per page)
-  - Canonical URLs pointing to mysurestart.org
+  - Canonical URLs pointing to mysurestart.com
   - Robots meta tags (index, follow)
   - Complete Open Graph metadata (type, title, description, url, image with dimensions, site_name)
   - Twitter Card tags (summary_large_image)

@@ -11,7 +11,7 @@
 | **Forms** | Airtable Embeds | External form handling |
 | **Video** | YouTube Embeds + Self-hosted | Hero videos self-hosted |
 | **Hosting** | GitHub Pages | Static file serving |
-| **DNS** | Custom domain | mysurestart.org via CNAME |
+| **DNS** | Custom domain | mysurestart.com via CNAME |
 
 ---
 
@@ -126,7 +126,7 @@ npm run redirects:all       # Run all three
 
 ### Configuration
 
-- **CNAME file:** Points to `mysurestart.org`
+- **CNAME file:** Points to `mysurestart.com`
 - **Default branch:** `main`
 - **Deployment:** Automatic on push to main
 
@@ -135,14 +135,14 @@ npm run redirects:all       # Run all three
 ```
 Repository File              → Live URL
 ─────────────────────────────────────────────
-index.html                   → mysurestart.org/
-about/index.html             → mysurestart.org/about/
-contact/index.html           → mysurestart.org/contact/
-for-universities/index.html  → mysurestart.org/for-universities/
-for-students/index.html      → mysurestart.org/for-students/
-k12/index.html               → mysurestart.org/k12/
-impact-stories/index.html    → mysurestart.org/impact-stories/
-404.html                     → mysurestart.org/404.html (auto-serves)
+index.html                   → mysurestart.com/
+about/index.html             → mysurestart.com/about/
+contact/index.html           → mysurestart.com/contact/
+for-universities/index.html  → mysurestart.com/for-universities/
+for-students/index.html      → mysurestart.com/for-students/
+k12/index.html               → mysurestart.com/k12/
+impact-stories/index.html    → mysurestart.com/impact-stories/
+404.html                     → mysurestart.com/404.html (auto-serves)
 ```
 
 ### Limitations
@@ -159,14 +159,14 @@ impact-stories/index.html    → mysurestart.org/impact-stories/
 
 | Domain | Purpose | Hosting |
 |--------|---------|---------|
-| `mysurestart.org` | Production website | GitHub Pages |
+| `mysurestart.com` | Production website | GitHub Pages |
 | `mysurestart.com` | Legacy (Squarespace) | To be redirected |
 
 ### CNAME Record
 
 The `CNAME` file in repo root contains:
 ```
-mysurestart.org
+mysurestart.com
 ```
 
 ---
@@ -214,13 +214,13 @@ mysurestart.org
 ### Sitemap URLs
 
 ```
-https://mysurestart.org/
-https://mysurestart.org/about/
-https://mysurestart.org/contact/
-https://mysurestart.org/for-universities/
-https://mysurestart.org/for-students/
-https://mysurestart.org/k12/
-https://mysurestart.org/impact-stories/
+https://mysurestart.com/
+https://mysurestart.com/about/
+https://mysurestart.com/contact/
+https://mysurestart.com/for-universities/
+https://mysurestart.com/for-students/
+https://mysurestart.com/k12/
+https://mysurestart.com/impact-stories/
 ```
 
 ---

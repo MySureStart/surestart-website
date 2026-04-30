@@ -167,4 +167,4 @@
 
 ---
 
-*This inventory informs the redirect mapping strategy for the mysurestart.com → mysurestart.org migration.*
+*This inventory informs the redirect mapping strategy for the mysurestart.com → mysurestart.com migration.*

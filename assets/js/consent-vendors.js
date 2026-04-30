@@ -452,7 +452,7 @@
     // Delete each cookie across likely domain/path combos
     var hostname = root.location.hostname;
     var domains = ['', hostname];
-    // Add bare domain (e.g., "mysurestart.org" from "www.mysurestart.org")
+    // Add bare domain (e.g., "mysurestart.com" from "www.mysurestart.com")
     var parts = hostname.split('.');
     if (parts.length > 2) {
       domains.push(parts.slice(1).join('.'));

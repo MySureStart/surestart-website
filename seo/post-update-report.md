@@ -72,7 +72,7 @@ All 11 HTML pages have been updated with proper SEO meta tags.
 ## Placeholder Notes
 
 - `{{BASE_URL}}` placeholder used for canonical and OG URLs
-- Replace with actual domain before deployment (e.g., `https://mysurestart.org`)
+- Replace with actual domain before deployment (e.g., `https://mysurestart.com`)
 - OG images point to `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/` which need to be created
 
 ---
@@ -104,7 +104,7 @@ All pages already had:
 
 ## Next Steps
 
-1. **Replace `{{BASE_URL}}`** with actual domain (`https://mysurestart.org`)
+1. **Replace `{{BASE_URL}}`** with actual domain (`https://mysurestart.com`)
 2. **Create OG images** in `https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/og/` directory
 3. **Test meta tags** using browser dev tools or SEO testing tools
 4. **Submit sitemap** to Google Search Console

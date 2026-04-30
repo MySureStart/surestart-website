@@ -11,7 +11,7 @@
 
 ## Context
 
-The SureStart website (`mysurestart.org`) is a static HTML site hosted on GitHub Pages. It currently loads **Google Analytics 4** (gtag.js `G-CM0T1ZNC15`) unconditionally on all 11 pages, embeds **YouTube** iframes on 4 pages (8 instances), and embeds **Airtable** forms on 2 pages (3 instances). None of these are gated behind consent. There is no cookie banner, no privacy policy page, and no mechanism for visitors to accept or reject non-essential cookies.
+The SureStart website (`mysurestart.com`) is a static HTML site hosted on GitHub Pages. It currently loads **Google Analytics 4** (gtag.js `G-CM0T1ZNC15`) unconditionally on all 11 pages, embeds **YouTube** iframes on 4 pages (8 instances), and embeds **Airtable** forms on 2 pages (3 instances). None of these are gated behind consent. There is no cookie banner, no privacy policy page, and no mechanism for visitors to accept or reject non-essential cookies.
 
 This violates:
 - **EU/UK ePrivacy Directive Art. 5(3)** — prior opt-in consent required before setting non-essential cookies.

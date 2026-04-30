@@ -1,4 +1,4 @@
-# Cookie Policy Audit — mysurestart.org
+# Cookie Policy Audit — mysurestart.com
 
 > **Date:** 25 March 2026
 > **Auditor:** Cline (AI assistant) — codebase + search audit

@@ -11,7 +11,7 @@
 | Domain | Purpose | Status |
 |--------|---------|--------|
 | `mysurestart.com` | Legacy Squarespace site | Being retired |
-| `mysurestart.org` | New static HTML site | Active, primary domain |
+| `mysurestart.com` | New static HTML site | Active, primary domain |
 
 ## Mission
 
