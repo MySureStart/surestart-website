@@ -4,7 +4,7 @@ from,to,status_code,note
 /contact,/contact/,301,"URL renamed from /contact to /contact-us.html"
 /courses,/for-students/,301,"Courses index not created yet - redirect to students"
 /discord,/contact/,301,"Discord form - redirect to contact (form TBD)"
-/for-companies,/,301,"Companies page retired - redirect to home"
+/for-companies,/for-universities/,301,"Companies page redirected to Higher Ed"
 /for-students-2024,/for-students/,301,"Old students page URL"
 /for-universities,/for-universities/,301,"URL renamed from /for-universities to /higher-ed.html"
 /futuremakers-track-1,/for-students/,301,"FutureMakers resources consolidated"

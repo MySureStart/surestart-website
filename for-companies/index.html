@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirecting to Higher Ed — SureStart</title>
+
+<!-- SEO: tell crawlers this URL is permanently consolidated into /for-universities/ -->
+<link rel="canonical" href="https://mysurestart.com/for-universities/">
+<meta name="robots" content="noindex, follow">
+
+<!-- Soft 301: instant client-side redirect (Google treats meta-refresh with 0s delay as a 301) -->
+<meta http-equiv="refresh" content="0; url=/for-universities/">
+
+<!-- Faster JS-based redirect that runs before paint and does NOT pollute browser history -->
+<script>window.location.replace('/for-universities/');</script>
+
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 2rem; color: #1a1a1a; background: #fff; }
+  .wrap { max-width: 32rem; margin: 4rem auto; text-align: center; }
+  a { color: #0057ff; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <p>Redirecting to <a href="/for-universities/">Higher Ed</a>…</p>
+    <noscript>
+      <p>If you are not redirected automatically, <a href="/for-universities/">click here to continue to Higher Ed</a>.</p>
+    </noscript>
+  </div>
+</body>
+</html>

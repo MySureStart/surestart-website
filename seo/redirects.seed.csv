@@ -4,7 +4,7 @@ from,to,status,note
 /case-study,/impact-stories/,301,Case study moved to impact stories
 /store,/,301,Store retired - redirect to home
 /sel-checkout,/,301,SEL checkout retired - redirect to home
-/for-companies,/,301,Companies page retired - redirect to home
+/for-companies,/for-universities/,301,Companies page redirected to Higher Ed
 /futuremakers-track-1,/for-students/,301,FutureMakers resources consolidated
 /futuremakers-track-2,/for-students/,301,FutureMakers resources consolidated
 /futuremakers-track-3,/for-students/,301,FutureMakers resources consolidated
