@@ -7,9 +7,16 @@
 
 /* ---------- Hero ---------- */
 
+body{
+ background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
+}
+
 .blog-hero {
   position: relative;
-  background: var(--gradient-subtle);
   padding: var(--space-4xl) var(--space-xl) var(--space-3xl);
   overflow: hidden;
 }
@@ -18,7 +25,6 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--gradient-overlay);
   pointer-events: none;
 }
 
@@ -61,7 +67,6 @@
 
 .blog-list-section {
   padding: var(--space-3xl) var(--space-xl) var(--space-4xl);
-  background: var(--surface-primary);
 }
 
 .blog-list-container {
@@ -193,7 +198,11 @@
 
 .blog-article-section {
   padding: var(--space-3xl) var(--space-xl) var(--space-4xl);
-  background: var(--surface-primary);
+  background: linear-gradient(180deg, 
+    var(--surface-secondary) 0%, 
+    rgba(250, 249, 246, 0.8) 30%,
+    transparent 100%
+  );
 }
 
 .blog-article {
@@ -271,6 +280,35 @@
   height: auto;
   max-height: 480px;
   object-fit: cover;
+}
+
+/* Optional small credit/caption rendered as a sibling <p> below the hero
+   figure. The hero figure has `var(--space-2xl)` bottom margin; when a credit
+   follows it, tighten that gap and let the credit own the spacing below. */
+.blog-article__hero:has(+ .blog-article__hero-credit) {
+  margin-bottom: var(--space-md);
+}
+
+.blog-article__hero-credit {
+  /* display: block;
+  margin: 0 0 var(--space-2xl);
+  padding: 0 var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  text-align: center;
+  font-style: italic; */
+  display:none
+}
+
+.blog-article__hero-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+
+.blog-article__hero-credit a:hover {
+  color: var(--primary-terracotta);
 }
 
 /* ---------- Article body typography ---------- */
@@ -360,7 +398,8 @@
 /* ---------- Tags + footer ---------- */
 
 .blog-article__tags {
-  display: flex;
+  /* display: flex; */
+  display: none;
   flex-wrap: wrap;
   gap: var(--space-xs);
   margin-top: var(--space-2xl);

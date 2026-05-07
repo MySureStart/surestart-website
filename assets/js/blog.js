@@ -163,8 +163,10 @@
       return '<span class="blog-article__tag">#' + escapeHtml(t.name) + '</span>';
     }).join('');
 
+    // No `fade-up` on detail view: long-form articles read better without
+    // scroll-triggered reveals. Listing cards (renderCard) still animate.
     article.innerHTML = [
-      '<header class="blog-article__header fade-up">',
+      '<header class="blog-article__header">',
       '  <a class="blog-article__back" href="/blog/">&larr; Back to Blog</a>',
       '  <div class="blog-article__categories">' + cats + '</div>',
       '  <h1 class="blog-article__title">' + escapeHtml(post.title) + '</h1>',
@@ -175,11 +177,17 @@
       '  </div>',
       '</header>',
       img.url
-        ? '<figure class="blog-article__hero fade-up"><img src="' + escapeHtml(img.url) + '" alt="' + escapeHtml(img.alt || post.title) + '"></figure>'
+        ? '<figure class="blog-article__hero"><img src="' + escapeHtml(img.url) + '" alt="' + escapeHtml(img.alt || post.title) + '"></figure>'
         : '',
-      '<div class="blog-article__body fade-up">' + post.content + '</div>',
-      tags ? '<div class="blog-article__tags fade-up">' + tags + '</div>' : '',
-      '<div class="blog-article__footer fade-up">',
+      // Optional caption/credit rendered as a sibling <p> below the hero figure.
+      // `credit` is intentionally raw HTML (same trust model as `content`) so it
+      // can carry an <a> tag. Mock data is author-controlled.
+      img.url && img.credit
+        ? '<p class="blog-article__hero-credit">' + img.credit + '</p>'
+        : '',
+      '<div class="blog-article__body">' + post.content + '</div>',
+      tags ? '<div class="blog-article__tags">' + tags + '</div>' : '',
+      '<div class="blog-article__footer">',
       '  <a class="btn btn-primary" href="/blog/">',
       '    <span>Back to Blog</span>',
       '    <svg class="btn-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none">',
@@ -188,24 +196,22 @@
       '  </a>',
       '</div>'
     ].join('\n');
-
-    observeFadeUp(article);
   }
 
   function renderNotFound(slug) {
     var article = $('#blog-article');
     if (!article) return;
+    // Match renderArticle: no fade-up on the detail view.
     article.innerHTML = [
-      '<header class="blog-article__header fade-up">',
+      '<header class="blog-article__header">',
       '  <a class="blog-article__back" href="/blog/">&larr; Back to Blog</a>',
       '  <h1 class="blog-article__title">Post not found</h1>',
       '  <p class="blog-article__meta">We couldn&rsquo;t find a post' + (slug ? ' for &ldquo;' + escapeHtml(slug) + '&rdquo;' : '') + '.</p>',
       '</header>',
-      '<div class="blog-article__footer fade-up">',
+      '<div class="blog-article__footer">',
       '  <a class="btn btn-primary" href="/blog/"><span>Browse all posts</span></a>',
       '</div>'
     ].join('\n');
-    observeFadeUp(article);
   }
 
   function renderDetail() {
