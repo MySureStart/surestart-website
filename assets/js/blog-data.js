@@ -410,7 +410,7 @@
           'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/logos/surestart/surestart-logo.png'
       },
       featuredImage: {
-        url: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/heroes/our-story.jpg',
+        url: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/blog/AdobeStock_917190692.jpeg',
         alt: 'Students collaborating on an AI project'
       },
       categories: [
@@ -438,7 +438,7 @@
           'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/logos/surestart/surestart-logo.png'
       },
       featuredImage: {
-        url: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/blog/AdobeStock_917190692.jpeg',
+        url: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/blog/AdobeStock_1120768142.jpeg',
         alt: 'Person planning goals with notebook and laptop',
         // Optional HTML-allowed credit shown as a <figcaption> under the hero.
         // Trusted, author-authored markup (same trust model as `content`).
