@@ -26,7 +26,13 @@ const pages = [
   { path: '/for-universities/', priority: '0.9', changefreq: 'weekly' },
   { path: '/for-students/', priority: '0.9', changefreq: 'weekly' },
   { path: '/k12/', priority: '0.9', changefreq: 'weekly' },
-  { path: '/impact-stories/', priority: '0.7', changefreq: 'monthly' }
+  { path: '/impact-stories/', priority: '0.7', changefreq: 'monthly' },
+  { path: '/blog/', priority: '0.7', changefreq: 'weekly' },
+  // Individual blog posts. Hand-listed while the site uses mock data.
+  // TODO(WordPress): once wired to the live WP REST API, replace these
+  // with a build-time fetch of `/wp/v2/posts?per_page=100&_fields=slug,modified`
+  // and emit one <url> per published post.
+  { path: '/blog/best-practices-for-building-a-strong-ai-policy/', priority: '0.6', changefreq: 'monthly' }
 ];
 
 const today = new Date().toISOString().split('T')[0];
