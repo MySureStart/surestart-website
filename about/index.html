@@ -576,6 +576,18 @@
             <p class="member-role">Strategic Operations Advisor</p>
           </div>
         </div>
+
+        <div class="team-member" data-member="15">
+          <div class="member-photo">
+            <picture>
+  <img decoding="async" loading="lazy" src="https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/mentors/WhatsApp%20Image%202026-05-15%20at%2000.57.24.jpeg" alt="Logan Currie" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto; display: block;">
+</picture>
+          </div>
+          <div class="member-info">
+            <h4 class="member-name">Logan Currie</h4>
+            <p class="member-role">AI Curriculum Advisor</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -793,15 +805,37 @@ document.addEventListener('DOMContentLoaded', function() {
       role: 'Software Developer & Platform Manager',
       image: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/leadership/WhatsApp%20Image%202026-04-17%20at%2017.18.09.jpeg',
       bio: 'Islam Zidan is a Software Developer at SureStart, where he manages the company\'s platform, maintains the website, and leads frontier tech research to keep SureStart\'s tools and programs at the cutting edge. His work spans platform management, software development, and supporting curriculum development for SureStart\'s AI education initiatives. Islam holds a B.Sc. in Computer Engineering from Ain Shams University in Egypt and is currently pursuing an M.Sc. in Electrical Engineering at Universität Paderborn in Germany, where he focuses on artificial intelligence. Driven by a deep love for technology and a fascination with what\'s on the horizon, Islam believes the best software is the kind that quietly empowers people to do the things they care about most.'
+    },
+    15: {
+      name: 'Logan Currie',
+      nameLink: 'https://www.logancurrie.com',
+      role: 'AI Curriculum Advisor',
+      image: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/team/mentors/WhatsApp%20Image%202026-05-15%20at%2000.57.24.jpeg',
+      bio: 'Logan Currie is the Future of Work Senior Fellow at Capita, where she investigates how AI-driven job displacement disproportionately impacts women and their families. She brings thirteen years of education technology experience across Asia and co-founded Careerspan, an AI-powered career navigation platform. She co-hosts the podcast Womansplaining AI and writes Career Security Field Notes on Substack. Logan holds an M.Ed. from the Harvard Graduate School of Education and a B.A. from the University of Pennsylvania. At SureStart, Logan brings her background in learning design and her hands-on experience building with AI tools to the team\'s curriculum work.'
     }
   };
+  
+  // Helper to escape HTML to safely render names in innerHTML
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
   
   teamMembers.forEach(member => {
     member.addEventListener('click', function() {
       const memberId = this.dataset.member;
       const data = teamData[memberId];
       
-      document.getElementById('modalName').textContent = data.name;
+      const modalNameEl = document.getElementById('modalName');
+      if (data.nameLink) {
+        modalNameEl.innerHTML = '<a href="' + escapeHtml(data.nameLink) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(data.name) + '</a>';
+      } else {
+        modalNameEl.textContent = data.name;
+      }
       document.getElementById('modalRole').textContent = data.role;
       document.getElementById('modalBio').textContent = data.bio;
       document.getElementById('modalImage').src = data.image;
