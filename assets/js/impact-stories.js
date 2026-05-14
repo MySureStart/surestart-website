@@ -1689,8 +1689,8 @@ class CaseStudiesCarousel {
     
     // Enhanced carousel properties
     this.currentIndex = 0;
-    this.realSlidesCount = 5; // Now 5 slides (was 4)
-    this.totalSlides = this.realSlidesCount + 1; // 6 slides including clone
+    this.realSlidesCount = 6; // Now 6 slides (was 5)
+    this.totalSlides = this.realSlidesCount + 1; // 7 slides including clone
     this.isTransitioning = false;
     this.isResetting = false;
     this.autoAdvanceInterval = null;
@@ -1703,8 +1703,8 @@ class CaseStudiesCarousel {
     // Cache container width for mobile calculations
     this.containerWidth = 0;
     
-    // Consistent slide width percentage for desktop (6 slides = 16.67% each)
-    this.slideWidthPercent = 100 / this.totalSlides; // 16.67%
+    // Consistent slide width percentage for desktop (7 slides = ~14.2857% each)
+    this.slideWidthPercent = 100 / this.totalSlides; // ~14.2857%
     
     this.init();
   }
@@ -1784,11 +1784,11 @@ class CaseStudiesCarousel {
       // Set track width to accommodate all slides plus gaps
       this.track.style.width = 'auto';
     } else {
-      // Desktop: Original layout with 16.67% per slide
-      this.track.style.width = '600%'; // 6 slides
+      // Desktop: Layout with ~14.2857% per slide (7 slides incl. clone)
+      this.track.style.width = '700%'; // 7 slides
       this.slides.forEach((slide, index) => {
-        slide.style.flex = '0 0 16.67%';
-        slide.style.width = '16.67%';
+        slide.style.flex = '0 0 14.2857%';
+        slide.style.width = '14.2857%';
         slide.style.margin = '0 auto';
         
         // Set initial animation state
@@ -1865,7 +1865,7 @@ class CaseStudiesCarousel {
         const gap = this.mobileGap;
         return -(this.currentIndex * (cardWidth + gap));
       } else {
-        return -(this.currentIndex * 16.67);
+        return -(this.currentIndex * 14.2857);
       }
     };
     
