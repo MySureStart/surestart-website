@@ -378,7 +378,53 @@
     ].join('\n');
   }
 
+  /**
+   * Build the post HTML body for the "How to Infuse Ethics Into AI Education"
+   * article, originally published by District Administration.
+   */
+  function ethicsInAiEducationContent() {
+    // Hand-converted from the source article into clean semantic HTML. Same
+    // approach as the other content builders above: no source-site markup or
+    // smart-quote artifacts. The original author (Dr. Taniya Mishra) and
+    // publication (District Administration) are credited both inline (below)
+    // and via the featuredImage.credit field.
+    return [
+      '<p><em>Original article published by <a href="https://districtadministration.com/opinion/how-to-infuse-ethics-into-ai-education-for-student-success/" target="_blank" rel="noopener noreferrer">District Administration</a></em></p>',
+
+      '<p>With AI adoption and implementation increasing at K12 educational institutions nationwide, the question of whether to allow AI usage and teach AI skills in the classroom has become obsolete.</p>',
+      '<p>Knowing it is critical to educate students and teachers for the reality of the future of work, district leaders are facing more complex questions: how can they ensure their students don&rsquo;t get left behind and truly set students up for future success?</p>',
+      '<p>The key is championing AI literacy and fluency, rather than AI usage. Truly supporting responsible AI use can only be accomplished by developing curricula that interweave AI concepts with AI ethics.</p>',
+
+      '<h2>What AI ethics instruction looks like</h2>',
+      '<p>Across the board, AI curricula must instill key ethical principles, including fairness, transparency, bias awareness and accountability, because they shape students&rsquo; AI use and also shape learners as responsible citizens.</p>',
+      '<p>For students to truly internalize these ethical principles, they must become part of the everyday practices through which students create, critique, and revise work with AI.</p>',
+      '<p>This works even better when ethics-rooted AI education is integrated across grade levels and into the subject-area work students are already doing, instead of being treated as a technical elective or a one-off unit.</p>',
+      '<p>Instruction should be built around interrogation and exploration. For example, rather than telling students that AI can be biased, a more effective approach would be to have students find the errors AI models produce, compare the AI&rsquo;s answer against a primary source and test how changing prompt phrasing shifts outputs.</p>',
+
+      '<h2>How to put it into practice</h2>',
+      '<p>This education should naturally compound and progress with hands-on exercises, project-based learning methods and collaborative initiatives that encourage critical thinking, reasoning and problem-solving.</p>',
+      '<p>To accomplish this, administrators must ensure all education staff are on the same page and hold students to the same standards. However, this will look different based on what is appropriate at every level.</p>',
+      '<p>For elementary students, this would include ensuring instruction focuses on concrete, guided activities that help them distinguish between what is real and what isn&rsquo;t, and how to think critically about what is presented to them.</p>',
+      '<p>Middle school students can cross-check AI output against other sources and discuss where AI training data blind spots may exist to begin to learn what questions to ask to verify outputs.</p>',
+      '<p>For high school students, their instruction would ask them to make and defend judgment calls about whether or how to use AI on specific assignments, grapple with opaque instances where an AI&rsquo;s answer isn&rsquo;t wrong but is incomplete, and also give students opportunities to use AI to solve real-world problems they are passionate about.</p>',
+      '<p>Ethical engagement with AI is the training mechanism needed to build a holistic set of skills that will be most sought after in the future. Interrogating an AI output for bias or verifying that predictions are robust and generalizable requires different cognitive processing that goes beyond procedural knowledge and translates into useful, durable skills.</p>',
+
+      '<h2>AI-era competencies go beyond technical skills</h2>',
+      '<p>In the AI era, technical competencies will be valuable, but they alone will not be enough. We must also build in them three deeper competencies:</p>',
+      '<ul>',
+      '  <li><strong>Learning to learn</strong> requires the development of mental frameworks, habits and strategies to continue exploring new tools and building fluency with them over time.</li>',
+      '  <li><strong>Adaptability</strong> requires students to adjust their approaches, revise assumptions, and pivot as AI changes tasks and constraints.</li>',
+      '  <li><strong>Agency</strong> empowers students to question AI outputs, reject shallow automated reasoning, and decide when to use AI versus not.</li>',
+      '</ul>',
+      '<p>What these competencies have in common is that they connect technical knowledge with human skills that AI isn&rsquo;t capable of. With the half-life of our skills dropping from 30 years to six years, per the Harvard University Mignone Center for Career Success, the ability to continuously learn, adapt and take agency of one&rsquo;s life and career is vital.</p>',
+      '<p>Students who have these skills will be more resilient to disruption. This is especially true as the traditional pipeline of K12 to higher or trade education to entry-level jobs is changing, leaving current and future young professionals vulnerable to early career disruption.</p>',
+      '<p>District leaders must start now for the sake of their students. A well-rounded, ethical AI education will allow students to gain not only technical skills, but also the confidence, resilience and sense of purpose necessary to safeguard their futures.</p>',
+      '<p>Districts that evolve now will secure the long-term future of their schools, as indecision or hand-wringing now only increases the risk of their students feeling the effects of the widening AI education gap, ultimately failing students when they need it the most.</p>'
+    ].join('\n');
+  }
+
   // ---------- Mock data (WordPress-friendly shape) ----------
+
 
   /**
    * @typedef {Object} BlogPost
@@ -488,10 +534,45 @@
         { id: 115, name: 'cursor', slug: 'cursor' },
         { id: 116, name: 'education', slug: 'education' }
       ]
+    },
+    {
+      id: 4,
+      slug: 'how-to-infuse-ethics-into-ai-education-for-student-success',
+      title: 'How to Infuse Ethics Into AI Education for Student Success',
+      excerpt:
+        'Setting students up for future success means championing AI literacy and fluency&mdash;not just AI usage. That requires curricula that interweave AI concepts with AI ethics across every grade level.',
+      content: ethicsInAiEducationContent(),
+      date: '2026-07-08',
+      author: {
+        name: 'Taniya Mishra',
+        avatar:
+          'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/logos/surestart/surestart-logo.png'
+      },
+      featuredImage: {
+        url: 'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/blog/AdobeStock_1908165666.jpeg',
+        alt: 'A teacher guiding students as they think critically about AI in the classroom',
+        // Optional HTML-allowed credit shown as a <figcaption> under the hero.
+        // Trusted, author-authored markup (same trust model as `content`).
+        credit:
+          'Original article published by <a href="https://districtadministration.com/opinion/how-to-infuse-ethics-into-ai-education-for-student-success/" target="_blank" rel="noopener noreferrer">District Administration</a>'
+      },
+      categories: [
+        // { id: 17, name: 'AI Ethics', slug: 'ai-ethics' },
+        // { id: 18, name: 'K-12', slug: 'k12' }
+      ],
+      tags: [
+        { id: 117, name: 'ai-ethics', slug: 'ai-ethics' },
+        { id: 118, name: 'ai-literacy', slug: 'ai-literacy' },
+        { id: 119, name: 'k12', slug: 'k12' },
+        { id: 120, name: 'responsible-ai', slug: 'responsible-ai' },
+        { id: 121, name: 'adaptability', slug: 'adaptability' },
+        { id: 122, name: 'student-agency', slug: 'student-agency' }
+      ]
     }
     // TODO(WordPress): additional posts will come from the WP REST API.
     // Until then, add new mock posts here following the BlogPost shape above.
   ];
+
 
   // ---------- WordPress -> internal-shape mapper (currently unused) ----------
 

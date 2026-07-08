@@ -34,8 +34,10 @@ const pages = [
   // and emit one <url> per published post.
   { path: '/blog/best-practices-for-building-a-strong-ai-policy/', priority: '0.6', changefreq: 'monthly' },
   { path: '/blog/goal-setting-strategies-6-frameworks-for-achieving-goals/', priority: '0.6', changefreq: 'monthly' },
-  { path: '/blog/vibe-coding-why-prompt-to-prototype-is-the-next-ai-fluency/', priority: '0.6', changefreq: 'monthly' }
+  { path: '/blog/vibe-coding-why-prompt-to-prototype-is-the-next-ai-fluency/', priority: '0.6', changefreq: 'monthly' },
+  { path: '/blog/how-to-infuse-ethics-into-ai-education-for-student-success/', priority: '0.6', changefreq: 'monthly' }
 ];
+
 
 const today = new Date().toISOString().split('T')[0];
 
