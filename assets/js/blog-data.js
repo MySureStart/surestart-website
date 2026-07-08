@@ -389,9 +389,10 @@
     // publication (District Administration) are credited both inline (below)
     // and via the featuredImage.credit field.
     return [
-      '<p><em>Original article published by <a href="https://districtadministration.com/opinion/how-to-infuse-ethics-into-ai-education-for-student-success/" target="_blank" rel="noopener noreferrer">District Administration</a></em></p>',
+      '<p><em>Original article published by <a href="https://districtadministration.com/opinion/how-to-infuse-ethics-into-ai-education-for-student-success/" target="_blank" rel="noopener noreferrer">District Administration</a></em><br><br></p>',
 
       '<p>With AI adoption and implementation increasing at K12 educational institutions nationwide, the question of whether to allow AI usage and teach AI skills in the classroom has become obsolete.</p>',
+
       '<p>Knowing it is critical to educate students and teachers for the reality of the future of work, district leaders are facing more complex questions: how can they ensure their students don&rsquo;t get left behind and truly set students up for future success?</p>',
       '<p>The key is championing AI literacy and fluency, rather than AI usage. Truly supporting responsible AI use can only be accomplished by developing curricula that interweave AI concepts with AI ethics.</p>',
 
