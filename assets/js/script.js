@@ -1974,12 +1974,15 @@
     // Get popup elements
     const notifyOverlay = document.getElementById('notify-popup-overlay');
     const waitlistOverlay = document.getElementById('waitlist-popup-overlay');
+    const discordOverlay = document.getElementById('discord-popup-overlay');
     const notifyClose = document.getElementById('notify-popup-close');
     const waitlistClose = document.getElementById('waitlist-popup-close');
+    const discordClose = document.getElementById('discord-popup-close');
     
     // Get trigger buttons
     const waitlistTriggers = document.querySelectorAll('[data-popup="waitlist"]');
     const notifyTriggers = document.querySelectorAll('[data-popup="notify"]');
+    const discordTriggers = document.querySelectorAll('[data-popup="discord"]');
     
     // Helper function to open popup
     function openPopup(overlay) {
@@ -2041,6 +2044,7 @@
     function closeAllPopups() {
       if (notifyOverlay) closePopup(notifyOverlay);
       if (waitlistOverlay) closePopup(waitlistOverlay);
+      if (discordOverlay) closePopup(discordOverlay);
     }
     
     // Set up waitlist popup triggers
@@ -2059,6 +2063,14 @@
       });
     });
     
+    // Set up discord popup triggers
+    discordTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openPopup(discordOverlay);
+      });
+    });
+    
     // Close button handlers
     if (notifyClose) {
       notifyClose.addEventListener('click', () => closePopup(notifyOverlay));
@@ -2068,8 +2080,12 @@
       waitlistClose.addEventListener('click', () => closePopup(waitlistOverlay));
     }
     
+    if (discordClose) {
+      discordClose.addEventListener('click', () => closePopup(discordOverlay));
+    }
+    
     // Close on overlay click (but not on modal click)
-    [notifyOverlay, waitlistOverlay].forEach(overlay => {
+    [notifyOverlay, waitlistOverlay, discordOverlay].forEach(overlay => {
       if (!overlay) return;
       
       overlay.addEventListener('click', (e) => {
@@ -2087,7 +2103,7 @@
     });
     
     // Handle focus trap for accessibility
-    [notifyOverlay, waitlistOverlay].forEach(overlay => {
+    [notifyOverlay, waitlistOverlay, discordOverlay].forEach(overlay => {
       if (!overlay) return;
       
       const focusableElements = overlay.querySelectorAll(
