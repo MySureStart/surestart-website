@@ -424,6 +424,120 @@
     ].join('\n');
   }
 
+  /**
+   * Build the post HTML body for the Pulse 2.0 interview with SureStart
+   * Founder and CEO Dr. Taniya Mishra, originally published by Pulse 2.0.
+   */
+  function pulse2InterviewContent() {
+    // Hand-converted from the source interview into clean semantic HTML. Same
+    // approach as the other content builders above: no source-site markup or
+    // smart-quote artifacts. The interviewer's lead-in lines are italicised to
+    // separate them from Dr. Mishra's answers. The publication (Pulse 2.0) is
+    // credited both inline (below) and via the featuredImage.credit field.
+    return [
+      '<p><em>Original interview published by <a href="https://pulse2.com/surestart-profile-dr-taniya-mishra-interview/" target="_blank" rel="noopener noreferrer">Pulse 2.0</a></em><br><br></p>',
+
+      '<p>SureStart is an AI education company that provides hands-on, responsible AI education for K-12 students globally. Its programs combine technical AI skills with mentorship, project-based learning, educator training, and responsible AI adoption support for schools.</p>',
+      '<p>Pulse 2.0 interviewed SureStart Founder and CEO Dr. Taniya Mishra to learn more.</p>',
+
+      '<h2>Dr. Taniya Mishra&rsquo;s Background</h2>',
+      '<p><em>When asked about her background, Dr. Mishra shared:</em></p>',
+      '<p>I grew up in a small town in India, and came to the United States when I was a brand-new 20-year-old, which is when I saw the first modern desktop computer, accessed the internet for the very first time, and sent my first email, realizing in that moment that I could instantly access information and stay connected to family and friends thousands of miles away in a way I never thought possible, and everything changed.</p>',
+      '<p>I knew that I needed to learn everything I could about computers, which led me to pursue first a Bachelor&rsquo;s degree and then a PhD in Computer Science. I finished my PhD in 2008 with my dissertation focused on using Machine Learning to generate expressive and emotional voices for child-directed education purposes.</p>',
+      '<p>At that time, AI was still a very niche area with most of the work still being done in research labs, but I could already sense that there was real potential for AI to be a powerful tool for solving complex challenges. What I could not have predicted at the time was how quickly AI would move from research to everyday life, and how ubiquitous its impact would be.</p>',
+      '<p>Following my education, I held roles related to research, innovation, and leadership both in large enterprises and startups, such as AT&amp;T and Affectiva, an MIT Media Lab spinoff, where my research focused on advancing conversational AI, affective computing, and human-machine interactions.</p>',
+      '<p>My work was centered on developing AI systems to address accessibility needs, child-directed educational goals, and improving safety and well-being. Another focus of my work that is threaded through my work and life is using AI systems to support youth with autism to better understand emotional and social cues to navigate the world around them.</p>',
+      '<p>It started as an intellectual focus during my PhD work, which I carried through my professional research career as well, becoming instantly and deeply personal when, years later, I became a parent of a child on the autism spectrum myself.</p>',
+      '<p>In addition to my education and experience, my success is a testament to the power of mentorship. I have been the beneficiary of a substantial network of allies, friends and mentors, who have each played a pivotal role in my journey. If they didn&rsquo;t believe in me, I wouldn&rsquo;t be where I am.</p>',
+      '<p>And in recognizing that, I make the conscious effort to pay it forward as a mentor to the next generation.</p>',
+      '<p>Now, as the founder and CEO of SureStart, an AI education company that provides hands-on, responsible AI education for K-12 students globally, each of my lived experiences directly influences the work of SureStart: creating greater access and equity in foundational AI education, mentorship for creating early success pathways for students, and designing AI learning pathways to build the strengths of all youth, including neurodiverse learners.</p>',
+
+      '<h2>How SureStart Started</h2>',
+      '<p><em>When asked how the idea for SureStart came together, Dr. Mishra explained:</em></p>',
+      '<p>I&rsquo;ve been fascinated with AI since the early 2000s, but since about 2016, I felt the speed at which AI was evolving to become more and more commoditized and accessible was accelerating. By 2020, it was becoming evident to those of us in the AI and Machine Learning field that AI would not stay confined to tech and engineering domains.</p>',
+      '<p>Instead, it would impact nearly every field, career, and society writ large.</p>',
+      '<p>It was also accompanied by a realization that if we didn&rsquo;t intentionally expand who has access to AI, foundationally and practically, a lot of people would be left out of shaping AI&rsquo;s role in our future: whose ideas inform it, whose concerns are addressed, how it is used, and who benefits from the opportunities it creates.</p>',
+      '<p>In tandem, after having regularly mentored emerging technologists for a decade, I was also recognizing that among the things I did professionally, the work that gave me the greatest joy was teaching, mentoring, and seeing my mentees surpass me in knowledge and skills, develop new ideas, and use their AI knowledge to impact the world for the better.</p>',
+      '<p>These realizations came together in SureStart. I started the company in late 2020 with a goal to create pathways for all students, especially those who might not otherwise have access to AI education, so that all students have the opportunity to learn about AI, create with AI, and through it develop the confidence and agency to help shape an AI-driven future.</p>',
+
+      '<h2>Favorite Memory</h2>',
+      '<p><em>When asked about her favorite memory working for the company so far, Dr. Mishra said:</em></p>',
+      '<p>One of the most meaningful parts of this work has been seeing students who might not have initially seen themselves in tech begin to really get excited about AI as they learn more about it, build with it, and use it for creating social impact.</p>',
+      '<p>Watching that transformation is honestly incredible. I think about students who come into our program unsure of and inexperienced with AI, and then you can see them light up, start asking deeper questions and solving problems.</p>',
+      '<p>In the 5+ years since the company&rsquo;s founding in 2020, SureStart has supported K-12 and college students from all 50 US states and many who are globally-based.</p>',
+      '<p>And what has been lovely is to hear from them in the following months and years about taking the next step forward in their educational and career journeys related to tech and AI, building on the first step that they took with us.</p>',
+      '<p>Many of our students go on to pursue AI, Machine Learning, Data Science, and other related majors at top-25 universities, and secure first internships at leading tech and STEM organizations, including Apple, Google, Microsoft, NASA and Salesforce.</p>',
+      '<p>Our students&rsquo; success means everything to me. It reinforces the idea that, given the support and access, anyone is able to step into this work with real confidence.</p>',
+
+      '<h2>Core Products And Services</h2>',
+      '<p><em>When asked about SureStart&rsquo;s core products and services, Dr. Mishra detailed:</em></p>',
+      '<p>At SureStart, we offer AI education curriculum and programs, instructor enablement resources, and implementation playbooks to help K&ndash;12 schools build AI fluency in their students and teachers.</p>',
+      '<p>Our inquiry-led project-based AI education programs serve students ranging from middle school through high school, including semester-long, year-long, summer, and hybrid learning models.</p>',
+      '<p>These programs combine technical AI skills with critical transferable skills, including leadership, entrepreneurship, communication, collaboration, and ethical reasoning through our &ldquo;Power Skills Progression&rdquo; framework.</p>',
+      '<p>Students learn by building real-world AI applications, working on UN Sustainable Development Goal-aligned projects, and developing portfolios that support pathways to universities, internships, and future careers.</p>',
+      '<p>Another core part of our work is also helping schools build internal capacity. We support educators with training, classroom-ready teaching resources, and practical implementation guides, while supporting the school leadership with responsible AI adoption frameworks and AI policy development support, with a goal to build AI fluency across the entire school community.</p>',
+
+      '<h2>Navigating AI Adoption In Education</h2>',
+      '<p><em>When asked about recent challenges in the sector and how SureStart has addressed them, Dr. Mishra explained:</em></p>',
+      '<p>When ChatGPT launched, and other AI chatbots and tools began hitting the mainstream, it caused a lot of hype and anxiety about whether or not AI would replace educators.</p>',
+      '<p>There was immediately a lot of pressure between schools, parents, and society at large about whether and how AI should be adopted in general, let alone in a classroom. In many cases, that caused schools to resist AI entirely, and in some, to try it without guardrails.</p>',
+      '<p>Navigating that tension through our evidence-based pilots has been the best way for schools to take their time testing and implementing it so they can move forward intentionally.</p>',
+      '<p>Early successes are why we&rsquo;re seeing more openness to AI from educational institutions now than we were even a year or two ago. The conversation is changing from whether educators should use these tools to how administrators, educators and students can use the tools responsibly and effectively.</p>',
+      '<p>The fact is, we will continue to face this challenge for a while longer because schools, like businesses and governments, are still figuring out how to make AI work for them, their teachers and students.</p>',
+      '<p>The way to overcome this is to be honest and realistic about the future of AI and how it will shape how students learn, what jobs they&rsquo;ll have and how their future society will operate. The only way forward is through and we owe it to our children to prepare them properly for what&rsquo;s ahead, even when we&rsquo;re uncertain exactly what that future will look like.</p>',
+
+      '<h2>How SureStart Has Evolved</h2>',
+      '<p><em>When asked how the company has evolved since launching, Dr. Mishra noted:</em></p>',
+      '<p>At the beginning of SureStart, our focus was on just students. However, we quickly learned that both students and educators need supported training and guidance on how to responsibly and effectively integrate AI in the classroom and learning experience.</p>',
+      '<p>As a result, we&rsquo;ve expanded our approach to partner more closely with schools and be a part of the full learning experience, helping students and educators prepare for real-world application and future workforce readiness.</p>',
+      '<p>What began as smaller cohort-based experiences has grown into long-term partnerships with K-12 schools and educational organizations globally.</p>',
+      '<p>We now support schools with embedded AI programming, curriculum integration, policy support, and AI adoption strategy.</p>',
+
+      '<h2>Key Company Milestones</h2>',
+      '<p><em>When asked about some of SureStart&rsquo;s most significant milestones, Dr. Mishra highlighted:</em></p>',
+      '<p>There are several significant milestones we&rsquo;ve achieved since the founding of SureStart, which mark our progress as an AI education company. In 2020, I launched SureStart from a deep conviction that AI education should not be limited to well-resourced and well-networked students already closest to opportunity.</p>',
+      '<p>In the earliest years, we built deep collaborations with leading tech education and research institutions, such as MIT RAISE, Carnegie Mellon University, and UVA, spanning multiple years to implement AI education programs.</p>',
+      '<p>This progress was a testament to SureStart&rsquo;s instructional quality, credibility, and capacity to deliver meaningful AI learning experiences.</p>',
+      '<p>As the company continued to grow, we introduced SureStart&rsquo;s first full-year, in-classroom AI curriculum for sixth graders at XCL World Academy in Singapore in 2023, which continues to grow to additional grades. Here, we were able to embed responsible, project-based AI learning into the regular school day.</p>',
+      '<p>In our fifth year in 2025, we grew SureStart from early pilots into a sustainable, bootstrapped AI education company, with repeat partnerships across K-12 schools and universities.</p>',
+      '<p>We&rsquo;re thrilled with the impact we&rsquo;ve had on students and look forward to continuing to make positive change in AI education worldwide.</p>',
+
+      '<h2>Student Success Story</h2>',
+      '<p><em>When asked to share a specific customer success story, Dr. Mishra said:</em></p>',
+      '<p>One student success story that stands out is the journey of Team Code Blue, a group of young female innovators who developed the concept for their app in a SureStart program and went on to build an AI-powered healthcare startup focused on early stroke detection.</p>',
+      '<p>It began as a student capstone project and evolved into a real company tackling a critical global health challenge. Code Blue AI developed technology to detect stroke symptoms faster than a patient can reach a doctor, helping reduce treatment delays during life-threatening emergencies.</p>',
+      '<p>The team&rsquo;s work was deeply personal, mission-driven, and rooted in using AI for social impact.</p>',
+      '<p>The team patented their technology and have continued to refine it, collaborating with medical professionals and researchers, and ultimately transformed the idea into a funded startup with growing recognition in the healthcare ecosystem.</p>',
+      '<p>The company has since received support and visibility through organizations such as UC Berkeley and Berkeley SkyDeck, and has worked alongside clinical partners, including UCSF Health.</p>',
+      '<p>For me, Code Blue AI represents exactly what we hope to inspire through SureStart: students realizing they can use AI not just to learn technical skills, but to solve meaningful, real-world problems that have the potential to save lives.</p>',
+
+      '<h2>Funding</h2>',
+      '<p><em>When asked about funding and revenue metrics, Dr. Mishra revealed:</em></p>',
+      '<p>We are a revenue-funded company and have taken no external funding to date.</p>',
+
+      '<h2>Competitive Differentiation</h2>',
+      '<p><em>When asked what differentiates SureStart from its competition, Dr. Mishra explained:</em></p>',
+      '<p>What differentiates SureStart from our competitors is that we are not simply teaching students how to use AI tools in isolation; we are building a comprehensive learning ecosystem that equips students, educators and schools with the skills, confidence and support needed to thrive in an AI-driven world.</p>',
+      '<p>One of our biggest differentiators is our focus on real-world application and experiential learning. Students don&rsquo;t simply consume content or complete isolated coding exercises.</p>',
+      '<p>They work in teams, identify meaningful problems, collaborate with mentors, and build AI-powered solutions tied to real societal challenges, often aligned with the UN Sustainable Development Goals.</p>',
+      '<p>This approach helps students develop both technical fluency and the leadership, creativity, and problem-solving skills needed for the future workforce.</p>',
+      '<p>Another key differentiator is our mentorship-centered model. In a SureStart program, students are supported in the project development by near-peer technical mentors, who are students pursuing bachelor&rsquo;s, master&rsquo;s, and PhDs in technical subject areas.</p>',
+      '<p>These mentors not only support our learners with technical skill-building, but they also provide students with actionable insights, information, and inspiration for the next step beyond high school; these mentors become the first professional network for our students.</p>',
+      '<p>This proximal mentor support system is something we believe is critical in AI education and often missing from more traditional learning models.</p>',
+      '<p>We also differentiate ourselves through our ability to support the entire educational ecosystem, not just students.</p>',
+      '<p>Early on, we realized that to fulfill our bold mission of building AI fluency in all students as quickly as possible, it was not enough to just create learning materials. That was necessary but not a sufficient condition.</p>',
+      '<p>Educators and schools also need support, training, and strategic guidance to responsibly integrate AI into learning environments.</p>',
+      '<p>As a result, SureStart evolved into a partner for schools, helping with curriculum integration, teacher training, AI policy development, and adoption strategy.</p>',
+
+      '<h2>Future Goals</h2>',
+      '<p><em>When discussing SureStart&rsquo;s future goals, Dr. Mishra concluded:</em></p>',
+      '<p>Our primary goal for the future is to expand our ability to provide high-quality AI education and future workforce preparation to students and schools around the world.</p>',
+      '<p>As AI continues to reshape every industry and sector, it becomes more urgent that AI literacy is not limited by geography to only those students with the greatest access to technology.</p>',
+      '<p>So our goal is to continue building scalable models that allow us to support significantly more students globally while maintaining the hands-on, mentorship-driven experience that defines SureStart.</p>',
+      '<p>Over the next five years, we aim to expand our partnerships so that we can reach 250,000+ students while maintaining the quality of our programs. We&rsquo;re deepening our relationships with schools and institutions to work more closely with them long-term.</p>'
+    ].join('\n');
+  }
+
   // ---------- Mock data (WordPress-friendly shape) ----------
 
 
@@ -568,6 +682,43 @@
         { id: 120, name: 'responsible-ai', slug: 'responsible-ai' },
         { id: 121, name: 'adaptability', slug: 'adaptability' },
         { id: 122, name: 'student-agency', slug: 'student-agency' }
+      ]
+    },
+    {
+      id: 5,
+      slug: 'surestart-profile-dr-taniya-mishra-interview',
+      title: 'SureStart: Interview With Founder And CEO Dr. Taniya Mishra About AI Education And Future Workforce Readiness',
+      excerpt:
+        'SureStart Founder and CEO Dr. Taniya Mishra talks with Pulse 2.0 about her path into AI, why she started SureStart, and how hands-on, mentorship-driven AI education prepares K-12 students for the future workforce.',
+      content: pulse2InterviewContent(),
+      date: '2026-10-02',
+      author: {
+        name: 'Taniya Mishra',
+        avatar:
+          'https://pub-dcb79d88e2ec4567824453cc853f55f3.r2.dev/images/logos/surestart/surestart-logo.png'
+      },
+      featuredImage: {
+        // Hosted by Pulse 2.0 (the original publisher). If it ever breaks,
+        // upload a copy to R2 and update this URL + the og/twitter image in
+        // blog/surestart-profile-dr-taniya-mishra-interview/index.html.
+        url: 'https://cdn.pulse2.com/cdn/2026/10/Taniya-Mishra.jpg',
+        alt: 'Dr. Taniya Mishra, Founder and CEO of SureStart',
+        // Optional HTML-allowed credit shown as a <figcaption> under the hero.
+        // Trusted, author-authored markup (same trust model as `content`).
+        credit:
+          'Original interview published by <a href="https://pulse2.com/surestart-profile-dr-taniya-mishra-interview/" target="_blank" rel="noopener noreferrer">Pulse 2.0</a>'
+      },
+      categories: [
+        // { id: 19, name: 'Interviews', slug: 'interviews' },
+        // { id: 20, name: 'Company News', slug: 'company-news' }
+      ],
+      tags: [
+        { id: 123, name: 'interview', slug: 'interview' },
+        { id: 124, name: 'founder-story', slug: 'founder-story' },
+        { id: 125, name: 'ai-education', slug: 'ai-education' },
+        { id: 126, name: 'mentorship', slug: 'mentorship' },
+        { id: 127, name: 'k12', slug: 'k12' },
+        { id: 128, name: 'workforce-readiness', slug: 'workforce-readiness' }
       ]
     }
     // TODO(WordPress): additional posts will come from the WP REST API.

@@ -35,7 +35,8 @@ const pages = [
   { path: '/blog/best-practices-for-building-a-strong-ai-policy/', priority: '0.6', changefreq: 'monthly' },
   { path: '/blog/goal-setting-strategies-6-frameworks-for-achieving-goals/', priority: '0.6', changefreq: 'monthly' },
   { path: '/blog/vibe-coding-why-prompt-to-prototype-is-the-next-ai-fluency/', priority: '0.6', changefreq: 'monthly' },
-  { path: '/blog/how-to-infuse-ethics-into-ai-education-for-student-success/', priority: '0.6', changefreq: 'monthly' }
+  { path: '/blog/how-to-infuse-ethics-into-ai-education-for-student-success/', priority: '0.6', changefreq: 'monthly' },
+  { path: '/blog/surestart-profile-dr-taniya-mishra-interview/', priority: '0.6', changefreq: 'monthly' }
 ];
 
 
